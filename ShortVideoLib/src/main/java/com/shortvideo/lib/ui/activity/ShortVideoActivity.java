@@ -91,6 +91,8 @@ public class ShortVideoActivity extends AppCompatActivity {
     private int id;
     private String f = "";
     private boolean isNewActivity;
+    private boolean isFirstBegin = !TextUtils.isEmpty(SPUtils.getString("last_video_mark")) &&
+            !TextUtils.isEmpty(SPUtils.getString("last_video_id"));
 
     private DownloadPop downloadPop;
     private SharePop sharePop;
@@ -438,7 +440,7 @@ public class ShortVideoActivity extends AppCompatActivity {
                         public void onSuccess(VideoDetailBean videoDetailBean, String msg) {
                             if (!TextUtils.isEmpty(SPUtils.getString("last_video_mark")) &&
                                     SPUtils.getString("last_video_mark").equals(homeBean.getDataTime() + "") &&
-                                    !TextUtils.isEmpty(SPUtils.getString("last_video_id"))) {
+                                    !TextUtils.isEmpty(SPUtils.getString("last_video_id")) && isFirstBegin) {
                                 Integer id = Integer.parseInt(SPUtils.getString("last_video_id"));
                                 int position = -1;
                                 List<HomeBean.DataDTO> newList = new ArrayList<>();
@@ -496,7 +498,7 @@ public class ShortVideoActivity extends AppCompatActivity {
                         public void onFail(int errorCode, String errorMsg) {
                             if (!TextUtils.isEmpty(SPUtils.getString("last_video_mark")) &&
                                     SPUtils.getString("last_video_mark").equals(homeBean.getDataTime() + "") &&
-                                    !TextUtils.isEmpty(SPUtils.getString("last_video_id"))) {
+                                    !TextUtils.isEmpty(SPUtils.getString("last_video_id")) && isFirstBegin) {
                                 Integer id = Integer.parseInt(SPUtils.getString("last_video_id"));
                                 int position = -1;
                                 List<HomeBean.DataDTO> newList = new ArrayList<>();
@@ -530,7 +532,7 @@ public class ShortVideoActivity extends AppCompatActivity {
                 } else {
                     if (!TextUtils.isEmpty(SPUtils.getString("last_video_mark")) &&
                             SPUtils.getString("last_video_mark").equals(homeBean.getDataTime() + "") &&
-                            !TextUtils.isEmpty(SPUtils.getString("last_video_id"))) {
+                            !TextUtils.isEmpty(SPUtils.getString("last_video_id")) && isFirstBegin) {
                         Integer id = Integer.parseInt(SPUtils.getString("last_video_id"));
                         int position = -1;
                         List<HomeBean.DataDTO> newList = new ArrayList<>();
@@ -601,7 +603,8 @@ public class ShortVideoActivity extends AppCompatActivity {
 
             if (stdTikTokAdapter.getData().size() > 0) {
                 if (VideoApplication.getInstance().getLastVideoPosition() > 0 &&
-                        VideoApplication.getInstance().getLastVideoPosition() < stdTikTokAdapter.getData().size() - 1) {
+                        VideoApplication.getInstance().getLastVideoPosition() < stdTikTokAdapter.getData().size() - 1 && isFirstBegin) {
+                    isFirstBegin = false;
                     binding.page2.setCurrentItem(VideoApplication.getInstance().getLastVideoPosition(), false);
                     binding.refreshLayout.postDelayed(() -> autoPlayVideo(VideoApplication.getInstance().getLastVideoPosition()), 50);
                 } else {
