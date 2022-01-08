@@ -10,7 +10,7 @@ android {
         minSdk 21
         targetSdk 31
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.1"
 
         consumerProguardFiles "consumer-rules.pro"
 
@@ -170,7 +170,6 @@ project.afterEvaluate {
         publications {
             release(MavenPublication) {
                 from components.release
-                artifact androidSourcesJar
             }
         }
     }
