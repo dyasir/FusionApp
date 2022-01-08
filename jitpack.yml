@@ -1,0 +1,6 @@
+jdk:
+ - openjdk11
+
+install:
+ - ./gradlew :ShortVideoLib:build :ShortVideoLib:publishToMavenLocal
+ - find . -name "*.aar"

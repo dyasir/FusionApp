@@ -1,0 +1,239 @@
+{
+  "project_info": {
+    "project_number": "278356230504",
+    "firebase_url": "https://tika-8ca35-default-rtdb.firebaseio.com",
+    "project_id": "tika-8ca35",
+    "storage_bucket": "tika-8ca35.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:278356230504:android:f29683915abd0af8af56dd",
+        "android_client_info": {
+          "package_name": "com.bartzsdgg.core"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXv_RvJ1kgesKSo0azRL50UHw4_UH3nUU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:278356230504:android:01258970da48ab56af56dd",
+        "android_client_info": {
+          "package_name": "com.ghostdancevideo.yuel"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXv_RvJ1kgesKSo0azRL50UHw4_UH3nUU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:278356230504:android:98c93a9dc7194d3faf56dd",
+        "android_client_info": {
+          "package_name": "com.lib.module.shortvideo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXv_RvJ1kgesKSo0azRL50UHw4_UH3nUU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:278356230504:android:ae52c354a54e5ceeaf56dd",
+        "android_client_info": {
+          "package_name": "com.lib.module.video"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXv_RvJ1kgesKSo0azRL50UHw4_UH3nUU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:278356230504:android:93d648b3041337dbaf56dd",
+        "android_client_info": {
+          "package_name": "com.luo.ying.video"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXv_RvJ1kgesKSo0azRL50UHw4_UH3nUU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:278356230504:android:c7cf3ef079680285af56dd",
+        "android_client_info": {
+          "package_name": "com.napersia.gogoin"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXv_RvJ1kgesKSo0azRL50UHw4_UH3nUU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:278356230504:android:aff3f3e09c4021a3af56dd",
+        "android_client_info": {
+          "package_name": "com.sao.hu.video"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXv_RvJ1kgesKSo0azRL50UHw4_UH3nUU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:278356230504:android:6f0936d3af72aa07af56dd",
+        "android_client_info": {
+          "package_name": "com.sup.video"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXv_RvJ1kgesKSo0azRL50UHw4_UH3nUU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:278356230504:android:81eff42ac0ff23bdaf56dd",
+        "android_client_info": {
+          "package_name": "com.tika.android"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXv_RvJ1kgesKSo0azRL50UHw4_UH3nUU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:278356230504:android:7af8c23af596e60baf56dd",
+        "android_client_info": {
+          "package_name": "com.yapersi.troce"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXv_RvJ1kgesKSo0azRL50UHw4_UH3nUU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:278356230504:android:4928cd080b566493af56dd",
+        "android_client_info": {
+          "package_name": "com.yasehome.gome"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXv_RvJ1kgesKSo0azRL50UHw4_UH3nUU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:278356230504:android:ed1b7a1131d67250af56dd",
+        "android_client_info": {
+          "package_name": "com.yuan.li.video"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXv_RvJ1kgesKSo0azRL50UHw4_UH3nUU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

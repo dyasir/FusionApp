@@ -1,0 +1,80 @@
+plugins {
+    id 'com.android.application'
+    id 'com.google.gms.google-services'
+}
+
+android {
+    def versions = rootProject.ext.versions
+    def packageCfg = rootProject.ext.packages
+
+    compileSdk 31
+
+    defaultConfig {
+        applicationId packageCfg.applicationId
+        minSdk 21
+        targetSdk 31
+        versionCode versions.versionCode
+        versionName versions.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
+    }
+
+    viewBinding {
+        enabled = true
+    }
+
+    buildTypes {
+        release {
+            debuggable false
+            minifyEnabled false
+            shrinkResources false
+            zipAlignEnabled true
+            manifestPlaceholders = [APP_NAME: appName.APP_NAME] // 配置主包的应用名称
+            buildConfigField "String", "API_URL_TEST", "\"" + apiPath.API_URL_TEST + "\""
+            buildConfigField "String", "API_URL_PRODUCT", "\"" + apiPath.API_URL_PRODUCT + "\""
+            buildConfigField "boolean", "API_PRODUCT", "" + apiPath.API_PRODUCT + ""
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
+        debug {
+            debuggable true
+            minifyEnabled false
+            shrinkResources false
+            zipAlignEnabled true
+            manifestPlaceholders = [APP_NAME: appName.APP_NAME] // 配置主包的应用名称
+            buildConfigField "String", "API_URL_TEST", "\"" + apiPath.API_URL_TEST + "\""
+            buildConfigField "String", "API_URL_PRODUCT", "\"" + apiPath.API_URL_PRODUCT + "\""
+            buildConfigField "boolean", "API_PRODUCT", "" + apiPath.API_PRODUCT + ""
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+}
+
+dependencies {
+
+    implementation 'androidx.appcompat:appcompat:1.4.0'
+    implementation 'com.google.android.material:material:1.4.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.2'
+
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
+    implementation project(path: ':ShortVideoLib')
+
+    /** 接入路由，跨module跳转 **/
+    annotationProcessor 'com.alibaba:arouter-compiler:1.5.2'
+
+    /** 状态栏、导航栏 **/
+    implementation "com.gyf.immersionbar:immersionbar:3.0.0"
+}
