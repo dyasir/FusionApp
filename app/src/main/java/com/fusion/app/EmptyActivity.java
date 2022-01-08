@@ -39,7 +39,7 @@ public class EmptyActivity extends AppCompatActivity {
     private void jumpWhere(int type) {
         if (type == 2) {
             ARouter.getInstance()
-                    .build(AppConfig.SHORT_VIDEO_PATH)
+                    .build(App.SHORT_VIDEO_PATH)
                     .navigation();
         } else {
             startActivity(new Intent(this, MainActivity.class));

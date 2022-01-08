@@ -27,11 +27,6 @@ public class AppConfig {
     //bugly id
     public static final String BUGLY_ID = "950757ae7c";
 
-    //跳转视频APP的路由path
-    public static final String SHORT_VIDEO_PATH = "/videolib/videosplash";
-    //跳转第三方APP的路由path
-    public static final String THIRD_ROUTE_PATH = "/third/mainactivity";
-
     /**
      * 获取水印图
      *

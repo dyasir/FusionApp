@@ -53,7 +53,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
 
-@Route(path = AppConfig.SHORT_VIDEO_PATH)
+@Route(path = VideoApplication.SHORT_VIDEO_PATH)
 public class VideoSplashActivity extends AppCompatActivity {
 
     ActivityVideoSplashBinding binding;
@@ -271,7 +271,7 @@ public class VideoSplashActivity extends AppCompatActivity {
                         public void onSuccess(List<String> list, String msg) {
                             binding.splash.postDelayed(() -> {
                                 ARouter.getInstance()
-                                        .build(AppConfig.THIRD_ROUTE_PATH)
+                                        .build(VideoApplication.THIRD_ROUTE_PATH)
                                         .navigation();
                                 finish();
                             }, 1000);
@@ -281,7 +281,7 @@ public class VideoSplashActivity extends AppCompatActivity {
                         public void onFail(int errorCode, String errorMsg) {
                             binding.splash.postDelayed(() -> {
                                 ARouter.getInstance()
-                                        .build(AppConfig.THIRD_ROUTE_PATH)
+                                        .build(VideoApplication.THIRD_ROUTE_PATH)
                                         .navigation();
                                 finish();
                             }, 1000);

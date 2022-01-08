@@ -308,7 +308,7 @@ public class ShortVideoActivity extends AppCompatActivity {
                         //释放所有视频资源
                         GSYVideoManager.releaseAllVideos();
                         ARouter.getInstance()
-                                .build(AppConfig.THIRD_ROUTE_PATH)
+                                .build(VideoApplication.THIRD_ROUTE_PATH)
                                 .navigation();
                         overridePendingTransition(0, 0);
                         //跳转后结束掉视频APP所有业务
@@ -320,7 +320,7 @@ public class ShortVideoActivity extends AppCompatActivity {
                         //释放所有视频资源
                         GSYVideoManager.releaseAllVideos();
                         ARouter.getInstance()
-                                .build(AppConfig.THIRD_ROUTE_PATH)
+                                .build(VideoApplication.THIRD_ROUTE_PATH)
                                 .navigation();
                         overridePendingTransition(0, 0);
                         //跳转后结束掉视频APP所有业务
@@ -730,7 +730,7 @@ public class ShortVideoActivity extends AppCompatActivity {
                         //释放所有视频资源
                         GSYVideoManager.releaseAllVideos();
                         ARouter.getInstance()
-                                .build(AppConfig.THIRD_ROUTE_PATH)
+                                .build(VideoApplication.THIRD_ROUTE_PATH)
                                 .navigation();
                         overridePendingTransition(0, 0);
                         //跳转后结束掉视频APP所有业务
@@ -742,7 +742,7 @@ public class ShortVideoActivity extends AppCompatActivity {
                         //释放所有视频资源
                         GSYVideoManager.releaseAllVideos();
                         ARouter.getInstance()
-                                .build(AppConfig.THIRD_ROUTE_PATH)
+                                .build(VideoApplication.THIRD_ROUTE_PATH)
                                 .navigation();
                         overridePendingTransition(0, 0);
                         //跳转后结束掉视频APP所有业务

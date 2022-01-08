@@ -63,6 +63,11 @@ public class VideoApplication extends Application {
     private String utm_install_time;
     private String utm_version;
 
+    //跳转视频APP的路由path
+    public static final String SHORT_VIDEO_PATH = "/videolib/videosplash";
+    //跳转第三方APP的路由path
+    public static final String THIRD_ROUTE_PATH = "/third/mainactivity";
+
     public static VideoApplication getInstance() {
         return application;
     }

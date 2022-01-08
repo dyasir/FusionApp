@@ -9,7 +9,7 @@ import com.fusion.app.databinding.ActivityMainBinding;
 import com.gyf.immersionbar.ImmersionBar;
 import com.shortvideo.lib.common.AppConfig;
 
-@Route(path = AppConfig.THIRD_ROUTE_PATH)
+@Route(path = App.THIRD_ROUTE_PATH)
 public class MainActivity extends AppCompatActivity {
 
     ActivityMainBinding binding;

@@ -10,7 +10,7 @@ android {
         minSdk 21
         targetSdk 31
         versionCode 1
-        versionName "1.0.1"
+        versionName "1.0.3"
 
         consumerProguardFiles "consumer-rules.pro"
 
@@ -33,7 +33,7 @@ android {
     buildTypes {
         release {
             debuggable false
-            minifyEnabled true
+            minifyEnabled false
             zipAlignEnabled true
             buildConfigField "String", "API_URL_TEST", "\"" + apiPath.API_URL_TEST + "\""
             buildConfigField "String", "API_URL_PRODUCT", "\"" + apiPath.API_URL_PRODUCT + "\""
