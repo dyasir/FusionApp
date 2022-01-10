@@ -13,14 +13,14 @@ import com.orhanobut.logger.Logger;
 import com.shortvideo.lib.R;
 import com.shortvideo.lib.VideoApplication;
 import com.shortvideo.lib.common.widgets.TipPop;
-import com.shortvideo.lib.databinding.ActivitySettingBinding;
+import com.shortvideo.lib.databinding.TkActivitySettingBinding;
 import com.shortvideo.lib.utils.ActivityManager;
 import com.shortvideo.lib.utils.DataCleanManager;
 import com.shortvideo.lib.utils.ToastyUtils;
 
 public class SettingActivity extends AppCompatActivity implements View.OnClickListener {
 
-    ActivitySettingBinding binding;
+    TkActivitySettingBinding binding;
 
     private int clickCount = 0;
 
@@ -36,7 +36,7 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
                 .statusBarDarkFont(true, 0f)
                 .init();
 
-        binding = ActivitySettingBinding.inflate(getLayoutInflater());
+        binding = TkActivitySettingBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         ActivityManager.getAppInstance().addActivity(this);
 

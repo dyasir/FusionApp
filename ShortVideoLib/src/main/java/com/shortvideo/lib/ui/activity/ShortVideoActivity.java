@@ -41,7 +41,7 @@ import com.shortvideo.lib.common.event.OnVideoReportEvent;
 import com.shortvideo.lib.common.event.OnWaterEmptyEvent;
 import com.shortvideo.lib.common.http.HttpCallBack;
 import com.shortvideo.lib.common.http.HttpRequest;
-import com.shortvideo.lib.databinding.ActivityShortVideoBinding;
+import com.shortvideo.lib.databinding.TkActivityShortVideoBinding;
 import com.shortvideo.lib.model.AdBean;
 import com.shortvideo.lib.model.DataMgr;
 import com.shortvideo.lib.model.HomeBean;
@@ -70,7 +70,7 @@ import java.util.TimerTask;
 
 public class ShortVideoActivity extends AppCompatActivity {
 
-    ActivityShortVideoBinding binding;
+    TkActivityShortVideoBinding binding;
 
     private StdTikTokAdapter stdTikTokAdapter;
 
@@ -109,7 +109,7 @@ public class ShortVideoActivity extends AppCompatActivity {
                 .statusBarDarkFont(false, 0f)
                 .init();
 
-        binding = ActivityShortVideoBinding.inflate(getLayoutInflater());
+        binding = TkActivityShortVideoBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         ActivityManager.getAppInstance().addActivity(this);
 

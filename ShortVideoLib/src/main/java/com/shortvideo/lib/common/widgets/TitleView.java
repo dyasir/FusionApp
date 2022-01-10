@@ -70,7 +70,7 @@ public class TitleView extends RelativeLayout {
     }
 
     private void initView(final Context context) {
-        mRootView = LayoutInflater.from(context).inflate(R.layout.view_title, this, true);
+        mRootView = LayoutInflater.from(context).inflate(R.layout.tk_view_title, this, true);
         mRootView.setBackgroundColor(mBackGroundColor);
         mBack = findViewById(R.id.back);
         mTitle = findViewById(R.id.title);

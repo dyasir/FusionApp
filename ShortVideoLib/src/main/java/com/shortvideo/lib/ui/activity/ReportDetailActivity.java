@@ -22,7 +22,7 @@ import com.shortvideo.lib.R;
 import com.shortvideo.lib.common.event.OnVideoReportEvent;
 import com.shortvideo.lib.common.http.HttpCallBack;
 import com.shortvideo.lib.common.http.HttpRequest;
-import com.shortvideo.lib.databinding.ActivityReportDetailBinding;
+import com.shortvideo.lib.databinding.TkActivityReportDetailBinding;
 import com.shortvideo.lib.ui.adapter.ReportDetailAdapter;
 import com.shortvideo.lib.utils.ActivityManager;
 import com.shortvideo.lib.utils.ClickUtil;
@@ -39,7 +39,7 @@ import java.util.Objects;
 
 public class ReportDetailActivity extends AppCompatActivity {
 
-    ActivityReportDetailBinding binding;
+    TkActivityReportDetailBinding binding;
 
     private ReportDetailAdapter reportDetailAdapter;
     private int selNum = 0;
@@ -58,7 +58,7 @@ public class ReportDetailActivity extends AppCompatActivity {
                 .statusBarDarkFont(true, 0f)
                 .init();
 
-        binding = ActivityReportDetailBinding.inflate(getLayoutInflater());
+        binding = TkActivityReportDetailBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         ActivityManager.getAppInstance().addActivity(this);
 

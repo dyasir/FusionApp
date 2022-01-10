@@ -25,7 +25,7 @@ import java.util.List;
 public class StdTikTokAdapter extends BaseQuickAdapter<HomeBean.DataDTO, BaseViewHolder> {
 
     public StdTikTokAdapter(@Nullable List<HomeBean.DataDTO> data) {
-        super(R.layout.item_tiktok, data);
+        super(R.layout.tk_item_tiktok, data);
     }
 
     @Override

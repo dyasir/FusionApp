@@ -12,7 +12,7 @@ import java.util.List;
 public class ReportAdapter extends BaseQuickAdapter<String, BaseViewHolder> {
 
     public ReportAdapter(@Nullable List<String> data) {
-        super(R.layout.item_report, data);
+        super(R.layout.tk_item_report, data);
     }
 
     @Override

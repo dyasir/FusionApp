@@ -22,7 +22,7 @@ import com.shortvideo.lib.common.AppConfig;
 import com.shortvideo.lib.common.event.OnWaterEmptyEvent;
 import com.shortvideo.lib.common.http.HttpCallBack;
 import com.shortvideo.lib.common.http.HttpRequest;
-import com.shortvideo.lib.databinding.PopDownloadBinding;
+import com.shortvideo.lib.databinding.TkPopDownloadBinding;
 import com.shortvideo.lib.model.VideoPathBean;
 import com.shortvideo.lib.ui.activity.ReportActivity;
 import com.shortvideo.lib.ui.activity.SettingActivity;
@@ -41,7 +41,7 @@ import razerdp.util.animation.TranslationConfig;
 
 public class DownloadPop extends BasePopupWindow implements View.OnClickListener {
 
-    PopDownloadBinding binding;
+    TkPopDownloadBinding binding;
 
     private final int id;
     private final int position;
@@ -49,7 +49,7 @@ public class DownloadPop extends BasePopupWindow implements View.OnClickListener
     private String orgVideoPath;
     private String outVideoPath;
     private MyRxFFmpegSubscriber myRxFFmpegSubscriber;
-    private SharePop sharePop;
+    private final SharePop sharePop;
 
     public DownloadPop(Context context, int id, int position, SharePop sharePop) {
         super(context);
@@ -57,7 +57,7 @@ public class DownloadPop extends BasePopupWindow implements View.OnClickListener
         this.position = position;
         this.sharePop = sharePop;
 
-        binding = PopDownloadBinding.inflate(LayoutInflater.from(context));
+        binding = TkPopDownloadBinding.inflate(LayoutInflater.from(context));
         setContentView(binding.getRoot());
 
         setOutSideDismiss(true);
@@ -75,7 +75,7 @@ public class DownloadPop extends BasePopupWindow implements View.OnClickListener
 
         if (new File(AppConfig.VIDEO_PATH).exists() && new File(outVideoPath).exists()) {
             isDownload = true;
-            binding.txProgress.setBackgroundResource(R.drawable.bg_ff5370_6dp);
+            binding.txProgress.setBackgroundResource(R.drawable.tk_bg_ff5370_6dp);
             binding.txProgress.setText("Đi tới anbom để xem >");
             binding.txProgress.setTextColor(getContext().getResources().getColor(R.color.white));
         } else {
@@ -264,7 +264,7 @@ public class DownloadPop extends BasePopupWindow implements View.OnClickListener
 
             binding.txProgress.postDelayed(() -> {
                 isDownload = true;
-                binding.txProgress.setBackgroundResource(R.drawable.bg_ff5370_6dp);
+                binding.txProgress.setBackgroundResource(R.drawable.tk_bg_ff5370_6dp);
                 binding.txProgress.setText("Đi tới anbom để xem >");
                 binding.txProgress.setTextColor(getContext().getResources().getColor(R.color.white));
             }, 750);

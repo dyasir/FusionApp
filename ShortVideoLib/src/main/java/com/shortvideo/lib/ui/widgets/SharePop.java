@@ -13,7 +13,7 @@ import androidx.annotation.NonNull;
 
 import com.shortvideo.lib.R;
 import com.shortvideo.lib.VideoApplication;
-import com.shortvideo.lib.databinding.PopShareBinding;
+import com.shortvideo.lib.databinding.TkPopShareBinding;
 import com.shortvideo.lib.model.DataMgr;
 import com.shortvideo.lib.utils.ToastyUtils;
 
@@ -23,7 +23,7 @@ import razerdp.util.animation.TranslationConfig;
 
 public class SharePop extends BasePopupWindow implements View.OnClickListener {
 
-    PopShareBinding binding;
+    TkPopShareBinding binding;
 
     private final int id;
 
@@ -31,7 +31,7 @@ public class SharePop extends BasePopupWindow implements View.OnClickListener {
         super(context);
         this.id = id;
 
-        binding = PopShareBinding.inflate(LayoutInflater.from(context));
+        binding = TkPopShareBinding.inflate(LayoutInflater.from(context));
         setContentView(binding.getRoot());
 
         setOutSideDismiss(true);

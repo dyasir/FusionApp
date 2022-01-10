@@ -8,14 +8,14 @@ import android.view.View;
 import androidx.annotation.NonNull;
 
 import com.shortvideo.lib.R;
-import com.shortvideo.lib.databinding.PopTipBinding;
+import com.shortvideo.lib.databinding.TkPopTipBinding;
 import com.shortvideo.lib.ui.callback.OnTipPopCallback;
 
 import razerdp.basepopup.BasePopupWindow;
 
 public class TipPop extends BasePopupWindow implements View.OnClickListener {
 
-    PopTipBinding binding;
+    TkPopTipBinding binding;
 
     private final OnTipPopCallback onTipPopCallback;
 
@@ -23,7 +23,7 @@ public class TipPop extends BasePopupWindow implements View.OnClickListener {
         super(context);
         this.onTipPopCallback = onTipPopCallback;
 
-        binding = PopTipBinding.inflate(LayoutInflater.from(context));
+        binding = TkPopTipBinding.inflate(LayoutInflater.from(context));
         setContentView(binding.getRoot());
 
         setOutSideDismiss(false);

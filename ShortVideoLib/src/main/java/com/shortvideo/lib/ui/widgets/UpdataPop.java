@@ -19,7 +19,7 @@ import com.arialyy.aria.core.Aria;
 import com.arialyy.aria.core.task.DownloadTask;
 import com.shortvideo.lib.R;
 import com.shortvideo.lib.common.AppConfig;
-import com.shortvideo.lib.databinding.PopUpdataBinding;
+import com.shortvideo.lib.databinding.TkPopUpdataBinding;
 import com.shortvideo.lib.ui.callback.OnUpdataCallback;
 import com.shortvideo.lib.utils.ToastyUtils;
 import com.tbruyelle.rxpermissions3.RxPermissions;
@@ -30,7 +30,7 @@ import razerdp.basepopup.BasePopupWindow;
 
 public class UpdataPop extends BasePopupWindow implements View.OnClickListener {
 
-    PopUpdataBinding binding;
+    TkPopUpdataBinding binding;
 
     private final boolean isCompulsory;
     private final String url;
@@ -44,7 +44,7 @@ public class UpdataPop extends BasePopupWindow implements View.OnClickListener {
         this.url = url;
         this.onUpdataCallback = onUpdataCallback;
 
-        binding = PopUpdataBinding.inflate(LayoutInflater.from(context));
+        binding = TkPopUpdataBinding.inflate(LayoutInflater.from(context));
         setContentView(binding.getRoot());
 
         setOutSideDismiss(false);
@@ -122,7 +122,7 @@ public class UpdataPop extends BasePopupWindow implements View.OnClickListener {
     public void downloadComplete(DownloadTask task) {
         Log.e("result", "下载完成: " + task.getDownloadEntity().getPercent());
         binding.progress.setProgressCompat(100, true);
-        binding.txProgress.setBackgroundResource(R.drawable.bg_ff5370_6dp);
+        binding.txProgress.setBackgroundResource(R.drawable.tk_bg_ff5370_6dp);
         binding.txProgress.setText("Bấm cài đặt");
         binding.txProgress.setTextColor(getContext().getResources().getColor(R.color.white));
         isFinish = true;

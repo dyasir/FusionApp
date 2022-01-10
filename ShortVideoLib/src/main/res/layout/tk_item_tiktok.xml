@@ -107,7 +107,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:background="@drawable/bg_4c000000_4dp">
+            android:background="@drawable/tk_bg_4c000000_4dp">
 
             <com.makeramen.roundedimageview.RoundedImageView
                 android:id="@+id/small_ad_img"
@@ -155,7 +155,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="7.5dp"
-                android:background="@drawable/bg_ad_btn"
+                android:background="@drawable/tk_bg_ad_btn"
                 android:gravity="center"
                 android:text="Xem xong nội dung này"
                 android:textColor="@color/white"
@@ -181,7 +181,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="56dp"
-        android:background="@drawable/bg_aaaaaa_5dp"
+        android:background="@drawable/tk_bg_aaaaaa_5dp"
         android:orientation="vertical"
         android:visibility="gone">
 
@@ -272,7 +272,7 @@
             android:layout_marginTop="19dp"
             android:layout_marginEnd="9.5dp"
             android:layout_marginBottom="9.5dp"
-            android:background="@drawable/bg_ad_btn"
+            android:background="@drawable/tk_bg_ad_btn"
             android:gravity="center"
             android:text="Xem xong nội dung này"
             android:textColor="@color/white"

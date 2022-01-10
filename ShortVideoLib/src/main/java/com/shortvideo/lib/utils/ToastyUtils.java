@@ -18,7 +18,7 @@ public class ToastyUtils {
     public static void init(Context mContext) {
         if (toast == null)
             toast = Toast.makeText(mContext, "", Toast.LENGTH_SHORT);
-        View view = View.inflate(mContext, R.layout.layout_toast, null);
+        View view = View.inflate(mContext, R.layout.tk_layout_toast, null);
         str = view.findViewById(R.id.message);
         toast.setView(view);
         toast.setGravity(Gravity.CENTER, 0, 0);

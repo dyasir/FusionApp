@@ -35,7 +35,7 @@ import com.shortvideo.lib.common.event.OnOutVideoEvent;
 import com.shortvideo.lib.common.http.HttpCallBack;
 import com.shortvideo.lib.common.http.HttpRequest;
 import com.shortvideo.lib.common.http.RetrofitFactory;
-import com.shortvideo.lib.databinding.ActivityVideoSplashBinding;
+import com.shortvideo.lib.databinding.TkActivityVideoSplashBinding;
 import com.shortvideo.lib.model.ConfigBean;
 import com.shortvideo.lib.model.DataMgr;
 import com.shortvideo.lib.model.FusionBean;
@@ -48,7 +48,6 @@ import com.shortvideo.lib.utils.ToastyUtils;
 
 import org.greenrobot.eventbus.EventBus;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
@@ -56,7 +55,7 @@ import java.util.UUID;
 @Route(path = VideoApplication.SHORT_VIDEO_PATH)
 public class VideoSplashActivity extends AppCompatActivity {
 
-    ActivityVideoSplashBinding binding;
+    TkActivityVideoSplashBinding binding;
 
     private boolean isFinish = false; //视频加载完了
     private int totalPage = 1001;  //总页码数
@@ -75,7 +74,7 @@ public class VideoSplashActivity extends AppCompatActivity {
                 .statusBarDarkFont(false, 0f)
                 .init();
 
-        binding = ActivityVideoSplashBinding.inflate(getLayoutInflater());
+        binding = TkActivityVideoSplashBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         ActivityManager.getAppInstance().addActivity(this);
 

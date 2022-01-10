@@ -7,7 +7,7 @@
         android:layout_width="330dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/bg_8dp_white"
+        android:background="@drawable/tk_bg_8dp_white"
         android:orientation="vertical">
 
         <TextView
@@ -39,7 +39,7 @@
                 android:id="@+id/sure"
                 android:layout_width="140dp"
                 android:layout_height="40dp"
-                android:background="@drawable/bg_updata_btn"
+                android:background="@drawable/tk_bg_updata_btn"
                 android:gravity="center"
                 android:paddingStart="8dp"
                 android:paddingEnd="8dp"
@@ -52,7 +52,7 @@
                 android:layout_width="140dp"
                 android:layout_height="40dp"
                 android:layout_alignParentEnd="true"
-                android:background="@drawable/bg_updata_btn2"
+                android:background="@drawable/tk_bg_updata_btn2"
                 android:gravity="center"
                 android:paddingStart="8dp"
                 android:paddingEnd="8dp"

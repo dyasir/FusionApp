@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.gyf.immersionbar.ImmersionBar;
 import com.shortvideo.lib.R;
-import com.shortvideo.lib.databinding.ActivityReportBinding;
+import com.shortvideo.lib.databinding.TkActivityReportBinding;
 import com.shortvideo.lib.ui.adapter.ReportAdapter;
 import com.shortvideo.lib.utils.ActivityManager;
 import com.shortvideo.lib.utils.ClickUtil;
@@ -19,7 +19,7 @@ import java.util.List;
 
 public class ReportActivity extends AppCompatActivity {
 
-    ActivityReportBinding binding;
+    TkActivityReportBinding binding;
 
     private ReportAdapter mReportAdapterContent;
     private ReportAdapter mReportAdapterYear;
@@ -40,7 +40,7 @@ public class ReportActivity extends AppCompatActivity {
                 .statusBarDarkFont(true, 0f)
                 .init();
 
-        binding = ActivityReportBinding.inflate(getLayoutInflater());
+        binding = TkActivityReportBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         ActivityManager.getAppInstance().addActivity(this);
 

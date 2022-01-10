@@ -16,7 +16,6 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -65,7 +64,7 @@ public class StdTikTok extends StandardGSYVideoPlayer {
 
     @Override
     public int getLayoutId() {
-        return R.layout.layout_empty_control;
+        return R.layout.tk_layout_empty_control;
     }
 
     @Override

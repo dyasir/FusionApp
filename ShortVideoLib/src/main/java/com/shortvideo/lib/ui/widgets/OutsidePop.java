@@ -7,13 +7,13 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 
-import com.shortvideo.lib.databinding.PopOutSideVideoBinding;
+import com.shortvideo.lib.databinding.TkPopOutSideVideoBinding;
 
 import razerdp.basepopup.BasePopupWindow;
 
 public class OutsidePop extends BasePopupWindow {
 
-    PopOutSideVideoBinding binding;
+    TkPopOutSideVideoBinding binding;
 
     private final String str;
 
@@ -21,7 +21,7 @@ public class OutsidePop extends BasePopupWindow {
         super(context);
         this.str = str;
 
-        binding = PopOutSideVideoBinding.inflate(LayoutInflater.from(context));
+        binding = TkPopOutSideVideoBinding.inflate(LayoutInflater.from(context));
         setContentView(binding.getRoot());
 
         setOutSideDismiss(false);
