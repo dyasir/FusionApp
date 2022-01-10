@@ -117,7 +117,7 @@ public class DownloadPop extends BasePopupWindow implements View.OnClickListener
                                 if (TextUtils.isEmpty(VideoApplication.getInstance().getWaterPicPath()))
                                     EventBus.getDefault().post(new OnWaterEmptyEvent());
 
-                                HttpRequest.getDownLoadPath((AppCompatActivity) getContext(), id, new HttpCallBack<>() {
+                                HttpRequest.getDownLoadPath((AppCompatActivity) getContext(), id, new HttpCallBack<VideoPathBean>() {
                                     @Override
                                     public void onSuccess(VideoPathBean videoPathBean, String msg) {
                                         setOutSideDismiss(false);
@@ -176,7 +176,7 @@ public class DownloadPop extends BasePopupWindow implements View.OnClickListener
                             if (TextUtils.isEmpty(VideoApplication.getInstance().getWaterPicPath()))
                                 EventBus.getDefault().post(new OnWaterEmptyEvent());
 
-                            HttpRequest.getDownLoadPath((AppCompatActivity) getContext(), id, new HttpCallBack<>() {
+                            HttpRequest.getDownLoadPath((AppCompatActivity) getContext(), id, new HttpCallBack<VideoPathBean>() {
                                 @Override
                                 public void onSuccess(VideoPathBean videoPathBean, String msg) {
                                     setOutSideDismiss(false);

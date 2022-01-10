@@ -290,7 +290,7 @@ public class StdTikTok extends StandardGSYVideoPlayer {
         bundle.putString("ad_Id", id + "");
         VideoApplication.getInstance().getmFirebaseAnalytics().logEvent(type == 1 ? "app_ad_video_click" :
                 type == 2 ? "app_ad_img_click" : "app_ad_card_click", bundle);
-        HttpRequest.adClick((AppCompatActivity) ActivityManager.getAppInstance().currentActivity(), id, new HttpCallBack<>() {
+        HttpRequest.adClick((AppCompatActivity) ActivityManager.getAppInstance().currentActivity(), id, new HttpCallBack<AdBean>() {
             @Override
             public void onSuccess(AdBean adBean, String msg) {
 

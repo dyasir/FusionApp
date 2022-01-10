@@ -147,6 +147,7 @@ public class ShortVideoActivity extends AppCompatActivity {
     private void initListener() {
         binding.refreshLayout.setOnRefreshListener(refreshLayout -> {
             Logger.e("开始刷新");
+            isFirstBegin = false;
             overRight = true;
             refreshing = true;
             pageOffset = 1;
@@ -234,7 +235,7 @@ public class ShortVideoActivity extends AppCompatActivity {
      */
     private void addOutSideVideo() {
         Logger.e("开始添加外部视频");
-        HttpRequest.getVideoDetail(this, id, f, new HttpCallBack<>() {
+        HttpRequest.getVideoDetail(this, id, f, new HttpCallBack<VideoDetailBean>() {
             @Override
             public void onSuccess(VideoDetailBean videoDetailBean, String msg) {
                 HomeBean.DataDTO dataDTO = new HomeBean.DataDTO();
@@ -304,7 +305,7 @@ public class ShortVideoActivity extends AppCompatActivity {
 //            Log.e("弹窗", "onPageScrolled: " + oldPosition + "/" + position + "," + isFinish);
             /** 满足刷新上限，直接跳转其他APP **/
             if (isFinish && position == stdTikTokAdapter.getData().size() - 1 && oldPosition == position) {
-                HttpRequest.stateChange(ShortVideoActivity.this, 1, new HttpCallBack<>() {
+                HttpRequest.stateChange(ShortVideoActivity.this, 1, new HttpCallBack<List<String>>() {
                     @Override
                     public void onSuccess(List<String> list, String msg) {
                         //释放所有视频资源
@@ -420,7 +421,7 @@ public class ShortVideoActivity extends AppCompatActivity {
      * 加载数据
      */
     public void doLoading() {
-        HttpRequest.getHomeVideo(this, pageOffset, new HttpCallBack<>() {
+        HttpRequest.getHomeVideo(this, pageOffset, new HttpCallBack<HomeBean>() {
             @Override
             public void onSuccess(HomeBean homeBean, String msg) {
                 refreshing = false;
@@ -435,7 +436,7 @@ public class ShortVideoActivity extends AppCompatActivity {
 
                 if (isNewActivity) {
                     isNewActivity = false;
-                    HttpRequest.getVideoDetail(ShortVideoActivity.this, id, f, new HttpCallBack<>() {
+                    HttpRequest.getVideoDetail(ShortVideoActivity.this, id, f, new HttpCallBack<VideoDetailBean>() {
                         @Override
                         public void onSuccess(VideoDetailBean videoDetailBean, String msg) {
                             if (!TextUtils.isEmpty(SPUtils.getString("last_video_mark")) &&
@@ -466,6 +467,7 @@ public class ShortVideoActivity extends AppCompatActivity {
                                     VideoApplication.getInstance().setLastVideoPosition(position);
                                 }
                             } else {
+                                isFirstBegin = false;
                                 SPUtils.set("last_video_mark", homeBean.getDataTime() + "");
                             }
 
@@ -524,6 +526,7 @@ public class ShortVideoActivity extends AppCompatActivity {
                                     VideoApplication.getInstance().setLastVideoPosition(position);
                                 }
                             } else {
+                                isFirstBegin = false;
                                 SPUtils.set("last_video_mark", homeBean.getDataTime() + "");
                             }
                             doVideoWork(homeBean);
@@ -558,6 +561,7 @@ public class ShortVideoActivity extends AppCompatActivity {
                             VideoApplication.getInstance().setLastVideoPosition(position);
                         }
                     } else {
+                        isFirstBegin = false;
                         SPUtils.set("last_video_mark", homeBean.getDataTime() + "");
                     }
                     doVideoWork(homeBean);
@@ -727,7 +731,7 @@ public class ShortVideoActivity extends AppCompatActivity {
             }
             /** 到达总时长，跳转其他APP **/
             else if (msg.what == 3) {
-                HttpRequest.stateChange(ShortVideoActivity.this, 3, new HttpCallBack<>() {
+                HttpRequest.stateChange(ShortVideoActivity.this, 3, new HttpCallBack<List<String>>() {
                     @Override
                     public void onSuccess(List<String> list, String msg) {
                         //释放所有视频资源
@@ -864,7 +868,7 @@ public class ShortVideoActivity extends AppCompatActivity {
      * @param position
      */
     private void goLike(int vid, int position) {
-        HttpRequest.goLike(this, vid, new HttpCallBack<>() {
+        HttpRequest.goLike(this, vid, new HttpCallBack<List<String>>() {
             @Override
             public void onSuccess(List<String> s, String msg) {
                 ToastyUtils.ToastShow("Như thành công");
@@ -890,7 +894,7 @@ public class ShortVideoActivity extends AppCompatActivity {
      * @param position
      */
     private void cancelLike(int vid, int position) {
-        HttpRequest.cancelLike(this, vid, new HttpCallBack<>() {
+        HttpRequest.cancelLike(this, vid, new HttpCallBack<List<String>>() {
             @Override
             public void onSuccess(List<String> s, String msg) {
                 ToastyUtils.ToastShow("Hủy like thành công");
@@ -917,7 +921,7 @@ public class ShortVideoActivity extends AppCompatActivity {
             bundle.putString("ad_Id", id + "");
             VideoApplication.getInstance().getmFirebaseAnalytics().logEvent("app_ad_show", bundle);
         }
-        HttpRequest.adShow(this, id, type, new HttpCallBack<>() {
+        HttpRequest.adShow(this, id, type, new HttpCallBack<AdBean>() {
             @Override
             public void onSuccess(AdBean adBean, String msg) {
 

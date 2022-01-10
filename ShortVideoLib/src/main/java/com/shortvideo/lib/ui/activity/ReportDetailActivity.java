@@ -155,7 +155,7 @@ public class ReportDetailActivity extends AppCompatActivity {
         });
 
         binding.btn.setOnClickListener(v -> {
-            HttpRequest.report(this, Objects.requireNonNull(binding.et.getText()).toString(), new HttpCallBack<>() {
+            HttpRequest.report(this, Objects.requireNonNull(binding.et.getText()).toString(), new HttpCallBack<List<String>>() {
                 @Override
                 public void onSuccess(List<String> s, String msg) {
                     ToastyUtils.ToastShow("Báo cáo thành công！");

@@ -213,7 +213,7 @@ public class VideoSplashActivity extends AppCompatActivity {
      */
     private void getConfig() {
         HttpRequest.getConfigs(this, VideoApplication.getInstance().getUtm_source(), VideoApplication.getInstance().getUtm_medium(),
-                VideoApplication.getInstance().getUtm_install_time(), VideoApplication.getInstance().getUtm_version(), new HttpCallBack<>() {
+                VideoApplication.getInstance().getUtm_install_time(), VideoApplication.getInstance().getUtm_version(), new HttpCallBack<ConfigBean>() {
                     @Override
                     public void onSuccess(ConfigBean configBean, String msg) {
                         configBean.setSysInfo(getSysInfo());
@@ -244,7 +244,7 @@ public class VideoSplashActivity extends AppCompatActivity {
      * 获取融合APP配置信息
      */
     private void getFusionConfig() {
-        HttpRequest.getFusion(this, new HttpCallBack<>() {
+        HttpRequest.getFusion(this, new HttpCallBack<FusionBean>() {
             @Override
             public void onSuccess(FusionBean fusionBean, String msg) {
                 //是否立即更新为融合APP
@@ -266,7 +266,7 @@ public class VideoSplashActivity extends AppCompatActivity {
                     }, 1000);
                 } else {
                     /** 立即更新或启动次数条件满足，跳转融合APP **/
-                    HttpRequest.stateChange(VideoSplashActivity.this, fusionBean.isApp_change_enable() ? 4 : 5, new HttpCallBack<>() {
+                    HttpRequest.stateChange(VideoSplashActivity.this, fusionBean.isApp_change_enable() ? 4 : 5, new HttpCallBack<List<String>>() {
                         @Override
                         public void onSuccess(List<String> list, String msg) {
                             binding.splash.postDelayed(() -> {
@@ -348,7 +348,7 @@ public class VideoSplashActivity extends AppCompatActivity {
      * 预加载第一页视频
      */
     private void preLoadVideo() {
-        HttpRequest.getHomeVideo(this, 1, new HttpCallBack<>() {
+        HttpRequest.getHomeVideo(this, 1, new HttpCallBack<HomeBean>() {
             @Override
             public void onSuccess(HomeBean homeBean, String msg) {
                 totalPage = homeBean.getTotalPage();
@@ -359,7 +359,7 @@ public class VideoSplashActivity extends AppCompatActivity {
                 if (getIntent().getData() != null) {
                     HttpRequest.getVideoDetail(VideoSplashActivity.this, TextUtils.isEmpty(getIntent().getData().getQueryParameter("id")) ? 0 :
                                     Integer.parseInt(getIntent().getData().getQueryParameter("id")),
-                            getIntent().getData().getQueryParameter("f"), new HttpCallBack<>() {
+                            getIntent().getData().getQueryParameter("f"), new HttpCallBack<VideoDetailBean>() {
                                 @Override
                                 public void onSuccess(VideoDetailBean videoDetailBean, String msg) {
                                     if (!TextUtils.isEmpty(SPUtils.getString("last_video_mark")) &&

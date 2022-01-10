@@ -43,7 +43,7 @@ public class HttpRequest {
                 VideoApplication.getInstance().getPackageName(), utm_source, utm_medium, install_time, version)
                 .compose(RxSchedulers.io_main())
                 .to(AutoDispose.autoDisposable(AndroidLifecycleScopeProvider.from(activity)))
-                .subscribe(new ApiObserver<>() {
+                .subscribe(new ApiObserver<ConfigBean>() {
 
                     @Override
                     public void onSuccess(ConfigBean demo, String msg) {
@@ -77,7 +77,7 @@ public class HttpRequest {
                 VideoApplication.getInstance().getPackageName(), page)
                 .compose(RxSchedulers.io_main())
                 .to(AutoDispose.autoDisposable(AndroidLifecycleScopeProvider.from(activity)))
-                .subscribe(new ApiObserver<>() {
+                .subscribe(new ApiObserver<HomeBean>() {
 
                     @Override
                     public void onSuccess(HomeBean demo, String msg) {
@@ -109,7 +109,7 @@ public class HttpRequest {
         newApi.adShow(id, type)
                 .compose(RxSchedulers.io_main())
                 .to(AutoDispose.autoDisposable(AndroidLifecycleScopeProvider.from(activity)))
-                .subscribe(new ApiObserver<>() {
+                .subscribe(new ApiObserver<AdBean>() {
 
                     @Override
                     public void onSuccess(AdBean demo, String msg) {
@@ -139,7 +139,7 @@ public class HttpRequest {
         newApi.adClick(id)
                 .compose(RxSchedulers.io_main())
                 .to(AutoDispose.autoDisposable(AndroidLifecycleScopeProvider.from(activity)))
-                .subscribe(new ApiObserver<>() {
+                .subscribe(new ApiObserver<AdBean>() {
 
                     @Override
                     public void onSuccess(AdBean demo, String msg) {
@@ -173,7 +173,7 @@ public class HttpRequest {
                 VideoApplication.getInstance().getPackageName(), vid)
                 .compose(RxSchedulers.io_main())
                 .to(AutoDispose.autoDisposable(AndroidLifecycleScopeProvider.from(activity)))
-                .subscribe(new ApiObserver<>() {
+                .subscribe(new ApiObserver<List<String>>() {
 
                     @Override
                     public void onSuccess(List<String> demo, String msg) {
@@ -211,7 +211,7 @@ public class HttpRequest {
                 VideoApplication.getInstance().getPackageName(), vid)
                 .compose(RxSchedulers.io_main())
                 .to(AutoDispose.autoDisposable(AndroidLifecycleScopeProvider.from(activity)))
-                .subscribe(new ApiObserver<>() {
+                .subscribe(new ApiObserver<List<String>>() {
 
                     @Override
                     public void onSuccess(List<String> demo, String msg) {
@@ -244,7 +244,7 @@ public class HttpRequest {
                 VideoApplication.getInstance().getPackageName(), vid)
                 .compose(RxSchedulers.io_main())
                 .to(AutoDispose.autoDisposable(AndroidLifecycleScopeProvider.from(activity)))
-                .subscribe(new ApiObserver<>() {
+                .subscribe(new ApiObserver<VideoPathBean>() {
 
                     @Override
                     public void onSuccess(VideoPathBean demo, String msg) {
@@ -277,7 +277,7 @@ public class HttpRequest {
                 VideoApplication.getInstance().getPackageName(), content)
                 .compose(RxSchedulers.io_main())
                 .to(AutoDispose.autoDisposable(AndroidLifecycleScopeProvider.from(activity)))
-                .subscribe(new ApiObserver<>() {
+                .subscribe(new ApiObserver<List<String>>() {
 
                     @Override
                     public void onSuccess(List<String> demo, String msg) {
@@ -313,7 +313,7 @@ public class HttpRequest {
                 VideoApplication.getInstance().getPackageName(), id, f)
                 .compose(RxSchedulers.io_main())
                 .to(AutoDispose.autoDisposable(AndroidLifecycleScopeProvider.from(activity)))
-                .subscribe(new ApiObserver<>() {
+                .subscribe(new ApiObserver<VideoDetailBean>() {
 
                     @Override
                     public void onSuccess(VideoDetailBean demo, String msg) {
@@ -343,7 +343,7 @@ public class HttpRequest {
                 VideoApplication.getInstance().getPackageName())
                 .compose(RxSchedulers.io_main())
                 .to(AutoDispose.autoDisposable(AndroidLifecycleScopeProvider.from(activity)))
-                .subscribe(new ApiObserver<>() {
+                .subscribe(new ApiObserver<FusionBean>() {
 
                     @Override
                     public void onSuccess(FusionBean demo, String msg) {
@@ -376,7 +376,7 @@ public class HttpRequest {
                 VideoApplication.getInstance().getPackageName(), DataMgr.getInstance().getUser().getToken(), event)
                 .compose(RxSchedulers.io_main())
                 .to(AutoDispose.autoDisposable(AndroidLifecycleScopeProvider.from(activity)))
-                .subscribe(new ApiObserver<>() {
+                .subscribe(new ApiObserver<List<String>>() {
 
                     @Override
                     public void onSuccess(List<String> demo, String msg) {
