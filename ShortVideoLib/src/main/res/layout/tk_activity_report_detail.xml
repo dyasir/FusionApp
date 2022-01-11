@@ -27,7 +27,7 @@
             android:layout_height="14dp"
             android:layout_gravity="center_vertical"
             android:layout_marginStart="10dp"
-            android:src="@mipmap/icon_report_detail" />
+            android:src="@mipmap/tk_icon_report_detail" />
 
         <TextView
             android:layout_width="match_parent"

@@ -30,7 +30,7 @@
             android:layout_height="70dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="32dp"
-            android:src="@mipmap/ic_launcher"
+            android:src="@mipmap/tk_ic_launcher"
             app:riv_corner_radius="4dp" />
 
         <TextView
@@ -149,7 +149,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        android:src="@mipmap/icon_next" />
+                        android:src="@mipmap/tk_icon_next" />
                 </RelativeLayout>
 
                 <View
@@ -192,7 +192,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        android:src="@mipmap/icon_next" />
+                        android:src="@mipmap/tk_icon_next" />
                 </RelativeLayout>
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>

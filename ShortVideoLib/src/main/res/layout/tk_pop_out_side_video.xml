@@ -7,7 +7,7 @@
         android:layout_width="300dp"
         android:layout_height="170dp"
         android:layout_centerHorizontal="true"
-        android:background="@mipmap/icon_outside_bg">
+        android:background="@mipmap/tk_icon_outside_bg">
 
         <TextView
             android:id="@+id/name"

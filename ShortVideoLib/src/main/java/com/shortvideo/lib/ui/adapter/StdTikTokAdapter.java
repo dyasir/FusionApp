@@ -42,7 +42,7 @@ public class StdTikTokAdapter extends BaseQuickAdapter<HomeBean.DataDTO, BaseVie
             jzvdStd.setLink("");
             jzvdStd.setPosition(baseViewHolder.getLayoutPosition());
             baseViewHolder.setText(R.id.like_num, workBean.getVideo().getLike_count() + "")
-                    .setImageResource(R.id.like, workBean.getVideo().isIs_like() ? R.mipmap.icon_liked : R.mipmap.icon_like)
+                    .setImageResource(R.id.like, workBean.getVideo().isIs_like() ? R.mipmap.tk_icon_liked : R.mipmap.tk_icon_like)
                     .setText(R.id.title, workBean.getVideo().getTitle())
                     .setText(R.id.aut, workBean.getVideo().getAuthor())
                     .setText(R.id.content, workBean.getVideo().getDesc())

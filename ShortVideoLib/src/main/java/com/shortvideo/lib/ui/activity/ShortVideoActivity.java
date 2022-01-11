@@ -147,6 +147,7 @@ public class ShortVideoActivity extends AppCompatActivity {
     private void initListener() {
         binding.refreshLayout.setOnRefreshListener(refreshLayout -> {
             Logger.e("开始刷新");
+            adCardTimer.cancel();
             isFirstBegin = false;
             overRight = true;
             refreshing = true;
@@ -194,7 +195,7 @@ public class ShortVideoActivity extends AppCompatActivity {
                     stdTikTok.reportBannerClick(stdTikTokAdapter.getData().get(position).getBanner().getId(), 3);
             } else if (view.getId() == R.id.setting) {
                 Intent intent = new Intent(this, SettingActivity.class);
-                intent.putExtra("id", id);
+                intent.putExtra("id", stdTikTokAdapter.getData().get(position).getVideo().getId());
                 startActivity(intent);
             }
         });
@@ -875,7 +876,7 @@ public class ShortVideoActivity extends AppCompatActivity {
             public void onSuccess(List<String> s, String msg) {
                 ToastyUtils.ToastShow("Như thành công");
 
-                ((ImageView) stdTikTokAdapter.getViewByPosition(position, R.id.like)).setImageResource(R.mipmap.icon_liked);
+                ((ImageView) stdTikTokAdapter.getViewByPosition(position, R.id.like)).setImageResource(R.mipmap.tk_icon_liked);
                 ((TextView) stdTikTokAdapter.getViewByPosition(position, R.id.like_num)).setText((stdTikTokAdapter.getData().get(position).getVideo().getLike_count() + 1) + "");
                 stdTikTokAdapter.getViewByPosition(position, R.id.like_num).setVisibility(View.VISIBLE);
                 stdTikTokAdapter.getData().get(position).getVideo().setIs_like(true);
@@ -901,7 +902,7 @@ public class ShortVideoActivity extends AppCompatActivity {
             public void onSuccess(List<String> s, String msg) {
                 ToastyUtils.ToastShow("Hủy like thành công");
 
-                ((ImageView) stdTikTokAdapter.getViewByPosition(position, R.id.like)).setImageResource(R.mipmap.icon_like);
+                ((ImageView) stdTikTokAdapter.getViewByPosition(position, R.id.like)).setImageResource(R.mipmap.tk_icon_like);
                 ((TextView) stdTikTokAdapter.getViewByPosition(position, R.id.like_num)).setText(Math.max(stdTikTokAdapter.getData().get(position).getVideo().getLike_count() - 1, 0) + "");
                 stdTikTokAdapter.getViewByPosition(position, R.id.like_num).setVisibility(Math.max(stdTikTokAdapter.getData().get(position).getVideo().getLike_count() - 1, 0) > 0 ?
                         View.VISIBLE : View.INVISIBLE);

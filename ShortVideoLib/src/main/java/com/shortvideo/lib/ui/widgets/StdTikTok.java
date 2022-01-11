@@ -250,7 +250,7 @@ public class StdTikTok extends StandardGSYVideoPlayer {
         LayoutParams params = new LayoutParams(200, 200);
         params.leftMargin = (int) x - 100;
         params.topMargin = (int) y - 200;
-        imageView.setImageResource(R.mipmap.im_heart);
+        imageView.setImageResource(R.mipmap.tk_im_heart);
         imageView.setLayoutParams(params);
         addView(imageView);
 

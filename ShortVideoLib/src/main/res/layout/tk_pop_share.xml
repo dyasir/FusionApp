@@ -14,7 +14,7 @@
         android:layout_height="48dp"
         android:layout_marginEnd="64dp"
         android:padding="4dp"
-        android:src="@mipmap/icon_facebook" />
+        android:src="@mipmap/tk_icon_facebook" />
 
     <ImageView
         android:id="@+id/twitter"
@@ -22,12 +22,12 @@
         android:layout_height="48dp"
         android:layout_marginEnd="64dp"
         android:padding="4dp"
-        android:src="@mipmap/icon_twitter" />
+        android:src="@mipmap/tk_icon_twitter" />
 
     <ImageView
         android:id="@+id/zalo"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:padding="4dp"
-        android:src="@mipmap/icon_zalo" />
+        android:src="@mipmap/tk_icon_zalo" />
 </LinearLayout>

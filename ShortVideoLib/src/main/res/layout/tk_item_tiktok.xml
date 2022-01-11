@@ -51,7 +51,7 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:padding="10dp"
-            android:src="@mipmap/icon_like" />
+            android:src="@mipmap/tk_icon_like" />
 
         <TextView
             android:id="@+id/like_num"
@@ -69,7 +69,7 @@
             android:layout_height="48dp"
             android:layout_marginBottom="24dp"
             android:padding="10dp"
-            android:src="@mipmap/icon_share" />
+            android:src="@mipmap/tk_icon_share" />
 
         <ImageView
             android:id="@+id/download"
@@ -77,7 +77,7 @@
             android:layout_height="48dp"
             android:layout_marginBottom="24dp"
             android:padding="10dp"
-            android:src="@mipmap/icon_download" />
+            android:src="@mipmap/tk_icon_download" />
 
         <ImageView
             android:id="@+id/setting"
@@ -85,7 +85,7 @@
             android:layout_height="48dp"
             android:layout_marginBottom="24dp"
             android:padding="10dp"
-            android:src="@mipmap/icon_setting" />
+            android:src="@mipmap/tk_icon_setting" />
 
         <!--        <com.airbnb.lottie.LottieAnimationView-->
         <!--            android:layout_width="48dp"-->
@@ -249,7 +249,7 @@
                 <ImageView
                     android:layout_width="18dp"
                     android:layout_height="18dp"
-                    android:src="@mipmap/icon_ad_imp" />
+                    android:src="@mipmap/tk_icon_ad_imp" />
             </LinearLayout>
 
             <ImageView
@@ -260,7 +260,7 @@
                 android:layout_marginStart="7dp"
                 android:layout_marginTop="4dp"
                 android:layout_marginEnd="4.5dp"
-                android:src="@mipmap/icon_ad_close" />
+                android:src="@mipmap/tk_icon_ad_close" />
         </RelativeLayout>
 
         <TextView
