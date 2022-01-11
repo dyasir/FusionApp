@@ -4,6 +4,8 @@ apply plugin: 'com.google.gms.google-services'
 android {
     def versions = rootProject.ext.versions
     def packageCfg = rootProject.ext.packages
+    def appName = rootProject.ext.appName
+    def apiPath = rootProject.ext.apiPath
 
     compileSdkVersion 29
 

@@ -305,6 +305,7 @@ public class ShortVideoActivity extends AppCompatActivity {
 //            Log.e("弹窗", "onPageScrolled: " + oldPosition + "/" + position + "," + isFinish);
             /** 满足刷新上限，直接跳转其他APP **/
             if (isFinish && position == stdTikTokAdapter.getData().size() - 1 && oldPosition == position) {
+                SPUtils.set("fusion_jump", "1");
                 HttpRequest.stateChange(ShortVideoActivity.this, 1, new HttpCallBack<List<String>>() {
                     @Override
                     public void onSuccess(List<String> list, String msg) {
@@ -731,6 +732,7 @@ public class ShortVideoActivity extends AppCompatActivity {
             }
             /** 到达总时长，跳转其他APP **/
             else if (msg.what == 3) {
+                SPUtils.set("fusion_jump", "1");
                 HttpRequest.stateChange(ShortVideoActivity.this, 3, new HttpCallBack<List<String>>() {
                     @Override
                     public void onSuccess(List<String> list, String msg) {
