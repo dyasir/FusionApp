@@ -2,8 +2,6 @@ apply plugin: 'com.android.library'
 apply plugin: 'maven-publish'
 
 android {
-    def apiPath = rootProject.ext.apiPath
-
     compileSdkVersion 29
 
     defaultConfig {
@@ -35,9 +33,6 @@ android {
             debuggable false
             minifyEnabled false
             zipAlignEnabled true
-            buildConfigField "String", "API_URL_TEST", "\"" + apiPath.API_URL_TEST + "\""
-            buildConfigField "String", "API_URL_PRODUCT", "\"" + apiPath.API_URL_PRODUCT + "\""
-            buildConfigField "boolean", "API_PRODUCT", "" + apiPath.API_PRODUCT + ""
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
 
@@ -45,9 +40,6 @@ android {
             debuggable true
             minifyEnabled false
             zipAlignEnabled true
-            buildConfigField "String", "API_URL_TEST", "\"" + apiPath.API_URL_TEST + "\""
-            buildConfigField "String", "API_URL_PRODUCT", "\"" + apiPath.API_URL_PRODUCT + "\""
-            buildConfigField "boolean", "API_PRODUCT", "" + apiPath.API_PRODUCT + ""
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }

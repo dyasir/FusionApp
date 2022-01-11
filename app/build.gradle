@@ -5,7 +5,6 @@ android {
     def versions = rootProject.ext.versions
     def packageCfg = rootProject.ext.packages
     def appName = rootProject.ext.appName
-    def apiPath = rootProject.ext.apiPath
 
     compileSdkVersion 29
 
@@ -36,9 +35,6 @@ android {
             shrinkResources false
             zipAlignEnabled true
             manifestPlaceholders = [APP_NAME: appName.APP_NAME] // 配置主包的应用名称
-            buildConfigField "String", "API_URL_TEST", "\"" + apiPath.API_URL_TEST + "\""
-            buildConfigField "String", "API_URL_PRODUCT", "\"" + apiPath.API_URL_PRODUCT + "\""
-            buildConfigField "boolean", "API_PRODUCT", "" + apiPath.API_PRODUCT + ""
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
 
@@ -48,9 +44,6 @@ android {
             shrinkResources false
             zipAlignEnabled true
             manifestPlaceholders = [APP_NAME: appName.APP_NAME] // 配置主包的应用名称
-            buildConfigField "String", "API_URL_TEST", "\"" + apiPath.API_URL_TEST + "\""
-            buildConfigField "String", "API_URL_PRODUCT", "\"" + apiPath.API_URL_PRODUCT + "\""
-            buildConfigField "boolean", "API_PRODUCT", "" + apiPath.API_PRODUCT + ""
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }

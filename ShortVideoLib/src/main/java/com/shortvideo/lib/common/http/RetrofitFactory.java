@@ -23,7 +23,7 @@ import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory;
 public class RetrofitFactory {
 
     //app基础服务
-    public static String NEW_URL = BuildConfig.API_PRODUCT ? BuildConfig.API_URL_PRODUCT : BuildConfig.API_URL_TEST;  //域名
+    public static String NEW_URL;  //域名
 
     public static final String CLIENT = "2";//1后台用户 2app用户
 

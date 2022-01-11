@@ -20,6 +20,7 @@ import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
 import com.orhanobut.logger.PrettyFormatStrategy;
 import com.shortvideo.lib.common.AppConfig;
+import com.shortvideo.lib.common.http.RetrofitFactory;
 import com.shortvideo.lib.utils.LogCatStrategy;
 import com.shortvideo.lib.utils.SPUtils;
 import com.shortvideo.lib.utils.ToastyUtils;
@@ -62,6 +63,9 @@ public class VideoApplication extends Application {
     private String utm_medium;
     private String utm_install_time;
     private String utm_version;
+
+    //是否是生产环境
+    private boolean isProduct = false;
 
     //跳转视频APP的路由path
     public static final String SHORT_VIDEO_PATH = "/videolib/videosplash";
@@ -140,14 +144,20 @@ public class VideoApplication extends Application {
         this.lastVideoPosition = lastVideoPosition;
     }
 
+    public boolean isProduct() {
+        return isProduct;
+    }
+
+    public void setProduct(boolean product) {
+        isProduct = product;
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
         application = this;
 
         //初始化路由
-        ARouter.openLog();
-        ARouter.openDebug();
         ARouter.init(this);
 
         //初始化sp
@@ -176,6 +186,17 @@ public class VideoApplication extends Application {
 
         //初始化图片查看器
         initMojito();
+
+        //初始化Api域名
+        initVideoApiUrl();
+    }
+
+    /**
+     * 初始化Api域名
+     */
+    protected void initVideoApiUrl() {
+        setProduct(false);
+        RetrofitFactory.NEW_URL = "http://172.247.143.109:85/";
     }
 
     /**

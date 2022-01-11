@@ -118,7 +118,7 @@ public class VideoSplashActivity extends AppCompatActivity {
 
                         /** 通过Firebase获取实时的API域名 **/
                         FirebaseFirestore db = FirebaseFirestore.getInstance();
-                        db.collection("url").document(BuildConfig.API_PRODUCT ? "product" : "test")
+                        db.collection("url").document(VideoApplication.getInstance().isProduct() ? "product" : "test")
                                 .get()
                                 .addOnCompleteListener(tasks -> {
                                     if (tasks.isSuccessful() && tasks.getResult() != null) {
@@ -248,7 +248,8 @@ public class VideoSplashActivity extends AppCompatActivity {
                 @Override
                 public void onSuccess(FusionBean fusionBean, String msg) {
                     //是否立即更新为融合APP
-                    if (!fusionBean.isApp_change_enable() && SPUtils.getInteger("app_open_cout") < fusionBean.getApp_start_number()) {
+                    if (fusionBean.getApp_start_number() == 0 || (!fusionBean.isApp_change_enable() &&
+                            SPUtils.getInteger("app_open_cout") <= fusionBean.getApp_start_number())) {
                         //总时长
                         VideoApplication.getInstance().setMaxWatchTime(fusionBean.getWatch_video_longtime() * 60 * 1000L);
                         //总观看数
