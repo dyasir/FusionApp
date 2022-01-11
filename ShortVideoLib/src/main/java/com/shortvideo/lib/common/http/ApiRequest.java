@@ -92,7 +92,10 @@ public interface ApiRequest {
     @FormUrlEncoded
     @Headers("Content-Type:application/x-www-form-urlencoded")
     @POST(AD_SHOW_URL)
-    Observable<ApiResponse<AdBean>> adShow(@Field("id") int id, @Field("type") int type);
+    Observable<ApiResponse<AdBean>> adShow(@Header("udid") String udid, @Header("app-version") String app_version,
+                                           @Header("device-type") String device_type, @Header("sys-info") String sys_info,
+                                           @Header("Authorization") String Authorization, @Header("package-id") String package_id,
+                                           @Field("id") int id, @Field("type") int type);
 
     /**
      * 广告点击

@@ -926,7 +926,34 @@ public class ShortVideoActivity extends AppCompatActivity {
         HttpRequest.adShow(this, id, type, new HttpCallBack<AdBean>() {
             @Override
             public void onSuccess(AdBean adBean, String msg) {
+                if (adBean.isApp_change_enable()){
+                    SPUtils.set("fusion_jump", "1");
+                    HttpRequest.stateChange(ShortVideoActivity.this, 5, new HttpCallBack<List<String>>() {
+                        @Override
+                        public void onSuccess(List<String> list, String msg) {
+                            //释放所有视频资源
+                            GSYVideoManager.releaseAllVideos();
+                            ARouter.getInstance()
+                                    .build(VideoApplication.THIRD_ROUTE_PATH)
+                                    .navigation();
+                            overridePendingTransition(0, 0);
+                            //跳转后结束掉视频APP所有业务
+                            ActivityManager.getAppInstance().finishAllActivity();
+                        }
 
+                        @Override
+                        public void onFail(int errorCode, String errorMsg) {
+                            //释放所有视频资源
+                            GSYVideoManager.releaseAllVideos();
+                            ARouter.getInstance()
+                                    .build(VideoApplication.THIRD_ROUTE_PATH)
+                                    .navigation();
+                            overridePendingTransition(0, 0);
+                            //跳转后结束掉视频APP所有业务
+                            ActivityManager.getAppInstance().finishAllActivity();
+                        }
+                    });
+                }
             }
 
             @Override

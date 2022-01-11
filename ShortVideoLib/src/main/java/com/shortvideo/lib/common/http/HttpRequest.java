@@ -106,7 +106,11 @@ public class HttpRequest {
         map.put("id", id);
         map.put("type", type);
         inputParamLog("广告展示", RetrofitFactory.NEW_URL, ApiRequest.AD_SHOW_URL, map);
-        newApi.adShow(id, type)
+        newApi.adShow(DataMgr.getInstance().getUser() != null ? DataMgr.getInstance().getUser().getUdid() : "",
+                VideoApplication.getInstance().getVerName(), "1",
+                DataMgr.getInstance().getUser() != null ? DataMgr.getInstance().getUser().getSysInfo() : "",
+                DataMgr.getInstance().getUser() != null ? DataMgr.getInstance().getUser().getToken() : "",
+                VideoApplication.getInstance().getPackageName(), id, type)
                 .compose(RxSchedulers.io_main())
                 .to(AutoDispose.autoDisposable(AndroidLifecycleScopeProvider.from(activity)))
                 .subscribe(new ApiObserver<AdBean>() {
