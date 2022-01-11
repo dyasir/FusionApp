@@ -12,6 +12,7 @@ public class App extends VideoApplication {
      */
     @Override
     protected void initVideoApiUrl() {
+//        super.initVideoApiUrl();
         setProduct(false);
         RetrofitFactory.NEW_URL = "http://172.247.143.109:85/";
     }
