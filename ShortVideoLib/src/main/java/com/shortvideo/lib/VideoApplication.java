@@ -19,7 +19,7 @@ import com.google.firebase.analytics.FirebaseAnalytics;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
 import com.orhanobut.logger.PrettyFormatStrategy;
-import com.shortvideo.lib.common.AppConfig;
+import com.shortvideo.lib.common.TkAppConfig;
 import com.shortvideo.lib.common.http.RetrofitFactory;
 import com.shortvideo.lib.utils.LogCatStrategy;
 import com.shortvideo.lib.utils.SPUtils;
@@ -66,6 +66,10 @@ public class VideoApplication extends Application {
 
     //是否是生产环境
     private boolean isProduct = false;
+    //选择加载视频布局1，或布局2
+    private int videoLayoutType = 1;
+    //是否添加纯享功能
+    private boolean isPureEnjoyment = false;
 
     //跳转视频APP的路由path
     public static final String SHORT_VIDEO_PATH = "/videolib/videosplash";
@@ -152,6 +156,22 @@ public class VideoApplication extends Application {
         isProduct = product;
     }
 
+    public int getVideoLayoutType() {
+        return videoLayoutType;
+    }
+
+    public void setVideoLayoutType(int videoLayoutType) {
+        this.videoLayoutType = videoLayoutType > 2 ? 2 : Math.max(videoLayoutType, 1);
+    }
+
+    public boolean isPureEnjoyment() {
+        return isPureEnjoyment;
+    }
+
+    public void setPureEnjoyment(boolean pureEnjoyment) {
+        isPureEnjoyment = pureEnjoyment;
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -193,10 +213,17 @@ public class VideoApplication extends Application {
 
     /**
      * 初始化Api域名
+     * 以及一些功能页面配置
      */
     protected void initVideoApiUrl() {
+        //是否为生产环境
         setProduct(false);
+        //默认域名
         RetrofitFactory.NEW_URL = "http://172.247.143.109:85/";
+        //视频使用布局1
+        setVideoLayoutType(1);
+        //关闭纯享功能
+        setPureEnjoyment(false);
     }
 
     /**
@@ -316,7 +343,7 @@ public class VideoApplication extends Application {
         strategy.setDeviceID(getUDID());
         //设置设备型号
         strategy.setDeviceModel(Build.BRAND + " " + Build.MODEL);
-        CrashReport.initCrashReport(this, AppConfig.BUGLY_ID, true, strategy);
+        CrashReport.initCrashReport(this, TkAppConfig.BUGLY_ID, true, strategy);
     }
 
     /**

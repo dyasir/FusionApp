@@ -1,0 +1,71 @@
+<resources>
+    <string name="app_name">tika</string>
+
+    <string name="tk_network_error">Netzwerkanomalie</string>
+    <string name="tk_data_gson_error">Ausnahme beim Analysieren von Daten</string>
+
+    <string name="tk_ad_google">Von Google geschaltete Anzeigen</string>
+    <string name="tk_ad_download">Herunterladen</string>
+
+    <string name="tk_download_pop_photo">Albumansicht></string>
+    <string name="tk_download_pop_start">Starte Download&#8230;&#8230;</string>
+    <string name="tk_download_handle_ing">Verarbeitung starten&#8230;&#8230;</string>
+    <string name="tk_download_pop_faild">Download fehlgeschlagen. Bitte überprüfen Sie das Netzwerk, um es erneut herunterzuladen!</string>
+    <string name="tk_download_pop_ing">Wird heruntergeladen %s / %d %%</string>
+    <string name="tk_download_pop_handle">Ressourcenverarbeitung %d %%</string>
+    <string name="tk_download_pop_handle_error">Das Netzwerk ist anormal, bitte laden Sie es erneut herunter！</string>
+
+    <string name="tk_share_pop_title">Teilen</string>
+    <string name="tk_share_pop_unstall">App nicht installiert</string>
+
+    <string name="tk_updata_pop_found">Neue Version entdeckt</string>
+    <string name="tk_updata_pop_tip">Sie müssen auf die neueste Version aktualisieren, um sie verwenden zu können</string>
+    <string name="tk_updata_pop_now">Erneuern</string>
+    <string name="tk_updata_pop_ignore">Vernachlässigung</string>
+    <string name="tk_updata_pop_no_url">Noch kein Downloadlink</string>
+    <string name="tk_updata_pop_install">Installieren</string>
+
+    <string name="tk_user_liked">Du hast gefallen!</string>
+    <string name="tk_like_success">Erfolgreich geliked!</string>
+    <string name="tk_unlike_success">Abbrechen wie erfolgreich!</string>
+
+    <string name="tk_report_title">Prüfbericht</string>
+    <string name="tk_report_title_1">Inhaltsverstoß</string>
+    <string name="tk_report_one_1">Vulgär</string>
+    <string name="tk_report_one_2">Aktuelle politische Fehlinformationen</string>
+    <string name="tk_report_one_3">Illegale Kriminalität</string>
+    <string name="tk_report_one_4">Spam-Werbung, Verkauf von gefälschten Waren usw.</string>
+    <string name="tk_report_one_5">Gerüchte verbreiten</string>
+    <string name="tk_report_one_6">Betrugsverdacht</string>
+    <string name="tk_report_one_7">Beleidigung</string>
+    <string name="tk_report_one_8">Gefährliches Verhalten</string>
+    <string name="tk_report_one_9">Verdacht der illegalen Geldbeschaffung</string>
+    <string name="tk_report_one_10">Schlechte Werteorientierung</string>
+    <string name="tk_report_title_2">Verletzung von Rechten</string>
+    <string name="tk_report_two_1">Verletzung des Rufs, der Privatsphäre, der Porträtrechte usw.</string>
+    <string name="tk_report_two_2">Inhaltsdiebstahl</string>
+    <string name="tk_report_title_3">Minderjährig</string>
+    <string name="tk_report_three_1">Leichtes Fehlverhalten</string>
+    <string name="tk_report_three_2">Inhalt nicht für Minderjährige geeignet</string>
+    <string name="tk_report_title_4">Andere</string>
+    <string name="tk_report_four_1">Unbequem</string>
+    <string name="tk_report_four_2">Private Bootstrap-Angebote</string>
+    <string name="tk_report_four_3">Verdacht auf oder Anstiftung zum Selbstmord</string>
+    <string name="tk_report_four_4">Induzieren Sie Likes, Shares und Aufmerksamkeit</string>
+    <string name="tk_report_detail_tip">Ihr Bericht wird innerhalb von 12 Stunden akzeptiert. Wenn der Bericht erfolgreich ist, wird das Ergebnis so schnell wie möglich mitgeteilt. Bitte versuchen Sie, eine vollständige Berichtsbeschreibung und Materialien einzureichen.</string>
+    <string name="tk_report_detail_reson">Grund</string>
+    <string name="tk_report_detail_memo">Beschreibung (optional)</string>
+    <string name="tk_report_detail_memo_hint">Detaillierte Beschreibung des Grundes der Meldung</string>
+    <string name="tk_report_detail_commit">Einreichen</string>
+    <string name="tk_report_detail_commit_success">Erfolgreich melden!</string>
+
+    <string name="tk_setting_title">Installieren</string>
+    <string name="tk_setting_version">Ausführung : V%s</string>
+    <string name="tk_setting_package_id">Paket-ID : %s</string>
+    <string name="tk_setting_video_id">Video-ID : %d</string>
+    <string name="tk_setting_rate">Bewerten</string>
+    <string name="tk_setting_cache">Cache leeren</string>
+    <string name="tk_setting_cache_success">Erfolgreich gelöscht！</string>
+    <string name="tk_setting_cache_tip_title">Notiz</string>
+    <string name="tk_setting_cache_tip">Wenn Sie den Cache leeren, müssen alle Videos neu geladen werden und es kann länger dauern. Möchten Sie den Cache wirklich leeren?</string>
+</resources>

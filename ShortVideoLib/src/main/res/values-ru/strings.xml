@@ -1,0 +1,71 @@
+<resources>
+    <string name="app_name">tika</string>
+
+    <string name="tk_network_error">Сетевая аномалия</string>
+    <string name="tk_data_gson_error">Исключение при синтаксическом анализе данных</string>
+
+    <string name="tk_ad_google">Объявления, предоставляемые Google</string>
+    <string name="tk_ad_download">Скачать</string>
+
+    <string name="tk_download_pop_photo">Просмотр альбома></string>
+    <string name="tk_download_pop_start">Загрузку&#8230;&#8230;</string>
+    <string name="tk_download_handle_ing">Обработку&#8230;&#8230;</string>
+    <string name="tk_download_pop_faild">Загрузка не удалась, пожалуйста, проверьте сеть, чтобы загрузить снова!</string>
+    <string name="tk_download_pop_ing">Скачивание %s / %d %%</string>
+    <string name="tk_download_pop_handle">Обработка %d %%</string>
+    <string name="tk_download_pop_handle_error">Сеть ненормальная, загрузите снова!</string>
+
+    <string name="tk_share_pop_title">Поделиться</string>
+    <string name="tk_share_pop_unstall">Приложение не установлено</string>
+
+    <string name="tk_updata_pop_found">Обнаружена новая версия</string>
+    <string name="tk_updata_pop_tip">Вы должны обновить до последней версии, чтобы использовать</string>
+    <string name="tk_updata_pop_now">Возобновить</string>
+    <string name="tk_updata_pop_ignore">Пренебрегать</string>
+    <string name="tk_updata_pop_no_url">Ссылки на скачивание пока нет</string>
+    <string name="tk_updata_pop_install">Установить</string>
+
+    <string name="tk_user_liked">Вам понравилось!</string>
+    <string name="tk_like_success">Как успех!</string>
+    <string name="tk_unlike_success">Отменить лайки успешно!</string>
+
+    <string name="tk_report_title">Отчет</string>
+    <string name="tk_report_title_1">Нарушение содержания</string>
+    <string name="tk_report_one_1">Вульгарный</string>
+    <string name="tk_report_one_2">Текущая политическая дезинформация</string>
+    <string name="tk_report_one_3">Незаконное преступление</string>
+    <string name="tk_report_one_4">Спам-реклама, продажа поддельных товаров и т.д.</string>
+    <string name="tk_report_one_5">Pаспространение слухов</string>
+    <string name="tk_report_one_6">Подозрение в мошенничестве</string>
+    <string name="tk_report_one_7">Оскорблять</string>
+    <string name="tk_report_one_8">Опасное поведение</string>
+    <string name="tk_report_one_9">Подозревается в незаконном сборе средств</string>
+    <string name="tk_report_one_10">Плохая ценностная ориентация</string>
+    <string name="tk_report_title_2">Нарушение прав</string>
+    <string name="tk_report_two_1">Нарушение репутации, неприкосновенности частной жизни, портретных прав и т. д.</string>
+    <string name="tk_report_two_2">Кража контента</string>
+    <string name="tk_report_title_3">Несовершеннолетний</string>
+    <string name="tk_report_three_1">Мелкий проступок</string>
+    <string name="tk_report_three_2">Контент не подходит для просмотра несовершеннолетними</string>
+    <string name="tk_report_title_4">Pазное</string>
+    <string name="tk_report_four_1">Неудобный</string>
+    <string name="tk_report_four_2">Частные сделки Bootstrap</string>
+    <string name="tk_report_four_3">Подозрение или спровоцированное самоубийство</string>
+    <string name="tk_report_four_4">Привлекайте лайки, акции и внимание</string>
+    <string name="tk_report_detail_tip">Ваш отчет будет принят в течение 12 часов.Если отчет будет успешным, результат будет сообщен как можно скорее.Пожалуйста, постарайтесь предоставить полное описание отчета и материалы.</string>
+    <string name="tk_report_detail_reson">Причина</string>
+    <string name="tk_report_detail_memo">Описание (необязательно)</string>
+    <string name="tk_report_detail_memo_hint">Подробное описание причины сообщения</string>
+    <string name="tk_report_detail_commit">Отправить</string>
+    <string name="tk_report_detail_commit_success">Сообщить успешно!</string>
+
+    <string name="tk_setting_title">настраивать</string>
+    <string name="tk_setting_version">Версия : V%s</string>
+    <string name="tk_setting_package_id">Идентификатор пакета : %s</string>
+    <string name="tk_setting_video_id">Идентификатор видео : %d</string>
+    <string name="tk_setting_rate">Оценивать</string>
+    <string name="tk_setting_cache">Очистить кэш</string>
+    <string name="tk_setting_cache_success">Очищено успешно!</string>
+    <string name="tk_setting_cache_tip_title">Уведомление</string>
+    <string name="tk_setting_cache_tip">Если вы очистите кеш, все видео необходимо будет перезагрузить, что может занять больше времени. Вы уверены, что хотите очистить кеш?</string>
+</resources>

@@ -18,7 +18,7 @@ import com.shortvideo.lib.utils.ActivityManager;
 import com.shortvideo.lib.utils.DataCleanManager;
 import com.shortvideo.lib.utils.ToastyUtils;
 
-public class SettingActivity extends AppCompatActivity implements View.OnClickListener {
+public class TkSettingActivity extends AppCompatActivity implements View.OnClickListener {
 
     TkActivitySettingBinding binding;
 
@@ -45,10 +45,9 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     private void initView() {
-        Logger.e("设置视频ID: " + getIntent().getIntExtra("id", -1));
-        binding.version.setText("số phiên bản " + VideoApplication.getInstance().getVerName());
-        binding.name.setText("ID gói " + getPackageName());
-        binding.video.setText("ID video " + getIntent().getIntExtra("id", 0));
+        binding.version.setText(getString(R.string.tk_setting_version, VideoApplication.getInstance().getVerName()));
+        binding.name.setText(getString(R.string.tk_setting_package_id, getPackageName()));
+        binding.video.setText(getString(R.string.tk_setting_video_id, getIntent().getIntExtra("id", 0)));
         try {
             binding.cache.setText(DataCleanManager.getTotalCacheSize(this));
         } catch (Exception e) {
@@ -78,15 +77,15 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
             openGooglePlay();
         }else if (v.getId() == R.id.rl_clean){
             TipPop tipPop = new TipPop(this, () -> {
-                DataCleanManager.clearAllCache(SettingActivity.this);
+                DataCleanManager.clearAllCache(TkSettingActivity.this);
                 try {
-                    binding.cache.setText(DataCleanManager.getTotalCacheSize(SettingActivity.this));
+                    binding.cache.setText(DataCleanManager.getTotalCacheSize(TkSettingActivity.this));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                ToastyUtils.ToastShow("Đã xóa thành công！");
+                ToastyUtils.ToastShow(getString(R.string.tk_setting_cache_success));
             });
-            tipPop.initTip("dấu", "nếu bạn xóa bộ nhớ cache, tất cả các video cần được tải lại, quá trình này có thể mất nhiều thời gian hơn để chờ. Bạn có chắc chắn muốn xóa bộ nhớ cache không?");
+            tipPop.initTip(getString(R.string.tk_setting_cache_tip_title),  getString(R.string.tk_setting_cache_tip));
         }
     }
 

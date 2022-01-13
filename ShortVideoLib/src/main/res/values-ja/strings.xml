@@ -1,0 +1,71 @@
+<resources>
+    <string name="app_name">tika</string>
+
+    <string name="tk_network_error">ネットワークの異常</string>
+    <string name="tk_data_gson_error">データ解析の例外</string>
+
+    <string name="tk_ad_google">Googleが配信する広告</string>
+    <string name="tk_ad_download">ダウンロード</string>
+
+    <string name="tk_download_pop_photo">アルバムビュー></string>
+    <string name="tk_download_pop_start">ダウンロード開始&#8230;&#8230;</string>
+    <string name="tk_download_handle_ing">処理を開始します&#8230;&#8230;</string>
+    <string name="tk_download_pop_faild">ダウンロードに失敗しました。ネットワークを確認してもう一度ダウンロードしてください。</string>
+    <string name="tk_download_pop_ing">ダウンロード %s / %d %%</string>
+    <string name="tk_download_pop_handle">リソース処理 %d %%</string>
+    <string name="tk_download_pop_handle_error">ネットワークが異常です。もう一度ダウンロードしてください。</string>
+
+    <string name="tk_share_pop_title">シェア</string>
+    <string name="tk_share_pop_unstall">アプリがインストールされていません</string>
+
+    <string name="tk_updata_pop_found">新しいバージョンが発見されました</string>
+    <string name="tk_updata_pop_tip">使用するには、最新バージョンに更新する必要があります</string>
+    <string name="tk_updata_pop_now">更新</string>
+    <string name="tk_updata_pop_ignore">忘れる</string>
+    <string name="tk_updata_pop_no_url">ダウンロードリンクはまだありません</string>
+    <string name="tk_updata_pop_install">インストール</string>
+
+    <string name="tk_user_liked">あなたはそれが好きです！</string>
+    <string name="tk_like_success">成功のように！</string>
+    <string name="tk_unlike_success">いいねをキャンセルします！</string>
+
+    <string name="tk_report_title">報告する</string>
+    <string name="tk_report_title_1">コンテンツ違反</string>
+    <string name="tk_report_one_1">下品</string>
+    <string name="tk_report_one_2">現在の政治的誤報</string>
+    <string name="tk_report_one_3">違法犯罪</string>
+    <string name="tk_report_one_4">スパム広告、偽物の販売など。</string>
+    <string name="tk_report_one_5">噂を広める</string>
+    <string name="tk_report_one_6">詐欺の疑い</string>
+    <string name="tk_report_one_7">侮辱</string>
+    <string name="tk_report_one_8">危険な行動</string>
+    <string name="tk_report_one_9">違法な資金調達の疑い</string>
+    <string name="tk_report_one_10">価値の低い方向性</string>
+    <string name="tk_report_title_2">権利の侵害</string>
+    <string name="tk_report_two_1">評判、プライバシー、肖像権などの違反。</string>
+    <string name="tk_report_two_2">コンテンツの盗難</string>
+    <string name="tk_report_title_3">未成年者</string>
+    <string name="tk_report_three_1">軽微な違法行為</string>
+    <string name="tk_report_three_2">未成年者の視聴に適さないコンテンツ</string>
+    <string name="tk_report_title_4">他の</string>
+    <string name="tk_report_four_1">快適でない</string>
+    <string name="tk_report_four_2">ブートストラッププライベートディール</string>
+    <string name="tk_report_four_3">自殺の疑いまたは扇動</string>
+    <string name="tk_report_four_4">いいね、シェア、注目を集める</string>
+    <string name="tk_report_detail_tip">報告は12時間以内に受け付けられます。報告が成功した場合は、できるだけ早く結果が通知されます。完全な報告の説明と資料を提出してみてください。</string>
+    <string name="tk_report_detail_reson">理由</string>
+    <string name="tk_report_detail_memo">説明（オプション）</string>
+    <string name="tk_report_detail_memo_hint">レポートの理由の詳細な説明</string>
+    <string name="tk_report_detail_commit">参加する</string>
+    <string name="tk_report_detail_commit_success">成功したレポート！</string>
+
+    <string name="tk_setting_title">設定</string>
+    <string name="tk_setting_version">バージョン : V%s</string>
+    <string name="tk_setting_package_id">パッケージID : %s</string>
+    <string name="tk_setting_video_id">ビデオID : %d</string>
+    <string name="tk_setting_rate">評価する</string>
+    <string name="tk_setting_cache">キャッシュの消去</string>
+    <string name="tk_setting_cache_success">正常にクリアされました！</string>
+    <string name="tk_setting_cache_tip_title">知らせ</string>
+    <string name="tk_setting_cache_tip">キャッシュをクリアすると、すべての動画を再読み込みする必要があり、さらに時間がかかる場合があります。キャッシュをクリアしてもよろしいですか？</string>
+</resources>

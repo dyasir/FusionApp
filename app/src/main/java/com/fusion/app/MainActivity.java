@@ -7,7 +7,6 @@ import android.os.Bundle;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.fusion.app.databinding.ActivityMainBinding;
 import com.gyf.immersionbar.ImmersionBar;
-import com.shortvideo.lib.common.AppConfig;
 
 @Route(path = App.THIRD_ROUTE_PATH)
 public class MainActivity extends AppCompatActivity {

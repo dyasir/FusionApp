@@ -69,7 +69,7 @@ com.shortvideo.lib.VideoApplication$2 -> com.shortvideo.lib.VideoApplication$b:
     1:1:void onInstallReferrerServiceDisconnected():260:260 -> onInstallReferrerServiceDisconnected
     1:5:void onInstallReferrerSetupFinished(int):249:253 -> onInstallReferrerSetupFinished
     6:24:void onInstallReferrerSetupFinished(int):225:243 -> onInstallReferrerSetupFinished
-com.shortvideo.lib.common.AppConfig -> a.a:
+com.shortvideo.lib.common.TkAppConfig -> a.a:
     java.lang.String IMAGE_SHUI_PATH -> a
     java.lang.String OUT_VIDEO_PATH -> c
     java.lang.String VIDEO_PATH -> b
@@ -639,7 +639,7 @@ com.shortvideo.lib.model.VideoPathBean -> com.shortvideo.lib.model.VideoPathBean
     1:1:void <init>():3:3 -> <init>
     1:1:java.lang.String getDown_url():8:8 -> getDown_url
     1:1:void setDown_url(java.lang.String):12:12 -> setDown_url
-com.shortvideo.lib.ui.activity.ReportActivity -> com.shortvideo.lib.ui.activity.ReportActivity:
+com.shortvideo.lib.ui.activity.TkReportActivity -> com.shortvideo.lib.ui.activity.TkReportActivity:
     com.shortvideo.lib.databinding.ActivityReportBinding binding -> a
     com.shortvideo.lib.ui.adapter.ReportAdapter mReportAdapterYear -> c
     int position -> f
@@ -654,13 +654,13 @@ com.shortvideo.lib.ui.activity.ReportActivity -> com.shortvideo.lib.ui.activity.
     1:44:void initView():53:96 -> c
     45:51:void lambda$initListener$2(com.chad.library.adapter.base.BaseQuickAdapter,android.view.View,int):148:154 -> c
     1:17:void onCreate(android.os.Bundle):33:49 -> onCreate
-com.shortvideo.lib.ui.activity.ReportActivity$1 -> com.shortvideo.lib.ui.activity.ReportActivity$a:
-    1:1:void <init>(com.shortvideo.lib.ui.activity.ReportActivity,android.content.Context):57:57 -> <init>
-com.shortvideo.lib.ui.activity.ReportActivity$2 -> com.shortvideo.lib.ui.activity.ReportActivity$b:
-    1:1:void <init>(com.shortvideo.lib.ui.activity.ReportActivity,android.content.Context):71:71 -> <init>
-com.shortvideo.lib.ui.activity.ReportActivity$3 -> com.shortvideo.lib.ui.activity.ReportActivity$c:
-    1:1:void <init>(com.shortvideo.lib.ui.activity.ReportActivity,android.content.Context):85:85 -> <init>
-com.shortvideo.lib.ui.activity.ReportDetailActivity -> com.shortvideo.lib.ui.activity.ReportDetailActivity:
+com.shortvideo.lib.ui.activity.TkReportActivity$1 -> com.shortvideo.lib.ui.activity.TkReportActivity$a:
+    1:1:void <init>(com.shortvideo.lib.ui.activity.TkReportActivity,android.content.Context):57:57 -> <init>
+com.shortvideo.lib.ui.activity.TkReportActivity$2 -> com.shortvideo.lib.ui.activity.TkReportActivity$b:
+    1:1:void <init>(com.shortvideo.lib.ui.activity.TkReportActivity,android.content.Context):71:71 -> <init>
+com.shortvideo.lib.ui.activity.TkReportActivity$3 -> com.shortvideo.lib.ui.activity.TkReportActivity$c:
+    1:1:void <init>(com.shortvideo.lib.ui.activity.TkReportActivity,android.content.Context):85:85 -> <init>
+com.shortvideo.lib.ui.activity.TkReportDetailActivity -> com.shortvideo.lib.ui.activity.TkReportDetailActivity:
     com.shortvideo.lib.ui.adapter.ReportDetailAdapter reportDetailAdapter -> b
     int id -> d
     int position -> e
@@ -675,19 +675,19 @@ com.shortvideo.lib.ui.activity.ReportDetailActivity -> com.shortvideo.lib.ui.act
     1:17:void initView():71:87 -> c
     1:20:void onActivityResult(int,int,android.content.Intent):183:202 -> onActivityResult
     1:17:void onCreate(android.os.Bundle):51:67 -> onCreate
-com.shortvideo.lib.ui.activity.ReportDetailActivity$1 -> com.shortvideo.lib.ui.activity.ReportDetailActivity$a:
-    1:1:void <init>(com.shortvideo.lib.ui.activity.ReportDetailActivity,android.content.Context,int):76:76 -> <init>
-com.shortvideo.lib.ui.activity.ReportDetailActivity$2 -> com.shortvideo.lib.ui.activity.ReportDetailActivity$b:
-    com.shortvideo.lib.ui.activity.ReportDetailActivity this$0 -> a
-    1:1:void <init>(com.shortvideo.lib.ui.activity.ReportDetailActivity):92:92 -> <init>
+com.shortvideo.lib.ui.activity.TkReportDetailActivity$1 -> com.shortvideo.lib.ui.activity.TkReportDetailActivity$a:
+    1:1:void <init>(com.shortvideo.lib.ui.activity.TkReportDetailActivity,android.content.Context,int):76:76 -> <init>
+com.shortvideo.lib.ui.activity.TkReportDetailActivity$2 -> com.shortvideo.lib.ui.activity.TkReportDetailActivity$b:
+    com.shortvideo.lib.ui.activity.TkReportDetailActivity this$0 -> a
+    1:1:void <init>(com.shortvideo.lib.ui.activity.TkReportDetailActivity):92:92 -> <init>
     1:1:void onTextChanged(java.lang.CharSequence,int,int,int):100:100 -> onTextChanged
-com.shortvideo.lib.ui.activity.ReportDetailActivity$3 -> com.shortvideo.lib.ui.activity.ReportDetailActivity$c:
-    com.shortvideo.lib.ui.activity.ReportDetailActivity this$0 -> a
-    1:1:void <init>(com.shortvideo.lib.ui.activity.ReportDetailActivity):158:158 -> <init>
+com.shortvideo.lib.ui.activity.TkReportDetailActivity$3 -> com.shortvideo.lib.ui.activity.TkReportDetailActivity$c:
+    com.shortvideo.lib.ui.activity.TkReportDetailActivity this$0 -> a
+    1:1:void <init>(com.shortvideo.lib.ui.activity.TkReportDetailActivity):158:158 -> <init>
     1:5:void onSuccess(java.util.List,java.lang.String):161:165 -> a
     1:1:void onFail(int,java.lang.String):170:170 -> onFail
     1:1:void onSuccess(java.lang.Object,java.lang.String):158:158 -> onSuccess
-com.shortvideo.lib.ui.activity.SettingActivity -> com.shortvideo.lib.ui.activity.SettingActivity:
+com.shortvideo.lib.ui.activity.TkSettingActivity -> com.shortvideo.lib.ui.activity.TkSettingActivity:
     com.shortvideo.lib.databinding.ActivitySettingBinding binding -> a
     int clickCount -> b
     1:5:void <init>():21:25 -> <init>
@@ -697,7 +697,7 @@ com.shortvideo.lib.ui.activity.SettingActivity -> com.shortvideo.lib.ui.activity
     1:11:void openGooglePlay():98:108 -> d
     1:23:void onClick(android.view.View):67:89 -> onClick
     1:16:void onCreate(android.os.Bundle):29:44 -> onCreate
-com.shortvideo.lib.ui.activity.ShortVideoActivity -> com.shortvideo.lib.ui.activity.ShortVideoActivity:
+com.shortvideo.lib.ui.activity.TkShortVideoActivity -> com.shortvideo.lib.ui.activity.TkShortVideoActivity:
     boolean overRight -> m
     int id -> n
     com.shortvideo.lib.databinding.ActivityShortVideoBinding binding -> a
@@ -761,7 +761,7 @@ com.shortvideo.lib.ui.activity.ShortVideoActivity -> com.shortvideo.lib.ui.activ
     1:3:void videoLongPress(com.shortvideo.lib.common.event.OnVideoLongPressEvent):672:674 -> videoLongPress
     1:14:void videoReport(com.shortvideo.lib.common.event.OnVideoReportEvent):792:805 -> videoReport
     1:2:void waterEmpty(com.shortvideo.lib.common.event.OnWaterEmptyEvent):819:820 -> waterEmpty
-com.shortvideo.lib.ui.activity.ShortVideoActivity$$DownloadListenerProxy -> com.shortvideo.lib.ui.activity.ShortVideoActivity$$DownloadListenerProxy:
+com.shortvideo.lib.ui.activity.TkShortVideoActivity$$DownloadListenerProxy -> com.shortvideo.lib.ui.activity.TkShortVideoActivity$$DownloadListenerProxy:
 # {"id":"sourceFile","fileName":"ShortVideoActivity$$DownloadListenerProxy.java"}
     1:1:void <init>():15:15 -> <init>
     1:1:void onTaskComplete(com.arialyy.aria.core.task.ITask):12:12 -> onTaskComplete
@@ -771,79 +771,79 @@ com.shortvideo.lib.ui.activity.ShortVideoActivity$$DownloadListenerProxy -> com.
     1:1:void onTaskRunning(com.arialyy.aria.core.task.ITask):12:12 -> onTaskRunning
     2:2:void onTaskRunning(com.arialyy.aria.core.task.DownloadTask):20:20 -> onTaskRunning
     1:1:void setListener(java.lang.Object):35:35 -> setListener
-com.shortvideo.lib.ui.activity.ShortVideoActivity$1 -> com.shortvideo.lib.ui.activity.ShortVideoActivity$a:
-    com.shortvideo.lib.ui.activity.ShortVideoActivity this$0 -> a
-    1:1:void <init>(com.shortvideo.lib.ui.activity.ShortVideoActivity):221:221 -> <init>
+com.shortvideo.lib.ui.activity.TkShortVideoActivity$1 -> com.shortvideo.lib.ui.activity.TkShortVideoActivity$a:
+    com.shortvideo.lib.ui.activity.TkShortVideoActivity this$0 -> a
+    1:1:void <init>(com.shortvideo.lib.ui.activity.TkShortVideoActivity):221:221 -> <init>
     1:1:void run():224:224 -> run
-com.shortvideo.lib.ui.activity.ShortVideoActivity$2 -> com.shortvideo.lib.ui.activity.ShortVideoActivity$b:
-    com.shortvideo.lib.ui.activity.ShortVideoActivity this$0 -> a
-    1:1:void <init>(com.shortvideo.lib.ui.activity.ShortVideoActivity):235:235 -> <init>
+com.shortvideo.lib.ui.activity.TkShortVideoActivity$2 -> com.shortvideo.lib.ui.activity.TkShortVideoActivity$b:
+    com.shortvideo.lib.ui.activity.TkShortVideoActivity this$0 -> a
+    1:1:void <init>(com.shortvideo.lib.ui.activity.TkShortVideoActivity):235:235 -> <init>
     1:17:void onSuccess(com.shortvideo.lib.model.VideoDetailBean,java.lang.String):238:254 -> a
     18:18:void lambda$onSuccess$0():253:253 -> a
     19:22:void lambda$onSuccess$1(com.shortvideo.lib.model.VideoDetailBean):255:258 -> a
     1:1:void onFail(int,java.lang.String):264:264 -> onFail
     1:1:void onSuccess(java.lang.Object,java.lang.String):235:235 -> onSuccess
-com.shortvideo.lib.ui.activity.ShortVideoActivity$3 -> com.shortvideo.lib.ui.activity.ShortVideoActivity$c:
-    com.shortvideo.lib.ui.activity.ShortVideoActivity this$0 -> a
-    1:1:void <init>(com.shortvideo.lib.ui.activity.ShortVideoActivity):297:297 -> <init>
+com.shortvideo.lib.ui.activity.TkShortVideoActivity$3 -> com.shortvideo.lib.ui.activity.TkShortVideoActivity$c:
+    com.shortvideo.lib.ui.activity.TkShortVideoActivity this$0 -> a
+    1:1:void <init>(com.shortvideo.lib.ui.activity.TkShortVideoActivity):297:297 -> <init>
     1:2:void onPageScrollStateChanged(int):412:413 -> onPageScrollStateChanged
     1:31:void onPageScrolled(int,float,int):301:331 -> onPageScrolled
     1:6:void onPageSelected(int):336:341 -> onPageSelected
     7:11:void onPageSelected(int):339:339 -> onPageSelected
     16:69:void onPageSelected(int):344:397 -> onPageSelected
-com.shortvideo.lib.ui.activity.ShortVideoActivity$3$1 -> com.shortvideo.lib.ui.activity.ShortVideoActivity$c$a:
-    com.shortvideo.lib.ui.activity.ShortVideoActivity$3 this$1 -> a
-    1:1:void <init>(com.shortvideo.lib.ui.activity.ShortVideoActivity$3):305:305 -> <init>
+com.shortvideo.lib.ui.activity.TkShortVideoActivity$3$1 -> com.shortvideo.lib.ui.activity.TkShortVideoActivity$c$a:
+    com.shortvideo.lib.ui.activity.TkShortVideoActivity$3 this$1 -> a
+    1:1:void <init>(com.shortvideo.lib.ui.activity.TkShortVideoActivity$3):305:305 -> <init>
     1:7:void onSuccess(java.util.List,java.lang.String):309:315 -> a
     1:7:void onFail(int,java.lang.String):321:327 -> onFail
     1:1:void onSuccess(java.lang.Object,java.lang.String):305:305 -> onSuccess
-com.shortvideo.lib.ui.activity.ShortVideoActivity$3$2 -> com.shortvideo.lib.ui.activity.ShortVideoActivity$c$b:
+com.shortvideo.lib.ui.activity.TkShortVideoActivity$3$2 -> com.shortvideo.lib.ui.activity.TkShortVideoActivity$c$b:
     int val$position -> a
-    com.shortvideo.lib.ui.activity.ShortVideoActivity$3 this$1 -> b
-    1:1:void <init>(com.shortvideo.lib.ui.activity.ShortVideoActivity$3,int):397:397 -> <init>
+    com.shortvideo.lib.ui.activity.TkShortVideoActivity$3 this$1 -> b
+    1:1:void <init>(com.shortvideo.lib.ui.activity.TkShortVideoActivity$3,int):397:397 -> <init>
     1:4:void run():400:403 -> run
-com.shortvideo.lib.ui.activity.ShortVideoActivity$4 -> com.shortvideo.lib.ui.activity.ShortVideoActivity$d:
-    com.shortvideo.lib.ui.activity.ShortVideoActivity this$0 -> a
-    1:1:void <init>(com.shortvideo.lib.ui.activity.ShortVideoActivity):421:421 -> <init>
+com.shortvideo.lib.ui.activity.TkShortVideoActivity$4 -> com.shortvideo.lib.ui.activity.TkShortVideoActivity$d:
+    com.shortvideo.lib.ui.activity.TkShortVideoActivity this$0 -> a
+    1:1:void <init>(com.shortvideo.lib.ui.activity.TkShortVideoActivity):421:421 -> <init>
     1:138:void onSuccess(com.shortvideo.lib.model.HomeBean,java.lang.String):424:561 -> a
     1:8:void onFail(int,java.lang.String):567:574 -> onFail
     1:1:void onSuccess(java.lang.Object,java.lang.String):421:421 -> onSuccess
-com.shortvideo.lib.ui.activity.ShortVideoActivity$4$1 -> com.shortvideo.lib.ui.activity.ShortVideoActivity$d$a:
-    com.shortvideo.lib.ui.activity.ShortVideoActivity$4 this$1 -> b
+com.shortvideo.lib.ui.activity.TkShortVideoActivity$4$1 -> com.shortvideo.lib.ui.activity.TkShortVideoActivity$d$a:
+    com.shortvideo.lib.ui.activity.TkShortVideoActivity$4 this$1 -> b
     com.shortvideo.lib.model.HomeBean val$homeBean -> a
-    1:1:void <init>(com.shortvideo.lib.ui.activity.ShortVideoActivity$4,com.shortvideo.lib.model.HomeBean):436:436 -> <init>
+    1:1:void <init>(com.shortvideo.lib.ui.activity.TkShortVideoActivity$4,com.shortvideo.lib.model.HomeBean):436:436 -> <init>
     1:49:void onSuccess(com.shortvideo.lib.model.VideoDetailBean,java.lang.String):439:487 -> a
     50:53:void lambda$onSuccess$0(com.shortvideo.lib.model.VideoDetailBean):488:491 -> a
     1:31:void onFail(int,java.lang.String):497:527 -> onFail
     1:1:void onSuccess(java.lang.Object,java.lang.String):436:436 -> onSuccess
-com.shortvideo.lib.ui.activity.ShortVideoActivity$6 -> com.shortvideo.lib.ui.activity.ShortVideoActivity$e:
-    com.shortvideo.lib.ui.activity.ShortVideoActivity this$0 -> a
-    1:1:void <init>(com.shortvideo.lib.ui.activity.ShortVideoActivity):709:709 -> <init>
+com.shortvideo.lib.ui.activity.TkShortVideoActivity$6 -> com.shortvideo.lib.ui.activity.TkShortVideoActivity$e:
+    com.shortvideo.lib.ui.activity.TkShortVideoActivity this$0 -> a
+    1:1:void <init>(com.shortvideo.lib.ui.activity.TkShortVideoActivity):709:709 -> <init>
     1:16:boolean handleMessage(android.os.Message):712:727 -> handleMessage
-com.shortvideo.lib.ui.activity.ShortVideoActivity$6$1 -> com.shortvideo.lib.ui.activity.ShortVideoActivity$e$a:
-    com.shortvideo.lib.ui.activity.ShortVideoActivity$6 this$1 -> a
-    1:1:void <init>(com.shortvideo.lib.ui.activity.ShortVideoActivity$6):727:727 -> <init>
+com.shortvideo.lib.ui.activity.TkShortVideoActivity$6$1 -> com.shortvideo.lib.ui.activity.TkShortVideoActivity$e$a:
+    com.shortvideo.lib.ui.activity.TkShortVideoActivity$6 this$1 -> a
+    1:1:void <init>(com.shortvideo.lib.ui.activity.TkShortVideoActivity$6):727:727 -> <init>
     1:7:void onSuccess(java.util.List,java.lang.String):731:737 -> a
     1:7:void onFail(int,java.lang.String):743:749 -> onFail
     1:1:void onSuccess(java.lang.Object,java.lang.String):727:727 -> onSuccess
-com.shortvideo.lib.ui.activity.ShortVideoActivity$7 -> com.shortvideo.lib.ui.activity.ShortVideoActivity$f:
-    com.shortvideo.lib.ui.activity.ShortVideoActivity this$0 -> b
+com.shortvideo.lib.ui.activity.TkShortVideoActivity$7 -> com.shortvideo.lib.ui.activity.TkShortVideoActivity$f:
+    com.shortvideo.lib.ui.activity.TkShortVideoActivity this$0 -> b
     int val$position -> a
-    1:1:void <init>(com.shortvideo.lib.ui.activity.ShortVideoActivity,int):864:864 -> <init>
+    1:1:void <init>(com.shortvideo.lib.ui.activity.TkShortVideoActivity,int):864:864 -> <init>
     1:7:void onSuccess(java.util.List,java.lang.String):867:873 -> a
     1:1:void onFail(int,java.lang.String):878:878 -> onFail
     1:1:void onSuccess(java.lang.Object,java.lang.String):864:864 -> onSuccess
-com.shortvideo.lib.ui.activity.ShortVideoActivity$8 -> com.shortvideo.lib.ui.activity.ShortVideoActivity$g:
-    com.shortvideo.lib.ui.activity.ShortVideoActivity this$0 -> b
+com.shortvideo.lib.ui.activity.TkShortVideoActivity$8 -> com.shortvideo.lib.ui.activity.TkShortVideoActivity$g:
+    com.shortvideo.lib.ui.activity.TkShortVideoActivity this$0 -> b
     int val$position -> a
-    1:1:void <init>(com.shortvideo.lib.ui.activity.ShortVideoActivity,int):890:890 -> <init>
+    1:1:void <init>(com.shortvideo.lib.ui.activity.TkShortVideoActivity,int):890:890 -> <init>
     1:8:void onSuccess(java.util.List,java.lang.String):893:900 -> a
     1:1:void onFail(int,java.lang.String):905:905 -> onFail
     1:1:void onSuccess(java.lang.Object,java.lang.String):890:890 -> onSuccess
-com.shortvideo.lib.ui.activity.ShortVideoActivity$9 -> com.shortvideo.lib.ui.activity.ShortVideoActivity$h:
-    1:1:void <init>(com.shortvideo.lib.ui.activity.ShortVideoActivity):917:917 -> <init>
+com.shortvideo.lib.ui.activity.TkShortVideoActivity$9 -> com.shortvideo.lib.ui.activity.TkShortVideoActivity$h:
+    1:1:void <init>(com.shortvideo.lib.ui.activity.TkShortVideoActivity):917:917 -> <init>
     1:1:void onSuccess(java.lang.Object,java.lang.String):917:917 -> onSuccess
-com.shortvideo.lib.ui.activity.VideoSplashActivity -> com.shortvideo.lib.ui.activity.VideoSplashActivity:
+com.shortvideo.lib.ui.activity.TkVideoSplashActivity -> com.shortvideo.lib.ui.activity.TkVideoSplashActivity:
     java.lang.String uuid -> f
     com.shortvideo.lib.ui.widgets.UpdataPop updataPop -> e
     com.shortvideo.lib.model.HomeBean homeBean -> d
@@ -877,7 +877,7 @@ com.shortvideo.lib.ui.activity.VideoSplashActivity -> com.shortvideo.lib.ui.acti
     1:15:void onCreate(android.os.Bundle):69:83 -> onCreate
     1:3:void onDestroy():588:590 -> onDestroy
     1:8:void onNewIntent(android.content.Intent):154:161 -> onNewIntent
-com.shortvideo.lib.ui.activity.VideoSplashActivity$$DownloadListenerProxy -> com.shortvideo.lib.ui.activity.VideoSplashActivity$$DownloadListenerProxy:
+com.shortvideo.lib.ui.activity.TkVideoSplashActivity$$DownloadListenerProxy -> com.shortvideo.lib.ui.activity.TkVideoSplashActivity$$DownloadListenerProxy:
 # {"id":"sourceFile","fileName":"VideoSplashActivity$$DownloadListenerProxy.java"}
     1:1:void <init>():15:15 -> <init>
     1:1:void onTaskComplete(com.arialyy.aria.core.task.ITask):12:12 -> onTaskComplete
@@ -887,38 +887,38 @@ com.shortvideo.lib.ui.activity.VideoSplashActivity$$DownloadListenerProxy -> com
     1:1:void onTaskRunning(com.arialyy.aria.core.task.ITask):12:12 -> onTaskRunning
     2:2:void onTaskRunning(com.arialyy.aria.core.task.DownloadTask):20:20 -> onTaskRunning
     1:1:void setListener(java.lang.Object):35:35 -> setListener
-com.shortvideo.lib.ui.activity.VideoSplashActivity$1 -> com.shortvideo.lib.ui.activity.VideoSplashActivity$a:
-    com.shortvideo.lib.ui.activity.VideoSplashActivity this$0 -> a
-    1:1:void <init>(com.shortvideo.lib.ui.activity.VideoSplashActivity):216:216 -> <init>
+com.shortvideo.lib.ui.activity.TkVideoSplashActivity$1 -> com.shortvideo.lib.ui.activity.TkVideoSplashActivity$a:
+    com.shortvideo.lib.ui.activity.TkVideoSplashActivity this$0 -> a
+    1:1:void <init>(com.shortvideo.lib.ui.activity.TkVideoSplashActivity):216:216 -> <init>
     1:14:void onSuccess(com.shortvideo.lib.model.ConfigBean,java.lang.String):219:232 -> a
     15:15:void lambda$onSuccess$0():228:228 -> a
     1:1:void onFail(int,java.lang.String):238:238 -> onFail
     1:1:void onSuccess(java.lang.Object,java.lang.String):216:216 -> onSuccess
-com.shortvideo.lib.ui.activity.VideoSplashActivity$2 -> com.shortvideo.lib.ui.activity.VideoSplashActivity$b:
-    com.shortvideo.lib.ui.activity.VideoSplashActivity this$0 -> a
-    1:1:void <init>(com.shortvideo.lib.ui.activity.VideoSplashActivity):247:247 -> <init>
+com.shortvideo.lib.ui.activity.TkVideoSplashActivity$2 -> com.shortvideo.lib.ui.activity.TkVideoSplashActivity$b:
+    com.shortvideo.lib.ui.activity.TkVideoSplashActivity this$0 -> a
+    1:1:void <init>(com.shortvideo.lib.ui.activity.TkVideoSplashActivity):247:247 -> <init>
     1:19:void onSuccess(com.shortvideo.lib.model.FusionBean,java.lang.String):251:269 -> a
     20:20:void lambda$onSuccess$0():265:265 -> a
     1:1:void onFail(int,java.lang.String):295:295 -> onFail
     1:1:void onSuccess(java.lang.Object,java.lang.String):247:247 -> onSuccess
-com.shortvideo.lib.ui.activity.VideoSplashActivity$2$1 -> com.shortvideo.lib.ui.activity.VideoSplashActivity$b$a:
-    com.shortvideo.lib.ui.activity.VideoSplashActivity$2 this$1 -> a
-    1:1:void <init>(com.shortvideo.lib.ui.activity.VideoSplashActivity$2):269:269 -> <init>
+com.shortvideo.lib.ui.activity.TkVideoSplashActivity$2$1 -> com.shortvideo.lib.ui.activity.TkVideoSplashActivity$b$a:
+    com.shortvideo.lib.ui.activity.TkVideoSplashActivity$2 this$1 -> a
+    1:1:void <init>(com.shortvideo.lib.ui.activity.TkVideoSplashActivity$2):269:269 -> <init>
     1:1:void onSuccess(java.util.List,java.lang.String):272:272 -> a
     2:5:void lambda$onFail$1():283:286 -> a
     1:4:void lambda$onSuccess$0():273:276 -> b
     1:1:void onFail(int,java.lang.String):282:282 -> onFail
     1:1:void onSuccess(java.lang.Object,java.lang.String):269:269 -> onSuccess
-com.shortvideo.lib.ui.activity.VideoSplashActivity$3 -> com.shortvideo.lib.ui.activity.VideoSplashActivity$c:
-    com.shortvideo.lib.ui.activity.VideoSplashActivity this$0 -> a
-    1:1:void <init>(com.shortvideo.lib.ui.activity.VideoSplashActivity):351:351 -> <init>
+com.shortvideo.lib.ui.activity.TkVideoSplashActivity$3 -> com.shortvideo.lib.ui.activity.TkVideoSplashActivity$c:
+    com.shortvideo.lib.ui.activity.TkVideoSplashActivity this$0 -> a
+    1:1:void <init>(com.shortvideo.lib.ui.activity.TkVideoSplashActivity):351:351 -> <init>
     1:9:void onSuccess(com.shortvideo.lib.model.HomeBean,java.lang.String):354:362 -> a
     10:125:void onSuccess(com.shortvideo.lib.model.HomeBean,java.lang.String):360:475 -> a
     1:1:void onSuccess(java.lang.Object,java.lang.String):351:351 -> onSuccess
-com.shortvideo.lib.ui.activity.VideoSplashActivity$3$1 -> com.shortvideo.lib.ui.activity.VideoSplashActivity$c$a:
-    com.shortvideo.lib.ui.activity.VideoSplashActivity$3 this$1 -> b
+com.shortvideo.lib.ui.activity.TkVideoSplashActivity$3$1 -> com.shortvideo.lib.ui.activity.TkVideoSplashActivity$c$a:
+    com.shortvideo.lib.ui.activity.TkVideoSplashActivity$3 this$1 -> b
     com.shortvideo.lib.model.HomeBean val$homeBean -> a
-    1:1:void <init>(com.shortvideo.lib.ui.activity.VideoSplashActivity$3,com.shortvideo.lib.model.HomeBean):362:362 -> <init>
+    1:1:void <init>(com.shortvideo.lib.ui.activity.TkVideoSplashActivity$3,com.shortvideo.lib.model.HomeBean):362:362 -> <init>
     1:43:void onSuccess(com.shortvideo.lib.model.VideoDetailBean,java.lang.String):365:407 -> a
     1:31:void onFail(int,java.lang.String):412:442 -> onFail
     1:1:void onSuccess(java.lang.Object,java.lang.String):362:362 -> onSuccess

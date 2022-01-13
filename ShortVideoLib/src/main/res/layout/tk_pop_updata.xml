@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="80dp"
-            android:text="Phiên bản mới được tìm thấy"
+            android:text="@string/tk_updata_pop_found"
             android:textColor="#FD9C10"
             android:textSize="16sp"
             android:textStyle="bold" />
@@ -31,7 +31,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="24dp"
             android:gravity="center"
-            android:text="Bạn phải cập nhật phiên bản mới nhất để sử dụng"
+            android:text="@string/tk_updata_pop_found"
             android:textColor="#666666"
             android:textStyle="bold" />
 
@@ -45,7 +45,7 @@
             android:layout_marginBottom="16dp"
             android:background="@drawable/tk_bg_updata_btn"
             android:gravity="center"
-            android:text="cập nhật ngay lập tức"
+            android:text="@string/tk_updata_pop_now"
             android:textColor="@color/white"
             android:textSize="16sp"
             android:visibility="gone" />
@@ -68,7 +68,7 @@
                 android:gravity="center"
                 android:paddingStart="8dp"
                 android:paddingEnd="8dp"
-                android:text="cập nhật ngay lập tức"
+                android:text="@string/tk_updata_pop_now"
                 android:textColor="@color/white"
                 android:textStyle="bold" />
 
@@ -81,7 +81,7 @@
                 android:gravity="center"
                 android:paddingStart="8dp"
                 android:paddingEnd="8dp"
-                android:text="Chưa cập nhật"
+                android:text="@string/tk_updata_pop_ignore"
                 android:textColor="#3FA2E6"
                 android:textStyle="bold" />
         </RelativeLayout>
@@ -110,7 +110,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:gravity="center"
-                android:text="Bắt đầu Tải về..."
+                android:text="@string/tk_download_pop_start"
                 android:textColor="@color/color_555555"
                 android:textStyle="bold" />
         </RelativeLayout>

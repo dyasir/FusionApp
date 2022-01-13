@@ -13,7 +13,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 
-public class AppConfig {
+public class TkAppConfig {
 
     //图片缓存地址
     public static final String IMAGE_SHUI_PATH = VideoApplication.getInstance().getExternalFilesDir(Environment.DIRECTORY_PICTURES) + File.separator;
@@ -38,11 +38,11 @@ public class AppConfig {
             return "";
         }
 
-        File dirFile = new File(AppConfig.IMAGE_SHUI_PATH);
+        File dirFile = new File(TkAppConfig.IMAGE_SHUI_PATH);
         if (!dirFile.exists())
             dirFile.mkdir();
         String fileName = TimeDateUtils.getCurTimeLong() + "water.png";
-        File file = new File(AppConfig.IMAGE_SHUI_PATH + File.separator + fileName);
+        File file = new File(TkAppConfig.IMAGE_SHUI_PATH + File.separator + fileName);
         if (!file.exists()) {
             OutputStream os;
             try {

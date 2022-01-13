@@ -37,7 +37,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class ReportDetailActivity extends AppCompatActivity {
+public class TkReportDetailActivity extends AppCompatActivity {
 
     TkActivityReportDetailBinding binding;
 
@@ -128,7 +128,7 @@ public class ReportDetailActivity extends AppCompatActivity {
                         .request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
                         .subscribe(aBoolean -> {
                             if (aBoolean) {
-                                PictureSelector.create(ReportDetailActivity.this)
+                                PictureSelector.create(TkReportDetailActivity.this)
                                         .openGallery(PictureMimeType.ofImage())
                                         .imageEngine(GlideEngine.createGlideEngine())
                                         .maxSelectNum(4 - selNum)
@@ -142,7 +142,6 @@ public class ReportDetailActivity extends AppCompatActivity {
                                         .isZoomAnim(false)
                                         .isEnableCrop(false)
                                         .setCircleStrokeWidth(0)
-                                        .setLanguage(LanguageConfig.VIETNAM)
                                         .isCompress(true)
                                         .isGif(false)
                                         .isPreviewEggs(true)
@@ -158,10 +157,10 @@ public class ReportDetailActivity extends AppCompatActivity {
             HttpRequest.report(this, Objects.requireNonNull(binding.et.getText()).toString(), new HttpCallBack<List<String>>() {
                 @Override
                 public void onSuccess(List<String> s, String msg) {
-                    ToastyUtils.ToastShow("Báo cáo thành công！");
+                    ToastyUtils.ToastShow(getString(R.string.tk_report_detail_commit_success));
 
                     EventBus.getDefault().post(new OnVideoReportEvent(id, position));
-                    ActivityManager.getAppInstance().finishActivity(ReportActivity.class);
+                    ActivityManager.getAppInstance().finishActivity(TkReportActivity.class);
                     finish();
                 }
 

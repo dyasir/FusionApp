@@ -46,6 +46,7 @@ public class StdTikTok extends StandardGSYVideoPlayer {
     private LottieAnimationView lottieView;
     private String thumUrl = "";
     private final float[] num = {-30, -20, -10, 0, 10, 20, 30};//随机心形图片角度
+    private boolean canClick = true;
 
     //双击的时间
     private long doubleClickTime = 0;
@@ -80,6 +81,15 @@ public class StdTikTok extends StandardGSYVideoPlayer {
             mProgressBar.setProgress(progress, true);
         } else {
             mProgressBar.setProgress(progress);
+        }
+    }
+
+    public void setProgressVisible(boolean visible) {
+        canClick = visible;
+        if (visible) {
+            mProgressBar.setVisibility(VISIBLE);
+        } else {
+            mProgressBar.setVisibility(INVISIBLE);
         }
     }
 
@@ -133,7 +143,7 @@ public class StdTikTok extends StandardGSYVideoPlayer {
     protected void touchDoubleUp(MotionEvent e) {
         //不需要双击
 //        super.touchDoubleUp(e);
-        if (!VideoApplication.getInstance().isPageScoll()) {
+        if (!VideoApplication.getInstance().isPageScoll() && canClick) {
             if (TextUtils.isEmpty(link)) {
                 if (position != -1)
                     EventBus.getDefault().post(new OnVideoDoubleLikeEvent(position));
@@ -153,7 +163,7 @@ public class StdTikTok extends StandardGSYVideoPlayer {
     @Override
     protected void touchLongPress(MotionEvent e) {
 //        super.touchLongPress(e);
-        if (!VideoApplication.getInstance().isPageScoll()) {
+        if (!VideoApplication.getInstance().isPageScoll() && canClick) {
             if (TextUtils.isEmpty(link)) {
                 EventBus.getDefault().post(new OnVideoLongPressEvent());
             } else {
@@ -210,7 +220,7 @@ public class StdTikTok extends StandardGSYVideoPlayer {
 
     @Override
     protected void onClickUiToggle(MotionEvent e) {
-        if (!VideoApplication.getInstance().isPageScoll()) {
+        if (!VideoApplication.getInstance().isPageScoll() && canClick) {
             if (!TextUtils.isEmpty(link)) {
                 Log.e("result", "广告点击: " + link);
                 Uri content_url = Uri.parse(link);

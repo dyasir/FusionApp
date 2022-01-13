@@ -1,0 +1,71 @@
+<resources>
+    <string name="app_name">tika</string>
+
+    <string name="tk_network_error">网络异常</string>
+    <string name="tk_data_gson_error">数据解析异常</string>
+
+    <string name="tk_ad_google">谷歌提供的广告</string>
+    <string name="tk_ad_download">立即下载</string>
+
+    <string name="tk_download_pop_photo">前往相册查看></string>
+    <string name="tk_download_pop_start">开始下载&#8230;&#8230;</string>
+    <string name="tk_download_handle_ing">开始处理&#8230;&#8230;</string>
+    <string name="tk_download_pop_faild">下载失败，请检查网络重新下载！</string>
+    <string name="tk_download_pop_ing">下载中 %s / %d %%</string>
+    <string name="tk_download_pop_handle">资源处理中 %d %%</string>
+    <string name="tk_download_pop_handle_error">网络异常，请重新下载！</string>
+
+    <string name="tk_share_pop_title">分享</string>
+    <string name="tk_share_pop_unstall">未安装应用</string>
+
+    <string name="tk_updata_pop_found">发现新版本</string>
+    <string name="tk_updata_pop_tip">您必须更新到最新版本才能使用</string>
+    <string name="tk_updata_pop_now">立即更新</string>
+    <string name="tk_updata_pop_ignore">忽略</string>
+    <string name="tk_updata_pop_no_url">暂无下载链接</string>
+    <string name="tk_updata_pop_install">安装</string>
+
+    <string name="tk_user_liked">你已点过赞了！</string>
+    <string name="tk_like_success">点赞成功！</string>
+    <string name="tk_unlike_success">取消点赞成功！</string>
+
+    <string name="tk_report_title">举报</string>
+    <string name="tk_report_title_1">内容违规</string>
+    <string name="tk_report_one_1">色情低俗</string>
+    <string name="tk_report_one_2">时政不实信息</string>
+    <string name="tk_report_one_3">违法犯罪</string>
+    <string name="tk_report_one_4">垃圾广告、售卖假货等</string>
+    <string name="tk_report_one_5">造谣传谣</string>
+    <string name="tk_report_one_6">涉嫌欺诈</string>
+    <string name="tk_report_one_7">侮辱谩骂</string>
+    <string name="tk_report_one_8">危险行为</string>
+    <string name="tk_report_one_9">涉嫌非法集资</string>
+    <string name="tk_report_one_10">价值观导向不良</string>
+    <string name="tk_report_title_2">侵犯权益</string>
+    <string name="tk_report_two_1">侵犯名誉、隐私、肖像权等</string>
+    <string name="tk_report_two_2">内容盗用</string>
+    <string name="tk_report_title_3">未成年</string>
+    <string name="tk_report_three_1">未成年人不当行为</string>
+    <string name="tk_report_three_2">内容不适合未成年观看</string>
+    <string name="tk_report_title_4">其他</string>
+    <string name="tk_report_four_1">引人不适</string>
+    <string name="tk_report_four_2">引导私下交易</string>
+    <string name="tk_report_four_3">疑似、唆使自残自杀</string>
+    <string name="tk_report_four_4">诱导点赞、分享、关注</string>
+    <string name="tk_report_detail_tip">你的举报将在12小时内受理，若举报成功会第一时间告知处理结果，请尽量提交完整的举报描述及材料。</string>
+    <string name="tk_report_detail_reson">举报理由</string>
+    <string name="tk_report_detail_memo">举报描述(选填)</string>
+    <string name="tk_report_detail_memo_hint">详细描述举报理由</string>
+    <string name="tk_report_detail_commit">提交</string>
+    <string name="tk_report_detail_commit_success">举报成功！</string>
+
+    <string name="tk_setting_title">设置</string>
+    <string name="tk_setting_version">版本 : V%s</string>
+    <string name="tk_setting_package_id">包ID : %s</string>
+    <string name="tk_setting_video_id">视频ID : %d</string>
+    <string name="tk_setting_rate">去评分</string>
+    <string name="tk_setting_cache">清除缓存</string>
+    <string name="tk_setting_cache_success">清除成功！</string>
+    <string name="tk_setting_cache_tip_title">注意</string>
+    <string name="tk_setting_cache_tip">如果清除缓存，所有视频都需要重新加载，可能需要等待更长的时间。您确定要清除缓存吗？</string>
+</resources>

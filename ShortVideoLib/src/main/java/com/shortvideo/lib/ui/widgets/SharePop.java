@@ -81,10 +81,10 @@ public class SharePop extends BasePopupWindow implements View.OnClickListener {
             intent.putExtra(Intent.EXTRA_TEXT, DataMgr.getInstance().getUser().getVideo_share().replaceAll("\\[url]",
                     DataMgr.getInstance().getUser().getVideo_view_domian() + "/share?id=" + id + "&f=" + f));
             intent.setType("text/plain");
-            getContext().startActivity(Intent.createChooser(intent, "Chia sẻ với"));
+            getContext().startActivity(Intent.createChooser(intent, getContext().getString(R.string.tk_share_pop_title)));
         } catch (ActivityNotFoundException e) {
             e.printStackTrace();
-            ToastyUtils.ToastShow("Không có ứng dụng nào được cài đặt！");
+            ToastyUtils.ToastShow(getContext().getString(R.string.tk_share_pop_unstall));
         }
     }
 

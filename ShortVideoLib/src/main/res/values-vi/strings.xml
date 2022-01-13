@@ -27,7 +27,7 @@
 
     <string name="tk_user_liked">bạn đã thích!</string>
     <string name="tk_like_success">Đã thích thành công!</string>
-    <string name="tk_unlike_success">Hủy like thành công!</string>
+    <string name="tk_unlike_success">Hủy like thành công！</string>
 
     <string name="tk_report_title">báo cáo</string>
     <string name="tk_report_title_1">Nội dung vi phạm</string>

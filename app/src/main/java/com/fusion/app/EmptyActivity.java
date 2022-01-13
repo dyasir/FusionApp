@@ -9,7 +9,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.fusion.app.databinding.ActivityEmptyBinding;
 import com.gyf.immersionbar.ImmersionBar;
-import com.shortvideo.lib.common.AppConfig;
 
 public class EmptyActivity extends AppCompatActivity {
 

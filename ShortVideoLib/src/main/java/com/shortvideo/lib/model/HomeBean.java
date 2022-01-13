@@ -100,6 +100,7 @@ public class HomeBean implements Serializable {
             private String author_id;
             private String author;
             private boolean is_like;
+            private boolean isPureEnjoyment;
 
             public Integer getId() {
                 return id;
@@ -179,6 +180,14 @@ public class HomeBean implements Serializable {
 
             public void setIs_like(boolean is_like) {
                 this.is_like = is_like;
+            }
+
+            public boolean isPureEnjoyment() {
+                return isPureEnjoyment;
+            }
+
+            public void setPureEnjoyment(boolean pureEnjoyment) {
+                isPureEnjoyment = pureEnjoyment;
             }
         }
 

@@ -1,0 +1,71 @@
+<resources>
+    <string name="app_name">tika</string>
+
+    <string name="tk_network_error">Anomalie de réseau</string>
+    <string name="tk_data_gson_error">Exception d\'analyse des données</string>
+
+    <string name="tk_ad_google">Annonces diffusées par Google</string>
+    <string name="tk_ad_download">Télécharger</string>
+
+    <string name="tk_download_pop_photo">Aller à l\'album pour voir></string>
+    <string name="tk_download_pop_start">Commencer Le Téléchargement&#8230;&#8230;</string>
+    <string name="tk_download_handle_ing">Commencer le traitement&#8230;&#8230;</string>
+    <string name="tk_download_pop_faild">Échec du téléchargement, veuillez vérifier le réseau pour télécharger à nouveau!</string>
+    <string name="tk_download_pop_ing">Téléchargement %s / %d %%</string>
+    <string name="tk_download_pop_handle">Traitement des ressources %d %%</string>
+    <string name="tk_download_pop_handle_error">Le réseau est anormal, veuillez télécharger à nouveau!</string>
+
+    <string name="tk_share_pop_title">Partager</string>
+    <string name="tk_share_pop_unstall">Application non installée</string>
+
+    <string name="tk_updata_pop_found">Nouvelle version découverte</string>
+    <string name="tk_updata_pop_tip">Vous devez mettre à jour vers la dernière version pour utiliser</string>
+    <string name="tk_updata_pop_now">Renouveler</string>
+    <string name="tk_updata_pop_ignore">Négligence</string>
+    <string name="tk_updata_pop_no_url">Pas encore de lien de téléchargement</string>
+    <string name="tk_updata_pop_install">Installer</string>
+
+    <string name="tk_user_liked">Tu as aimé!</string>
+    <string name="tk_like_success">Aimé avec succès!</string>
+    <string name="tk_unlike_success">Annuler comme avec succès!</string>
+
+    <string name="tk_report_title">Rapport</string>
+    <string name="tk_report_title_1">Violation de contenu</string>
+    <string name="tk_report_one_1">Vulgaire</string>
+    <string name="tk_report_one_2">Désinformation politique actuelle</string>
+    <string name="tk_report_one_3">Crime illégal</string>
+    <string name="tk_report_one_4">Publicité de spam, vente de produits contrefaits, etc.</string>
+    <string name="tk_report_one_5">Répandre des rumeurs</string>
+    <string name="tk_report_one_6">Fraude suspectée</string>
+    <string name="tk_report_one_7">Insulter</string>
+    <string name="tk_report_one_8">Comportement dangereux</string>
+    <string name="tk_report_one_9">Soupçonné de collecte de fonds illégale</string>
+    <string name="tk_report_one_10">Mauvaise orientation vers la valeur</string>
+    <string name="tk_report_title_2">Atteinte aux droits</string>
+    <string name="tk_report_two_1">Violation de la réputation, de la vie privée, des droits de portrait, etc.</string>
+    <string name="tk_report_two_2">Vol de contenu</string>
+    <string name="tk_report_title_3">Mineur</string>
+    <string name="tk_report_three_1">Inconduite mineure</string>
+    <string name="tk_report_three_2">Le contenu ne convient pas aux mineurs</string>
+    <string name="tk_report_title_4">Autre</string>
+    <string name="tk_report_four_1">Inconfortable</string>
+    <string name="tk_report_four_2">Offres privées Bootstrap</string>
+    <string name="tk_report_four_3">Suspicion ou instigation de suicide</string>
+    <string name="tk_report_four_4">Induire des likes, des partages et de l\'attention</string>
+    <string name="tk_report_detail_tip">Votre rapport sera accepté dans les 12 heures. Si le rapport est réussi, le résultat sera notifié dès que possible. Veuillez essayer de soumettre une description complète du rapport et des documents.</string>
+    <string name="tk_report_detail_reson">Raison</string>
+    <string name="tk_report_detail_memo">Description (facultatif)</string>
+    <string name="tk_report_detail_memo_hint">Description détaillée du motif du rapport</string>
+    <string name="tk_report_detail_commit">Nous faire parvenir</string>
+    <string name="tk_report_detail_commit_success">Rapport réussi！</string>
+
+    <string name="tk_setting_title">D\'installation</string>
+    <string name="tk_setting_version">Version : V%s</string>
+    <string name="tk_setting_package_id">Identifiant de paquet : %s</string>
+    <string name="tk_setting_video_id">Identifiant de la vidéo : %d</string>
+    <string name="tk_setting_rate">évaluer</string>
+    <string name="tk_setting_cache">Vider le cache</string>
+    <string name="tk_setting_cache_success">Effacé avec succès！</string>
+    <string name="tk_setting_cache_tip_title">Remarquer</string>
+    <string name="tk_setting_cache_tip">Si vous effacez le cache, toutes les vidéos devront être rechargées et peuvent prendre plus de temps. Êtes-vous sûr de vouloir vider le cache?</string>
+</resources>

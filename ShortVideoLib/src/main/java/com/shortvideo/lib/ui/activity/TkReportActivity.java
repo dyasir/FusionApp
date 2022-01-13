@@ -17,11 +17,12 @@ import com.shortvideo.lib.utils.ClickUtil;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReportActivity extends AppCompatActivity {
+public class TkReportActivity extends AppCompatActivity {
 
     TkActivityReportBinding binding;
 
     private ReportAdapter mReportAdapterContent;
+    private ReportAdapter mReportAdapterMoney;
     private ReportAdapter mReportAdapterYear;
     private ReportAdapter mReportAdapterOther;
 
@@ -67,6 +68,20 @@ public class ReportActivity extends AppCompatActivity {
         });
         binding.recycleContent.setAdapter(mReportAdapterContent);
 
+        mReportAdapterMoney = new ReportAdapter(new ArrayList<>());
+        binding.recycleMoney.setLayoutManager(new LinearLayoutManager(this) {
+            @Override
+            public boolean canScrollHorizontally() {
+                return false;
+            }
+
+            @Override
+            public boolean canScrollVertically() {
+                return false;
+            }
+        });
+        binding.recycleMoney.setAdapter(mReportAdapterMoney);
+
         mReportAdapterYear = new ReportAdapter(new ArrayList<>());
         binding.recycleYear.setLayoutManager(new LinearLayoutManager(this) {
             @Override
@@ -98,27 +113,33 @@ public class ReportActivity extends AppCompatActivity {
 
     private void initData() {
         List<String> listContent = new ArrayList<>();
-        listContent.add("Nội dung tục tĩu");
-        listContent.add("Thông tin sai lệch về các vấn đề thời sự");
-        listContent.add("Tội ác");
-        listContent.add("Quảng cáo spam, bán hàng giả");
-        listContent.add("Lan truyền tin đồn");
-        listContent.add("Bị nghi ngờ gian lận");
-        listContent.add("Sự sỉ nhục");
-        listContent.add("Nội dung không phải nguyên bản");
-        listContent.add("Hành vi nguy hiểm");
+        listContent.add(getString(R.string.tk_report_one_1));
+        listContent.add(getString(R.string.tk_report_one_2));
+        listContent.add(getString(R.string.tk_report_one_3));
+        listContent.add(getString(R.string.tk_report_one_4));
+        listContent.add(getString(R.string.tk_report_one_5));
+        listContent.add(getString(R.string.tk_report_one_6));
+        listContent.add(getString(R.string.tk_report_one_7));
+        listContent.add(getString(R.string.tk_report_one_8));
+        listContent.add(getString(R.string.tk_report_one_9));
+        listContent.add(getString(R.string.tk_report_one_10));
+
+        List<String> listMoney = new ArrayList<>();
+        listMoney.add(getString(R.string.tk_report_two_1));
+        listMoney.add(getString(R.string.tk_report_two_2));
 
         List<String> listYear = new ArrayList<>();
-        listYear.add("Hành vi sai trái của trẻ vị thành niên");
-        listYear.add("Nội dung không phù hợp cho trẻ vị thành niên xem");
+        listYear.add(getString(R.string.tk_report_three_1));
+        listYear.add(getString(R.string.tk_report_three_2));
 
         List<String> listOther = new ArrayList<>();
-        listOther.add("Không thoải mái");
-        listOther.add("Bị nghi ngờ tự làm hại bản thân");
-        listOther.add("Thu hút lượt thích và chia sẻ");
-        listOther.add("khác");
+        listOther.add(getString(R.string.tk_report_four_1));
+        listOther.add(getString(R.string.tk_report_four_2));
+        listOther.add(getString(R.string.tk_report_four_3));
+        listOther.add(getString(R.string.tk_report_four_4));
 
         mReportAdapterContent.setList(listContent);
+        mReportAdapterMoney.setList(listMoney);
         mReportAdapterYear.setList(listYear);
         mReportAdapterOther.setList(listOther);
     }
@@ -127,30 +148,40 @@ public class ReportActivity extends AppCompatActivity {
         mReportAdapterContent.setOnItemClickListener((adapter, view, position) -> {
             if (ClickUtil.isFastClick()) return;
 
-            Intent intent = new Intent(this, ReportDetailActivity.class);
+            Intent intent = new Intent(this, TkReportDetailActivity.class);
             intent.putExtra("name", (String) adapter.getData().get(position));
             intent.putExtra("id", id);
-            intent.putExtra("position", ReportActivity.this.position);
+            intent.putExtra("position", TkReportActivity.this.position);
+            startActivity(intent);
+        });
+
+        mReportAdapterMoney.setOnItemClickListener((adapter, view, position) -> {
+            if (ClickUtil.isFastClick()) return;
+
+            Intent intent = new Intent(this, TkReportDetailActivity.class);
+            intent.putExtra("name", (String) adapter.getData().get(position));
+            intent.putExtra("id", id);
+            intent.putExtra("position", TkReportActivity.this.position);
             startActivity(intent);
         });
 
         mReportAdapterYear.setOnItemClickListener((adapter, view, position) -> {
             if (ClickUtil.isFastClick()) return;
 
-            Intent intent = new Intent(this, ReportDetailActivity.class);
+            Intent intent = new Intent(this, TkReportDetailActivity.class);
             intent.putExtra("name", (String) adapter.getData().get(position));
             intent.putExtra("id", id);
-            intent.putExtra("position", ReportActivity.this.position);
+            intent.putExtra("position", TkReportActivity.this.position);
             startActivity(intent);
         });
 
         mReportAdapterOther.setOnItemClickListener((adapter, view, position) -> {
             if (ClickUtil.isFastClick()) return;
 
-            Intent intent = new Intent(this, ReportDetailActivity.class);
+            Intent intent = new Intent(this, TkReportDetailActivity.class);
             intent.putExtra("name", (String) adapter.getData().get(position));
             intent.putExtra("id", id);
-            intent.putExtra("position", ReportActivity.this.position);
+            intent.putExtra("position", TkReportActivity.this.position);
             startActivity(intent);
         });
     }

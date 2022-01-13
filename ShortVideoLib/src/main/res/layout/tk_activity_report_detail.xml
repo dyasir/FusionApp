@@ -9,7 +9,7 @@
     <com.shortvideo.lib.common.widgets.TitleView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:mTitle="báo cáo" />
+        app:mTitle="@string/tk_report_title" />
 
     <View
         android:layout_width="match_parent"
@@ -35,7 +35,7 @@
             android:layout_marginStart="15dp"
             android:layout_marginEnd="15dp"
             android:gravity="center_vertical"
-            android:text="Báo cáo của bạn sẽ được chấp nhận trong vòng 12 giờ, nếu báo cáo thành công, kết quả xử lý sẽ được thông báo trong thời gian sớm nhất. Vui lòng cố gắng gửi tài liệu và mô tả báo cáo hoàn chỉnh."
+            android:text="@string/tk_report_detail_tip"
             android:textColor="@color/color_333333"
             android:textSize="12sp" />
     </LinearLayout>
@@ -75,7 +75,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Lý do báo cáo"
+                        android:text="@string/tk_report_detail_reson"
                         android:textColor="@color/color_333333" />
 
                     <TextView
@@ -90,7 +90,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
-                    android:text="Mô tả báo cáo (tùy chọn)"
+                    android:text="@string/tk_report_detail_memo"
                     android:textColor="@color/color_333333" />
 
                 <androidx.appcompat.widget.AppCompatEditText
@@ -100,7 +100,7 @@
                     android:layout_marginTop="6dp"
                     android:background="@drawable/tk_bg_eeeeee_2dp"
                     android:gravity="top|start"
-                    android:hint="Mô tả chi tiết lý do báo cáo"
+                    android:hint="@string/tk_report_detail_memo_hint"
                     android:importantForAutofill="no"
                     android:maxLength="200"
                     android:padding="10dp"
@@ -139,7 +139,7 @@
         android:layout_marginBottom="16dp"
         android:background="@drawable/tk_bg_3fa2e8_6dp"
         android:gravity="center"
-        android:text="Gửi đi"
+        android:text="@string/tk_report_detail_commit"
         android:textColor="@color/white"
         android:textStyle="bold" />
 </LinearLayout>

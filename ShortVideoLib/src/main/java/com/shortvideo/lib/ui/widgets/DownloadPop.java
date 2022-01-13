@@ -18,14 +18,14 @@ import com.arialyy.aria.core.Aria;
 import com.arialyy.aria.core.task.DownloadTask;
 import com.shortvideo.lib.R;
 import com.shortvideo.lib.VideoApplication;
-import com.shortvideo.lib.common.AppConfig;
+import com.shortvideo.lib.common.TkAppConfig;
 import com.shortvideo.lib.common.event.OnWaterEmptyEvent;
 import com.shortvideo.lib.common.http.HttpCallBack;
 import com.shortvideo.lib.common.http.HttpRequest;
 import com.shortvideo.lib.databinding.TkPopDownloadBinding;
 import com.shortvideo.lib.model.VideoPathBean;
-import com.shortvideo.lib.ui.activity.ReportActivity;
-import com.shortvideo.lib.ui.activity.SettingActivity;
+import com.shortvideo.lib.ui.activity.TkReportActivity;
+import com.shortvideo.lib.ui.activity.TkSettingActivity;
 import com.shortvideo.lib.utils.ToastyUtils;
 import com.tbruyelle.rxpermissions3.RxPermissions;
 
@@ -68,20 +68,20 @@ public class DownloadPop extends BasePopupWindow implements View.OnClickListener
     public void onViewCreated(@NonNull View contentView) {
         super.onViewCreated(contentView);
 
-        orgVideoPath = AppConfig.VIDEO_PATH + "org_video" + id + ".mp4";
-        outVideoPath = AppConfig.OUT_VIDEO_PATH + "out_video" + id + ".mp4";
-        if (!new File(AppConfig.OUT_VIDEO_PATH).exists())
-            new File(AppConfig.OUT_VIDEO_PATH).mkdir();
+        orgVideoPath = TkAppConfig.VIDEO_PATH + "org_video" + id + ".mp4";
+        outVideoPath = TkAppConfig.OUT_VIDEO_PATH + "out_video" + id + ".mp4";
+        if (!new File(TkAppConfig.OUT_VIDEO_PATH).exists())
+            new File(TkAppConfig.OUT_VIDEO_PATH).mkdir();
 
-        if (new File(AppConfig.VIDEO_PATH).exists() && new File(outVideoPath).exists()) {
+        if (new File(TkAppConfig.VIDEO_PATH).exists() && new File(outVideoPath).exists()) {
             isDownload = true;
             binding.txProgress.setBackgroundResource(R.drawable.tk_bg_ff5370_6dp);
-            binding.txProgress.setText("Đi tới anbom để xem >");
+            binding.txProgress.setText(getContext().getString(R.string.tk_download_pop_photo));
             binding.txProgress.setTextColor(getContext().getResources().getColor(R.color.white));
         } else {
             isDownload = false;
             binding.txProgress.setBackgroundResource(android.R.color.transparent);
-            binding.txProgress.setText("Bắt đầu Tải về...");
+            binding.txProgress.setText(getContext().getString(R.string.tk_download_pop_start));
             binding.txProgress.setTextColor(getContext().getResources().getColor(R.color.color_555555));
         }
 
@@ -97,7 +97,7 @@ public class DownloadPop extends BasePopupWindow implements View.OnClickListener
         Intent intent;
         if (v.getId() == R.id.report) {
             dismiss();
-            intent = new Intent(getContext(), ReportActivity.class);
+            intent = new Intent(getContext(), TkReportActivity.class);
             intent.putExtra("id", id);
             intent.putExtra("position", position);
             getContext().startActivity(intent);
@@ -149,7 +149,7 @@ public class DownloadPop extends BasePopupWindow implements View.OnClickListener
             sharePop.showPopupWindow();
         } else if (v.getId() == R.id.set) {
             dismiss();
-            intent = new Intent(getContext(), SettingActivity.class);
+            intent = new Intent(getContext(), TkSettingActivity.class);
             intent.putExtra("id", id);
             getContext().startActivity(intent);
         }
@@ -204,7 +204,7 @@ public class DownloadPop extends BasePopupWindow implements View.OnClickListener
         binding.progress.setProgressCompat(100, true);
 
         binding.txProgress.postDelayed(() -> {
-            binding.txProgress.setText("Xử lý...");
+            binding.txProgress.setText(getContext().getString(R.string.tk_download_handle_ing));
             binding.progress.setProgressCompat(0, true);
             Log.e("result", "下载完成: ");
             String commen = "ffmpeg -y -i " + orgVideoPath + " -i " + VideoApplication.getInstance().getWaterPicPath() +
@@ -219,7 +219,7 @@ public class DownloadPop extends BasePopupWindow implements View.OnClickListener
     }
 
     public void downloadFail(DownloadTask task) {
-        ToastyUtils.ToastShow("Tải xuống không thành công, vui lòng kiểm tra mạng và tải xuống lại！");
+        ToastyUtils.ToastShow(getContext().getString(R.string.tk_download_pop_faild));
         setOutSideDismiss(true);
 
         binding.report.setVisibility(View.VISIBLE);
@@ -229,13 +229,14 @@ public class DownloadPop extends BasePopupWindow implements View.OnClickListener
         binding.rlProgress.setVisibility(View.GONE);
         isDownload = false;
         binding.txProgress.setBackgroundResource(android.R.color.transparent);
-        binding.txProgress.setText("Bắt đầu Tải về...");
+        binding.txProgress.setText(getContext().getString(R.string.tk_download_pop_start));
         binding.txProgress.setTextColor(getContext().getResources().getColor(R.color.color_555555));
     }
 
     public void downloadRunning(DownloadTask task) {
         binding.progress.setProgressCompat(task.getDownloadEntity().getPercent(), true);
-        binding.txProgress.setText("tải xuống " + task.getDownloadEntity().getConvertFileSize() + " / " + task.getDownloadEntity().getPercent() + "%");
+        binding.txProgress.setText(getContext().getString(R.string.tk_download_pop_ing, task.getDownloadEntity().getConvertFileSize(),
+                task.getDownloadEntity().getPercent()));
         Log.e("result", "下载进度: " + task.getDownloadEntity().getPercent());
     }
 
@@ -265,7 +266,7 @@ public class DownloadPop extends BasePopupWindow implements View.OnClickListener
             binding.txProgress.postDelayed(() -> {
                 isDownload = true;
                 binding.txProgress.setBackgroundResource(R.drawable.tk_bg_ff5370_6dp);
-                binding.txProgress.setText("Đi tới anbom để xem >");
+                binding.txProgress.setText(getContext().getString(R.string.tk_download_pop_photo));
                 binding.txProgress.setTextColor(getContext().getResources().getColor(R.color.white));
             }, 750);
         }
@@ -277,7 +278,7 @@ public class DownloadPop extends BasePopupWindow implements View.OnClickListener
                 progress = 0;
             }
             binding.progress.setProgressCompat(progress, true);
-            binding.txProgress.setText("Xử lý tài nguyên " + progress + "%");
+            binding.txProgress.setText(getContext().getString(R.string.tk_download_pop_handle, progress));
         }
 
         @Override
@@ -288,7 +289,7 @@ public class DownloadPop extends BasePopupWindow implements View.OnClickListener
         @Override
         public void onError(String message) {
             Log.e("result", "水印错误: " + message);
-            ToastyUtils.ToastShow("Mạng không bình thường, vui lòng tải lại！");
+            ToastyUtils.ToastShow(getContext().getString(R.string.tk_download_pop_handle_error));
             setOutSideDismiss(true);
 
             binding.report.setVisibility(View.VISIBLE);
@@ -298,7 +299,7 @@ public class DownloadPop extends BasePopupWindow implements View.OnClickListener
             binding.rlProgress.setVisibility(View.GONE);
             isDownload = false;
             binding.txProgress.setBackgroundResource(android.R.color.transparent);
-            binding.txProgress.setText("Bắt đầu Tải về...");
+            binding.txProgress.setText(getContext().getString(R.string.tk_download_pop_start));
             binding.txProgress.setTextColor(getContext().getResources().getColor(R.color.color_555555));
         }
     }

@@ -18,7 +18,7 @@ import androidx.core.content.FileProvider;
 import com.arialyy.aria.core.Aria;
 import com.arialyy.aria.core.task.DownloadTask;
 import com.shortvideo.lib.R;
-import com.shortvideo.lib.common.AppConfig;
+import com.shortvideo.lib.common.TkAppConfig;
 import com.shortvideo.lib.databinding.TkPopUpdataBinding;
 import com.shortvideo.lib.ui.callback.OnUpdataCallback;
 import com.shortvideo.lib.utils.ToastyUtils;
@@ -69,29 +69,9 @@ public class UpdataPop extends BasePopupWindow implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         RxPermissions rxPermissions;
-        if (v.getId() == R.id.btn){
+        if (v.getId() == R.id.btn) {
             if (TextUtils.isEmpty(url)) {
-                ToastyUtils.ToastShow("Không có liên kết tải xuống");
-            } else {
-                rxPermissions = new RxPermissions((AppCompatActivity)getContext());
-                rxPermissions
-                        .request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                        .subscribe(aBoolean -> {
-                            if (aBoolean) {
-                                binding.rlProgress.setVisibility(View.VISIBLE);
-                                binding.btn.setVisibility(View.GONE);
-
-                                Aria.download(getContext())
-                                        .load(url)
-                                        .setFilePath(AppConfig.FILE_PATH + url.substring(Math.max(url.lastIndexOf("/") + 1, 0)))
-                                        .ignoreFilePathOccupy()
-                                        .create();
-                            }
-                        });
-            }
-        }else if (v.getId() == R.id.btn2){
-            if (TextUtils.isEmpty(url)) {
-                ToastyUtils.ToastShow("Không có liên kết tải xuống");
+                ToastyUtils.ToastShow(getContext().getString(R.string.tk_updata_pop_no_url));
             } else {
                 rxPermissions = new RxPermissions((AppCompatActivity) getContext());
                 rxPermissions
@@ -103,17 +83,37 @@ public class UpdataPop extends BasePopupWindow implements View.OnClickListener {
 
                                 Aria.download(getContext())
                                         .load(url)
-                                        .setFilePath(AppConfig.FILE_PATH + url.substring(Math.max(url.lastIndexOf("/") + 1, 0)))
+                                        .setFilePath(TkAppConfig.FILE_PATH + url.substring(Math.max(url.lastIndexOf("/") + 1, 0)))
                                         .ignoreFilePathOccupy()
                                         .create();
                             }
                         });
             }
-        }else if (v.getId() == R.id.btn3){
+        } else if (v.getId() == R.id.btn2) {
+            if (TextUtils.isEmpty(url)) {
+                ToastyUtils.ToastShow(getContext().getString(R.string.tk_updata_pop_no_url));
+            } else {
+                rxPermissions = new RxPermissions((AppCompatActivity) getContext());
+                rxPermissions
+                        .request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                        .subscribe(aBoolean -> {
+                            if (aBoolean) {
+                                binding.rlProgress.setVisibility(View.VISIBLE);
+                                binding.btn.setVisibility(View.GONE);
+
+                                Aria.download(getContext())
+                                        .load(url)
+                                        .setFilePath(TkAppConfig.FILE_PATH + url.substring(Math.max(url.lastIndexOf("/") + 1, 0)))
+                                        .ignoreFilePathOccupy()
+                                        .create();
+                            }
+                        });
+            }
+        } else if (v.getId() == R.id.btn3) {
             dismiss();
             if (onUpdataCallback != null)
                 onUpdataCallback.onUpdataLater();
-        } else if (v.getId() == R.id.rl_progress){
+        } else if (v.getId() == R.id.rl_progress) {
             if (isFinish)
                 installAPK(downPath);
         }
@@ -123,7 +123,7 @@ public class UpdataPop extends BasePopupWindow implements View.OnClickListener {
         Log.e("result", "下载完成: " + task.getDownloadEntity().getPercent());
         binding.progress.setProgressCompat(100, true);
         binding.txProgress.setBackgroundResource(R.drawable.tk_bg_ff5370_6dp);
-        binding.txProgress.setText("Bấm cài đặt");
+        binding.txProgress.setText(getContext().getString(R.string.tk_updata_pop_install));
         binding.txProgress.setTextColor(getContext().getResources().getColor(R.color.white));
         isFinish = true;
         downPath = task.getFilePath();
@@ -141,13 +141,13 @@ public class UpdataPop extends BasePopupWindow implements View.OnClickListener {
             binding.llBtn.setVisibility(View.VISIBLE);
         }
         binding.rlProgress.setVisibility(View.GONE);
-        binding.txProgress.setText("Bắt đầu Tải về...");
-        ToastyUtils.ToastShow("Tải xuống không thành công, vui lòng thử lại!");
+        binding.txProgress.setText(getContext().getString(R.string.tk_download_pop_start));
+        ToastyUtils.ToastShow(getContext().getString(R.string.tk_download_pop_faild));
     }
 
     public void downloadRunning(DownloadTask task) {
         binding.progress.setProgressCompat(task.getDownloadEntity().getPercent(), true);
-        binding.txProgress.setText("tải xuống " + task.getDownloadEntity().getConvertFileSize() + " / " + task.getDownloadEntity().getPercent() + "%");
+        binding.txProgress.setText(getContext().getString(R.string.tk_download_pop_ing, task.getDownloadEntity().getConvertFileSize(), task.getDownloadEntity().getPercent()));
         Log.e("result", "下载进度: " + task.getDownloadEntity().getPercent());
     }
 

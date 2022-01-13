@@ -5,6 +5,8 @@ import android.util.Log;
 
 import com.google.gson.JsonParseException;
 import com.orhanobut.logger.Logger;
+import com.shortvideo.lib.R;
+import com.shortvideo.lib.VideoApplication;
 import com.shortvideo.lib.common.http.custom.DataResultException;
 import com.shortvideo.lib.common.http.custom.TokenBreakException;
 
@@ -66,7 +68,7 @@ public abstract class ApiObserver<T> implements Observer<ApiResponse<T>> {
                 || throwable instanceof ConnectException   //均视为网络异常
                 || throwable instanceof UnknownHostException) {
             Log.e("TAG", "网络连接异常: " + throwable.getMessage());
-            error = "网络连接异常: " + throwable.getMessage();
+            error = VideoApplication.getInstance().getString(R.string.tk_network_error);
             onFail(NET_ERROR, error);
         } else if (throwable instanceof TokenBreakException) {
             Logger.e(((TokenBreakException) throwable).getCode() +
@@ -76,13 +78,13 @@ public abstract class ApiObserver<T> implements Observer<ApiResponse<T>> {
             Log.e("TAG", "特殊定义,code: " + ((DataResultException) throwable).getCode() +
                     ", msg: " + ((DataResultException) throwable).getMsg());
             error = TextUtils.isEmpty(((DataResultException) throwable).getMsg()) ?
-                    "Máy chủ ngoại lệ" : ((DataResultException) throwable).getMsg();
+                    VideoApplication.getInstance().getString(R.string.tk_network_error) : ((DataResultException) throwable).getMsg();
             onFail(((DataResultException) throwable).getCode(), error);
         } else if (throwable instanceof JsonParseException
                 || throwable instanceof JSONException     //均视为解析错误
                 || throwable instanceof java.text.ParseException) {
             Log.e("TAG", "数据解析异常: " + throwable.getMessage());
-            error = "数据解析异常: " + throwable.getMessage();
+            error = VideoApplication.getInstance().getString(R.string.tk_data_gson_error);
             onFail(JSON_ERROR, error);
         } else if (throwable instanceof HttpException) {
             Logger.e("HTTPException:" + ((HttpException) throwable).code());
@@ -91,7 +93,7 @@ public abstract class ApiObserver<T> implements Observer<ApiResponse<T>> {
             } else if (((HttpException) throwable).code() == 403) {
                 onFail(PERMISSION_ERROR, "No permission");
             } else if (((HttpException) throwable).code() == 500) {
-                onFail(NET_ERROR, "服务器异常");
+                onFail(NET_ERROR, VideoApplication.getInstance().getString(R.string.tk_network_error));
             } else {
                 error = throwable.getMessage();
                 onFail(DATA_ERROR, error == null ? "" : error);

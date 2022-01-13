@@ -8,12 +8,14 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.shortvideo.lib.R;
+import com.shortvideo.lib.VideoApplication;
 import com.shortvideo.lib.model.HomeBean;
 import com.shortvideo.lib.ui.widgets.StdTikTok;
 import com.shuyu.gsyvideoplayer.builder.GSYVideoOptionBuilder;
@@ -25,7 +27,8 @@ import java.util.List;
 public class StdTikTokAdapter extends BaseQuickAdapter<HomeBean.DataDTO, BaseViewHolder> {
 
     public StdTikTokAdapter(@Nullable List<HomeBean.DataDTO> data) {
-        super(R.layout.tk_item_tiktok, data);
+        super(VideoApplication.getInstance().getVideoLayoutType() == 1 ?
+                R.layout.tk_item_tiktok : R.layout.tk_item_tiktok2, data);
     }
 
     @Override
@@ -35,6 +38,8 @@ public class StdTikTokAdapter extends BaseQuickAdapter<HomeBean.DataDTO, BaseVie
 
     private void showAndHide(BaseViewHolder baseViewHolder, HomeBean.DataDTO workBean) {
         StdTikTok jzvdStd = baseViewHolder.getView(R.id.videoplayer);
+        LottieAnimationView eyes = baseViewHolder.getView(R.id.eyes);
+
         String proxyUrl;
         int type = workBean.getType();
 
@@ -46,17 +51,32 @@ public class StdTikTokAdapter extends BaseQuickAdapter<HomeBean.DataDTO, BaseVie
                     .setText(R.id.title, workBean.getVideo().getTitle())
                     .setText(R.id.aut, workBean.getVideo().getAuthor())
                     .setText(R.id.content, workBean.getVideo().getDesc())
-                    .setVisible(R.id.like_num, workBean.getVideo().getLike_count() > 0)
                     .setGone(R.id.adImage, true)
                     .setGone(R.id.aut, TextUtils.isEmpty(workBean.getVideo().getAuthor()))
                     .setGone(R.id.content, TextUtils.isEmpty(workBean.getVideo().getDesc()))
                     .setGone(R.id.videoplayer, false)
 //                    .setGone(R.id.before, false)
                     .setGone(R.id.ll_btn, false)
-                    .setGone(R.id.ll_title, false)
                     .setGone(R.id.ll_ext, true)
-                    .setGone(R.id.ll_ext_big, true);
+                    .setGone(R.id.ll_ext_big, true)
+                    .setGone(R.id.eyes, !VideoApplication.getInstance().isPureEnjoyment())
+                    .setVisible(R.id.like, !workBean.getVideo().isPureEnjoyment())
+                    .setVisible(R.id.like_num, workBean.getVideo().getLike_count() > 0 && !workBean.getVideo().isPureEnjoyment())
+                    .setVisible(R.id.setting, !workBean.getVideo().isPureEnjoyment())
+                    .setVisible(R.id.share, !workBean.getVideo().isPureEnjoyment())
+                    .setVisible(R.id.download, !workBean.getVideo().isPureEnjoyment())
+                    .setVisible(R.id.ll_title, !workBean.getVideo().isPureEnjoyment());
 //                    .setGone(R.id.setting, false);
+
+            //纯享模式
+            if (VideoApplication.getInstance().isPureEnjoyment()) {
+                if (!workBean.getVideo().isPureEnjoyment()) {
+                    eyes.playAnimation();
+                } else {
+                    eyes.cancelAnimation();
+                    eyes.setProgress(0f);
+                }
+            }
 
             proxyUrl = workBean.getVideo().getUrl();
             jzvdStd.setBefore(workBean.getVideo().getThumburl());
@@ -131,7 +151,8 @@ public class StdTikTokAdapter extends BaseQuickAdapter<HomeBean.DataDTO, BaseVie
                     .setGone(R.id.ll_title, true)
                     .setGone(R.id.ll_ext, false)
                     .setGone(R.id.ll_ext_big, workBean.getBanner().isAdShow())
-                    .setGone(R.id.ll_ext_big, true);
+                    .setGone(R.id.ll_ext_big, true)
+                    .setGone(R.id.eyes, true);
 //                    .setGone(R.id.setting, true);
 
             if (!TextUtils.isEmpty(workBean.getBanner().getIcon())) {

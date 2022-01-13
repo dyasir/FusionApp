@@ -58,7 +58,7 @@
         </provider>
 
         <activity
-            android:name=".ui.activity.VideoSplashActivity"
+            android:name=".ui.activity.TkVideoSplashActivity"
             android:exported="true"
             android:launchMode="singleTask"
             android:screenOrientation="portrait">
@@ -79,19 +79,24 @@
         </activity>
 
         <activity
-            android:name=".ui.activity.ShortVideoActivity"
+            android:name=".ui.activity.TkShortVideoActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.activity.ReportActivity"
+            android:name=".ui.activity.TkReportActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.activity.ReportDetailActivity"
+            android:name=".ui.activity.TkReportDetailActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.activity.SettingActivity"
+            android:name=".ui.activity.TkSettingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.TkShortVideoTwoActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:launchMode="singleTask"
             android:screenOrientation="portrait" />
     </application>
 

@@ -1,0 +1,71 @@
+<resources>
+    <string name="app_name">tika</string>
+
+    <string name="tk_network_error">Network Anomaly</string>
+    <string name="tk_data_gson_error">Data parsing exception</string>
+
+    <string name="tk_ad_google">Ads served by Google</string>
+    <string name="tk_ad_download">Download Now</string>
+
+    <string name="tk_download_pop_photo">Go to the album ></string>
+    <string name="tk_download_pop_start">Start download&#8230;&#8230;</string>
+    <string name="tk_download_handle_ing">Start processing&#8230;&#8230;</string>
+    <string name="tk_download_pop_faild">Download failed, please check the network to download again!</string>
+    <string name="tk_download_pop_ing">Downloading %s / %d %%</string>
+    <string name="tk_download_pop_handle">Resource processing %d %%</string>
+    <string name="tk_download_pop_handle_error">The network is abnormal, please download again!</string>
+
+    <string name="tk_share_pop_title">Share</string>
+    <string name="tk_share_pop_unstall">App not installed</string>
+
+    <string name="tk_updata_pop_found">New version found</string>
+    <string name="tk_updata_pop_tip">You must update to the latest version to use</string>
+    <string name="tk_updata_pop_now">Update</string>
+    <string name="tk_updata_pop_ignore">Neglect</string>
+    <string name="tk_updata_pop_no_url">No download link yet</string>
+    <string name="tk_updata_pop_install">Install</string>
+
+    <string name="tk_user_liked">You have liked!</string>
+    <string name="tk_like_success">Liked successfully!</string>
+    <string name="tk_unlike_success">Cancel like successfully!</string>
+
+    <string name="tk_report_title">Report</string>
+    <string name="tk_report_title_1">Content Violation</string>
+    <string name="tk_report_one_1">Vulgar</string>
+    <string name="tk_report_one_2">Current political misinformation</string>
+    <string name="tk_report_one_3">Illegal crime</string>
+    <string name="tk_report_one_4">Spam advertising, selling fake goods, etc.</string>
+    <string name="tk_report_one_5">Spread rumors</string>
+    <string name="tk_report_one_6">Suspected fraud</string>
+    <string name="tk_report_one_7">Insult</string>
+    <string name="tk_report_one_8">Dangerous behavior</string>
+    <string name="tk_report_one_9">Suspected of illegal fundraising</string>
+    <string name="tk_report_one_10">Poor value orientation</string>
+    <string name="tk_report_title_2">Infringement Of Rights</string>
+    <string name="tk_report_two_1">Violation of reputation, privacy, portrait rights, etc.</string>
+    <string name="tk_report_two_2">Content theft</string>
+    <string name="tk_report_title_3">Underage</string>
+    <string name="tk_report_three_1">Minor Misconduct</string>
+    <string name="tk_report_three_2">Content not suitable for underage viewing</string>
+    <string name="tk_report_title_4">Other</string>
+    <string name="tk_report_four_1">Uncomfortable</string>
+    <string name="tk_report_four_2">Bootstrap private deals</string>
+    <string name="tk_report_four_3">Suspected or instigated suicide</string>
+    <string name="tk_report_four_4">Induce likes, shares, and attention</string>
+    <string name="tk_report_detail_tip">Your report will be accepted within 12 hours. If the report is successful, the result will be notified as soon as possible. Please try to submit a complete report description and materials.</string>
+    <string name="tk_report_detail_reson">Reason</string>
+    <string name="tk_report_detail_memo">Description (optional)</string>
+    <string name="tk_report_detail_memo_hint">Detailed description of the reason for the report</string>
+    <string name="tk_report_detail_commit">Submit</string>
+    <string name="tk_report_detail_commit_success">Report successful!</string>
+
+    <string name="tk_setting_title">Setting</string>
+    <string name="tk_setting_version">Version : V%s</string>
+    <string name="tk_setting_package_id">Package id : %s</string>
+    <string name="tk_setting_video_id">Video ID : %d</string>
+    <string name="tk_setting_rate">To Rate</string>
+    <string name="tk_setting_cache">Clear Cache</string>
+    <string name="tk_setting_cache_success">Cleared successfully!</string>
+    <string name="tk_setting_cache_tip_title">Notice</string>
+    <string name="tk_setting_cache_tip">If you clear the cache, all videos will need to be reloaded, which may take longer. Are you sure you want to clear the cache?</string>
+</resources>

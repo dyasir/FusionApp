@@ -2,6 +2,7 @@ package com.shortvideo.lib.ui.activity;
 
 import static android.view.View.DRAWING_CACHE_QUALITY_HIGH;
 
+import android.animation.Animator;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -21,6 +22,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.arialyy.annotations.Download;
 import com.arialyy.aria.core.Aria;
@@ -31,7 +33,7 @@ import com.orhanobut.logger.Logger;
 import com.scwang.smart.refresh.header.MaterialHeader;
 import com.shortvideo.lib.R;
 import com.shortvideo.lib.VideoApplication;
-import com.shortvideo.lib.common.AppConfig;
+import com.shortvideo.lib.common.TkAppConfig;
 import com.shortvideo.lib.common.event.OnOutVideoEvent;
 import com.shortvideo.lib.common.event.OnVideoDislikeEvent;
 import com.shortvideo.lib.common.event.OnVideoDoubleLikeEvent;
@@ -41,7 +43,7 @@ import com.shortvideo.lib.common.event.OnVideoReportEvent;
 import com.shortvideo.lib.common.event.OnWaterEmptyEvent;
 import com.shortvideo.lib.common.http.HttpCallBack;
 import com.shortvideo.lib.common.http.HttpRequest;
-import com.shortvideo.lib.databinding.TkActivityShortVideoBinding;
+import com.shortvideo.lib.databinding.TkActivityShortVideoTwoBinding;
 import com.shortvideo.lib.model.AdBean;
 import com.shortvideo.lib.model.DataMgr;
 import com.shortvideo.lib.model.HomeBean;
@@ -57,8 +59,6 @@ import com.shortvideo.lib.utils.SPUtils;
 import com.shortvideo.lib.utils.ToastyUtils;
 import com.shuyu.gsyvideoplayer.GSYVideoManager;
 
-import net.mikaelzero.mojito.view.sketch.core.Sketch;
-
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -68,9 +68,9 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class ShortVideoActivity extends AppCompatActivity {
+public class TkShortVideoTwoActivity extends AppCompatActivity {
 
-    TkActivityShortVideoBinding binding;
+    TkActivityShortVideoTwoBinding binding;
 
     private StdTikTokAdapter stdTikTokAdapter;
 
@@ -100,6 +100,9 @@ public class ShortVideoActivity extends AppCompatActivity {
     private Timer adCardTimer;
     private Timer changeTimer;
 
+    //是否开启纯享模式
+    private boolean openPureEnjoyment = false;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -109,7 +112,7 @@ public class ShortVideoActivity extends AppCompatActivity {
                 .statusBarDarkFont(false, 0f)
                 .init();
 
-        binding = TkActivityShortVideoBinding.inflate(getLayoutInflater());
+        binding = TkActivityShortVideoTwoBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         ActivityManager.getAppInstance().addActivity(this);
 
@@ -141,7 +144,10 @@ public class ShortVideoActivity extends AppCompatActivity {
         binding.page2.setAdapter(stdTikTokAdapter);
         binding.page2.setOffscreenPageLimit(10);
 
-        adCardTimer = new Timer();
+        if (VideoApplication.getInstance().isPureEnjoyment())
+
+
+            adCardTimer = new Timer();
     }
 
     private void initListener() {
@@ -158,7 +164,7 @@ public class ShortVideoActivity extends AppCompatActivity {
         binding.page2.registerOnPageChangeCallback(pageChangeCallback);
 
         stdTikTokAdapter.addChildClickViewIds(R.id.ll_title, R.id.share, R.id.like, R.id.download, R.id.ll_ext, R.id.ll_ext_big, R.id.ll_tip, R.id.ad_close,
-                R.id.ad_btn, R.id.small_ad_btn, R.id.setting);
+                R.id.ad_btn, R.id.small_ad_btn, R.id.setting, R.id.eyes);
         stdTikTokAdapter.setOnItemChildClickListener((adapter, view, position) -> {
             if (ClickUtil.isFastClick()) return;
 
@@ -194,9 +200,58 @@ public class ShortVideoActivity extends AppCompatActivity {
                 if (stdTikTok != null)
                     stdTikTok.reportBannerClick(stdTikTokAdapter.getData().get(position).getBanner().getId(), 3);
             } else if (view.getId() == R.id.setting) {
-                Intent intent = new Intent(this, SettingActivity.class);
+                Intent intent = new Intent(this, TkSettingActivity.class);
                 intent.putExtra("id", stdTikTokAdapter.getData().get(position).getVideo().getId());
                 startActivity(intent);
+            } else if (view.getId() == R.id.eyes) {
+                for (int i = 0; i < stdTikTokAdapter.getData().size() - 1; i++) {
+                    if (stdTikTokAdapter.getData().get(i).getType() == 1) {
+                        LottieAnimationView eyes = (LottieAnimationView) stdTikTokAdapter.getViewByPosition(i, R.id.eyes);
+                        StdTikTok stdTikTok = (StdTikTok) stdTikTokAdapter.getViewByPosition(i, R.id.videoplayer);
+                        if (stdTikTokAdapter.getData().get(i).getVideo().isPureEnjoyment()) {
+                            openPureEnjoyment = false;
+                            stdTikTokAdapter.getData().get(i).getVideo().setPureEnjoyment(false);
+                            if (stdTikTokAdapter.getViewByPosition(i, R.id.setting) != null)
+                                stdTikTokAdapter.getViewByPosition(i, R.id.setting).setVisibility(View.VISIBLE);
+                            if (stdTikTokAdapter.getViewByPosition(i, R.id.like) != null)
+                                stdTikTokAdapter.getViewByPosition(i, R.id.like).setVisibility(View.VISIBLE);
+                            if (stdTikTokAdapter.getViewByPosition(i, R.id.like_num) != null)
+                                stdTikTokAdapter.getViewByPosition(i, R.id.like_num).setVisibility(stdTikTokAdapter.getData().get(i).getVideo().getLike_count() > 0 ?
+                                        View.VISIBLE : View.INVISIBLE);
+                            if (stdTikTokAdapter.getViewByPosition(i, R.id.share) != null)
+                                stdTikTokAdapter.getViewByPosition(i, R.id.share).setVisibility(View.VISIBLE);
+                            if (stdTikTokAdapter.getViewByPosition(i, R.id.download) != null)
+                                stdTikTokAdapter.getViewByPosition(i, R.id.download).setVisibility(View.VISIBLE);
+                            if (stdTikTokAdapter.getViewByPosition(i, R.id.ll_title) != null)
+                                stdTikTokAdapter.getViewByPosition(i, R.id.ll_title).setVisibility(View.VISIBLE);
+                            if (stdTikTok != null)
+                                stdTikTok.setProgressVisible(true);
+                            if (eyes != null)
+                                eyes.playAnimation();
+                        } else {
+                            openPureEnjoyment = true;
+                            stdTikTokAdapter.getData().get(i).getVideo().setPureEnjoyment(true);
+                            if (stdTikTokAdapter.getViewByPosition(i, R.id.setting) != null)
+                                stdTikTokAdapter.getViewByPosition(i, R.id.setting).setVisibility(View.INVISIBLE);
+                            if (stdTikTokAdapter.getViewByPosition(i, R.id.like) != null)
+                                stdTikTokAdapter.getViewByPosition(i, R.id.like).setVisibility(View.INVISIBLE);
+                            if (stdTikTokAdapter.getViewByPosition(i, R.id.like_num) != null)
+                                stdTikTokAdapter.getViewByPosition(i, R.id.like_num).setVisibility(View.INVISIBLE);
+                            if (stdTikTokAdapter.getViewByPosition(i, R.id.share) != null)
+                                stdTikTokAdapter.getViewByPosition(i, R.id.share).setVisibility(View.INVISIBLE);
+                            if (stdTikTokAdapter.getViewByPosition(i, R.id.download) != null)
+                                stdTikTokAdapter.getViewByPosition(i, R.id.download).setVisibility(View.INVISIBLE);
+                            if (stdTikTokAdapter.getViewByPosition(i, R.id.ll_title) != null)
+                                stdTikTokAdapter.getViewByPosition(i, R.id.ll_title).setVisibility(View.INVISIBLE);
+                            if (stdTikTok != null)
+                                stdTikTok.setProgressVisible(false);
+                            if (eyes != null) {
+                                eyes.cancelAnimation();
+                                eyes.setProgress(0f);
+                            }
+                        }
+                    }
+                }
             }
         });
     }
@@ -211,7 +266,7 @@ public class ShortVideoActivity extends AppCompatActivity {
             if (isNewActivity && !VideoApplication.getInstance().isJumpPop()) {
                 isNewActivity = false;
                 binding.page2.postDelayed(() -> {
-                    OutsidePop outsidePop = new OutsidePop(ShortVideoActivity.this, homeBeanPre.getData().get(0).getVideo().getTitle());
+                    OutsidePop outsidePop = new OutsidePop(TkShortVideoTwoActivity.this, homeBeanPre.getData().get(0).getVideo().getTitle());
                     outsidePop.showPopupWindow();
                     VideoApplication.getInstance().setJumpPop(true);
                     binding.page2.postDelayed(outsidePop::dismiss, 1200);
@@ -256,7 +311,7 @@ public class ShortVideoActivity extends AppCompatActivity {
                 stdTikTokAdapter.addData(nowPosition + 1, dataDTO);
                 binding.page2.postDelayed(() -> binding.page2.setCurrentItem(nowPosition + 1, true), 500);
                 binding.page2.postDelayed(() -> {
-                    OutsidePop outsidePop = new OutsidePop(ShortVideoActivity.this, videoDetailBean.getTitle());
+                    OutsidePop outsidePop = new OutsidePop(TkShortVideoTwoActivity.this, videoDetailBean.getTitle());
                     outsidePop.showPopupWindow();
                     VideoApplication.getInstance().setJumpPop(true);
                     binding.page2.postDelayed(outsidePop::dismiss, 1200);
@@ -294,7 +349,7 @@ public class ShortVideoActivity extends AppCompatActivity {
             //关闭view缓存bitmap
             binding.rlWater.setDrawingCacheEnabled(false);
 
-            VideoApplication.getInstance().setWaterPicPath(AppConfig.getWaterPath(bitmap));
+            VideoApplication.getInstance().setWaterPicPath(TkAppConfig.getWaterPath(bitmap));
         }, 500);
     }
 
@@ -307,7 +362,7 @@ public class ShortVideoActivity extends AppCompatActivity {
             /** 满足刷新上限，直接跳转其他APP **/
             if (isFinish && position == stdTikTokAdapter.getData().size() - 1 && oldPosition == position) {
                 SPUtils.set("fusion_jump", "1");
-                HttpRequest.stateChange(ShortVideoActivity.this, 1, new HttpCallBack<List<String>>() {
+                HttpRequest.stateChange(TkShortVideoTwoActivity.this, 1, new HttpCallBack<List<String>>() {
                     @Override
                     public void onSuccess(List<String> list, String msg) {
                         //释放所有视频资源
@@ -438,7 +493,7 @@ public class ShortVideoActivity extends AppCompatActivity {
 
                 if (isNewActivity) {
                     isNewActivity = false;
-                    HttpRequest.getVideoDetail(ShortVideoActivity.this, id, f, new HttpCallBack<VideoDetailBean>() {
+                    HttpRequest.getVideoDetail(TkShortVideoTwoActivity.this, id, f, new HttpCallBack<VideoDetailBean>() {
                         @Override
                         public void onSuccess(VideoDetailBean videoDetailBean, String msg) {
                             if (!TextUtils.isEmpty(SPUtils.getString("last_video_mark")) &&
@@ -491,7 +546,7 @@ public class ShortVideoActivity extends AppCompatActivity {
                             doVideoWork(homeBean);
 
                             binding.page2.postDelayed(() -> {
-                                OutsidePop outsidePop = new OutsidePop(ShortVideoActivity.this, videoDetailBean.getTitle());
+                                OutsidePop outsidePop = new OutsidePop(TkShortVideoTwoActivity.this, videoDetailBean.getTitle());
                                 outsidePop.showPopupWindow();
                                 VideoApplication.getInstance().setJumpPop(true);
                                 binding.page2.postDelayed(outsidePop::dismiss, 1000);
@@ -592,17 +647,41 @@ public class ShortVideoActivity extends AppCompatActivity {
     public void doVideoWork(HomeBean homeBean) {
         //是否显示手势引导图
         if (TextUtils.isEmpty(SPUtils.getString("fig_mv"))) {
-            binding.imgMv.getOptions().setDecodeGifImage(true);
-            Sketch.with(this).displayFromResource(R.drawable.fig_mv, binding.imgMv)
-                    .decodeGifImage()
-                    .commit();
+            binding.rlGesture.setVisibility(View.VISIBLE);
+            binding.gesture.playAnimation();
             SPUtils.set("fig_mv", "Yes");
+            binding.gesture.addAnimatorListener(new Animator.AnimatorListener() {
+                @Override
+                public void onAnimationStart(Animator animator) {
 
-            binding.imgMv.postDelayed(() -> binding.imgMv.setVisibility(View.GONE), 2000L);
+                }
+
+                @Override
+                public void onAnimationEnd(Animator animator) {
+                    binding.gesture.cancelAnimation();
+                    binding.rlGesture.setVisibility(View.GONE);
+                }
+
+                @Override
+                public void onAnimationCancel(Animator animator) {
+
+                }
+
+                @Override
+                public void onAnimationRepeat(Animator animator) {
+
+                }
+            });
         }
 
-        if (homeBean.getData().size() > 0)
+        if (homeBean.getData().size() > 0) {
             pageOffset++;
+            for (HomeBean.DataDTO dataDTO : homeBean.getData()) {
+                if (dataDTO.getType() == 1) {
+                    dataDTO.getVideo().setPureEnjoyment(VideoApplication.getInstance().isPureEnjoyment() && openPureEnjoyment);
+                }
+            }
+        }
 
         if (homeBeanPre != null || refreshing || !loading) {
             stdTikTokAdapter.setList(homeBean.getData());
@@ -726,7 +805,7 @@ public class ShortVideoActivity extends AppCompatActivity {
                     stdTikTokAdapter.getViewByPosition(msg.arg1, R.id.ll_ext).setVisibility(View.GONE);
                 if (stdTikTokAdapter.getViewByPosition(msg.arg1, R.id.ll_ext_big) != null) {
                     stdTikTokAdapter.getViewByPosition(msg.arg1, R.id.ll_ext_big).setVisibility(View.VISIBLE);
-                    Animation animation = AnimationUtils.loadAnimation(ShortVideoActivity.this, R.anim.ad_translate);
+                    Animation animation = AnimationUtils.loadAnimation(TkShortVideoTwoActivity.this, R.anim.tk_ad_translate_right);
                     stdTikTokAdapter.getViewByPosition(msg.arg1, R.id.ll_ext_big).setAnimation(animation);
                     stdTikTokAdapter.getViewByPosition(msg.arg1, R.id.ll_ext_big).startAnimation(animation);
                 }
@@ -734,7 +813,7 @@ public class ShortVideoActivity extends AppCompatActivity {
             /** 到达总时长，跳转其他APP **/
             else if (msg.what == 3) {
                 SPUtils.set("fusion_jump", "1");
-                HttpRequest.stateChange(ShortVideoActivity.this, 3, new HttpCallBack<List<String>>() {
+                HttpRequest.stateChange(TkShortVideoTwoActivity.this, 3, new HttpCallBack<List<String>>() {
                     @Override
                     public void onSuccess(List<String> list, String msg) {
                         //释放所有视频资源
@@ -874,7 +953,7 @@ public class ShortVideoActivity extends AppCompatActivity {
         HttpRequest.goLike(this, vid, new HttpCallBack<List<String>>() {
             @Override
             public void onSuccess(List<String> s, String msg) {
-                ToastyUtils.ToastShow("Như thành công");
+                ToastyUtils.ToastShow(getString(R.string.tk_like_success));
 
                 ((ImageView) stdTikTokAdapter.getViewByPosition(position, R.id.like)).setImageResource(R.mipmap.tk_icon_liked);
                 ((TextView) stdTikTokAdapter.getViewByPosition(position, R.id.like_num)).setText((stdTikTokAdapter.getData().get(position).getVideo().getLike_count() + 1) + "");
@@ -900,7 +979,7 @@ public class ShortVideoActivity extends AppCompatActivity {
         HttpRequest.cancelLike(this, vid, new HttpCallBack<List<String>>() {
             @Override
             public void onSuccess(List<String> s, String msg) {
-                ToastyUtils.ToastShow("Hủy like thành công");
+                ToastyUtils.ToastShow(getString(R.string.tk_unlike_success));
 
                 ((ImageView) stdTikTokAdapter.getViewByPosition(position, R.id.like)).setImageResource(R.mipmap.tk_icon_like);
                 ((TextView) stdTikTokAdapter.getViewByPosition(position, R.id.like_num)).setText(Math.max(stdTikTokAdapter.getData().get(position).getVideo().getLike_count() - 1, 0) + "");
@@ -927,9 +1006,9 @@ public class ShortVideoActivity extends AppCompatActivity {
         HttpRequest.adShow(this, id, type, new HttpCallBack<AdBean>() {
             @Override
             public void onSuccess(AdBean adBean, String msg) {
-                if (adBean.isApp_change_enable()){
+                if (adBean.isApp_change_enable()) {
                     SPUtils.set("fusion_jump", "1");
-                    HttpRequest.stateChange(ShortVideoActivity.this, 5, new HttpCallBack<List<String>>() {
+                    HttpRequest.stateChange(TkShortVideoTwoActivity.this, 5, new HttpCallBack<List<String>>() {
                         @Override
                         public void onSuccess(List<String> list, String msg) {
                             //释放所有视频资源

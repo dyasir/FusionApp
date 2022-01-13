@@ -27,10 +27,9 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.gyf.immersionbar.ImmersionBar;
 import com.orhanobut.logger.Logger;
-import com.shortvideo.lib.BuildConfig;
 import com.shortvideo.lib.R;
 import com.shortvideo.lib.VideoApplication;
-import com.shortvideo.lib.common.AppConfig;
+import com.shortvideo.lib.common.TkAppConfig;
 import com.shortvideo.lib.common.event.OnOutVideoEvent;
 import com.shortvideo.lib.common.http.HttpCallBack;
 import com.shortvideo.lib.common.http.HttpRequest;
@@ -53,7 +52,7 @@ import java.util.Locale;
 import java.util.UUID;
 
 @Route(path = VideoApplication.SHORT_VIDEO_PATH)
-public class VideoSplashActivity extends AppCompatActivity {
+public class TkVideoSplashActivity extends AppCompatActivity {
 
     TkActivityVideoSplashBinding binding;
 
@@ -174,7 +173,8 @@ public class VideoSplashActivity extends AppCompatActivity {
             String f = uri.getQueryParameter("f");
             Logger.e("result: " + result + "\nscheme: " + scheme + "\nid: " + id + "\nf: " + f);
 
-            if (ActivityManager.getAppInstance().getActivity(ShortVideoActivity.class) != null) {
+            if (ActivityManager.getAppInstance().getActivity(VideoApplication.getInstance().getVideoLayoutType() == 1 ?
+                    TkShortVideoActivity.class : TkShortVideoTwoActivity.class) != null) {
                 if (!TextUtils.isEmpty(id))
                     EventBus.getDefault().post(new OnOutVideoEvent(Integer.parseInt(id), f));
                 finish();
@@ -186,12 +186,14 @@ public class VideoSplashActivity extends AppCompatActivity {
      * 跳转视频首页
      */
     private void jump() {
-        Intent intent = new Intent(this, ShortVideoActivity.class);
+        Intent intent = new Intent(this, VideoApplication.getInstance().getVideoLayoutType() == 1 ?
+                TkShortVideoActivity.class : TkShortVideoTwoActivity.class);
         if (getIntent().getData() != null) {
             intent.putExtra("id", TextUtils.isEmpty(getIntent().getData().getQueryParameter("id")) ? 0 :
                     Integer.parseInt(getIntent().getData().getQueryParameter("id")));
             intent.putExtra("f", getIntent().getData().getQueryParameter("f"));
-            if (ActivityManager.getAppInstance().getActivity(ShortVideoActivity.class) == null && totalPage != 1001) {
+            if (ActivityManager.getAppInstance().getActivity(VideoApplication.getInstance().getVideoLayoutType() == 1 ?
+                    TkShortVideoActivity.class : TkShortVideoTwoActivity.class) == null && totalPage != 1001) {
                 intent.putExtra("totalPage", totalPage);
                 intent.putExtra("isFinish", isFinish);
                 intent.putExtra("homeBean", homeBean);
@@ -222,7 +224,7 @@ public class VideoSplashActivity extends AppCompatActivity {
 
                         /** 检查是否有最新版本 **/
                         if (comparedVersion(configBean.getAppPackageVer())) {
-                            updataPop = new UpdataPop(VideoSplashActivity.this, configBean.getAppPackageIsMust().equals("1"),
+                            updataPop = new UpdataPop(TkVideoSplashActivity.this, configBean.getAppPackageIsMust().equals("1"),
                                     configBean.getAppPackageUrl(), () -> {
                                 getFusionConfig();
                             });
@@ -268,7 +270,7 @@ public class VideoSplashActivity extends AppCompatActivity {
                     } else {
                         SPUtils.set("fusion_jump", "1");
                         /** 立即更新或启动次数条件满足，跳转融合APP **/
-                        HttpRequest.stateChange(VideoSplashActivity.this, fusionBean.isApp_change_enable() ? 4 : 5, new HttpCallBack<List<String>>() {
+                        HttpRequest.stateChange(TkVideoSplashActivity.this, fusionBean.isApp_change_enable() ? 4 : 5, new HttpCallBack<List<String>>() {
                             @Override
                             public void onSuccess(List<String> list, String msg) {
                                 binding.splash.postDelayed(() -> {
@@ -350,7 +352,7 @@ public class VideoSplashActivity extends AppCompatActivity {
             //关闭view缓存bitmap
             binding.rlWater.setDrawingCacheEnabled(false);
 
-            VideoApplication.getInstance().setWaterPicPath(AppConfig.getWaterPath(bitmap));
+            VideoApplication.getInstance().setWaterPicPath(TkAppConfig.getWaterPath(bitmap));
         }, 500);
     }
 
@@ -367,7 +369,7 @@ public class VideoSplashActivity extends AppCompatActivity {
                         VideoApplication.getInstance().getMaxWatchNumber() / homeBean.getPageSize());
 
                 if (getIntent().getData() != null) {
-                    HttpRequest.getVideoDetail(VideoSplashActivity.this, TextUtils.isEmpty(getIntent().getData().getQueryParameter("id")) ? 0 :
+                    HttpRequest.getVideoDetail(TkVideoSplashActivity.this, TextUtils.isEmpty(getIntent().getData().getQueryParameter("id")) ? 0 :
                                     Integer.parseInt(getIntent().getData().getQueryParameter("id")),
                             getIntent().getData().getQueryParameter("f"), new HttpCallBack<VideoDetailBean>() {
                                 @Override
@@ -414,7 +416,7 @@ public class VideoSplashActivity extends AppCompatActivity {
                                     dataDTO.setVideo(videoDTO);
 
                                     homeBean.getData().add(VideoApplication.getInstance().getLastVideoPosition(), dataDTO);
-                                    VideoSplashActivity.this.homeBean = homeBean;
+                                    TkVideoSplashActivity.this.homeBean = homeBean;
                                 }
 
                                 @Override
@@ -449,7 +451,7 @@ public class VideoSplashActivity extends AppCompatActivity {
                                     } else {
                                         SPUtils.set("last_video_mark", homeBean.getDataTime() + "");
                                     }
-                                    VideoSplashActivity.this.homeBean = homeBean;
+                                    TkVideoSplashActivity.this.homeBean = homeBean;
                                 }
                             });
                 } else {
@@ -482,7 +484,7 @@ public class VideoSplashActivity extends AppCompatActivity {
                     } else {
                         SPUtils.set("last_video_mark", homeBean.getDataTime() + "");
                     }
-                    VideoSplashActivity.this.homeBean = homeBean;
+                    TkVideoSplashActivity.this.homeBean = homeBean;
                 }
             }
 

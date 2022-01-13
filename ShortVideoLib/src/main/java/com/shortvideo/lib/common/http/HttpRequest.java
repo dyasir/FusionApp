@@ -4,6 +4,7 @@ import androidx.lifecycle.LifecycleOwner;
 
 import com.google.gson.Gson;
 import com.orhanobut.logger.Logger;
+import com.shortvideo.lib.R;
 import com.shortvideo.lib.VideoApplication;
 import com.shortvideo.lib.model.AdBean;
 import com.shortvideo.lib.model.ConfigBean;
@@ -189,7 +190,7 @@ public class HttpRequest {
                     public void onFail(int errorCode, String errorMsg) {
                         Logger.e(errorMsg);
                         if (errorCode == 621) {
-                            callBack.onFail(errorCode, "Bạn đã thích nó");
+                            callBack.onFail(errorCode, VideoApplication.getInstance().getString(R.string.tk_user_liked));
                         } else {
                             callBack.onFail(errorCode, errorMsg);
                         }
