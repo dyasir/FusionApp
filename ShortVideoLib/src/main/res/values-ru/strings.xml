@@ -68,4 +68,9 @@
     <string name="tk_setting_cache_success">Очищено успешно!</string>
     <string name="tk_setting_cache_tip_title">Уведомление</string>
     <string name="tk_setting_cache_tip">Если вы очистите кеш, все видео необходимо будет перезагрузить, что может занять больше времени. Вы уверены, что хотите очистить кеш?</string>
+
+    <string name="tk_front_video_title">популярный</string>
+    <string name="tk_front_message_title">Информация</string>
+    <string name="tk_front_message_empty_title">Новостей пока нет</string>
+    <string name="tk_front_message_empty">Ваши сообщения будут появляться здесь, так что не стесняйтесь и оставляйте сообщения первыми!</string>
 </resources>

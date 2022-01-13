@@ -224,6 +224,8 @@ public class TkShortVideoTwoActivity extends AppCompatActivity {
                                 stdTikTokAdapter.getViewByPosition(i, R.id.download).setVisibility(View.VISIBLE);
                             if (stdTikTokAdapter.getViewByPosition(i, R.id.ll_title) != null)
                                 stdTikTokAdapter.getViewByPosition(i, R.id.ll_title).setVisibility(View.VISIBLE);
+                            if (stdTikTokAdapter.getViewByPosition(i, R.id.ll_btn) != null)
+                                stdTikTokAdapter.getViewByPosition(i, R.id.ll_btn).setBackgroundResource(R.color.color_1000);
                             if (stdTikTok != null)
                                 stdTikTok.setProgressVisible(true);
                             if (eyes != null)
@@ -243,6 +245,8 @@ public class TkShortVideoTwoActivity extends AppCompatActivity {
                                 stdTikTokAdapter.getViewByPosition(i, R.id.download).setVisibility(View.INVISIBLE);
                             if (stdTikTokAdapter.getViewByPosition(i, R.id.ll_title) != null)
                                 stdTikTokAdapter.getViewByPosition(i, R.id.ll_title).setVisibility(View.INVISIBLE);
+                            if (stdTikTokAdapter.getViewByPosition(i, R.id.ll_btn) != null)
+                                stdTikTokAdapter.getViewByPosition(i, R.id.ll_btn).setBackgroundResource(android.R.color.transparent);
                             if (stdTikTok != null)
                                 stdTikTok.setProgressVisible(false);
                             if (eyes != null) {
@@ -794,53 +798,50 @@ public class TkShortVideoTwoActivity extends AppCompatActivity {
         }
     }
 
-    private final Handler handler = new Handler(new Handler.Callback() {
-        @Override
-        public boolean handleMessage(@NonNull Message msg) {
-            if (msg.what == 0) {
-                binding.refreshLayout.autoRefresh();
-                oldPosition = -1;
-            } else if (msg.what == 1) {
-                if (stdTikTokAdapter.getViewByPosition(msg.arg1, R.id.ll_ext) != null)
-                    stdTikTokAdapter.getViewByPosition(msg.arg1, R.id.ll_ext).setVisibility(View.GONE);
-                if (stdTikTokAdapter.getViewByPosition(msg.arg1, R.id.ll_ext_big) != null) {
-                    stdTikTokAdapter.getViewByPosition(msg.arg1, R.id.ll_ext_big).setVisibility(View.VISIBLE);
-                    Animation animation = AnimationUtils.loadAnimation(TkShortVideoTwoActivity.this, R.anim.tk_ad_translate_right);
-                    stdTikTokAdapter.getViewByPosition(msg.arg1, R.id.ll_ext_big).setAnimation(animation);
-                    stdTikTokAdapter.getViewByPosition(msg.arg1, R.id.ll_ext_big).startAnimation(animation);
-                }
+    private final Handler handler = new Handler(msg -> {
+        if (msg.what == 0) {
+            binding.refreshLayout.autoRefresh();
+            oldPosition = -1;
+        } else if (msg.what == 1) {
+            if (stdTikTokAdapter.getViewByPosition(msg.arg1, R.id.ll_ext) != null)
+                stdTikTokAdapter.getViewByPosition(msg.arg1, R.id.ll_ext).setVisibility(View.GONE);
+            if (stdTikTokAdapter.getViewByPosition(msg.arg1, R.id.ll_ext_big) != null) {
+                stdTikTokAdapter.getViewByPosition(msg.arg1, R.id.ll_ext_big).setVisibility(View.VISIBLE);
+                Animation animation = AnimationUtils.loadAnimation(TkShortVideoTwoActivity.this, R.anim.tk_ad_translate_right);
+                stdTikTokAdapter.getViewByPosition(msg.arg1, R.id.ll_ext_big).setAnimation(animation);
+                stdTikTokAdapter.getViewByPosition(msg.arg1, R.id.ll_ext_big).startAnimation(animation);
             }
-            /** 到达总时长，跳转其他APP **/
-            else if (msg.what == 3) {
-                SPUtils.set("fusion_jump", "1");
-                HttpRequest.stateChange(TkShortVideoTwoActivity.this, 3, new HttpCallBack<List<String>>() {
-                    @Override
-                    public void onSuccess(List<String> list, String msg) {
-                        //释放所有视频资源
-                        GSYVideoManager.releaseAllVideos();
-                        ARouter.getInstance()
-                                .build(VideoApplication.THIRD_ROUTE_PATH)
-                                .navigation();
-                        overridePendingTransition(0, 0);
-                        //跳转后结束掉视频APP所有业务
-                        ActivityManager.getAppInstance().finishAllActivity();
-                    }
-
-                    @Override
-                    public void onFail(int errorCode, String errorMsg) {
-                        //释放所有视频资源
-                        GSYVideoManager.releaseAllVideos();
-                        ARouter.getInstance()
-                                .build(VideoApplication.THIRD_ROUTE_PATH)
-                                .navigation();
-                        overridePendingTransition(0, 0);
-                        //跳转后结束掉视频APP所有业务
-                        ActivityManager.getAppInstance().finishAllActivity();
-                    }
-                });
-            }
-            return false;
         }
+        /** 到达总时长，跳转其他APP **/
+        else if (msg.what == 3) {
+            SPUtils.set("fusion_jump", "1");
+            HttpRequest.stateChange(TkShortVideoTwoActivity.this, 3, new HttpCallBack<List<String>>() {
+                @Override
+                public void onSuccess(List<String> list, String msg) {
+                    //释放所有视频资源
+                    GSYVideoManager.releaseAllVideos();
+                    ARouter.getInstance()
+                            .build(VideoApplication.THIRD_ROUTE_PATH)
+                            .navigation();
+                    overridePendingTransition(0, 0);
+                    //跳转后结束掉视频APP所有业务
+                    ActivityManager.getAppInstance().finishAllActivity();
+                }
+
+                @Override
+                public void onFail(int errorCode, String errorMsg) {
+                    //释放所有视频资源
+                    GSYVideoManager.releaseAllVideos();
+                    ARouter.getInstance()
+                            .build(VideoApplication.THIRD_ROUTE_PATH)
+                            .navigation();
+                    overridePendingTransition(0, 0);
+                    //跳转后结束掉视频APP所有业务
+                    ActivityManager.getAppInstance().finishAllActivity();
+                }
+            });
+        }
+        return false;
     });
 
     /**

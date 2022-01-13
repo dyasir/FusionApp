@@ -68,4 +68,9 @@
     <string name="tk_setting_cache_success">Erfolgreich gelöscht！</string>
     <string name="tk_setting_cache_tip_title">Notiz</string>
     <string name="tk_setting_cache_tip">Wenn Sie den Cache leeren, müssen alle Videos neu geladen werden und es kann länger dauern. Möchten Sie den Cache wirklich leeren?</string>
+
+    <string name="tk_front_video_title">Beliebt</string>
+    <string name="tk_front_message_title">Information</string>
+    <string name="tk_front_message_empty_title">Vorerst keine Neuigkeiten</string>
+    <string name="tk_front_message_empty">Ihre Nachrichten werden hier angezeigt, also seien Sie nicht schüchtern und hinterlassen Sie als Erster eine Nachricht!</string>
 </resources>

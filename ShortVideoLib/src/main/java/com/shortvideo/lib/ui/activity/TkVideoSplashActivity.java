@@ -40,6 +40,7 @@ import com.shortvideo.lib.model.DataMgr;
 import com.shortvideo.lib.model.FusionBean;
 import com.shortvideo.lib.model.HomeBean;
 import com.shortvideo.lib.model.VideoDetailBean;
+import com.shortvideo.lib.ui.activity.front.TkShortVideoFrontActivity;
 import com.shortvideo.lib.ui.widgets.UpdataPop;
 import com.shortvideo.lib.utils.ActivityManager;
 import com.shortvideo.lib.utils.SPUtils;
@@ -186,9 +187,10 @@ public class TkVideoSplashActivity extends AppCompatActivity {
      * 跳转视频首页
      */
     private void jump() {
-        Intent intent = new Intent(this, VideoApplication.getInstance().getVideoLayoutType() == 1 ?
-                TkShortVideoActivity.class : TkShortVideoTwoActivity.class);
+        Intent intent;
         if (getIntent().getData() != null) {
+            intent = new Intent(this, VideoApplication.getInstance().getVideoLayoutType() == 1 ?
+                    TkShortVideoActivity.class : TkShortVideoTwoActivity.class);
             intent.putExtra("id", TextUtils.isEmpty(getIntent().getData().getQueryParameter("id")) ? 0 :
                     Integer.parseInt(getIntent().getData().getQueryParameter("id")));
             intent.putExtra("f", getIntent().getData().getQueryParameter("f"));
@@ -199,6 +201,8 @@ public class TkVideoSplashActivity extends AppCompatActivity {
                 intent.putExtra("homeBean", homeBean);
             }
         } else {
+            intent = new Intent(this, VideoApplication.getInstance().isOpenFrontPage() ? TkShortVideoFrontActivity.class :
+                    VideoApplication.getInstance().getVideoLayoutType() == 1 ? TkShortVideoActivity.class : TkShortVideoTwoActivity.class);
             if (totalPage != 1001) {
                 intent.putExtra("totalPage", totalPage);
                 intent.putExtra("isFinish", isFinish);

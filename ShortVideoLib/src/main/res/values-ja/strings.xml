@@ -68,4 +68,9 @@
     <string name="tk_setting_cache_success">正常にクリアされました！</string>
     <string name="tk_setting_cache_tip_title">知らせ</string>
     <string name="tk_setting_cache_tip">キャッシュをクリアすると、すべての動画を再読み込みする必要があり、さらに時間がかかる場合があります。キャッシュをクリアしてもよろしいですか？</string>
+
+    <string name="tk_front_video_title">人気</string>
+    <string name="tk_front_message_title">情報</string>
+    <string name="tk_front_message_empty_title">今のところニュースはありません</string>
+    <string name="tk_front_message_empty">あなたのメッセージはここに表示されますので、恥ずかしがらずに最初にメッセージを残してください！</string>
 </resources>

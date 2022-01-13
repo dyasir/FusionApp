@@ -66,10 +66,12 @@ public class VideoApplication extends Application {
 
     //是否是生产环境
     private boolean isProduct = false;
-    //选择加载视频布局1，或布局2
+    //选择加载视频布局1(右侧按钮栏)，或布局2(左侧按钮栏)
     private int videoLayoutType = 1;
     //是否添加纯享功能
     private boolean isPureEnjoyment = false;
+    //是否开启前置页面
+    private boolean openFrontPage = false;
 
     //跳转视频APP的路由path
     public static final String SHORT_VIDEO_PATH = "/videolib/videosplash";
@@ -172,6 +174,14 @@ public class VideoApplication extends Application {
         isPureEnjoyment = pureEnjoyment;
     }
 
+    public boolean isOpenFrontPage() {
+        return openFrontPage;
+    }
+
+    public void setOpenFrontPage(boolean openFrontPage) {
+        this.openFrontPage = openFrontPage;
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -224,6 +234,8 @@ public class VideoApplication extends Application {
         setVideoLayoutType(1);
         //关闭纯享功能
         setPureEnjoyment(false);
+        //关闭前置页面
+        setOpenFrontPage(false);
     }
 
     /**

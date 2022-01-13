@@ -68,4 +68,9 @@
     <string name="tk_setting_cache_success">Effacé avec succès！</string>
     <string name="tk_setting_cache_tip_title">Remarquer</string>
     <string name="tk_setting_cache_tip">Si vous effacez le cache, toutes les vidéos devront être rechargées et peuvent prendre plus de temps. Êtes-vous sûr de vouloir vider le cache?</string>
+
+    <string name="tk_front_video_title">Populaire</string>
+    <string name="tk_front_message_title">Information</string>
+    <string name="tk_front_message_empty_title">Pas de nouvelles pour l\'instant</string>
+    <string name="tk_front_message_empty">Vos messages apparaîtront ici, alors ne soyez pas timide et soyez le premier à laisser un message!</string>
 </resources>

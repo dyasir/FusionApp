@@ -68,4 +68,9 @@
     <string name="tk_setting_cache_success">Cleared successfully!</string>
     <string name="tk_setting_cache_tip_title">Notice</string>
     <string name="tk_setting_cache_tip">If you clear the cache, all videos will need to be reloaded, which may take longer. Are you sure you want to clear the cache?</string>
+
+    <string name="tk_front_video_title">Hot</string>
+    <string name="tk_front_message_title">Information</string>
+    <string name="tk_front_message_empty_title">No news for now</string>
+    <string name="tk_front_message_empty">Your messages will appear here, so don\'t be shy and be the first to leave a message!</string>
 </resources>

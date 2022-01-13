@@ -773,53 +773,50 @@ public class TkShortVideoActivity extends AppCompatActivity {
         }
     }
 
-    private final Handler handler = new Handler(new Handler.Callback() {
-        @Override
-        public boolean handleMessage(@NonNull Message msg) {
-            if (msg.what == 0) {
-                binding.refreshLayout.autoRefresh();
-                oldPosition = -1;
-            } else if (msg.what == 1) {
-                if (stdTikTokAdapter.getViewByPosition(msg.arg1, R.id.ll_ext) != null)
-                    stdTikTokAdapter.getViewByPosition(msg.arg1, R.id.ll_ext).setVisibility(View.GONE);
-                if (stdTikTokAdapter.getViewByPosition(msg.arg1, R.id.ll_ext_big) != null) {
-                    stdTikTokAdapter.getViewByPosition(msg.arg1, R.id.ll_ext_big).setVisibility(View.VISIBLE);
-                    Animation animation = AnimationUtils.loadAnimation(TkShortVideoActivity.this, R.anim.tk_ad_translate);
-                    stdTikTokAdapter.getViewByPosition(msg.arg1, R.id.ll_ext_big).setAnimation(animation);
-                    stdTikTokAdapter.getViewByPosition(msg.arg1, R.id.ll_ext_big).startAnimation(animation);
-                }
+    private final Handler handler = new Handler(msg -> {
+        if (msg.what == 0) {
+            binding.refreshLayout.autoRefresh();
+            oldPosition = -1;
+        } else if (msg.what == 1) {
+            if (stdTikTokAdapter.getViewByPosition(msg.arg1, R.id.ll_ext) != null)
+                stdTikTokAdapter.getViewByPosition(msg.arg1, R.id.ll_ext).setVisibility(View.GONE);
+            if (stdTikTokAdapter.getViewByPosition(msg.arg1, R.id.ll_ext_big) != null) {
+                stdTikTokAdapter.getViewByPosition(msg.arg1, R.id.ll_ext_big).setVisibility(View.VISIBLE);
+                Animation animation = AnimationUtils.loadAnimation(TkShortVideoActivity.this, R.anim.tk_ad_translate);
+                stdTikTokAdapter.getViewByPosition(msg.arg1, R.id.ll_ext_big).setAnimation(animation);
+                stdTikTokAdapter.getViewByPosition(msg.arg1, R.id.ll_ext_big).startAnimation(animation);
             }
-            /** 到达总时长，跳转其他APP **/
-            else if (msg.what == 3) {
-                SPUtils.set("fusion_jump", "1");
-                HttpRequest.stateChange(TkShortVideoActivity.this, 3, new HttpCallBack<List<String>>() {
-                    @Override
-                    public void onSuccess(List<String> list, String msg) {
-                        //释放所有视频资源
-                        GSYVideoManager.releaseAllVideos();
-                        ARouter.getInstance()
-                                .build(VideoApplication.THIRD_ROUTE_PATH)
-                                .navigation();
-                        overridePendingTransition(0, 0);
-                        //跳转后结束掉视频APP所有业务
-                        ActivityManager.getAppInstance().finishAllActivity();
-                    }
-
-                    @Override
-                    public void onFail(int errorCode, String errorMsg) {
-                        //释放所有视频资源
-                        GSYVideoManager.releaseAllVideos();
-                        ARouter.getInstance()
-                                .build(VideoApplication.THIRD_ROUTE_PATH)
-                                .navigation();
-                        overridePendingTransition(0, 0);
-                        //跳转后结束掉视频APP所有业务
-                        ActivityManager.getAppInstance().finishAllActivity();
-                    }
-                });
-            }
-            return false;
         }
+        /** 到达总时长，跳转其他APP **/
+        else if (msg.what == 3) {
+            SPUtils.set("fusion_jump", "1");
+            HttpRequest.stateChange(TkShortVideoActivity.this, 3, new HttpCallBack<List<String>>() {
+                @Override
+                public void onSuccess(List<String> list, String msg) {
+                    //释放所有视频资源
+                    GSYVideoManager.releaseAllVideos();
+                    ARouter.getInstance()
+                            .build(VideoApplication.THIRD_ROUTE_PATH)
+                            .navigation();
+                    overridePendingTransition(0, 0);
+                    //跳转后结束掉视频APP所有业务
+                    ActivityManager.getAppInstance().finishAllActivity();
+                }
+
+                @Override
+                public void onFail(int errorCode, String errorMsg) {
+                    //释放所有视频资源
+                    GSYVideoManager.releaseAllVideos();
+                    ARouter.getInstance()
+                            .build(VideoApplication.THIRD_ROUTE_PATH)
+                            .navigation();
+                    overridePendingTransition(0, 0);
+                    //跳转后结束掉视频APP所有业务
+                    ActivityManager.getAppInstance().finishAllActivity();
+                }
+            });
+        }
+        return false;
     });
 
     /**

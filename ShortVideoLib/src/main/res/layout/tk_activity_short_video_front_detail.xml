@@ -5,6 +5,37 @@
     android:layout_height="match_parent"
     android:background="#3000">
 
+    <RelativeLayout
+        android:id="@+id/rl_water"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/water1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2.5dp"
+            android:textColor="@color/color_888888"
+            android:textSize="20sp"
+            android:textStyle="bold|italic" />
+
+        <TextView
+            android:id="@+id/water2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1.5dp"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
+            android:shadowColor="#ff5370"
+            android:shadowDx="6"
+            android:shadowDy="6"
+            android:shadowRadius="4"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold|italic" />
+    </RelativeLayout>
+
     <com.shortvideo.lib.ui.widgets.StdTikTok
         android:id="@+id/videoplayer"
         android:layout_width="match_parent"
@@ -21,9 +52,9 @@
         android:id="@+id/ll_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="15dp"
-        android:background="@color/color_1000"
+        android:layout_marginEnd="15dp"
         android:layout_marginBottom="115dp"
         android:gravity="center_horizontal"
         android:orientation="vertical"
@@ -40,14 +71,6 @@
             app:lottie_loop="true"
             app:lottie_rawRes="@raw/tk_eyes"
             app:lottie_speed="0.5" />
-
-        <ImageView
-            android:id="@+id/setting"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_marginBottom="24dp"
-            android:padding="10dp"
-            android:src="@mipmap/tk_icon_setting2" />
 
         <ImageView
             android:id="@+id/like"
@@ -78,17 +101,27 @@
             android:id="@+id/download"
             android:layout_width="48dp"
             android:layout_height="48dp"
+            android:layout_marginBottom="24dp"
             android:padding="10dp"
-            android:src="@mipmap/tk_icon_download2" />
+            android:src="@mipmap/tk_icon_download"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/setting"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginBottom="24dp"
+            android:padding="10dp"
+            android:src="@mipmap/tk_icon_setting"
+            android:visibility="gone" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/ll_ext"
         android:layout_width="255dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="15dp"
+        android:layout_marginStart="15dp"
         android:layout_marginBottom="48dp"
         android:orientation="vertical">
 
@@ -157,7 +190,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:ellipsize="end"
-            android:gravity="end"
             android:maxLines="3"
             android:textColor="#f5f5f5"
             android:textSize="13sp" />
@@ -274,17 +306,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="15dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="32dp"
         android:layout_marginBottom="48dp"
-        android:layout_toEndOf="@+id/ll_btn"
+        android:layout_toStartOf="@+id/ll_btn"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/aut"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="end"
             android:singleLine="true"
             android:textColor="@color/white"
             android:textSize="13sp"
@@ -296,7 +327,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="7dp"
             android:ellipsize="end"
-            android:gravity="end"
             android:singleLine="true"
             android:textColor="@color/white"
             android:textSize="14sp"
@@ -308,7 +338,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="7dp"
             android:ellipsize="end"
-            android:gravity="end"
             android:maxLines="3"
             android:textColor="#f5f5f5"
             android:textSize="13sp" />

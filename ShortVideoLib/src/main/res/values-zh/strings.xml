@@ -68,4 +68,9 @@
     <string name="tk_setting_cache_success">清除成功！</string>
     <string name="tk_setting_cache_tip_title">注意</string>
     <string name="tk_setting_cache_tip">如果清除缓存，所有视频都需要重新加载，可能需要等待更长的时间。您确定要清除缓存吗？</string>
+
+    <string name="tk_front_video_title">热门</string>
+    <string name="tk_front_message_title">消息</string>
+    <string name="tk_front_message_empty_title">暂时没有消息</string>
+    <string name="tk_front_message_empty">你的消息将显示在这里，因此不要害羞，成为第一个留言的人！</string>
 </resources>

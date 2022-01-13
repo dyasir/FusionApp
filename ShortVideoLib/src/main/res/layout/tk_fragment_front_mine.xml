@@ -1,26 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/color_eeeeee"
-    android:orientation="vertical">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/black">
 
-    <com.shortvideo.lib.common.widgets.TitleView
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:mTitle="@string/tk_setting_title" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:text="@string/tk_setting_title"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
     <View
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:alpha="0.6"
-        android:background="@color/color_aaaaaa" />
+        android:layout_width="20dp"
+        android:layout_height="6dp"
+        android:layout_below="@+id/title"
+        android:layout_marginTop="1dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/bg_white_3dp" />
 
     <LinearLayout
+        android:id="@+id/ll_version"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:layout_below="@+id/title"
+        android:layout_marginTop="22dp"
         android:orientation="vertical"
         android:paddingBottom="16dp">
 
@@ -39,36 +48,13 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="16dp"
-            android:textColor="@color/color_aaaaaa" />
-
-        <LinearLayout
-            android:id="@+id/ll_content"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="16dp"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:visibility="gone">
-
-            <TextView
-                android:id="@+id/name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/color_aaaaaa" />
-
-            <TextView
-                android:id="@+id/video"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:textColor="@color/color_aaaaaa" />
-        </LinearLayout>
+            android:textColor="@color/white" />
     </LinearLayout>
 
     <com.scwang.smart.refresh.layout.SmartRefreshLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@+id/ll_version"
         app:srlEnableNestedScrolling="true"
         app:srlEnableOverScrollBounce="true"
         app:srlEnablePureScrollMode="true">
@@ -86,20 +72,17 @@
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="20dp"
-                    android:background="@color/white" />
+                    android:layout_height="20dp" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
-                    android:alpha="0.6"
-                    android:background="@color/color_aaaaaa" />
+                    android:background="@color/color_181818" />
 
                 <RelativeLayout
                     android:id="@+id/rl_jump"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
-                    android:background="@color/white"
                     android:paddingStart="16dp"
                     android:paddingEnd="16dp">
 
@@ -108,7 +91,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:text="@string/tk_setting_rate"
-                        android:textColor="@color/color_333333"
+                        android:textColor="@color/white"
                         android:textSize="15sp" />
 
                     <ImageView
@@ -122,14 +105,12 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
-                    android:alpha="0.6"
-                    android:background="@color/color_aaaaaa" />
+                    android:background="@color/color_181818" />
 
                 <RelativeLayout
                     android:id="@+id/rl_clean"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
-                    android:background="@color/white"
                     android:paddingStart="16dp"
                     android:paddingEnd="16dp">
 
@@ -138,7 +119,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:text="@string/tk_setting_cache"
-                        android:textColor="@color/color_333333"
+                        android:textColor="@color/white"
                         android:textSize="15sp" />
 
                     <TextView
@@ -149,7 +130,7 @@
                         android:layout_marginEnd="8dp"
                         android:layout_toStartOf="@+id/next"
                         android:text="0 KB"
-                        android:textColor="@color/color_aaaaaa"
+                        android:textColor="@color/white"
                         android:textSize="12sp" />
 
                     <ImageView
@@ -163,4 +144,4 @@
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
     </com.scwang.smart.refresh.layout.SmartRefreshLayout>
-</LinearLayout>
+</RelativeLayout>

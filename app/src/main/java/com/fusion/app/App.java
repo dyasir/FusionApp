@@ -11,6 +11,7 @@ public class App extends VideoApplication {
      * RetrofitFactory.NEW_URL为默认Api域名，防止Firebase因超时或获取失败导致没有Api域名
      * setVideoLayoutType选择视频页面布局，目前只有1,2， 1为右侧功能区，2为左侧功能区
      * setPureEnjoyment是否开启纯享功能，true则开启纯享模式，视频页面增加纯享功能按钮
+     * setOpenFrontPage开启前置页面，如果开启了，则setVideoLayoutType不生效，默认为1
      */
     @Override
     protected void initVideoApiUrl() {
@@ -23,5 +24,7 @@ public class App extends VideoApplication {
         setVideoLayoutType(2);
         //开启纯享功能
         setPureEnjoyment(true);
+        //开启前置页面
+        setOpenFrontPage(true);
     }
 }
