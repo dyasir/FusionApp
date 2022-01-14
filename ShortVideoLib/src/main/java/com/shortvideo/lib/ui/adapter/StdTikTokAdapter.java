@@ -3,6 +3,7 @@ package com.shortvideo.lib.ui.adapter;
 import android.content.Intent;
 import android.net.Uri;
 import android.text.TextUtils;
+import android.view.View;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
@@ -60,13 +61,17 @@ public class StdTikTokAdapter extends BaseQuickAdapter<HomeBean.DataDTO, BaseVie
                     .setGone(R.id.ll_ext, true)
                     .setGone(R.id.ll_ext_big, true)
                     .setGone(R.id.eyes, !VideoApplication.getInstance().isPureEnjoyment())
-                    .setVisible(R.id.like, !workBean.getVideo().isPureEnjoyment())
-                    .setVisible(R.id.like_num, workBean.getVideo().getLike_count() > 0 && !workBean.getVideo().isPureEnjoyment())
                     .setVisible(R.id.setting, !workBean.getVideo().isPureEnjoyment())
                     .setVisible(R.id.share, !workBean.getVideo().isPureEnjoyment())
-                    .setVisible(R.id.download, !workBean.getVideo().isPureEnjoyment())
                     .setVisible(R.id.ll_title, !workBean.getVideo().isPureEnjoyment());
 //                    .setGone(R.id.setting, false);
+
+            baseViewHolder.getView(R.id.like).setVisibility(VideoApplication.getInstance().isApplyToLike() ?
+                    (!workBean.getVideo().isPureEnjoyment() ? View.VISIBLE : View.INVISIBLE) : View.GONE);
+            baseViewHolder.getView(R.id.like_num).setVisibility(VideoApplication.getInstance().isApplyToLike() ?
+                    (workBean.getVideo().getLike_count() > 0 && !workBean.getVideo().isPureEnjoyment() ? View.VISIBLE : View.INVISIBLE) : View.GONE);
+            baseViewHolder.getView(R.id.download).setVisibility(VideoApplication.getInstance().isApplyDownload() ?
+                    (!workBean.getVideo().isPureEnjoyment() ? View.VISIBLE : View.INVISIBLE) : View.GONE);
 
             //纯享模式
             if (VideoApplication.getInstance().isPureEnjoyment()) {

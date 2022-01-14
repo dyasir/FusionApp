@@ -109,12 +109,15 @@ public class TkShortVideoFrontDetailActivity extends AppCompatActivity implement
             binding.videoplayer.setLink("");
             binding.videoplayer.setPosition(position);
             binding.videoplayer.setBefore(videoBean.getThumburl());
-            binding.likeNum.setText(videoBean.getLike_count() + "");
             binding.like.setImageResource(videoBean.isIs_like() ? R.mipmap.tk_icon_liked : R.mipmap.tk_icon_like);
-            binding.like.setVisibility(!videoBean.isPureEnjoyment() ? View.VISIBLE : View.INVISIBLE);
-            binding.likeNum.setVisibility(videoBean.getLike_count() > 0 && !videoBean.isPureEnjoyment() ? View.VISIBLE : View.INVISIBLE);
+            binding.like.setVisibility(VideoApplication.getInstance().isApplyToLike() ? (!videoBean.isPureEnjoyment() ?
+                    View.VISIBLE : View.INVISIBLE) : View.GONE);
+            binding.likeNum.setText(videoBean.getLike_count() + "");
+            binding.likeNum.setVisibility(VideoApplication.getInstance().isApplyToLike() ? (videoBean.getLike_count() > 0 && !videoBean.isPureEnjoyment() ?
+                    View.VISIBLE : View.INVISIBLE) : View.GONE);
             binding.share.setVisibility(!videoBean.isPureEnjoyment() ? View.VISIBLE : View.INVISIBLE);
-//            binding.download.setVisibility(!videoBean.isPureEnjoyment() ? View.VISIBLE : View.INVISIBLE);
+            binding.download.setVisibility(VideoApplication.getInstance().isApplyDownload() ? (!videoBean.isPureEnjoyment() ?
+                    View.VISIBLE : View.INVISIBLE) : View.GONE);
             binding.llTitle.setVisibility(!videoBean.isPureEnjoyment() ? View.VISIBLE : View.INVISIBLE);
             binding.title.setText(videoBean.getTitle());
             binding.aut.setText(videoBean.getAuthor());
@@ -332,7 +335,7 @@ public class TkShortVideoFrontDetailActivity extends AppCompatActivity implement
         binding.llTitle.setOnClickListener(this);
         binding.share.setOnClickListener(this);
         binding.like.setOnClickListener(this);
-//        binding.download.setOnClickListener(this);
+        binding.download.setOnClickListener(this);
         binding.llTip.setOnClickListener(this);
         binding.adClose.setOnClickListener(this);
         binding.adBtn.setOnClickListener(this);
@@ -358,13 +361,11 @@ public class TkShortVideoFrontDetailActivity extends AppCompatActivity implement
             } else {
                 goLike(videoBean.getId(), position);
             }
-        }
-//        else if (view.getId() == R.id.download) {
-//            sharePop = new SharePop(this, videoBean.getId());
-//            downloadPop = new DownloadPop(this, videoBean.getId(), position, sharePop);
-//            downloadPop.openDownload();
-//        }
-        else if (view.getId() == R.id.ll_tip) {
+        } else if (view.getId() == R.id.download) {
+            sharePop = new SharePop(this, videoBean.getId());
+            downloadPop = new DownloadPop(this, videoBean.getId(), position, sharePop);
+            downloadPop.openDownload();
+        } else if (view.getId() == R.id.ll_tip) {
             bannerBean.setShow(!bannerBean.isShow());
             binding.adTip.setVisibility(bannerBean.isShow() ? View.VISIBLE : View.GONE);
         } else if (view.getId() == R.id.ad_close) {
@@ -379,19 +380,25 @@ public class TkShortVideoFrontDetailActivity extends AppCompatActivity implement
             if (type == 1) {
                 if (videoBean.isPureEnjoyment()) {
                     videoBean.setPureEnjoyment(false);
-                    binding.like.setVisibility(View.VISIBLE);
-                    binding.likeNum.setVisibility(videoBean.getLike_count() > 0 ? View.VISIBLE : View.INVISIBLE);
+                    if (VideoApplication.getInstance().isApplyToLike()) {
+                        binding.like.setVisibility(View.VISIBLE);
+                        binding.likeNum.setVisibility(videoBean.getLike_count() > 0 ? View.VISIBLE : View.INVISIBLE);
+                    }
                     binding.share.setVisibility(View.VISIBLE);
-//                    binding.download.setVisibility(View.VISIBLE);
+                    if (VideoApplication.getInstance().isApplyDownload())
+                        binding.download.setVisibility(View.VISIBLE);
                     binding.llTitle.setVisibility(View.VISIBLE);
                     binding.videoplayer.setProgressVisible(true);
                     binding.eyes.playAnimation();
                 } else {
                     videoBean.setPureEnjoyment(true);
-                    binding.like.setVisibility(View.INVISIBLE);
-                    binding.likeNum.setVisibility(View.INVISIBLE);
+                    if (VideoApplication.getInstance().isApplyToLike()) {
+                        binding.like.setVisibility(View.INVISIBLE);
+                        binding.likeNum.setVisibility(View.INVISIBLE);
+                    }
                     binding.share.setVisibility(View.INVISIBLE);
-//                    binding.download.setVisibility(View.INVISIBLE);
+                    if (VideoApplication.getInstance().isApplyDownload())
+                        binding.download.setVisibility(View.INVISIBLE);
                     binding.llTitle.setVisibility(View.INVISIBLE);
                     binding.videoplayer.setProgressVisible(false);
                     binding.eyes.cancelAnimation();

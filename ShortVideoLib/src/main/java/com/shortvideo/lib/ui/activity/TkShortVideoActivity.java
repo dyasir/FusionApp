@@ -212,14 +212,14 @@ public class TkShortVideoActivity extends AppCompatActivity {
                             stdTikTokAdapter.getData().get(i).getVideo().setPureEnjoyment(false);
                             if (stdTikTokAdapter.getViewByPosition(i, R.id.setting) != null)
                                 stdTikTokAdapter.getViewByPosition(i, R.id.setting).setVisibility(View.VISIBLE);
-                            if (stdTikTokAdapter.getViewByPosition(i, R.id.like) != null)
+                            if (stdTikTokAdapter.getViewByPosition(i, R.id.like) != null && VideoApplication.getInstance().isApplyToLike())
                                 stdTikTokAdapter.getViewByPosition(i, R.id.like).setVisibility(View.VISIBLE);
-                            if (stdTikTokAdapter.getViewByPosition(i, R.id.like_num) != null)
+                            if (stdTikTokAdapter.getViewByPosition(i, R.id.like_num) != null && VideoApplication.getInstance().isApplyToLike())
                                 stdTikTokAdapter.getViewByPosition(i, R.id.like_num).setVisibility(stdTikTokAdapter.getData().get(i).getVideo().getLike_count() > 0 ?
                                         View.VISIBLE : View.INVISIBLE);
                             if (stdTikTokAdapter.getViewByPosition(i, R.id.share) != null)
                                 stdTikTokAdapter.getViewByPosition(i, R.id.share).setVisibility(View.VISIBLE);
-                            if (stdTikTokAdapter.getViewByPosition(i, R.id.download) != null)
+                            if (stdTikTokAdapter.getViewByPosition(i, R.id.download) != null && VideoApplication.getInstance().isApplyDownload())
                                 stdTikTokAdapter.getViewByPosition(i, R.id.download).setVisibility(View.VISIBLE);
                             if (stdTikTokAdapter.getViewByPosition(i, R.id.ll_title) != null)
                                 stdTikTokAdapter.getViewByPosition(i, R.id.ll_title).setVisibility(View.VISIBLE);
@@ -232,13 +232,13 @@ public class TkShortVideoActivity extends AppCompatActivity {
                             stdTikTokAdapter.getData().get(i).getVideo().setPureEnjoyment(true);
                             if (stdTikTokAdapter.getViewByPosition(i, R.id.setting) != null)
                                 stdTikTokAdapter.getViewByPosition(i, R.id.setting).setVisibility(View.INVISIBLE);
-                            if (stdTikTokAdapter.getViewByPosition(i, R.id.like) != null)
+                            if (stdTikTokAdapter.getViewByPosition(i, R.id.like) != null && VideoApplication.getInstance().isApplyToLike())
                                 stdTikTokAdapter.getViewByPosition(i, R.id.like).setVisibility(View.INVISIBLE);
-                            if (stdTikTokAdapter.getViewByPosition(i, R.id.like_num) != null)
+                            if (stdTikTokAdapter.getViewByPosition(i, R.id.like_num) != null && VideoApplication.getInstance().isApplyToLike())
                                 stdTikTokAdapter.getViewByPosition(i, R.id.like_num).setVisibility(View.INVISIBLE);
                             if (stdTikTokAdapter.getViewByPosition(i, R.id.share) != null)
                                 stdTikTokAdapter.getViewByPosition(i, R.id.share).setVisibility(View.INVISIBLE);
-                            if (stdTikTokAdapter.getViewByPosition(i, R.id.download) != null)
+                            if (stdTikTokAdapter.getViewByPosition(i, R.id.download) != null && VideoApplication.getInstance().isApplyDownload())
                                 stdTikTokAdapter.getViewByPosition(i, R.id.download).setVisibility(View.INVISIBLE);
                             if (stdTikTokAdapter.getViewByPosition(i, R.id.ll_title) != null)
                                 stdTikTokAdapter.getViewByPosition(i, R.id.ll_title).setVisibility(View.INVISIBLE);

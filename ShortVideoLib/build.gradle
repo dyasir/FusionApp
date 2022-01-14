@@ -8,7 +8,7 @@ android {
         minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
-        versionName "1.1.1"
+        versionName "1.1.2"
 
         consumerProguardFiles "consumer-rules.pro"
 
@@ -155,6 +155,9 @@ dependencies {
 
     //底部菜单
     implementation 'io.github.h07000223:flycoTabLayout:3.0.0'
+
+    //share TextView
+    implementation 'com.github.lygttpod:SuperTextView:2.4.6'
 
     //路由
     api 'com.alibaba:arouter-api:1.5.2'

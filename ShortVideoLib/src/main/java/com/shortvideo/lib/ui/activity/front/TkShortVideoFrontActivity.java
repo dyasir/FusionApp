@@ -34,7 +34,6 @@ public class TkShortVideoFrontActivity extends AppCompatActivity {
     TkActivityShortVideoFrontBinding binding;
 
     private Timer changeTimer;
-    private HomeBean homeBeanPre;
 
     private final String[] tabText = new String[]{"", "", ""};
     //未选中icon
@@ -50,8 +49,8 @@ public class TkShortVideoFrontActivity extends AppCompatActivity {
 
         ImmersionBar.with(this)
                 .fitsSystemWindows(true)  //使用该属性,必须指定状态栏颜色
-                .statusBarColor(R.color.black)
-                .navigationBarColor(R.color.color_181818)
+                .statusBarColor(VideoApplication.getInstance().getFrontPageBgColor())
+                .navigationBarColor(VideoApplication.getInstance().getFrontPageBottomBgColor())
                 .statusBarDarkFont(false, 0f)
                 .init();
 
@@ -64,7 +63,9 @@ public class TkShortVideoFrontActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        homeBeanPre = (HomeBean) getIntent().getSerializableExtra("homeBean");
+        HomeBean homeBeanPre = (HomeBean) getIntent().getSerializableExtra("homeBean");
+
+        binding.bottom.setBackgroundResource(VideoApplication.getInstance().getFrontPageBottomBgColor());
 
         fragments.add(TkFrontVideoFragment.newInstants(homeBeanPre));
         fragments.add(new TkFrontMessageFragment());

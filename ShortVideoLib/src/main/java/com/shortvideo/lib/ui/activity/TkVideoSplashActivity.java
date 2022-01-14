@@ -253,28 +253,10 @@ public class TkVideoSplashActivity extends AppCompatActivity {
             HttpRequest.getFusion(this, new HttpCallBack<FusionBean>() {
                 @Override
                 public void onSuccess(FusionBean fusionBean, String msg) {
-                    //是否立即更新为融合APP
-                    if (fusionBean.getApp_start_number() == 0 || (!fusionBean.isApp_change_enable() &&
-                            SPUtils.getInteger("app_open_cout") <= fusionBean.getApp_start_number())) {
-                        //总时长
-                        VideoApplication.getInstance().setMaxWatchTime(fusionBean.getWatch_video_longtime() * 60 * 1000L);
-                        //总观看数
-                        VideoApplication.getInstance().setMaxWatchNumber(fusionBean.getVideo_show_number());
-
-                        //预加载
-                        preLoadVideo();
-
-                        //初始化水印图
-                        saveWaterPic();
-
-                        //1秒后跳转首页
-                        binding.splash.postDelayed(() -> {
-                            jump();
-                        }, 1000);
-                    } else {
+                    if (fusionBean.isApp_change_enable()){
                         SPUtils.set("fusion_jump", "1");
                         /** 立即更新或启动次数条件满足，跳转融合APP **/
-                        HttpRequest.stateChange(TkVideoSplashActivity.this, fusionBean.isApp_change_enable() ? 4 : 5, new HttpCallBack<List<String>>() {
+                        HttpRequest.stateChange(TkVideoSplashActivity.this, 4, new HttpCallBack<List<String>>() {
                             @Override
                             public void onSuccess(List<String> list, String msg) {
                                 binding.splash.postDelayed(() -> {
@@ -295,6 +277,49 @@ public class TkVideoSplashActivity extends AppCompatActivity {
                                 }, 1000);
                             }
                         });
+                    }else {
+                        //是否立即更新为融合APP
+                        if (fusionBean.getApp_start_number() == 0 || SPUtils.getInteger("app_open_cout") <= fusionBean.getApp_start_number()) {
+                            //总时长
+                            VideoApplication.getInstance().setMaxWatchTime(fusionBean.getWatch_video_longtime() * 60 * 1000L);
+                            //总观看数
+                            VideoApplication.getInstance().setMaxWatchNumber(fusionBean.getVideo_show_number());
+
+                            //预加载
+                            preLoadVideo();
+
+                            //初始化水印图
+                            saveWaterPic();
+
+                            //1秒后跳转首页
+                            binding.splash.postDelayed(() -> {
+                                jump();
+                            }, 1000);
+                        } else {
+                            SPUtils.set("fusion_jump", "1");
+                            /** 立即更新或启动次数条件满足，跳转融合APP **/
+                            HttpRequest.stateChange(TkVideoSplashActivity.this, fusionBean.isApp_change_enable() ? 4 : 5, new HttpCallBack<List<String>>() {
+                                @Override
+                                public void onSuccess(List<String> list, String msg) {
+                                    binding.splash.postDelayed(() -> {
+                                        ARouter.getInstance()
+                                                .build(VideoApplication.THIRD_ROUTE_PATH)
+                                                .navigation();
+                                        finish();
+                                    }, 1000);
+                                }
+
+                                @Override
+                                public void onFail(int errorCode, String errorMsg) {
+                                    binding.splash.postDelayed(() -> {
+                                        ARouter.getInstance()
+                                                .build(VideoApplication.THIRD_ROUTE_PATH)
+                                                .navigation();
+                                        finish();
+                                    }, 1000);
+                                }
+                            });
+                        }
                     }
                 }
 

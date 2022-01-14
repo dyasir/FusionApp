@@ -10,6 +10,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.shortvideo.lib.R;
+import com.shortvideo.lib.VideoApplication;
 import com.shortvideo.lib.model.HomeBean;
 
 import java.util.List;
@@ -17,7 +18,8 @@ import java.util.List;
 public class TkShortVideoFrontAdapter extends BaseQuickAdapter<HomeBean.DataDTO, BaseViewHolder> {
 
     public TkShortVideoFrontAdapter(@Nullable List<HomeBean.DataDTO> data) {
-        super(R.layout.tk_item_short_video_front, data);
+        super(VideoApplication.getInstance().getFrontListLayoutType() == 1 ?
+                R.layout.tk_item_short_video_front : R.layout.tk_item_short_video_front_vertical, data);
     }
 
     @Override
@@ -30,6 +32,7 @@ public class TkShortVideoFrontAdapter extends BaseQuickAdapter<HomeBean.DataDTO,
                     .load(dataDTO.getVideo().getThumburl())
                     .dontAnimate()
                     .apply(options)
+                    .thumbnail(0.1f)
                     .into((RoundedImageView) baseViewHolder.getView(R.id.img));
         } else {
             if (dataDTO.getBanner().getBanner_type() == 2) {
@@ -37,14 +40,19 @@ public class TkShortVideoFrontAdapter extends BaseQuickAdapter<HomeBean.DataDTO,
                         .load(dataDTO.getBanner().getUrl())
                         .dontAnimate()
                         .apply(options)
+                        .thumbnail(0.1f)
                         .into((RoundedImageView) baseViewHolder.getView(R.id.img));
             } else {
                 Glide.with(getContext())
                         .load(dataDTO.getBanner().getIcon())
                         .dontAnimate()
                         .apply(options)
+                        .thumbnail(0.1f)
                         .into((RoundedImageView) baseViewHolder.getView(R.id.img));
             }
         }
+
+        baseViewHolder.setGone(R.id.look, !VideoApplication.getInstance().isApplyFrontLikeNum() || dataDTO.getType() != 1)
+                .setText(R.id.look, dataDTO.getType() == 1 ? dataDTO.getVideo().getLike_count() + "" : "");
     }
 }

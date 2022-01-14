@@ -145,11 +145,13 @@ public class StdTikTok extends StandardGSYVideoPlayer {
 //        super.touchDoubleUp(e);
         if (!VideoApplication.getInstance().isPageScoll() && canClick) {
             if (TextUtils.isEmpty(link)) {
-                if (position != -1)
-                    EventBus.getDefault().post(new OnVideoDoubleLikeEvent(position));
+                if (VideoApplication.getInstance().isApplyToLike()) {
+                    if (position != -1)
+                        EventBus.getDefault().post(new OnVideoDoubleLikeEvent(position));
 
-                doubleClickTime = TimeDateUtils.getCurTimeLong();
-                animalBegin(e.getX(), e.getY());
+                    doubleClickTime = TimeDateUtils.getCurTimeLong();
+                    animalBegin(e.getX(), e.getY());
+                }
             } else {
                 Log.e("result", "广告点击: " + link);
                 Uri content_url = Uri.parse(link);

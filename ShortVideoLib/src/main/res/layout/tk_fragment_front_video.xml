@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black">
@@ -15,13 +16,16 @@
         android:textSize="18sp"
         android:textStyle="bold" />
 
-    <View
+    <com.allen.library.SuperTextView
+        android:id="@+id/line"
         android:layout_width="20dp"
         android:layout_height="6dp"
         android:layout_below="@+id/title"
-        android:layout_marginTop="1dp"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/bg_white_3dp" />
+        android:layout_marginTop="1dp"
+        app:sShapeCornersRadius="3dp"
+        app:sShapeSolidColor="@color/white"
+        app:sUseShape="true" />
 
     <com.scwang.smart.refresh.layout.SmartRefreshLayout
         android:id="@+id/refresh"
@@ -34,6 +38,8 @@
             android:id="@+id/recycle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginStart="7.5dp"
+            android:layout_marginEnd="7.5dp"
             android:overScrollMode="never"
             android:scrollbars="none" />
     </com.scwang.smart.refresh.layout.SmartRefreshLayout>

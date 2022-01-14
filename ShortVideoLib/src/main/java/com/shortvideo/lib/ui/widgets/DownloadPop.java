@@ -90,6 +90,8 @@ public class DownloadPop extends BasePopupWindow implements View.OnClickListener
         binding.txProgress.setOnClickListener(this);
         binding.share.setOnClickListener(this);
         binding.set.setOnClickListener(this);
+
+        binding.download.setVisibility(VideoApplication.getInstance().isApplyDownload() ? View.VISIBLE : View.GONE);
     }
 
     @Override

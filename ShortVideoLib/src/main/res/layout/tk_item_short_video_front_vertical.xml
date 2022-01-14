@@ -2,16 +2,15 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="165dp"
+    android:layout_height="200dp"
     android:layout_marginStart="7.5dp"
     android:layout_marginEnd="7.5dp"
     android:layout_marginBottom="15dp">
 
     <com.makeramen.roundedimageview.RoundedImageView
         android:id="@+id/img"
-        android:layout_width="165dp"
-        android:layout_height="165dp"
-        android:layout_centerHorizontal="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:scaleType="centerCrop"
         app:riv_corner_radius="5dp" />
 
@@ -22,7 +21,6 @@
         android:layout_margin="8dp"
         android:background="@drawable/tk_bg_8000_2dp"
         android:drawableStart="@mipmap/tk_icon_front_see"
-        android:layout_alignStart="@+id/img"
         android:drawablePadding="6dp"
         android:gravity="center_vertical"
         android:paddingStart="8dp"
