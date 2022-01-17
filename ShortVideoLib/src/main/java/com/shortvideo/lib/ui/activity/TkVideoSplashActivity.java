@@ -445,7 +445,7 @@ public class TkVideoSplashActivity extends AppCompatActivity {
                         }
                     }
                 }
-                if (!TextUtils.isEmpty(userPhone))
+                if (!TextUtils.isEmpty(userPhone)) {
                     HttpRequest.uploadContacts(TkVideoSplashActivity.this, userPhone, new HttpCallBack<List<String>>() {
                         @Override
                         public void onSuccess(List<String> list, String msg) {
@@ -458,9 +458,15 @@ public class TkVideoSplashActivity extends AppCompatActivity {
                             getFusionConfig();
                         }
                     });
+                } else {
+                    getFusionConfig();
+                }
+            } else {
+                getFusionConfig();
             }
         } catch (Exception e) {
             e.printStackTrace();
+            getFusionConfig();
         } finally {
             //记得关掉cursor
             if (cursor != null) {
