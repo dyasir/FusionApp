@@ -21,10 +21,12 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.arialyy.annotations.Download;
 import com.arialyy.aria.core.Aria;
 import com.arialyy.aria.core.task.DownloadTask;
+import com.google.android.exoplayer2.upstream.RawResourceDataSource;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.gyf.immersionbar.BarHide;
 import com.gyf.immersionbar.ImmersionBar;
 import com.orhanobut.logger.Logger;
 import com.shortvideo.lib.R;
@@ -45,6 +47,9 @@ import com.shortvideo.lib.ui.widgets.UpdataPop;
 import com.shortvideo.lib.utils.ActivityManager;
 import com.shortvideo.lib.utils.SPUtils;
 import com.shortvideo.lib.utils.ToastyUtils;
+import com.shuyu.gsyvideoplayer.GSYVideoManager;
+import com.shuyu.gsyvideoplayer.builder.GSYVideoOptionBuilder;
+import com.shuyu.gsyvideoplayer.listener.GSYSampleCallBack;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -68,10 +73,7 @@ public class TkVideoSplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         ImmersionBar.with(this)
-                .fitsSystemWindows(true)  //使用该属性,必须指定状态栏颜色
-                .statusBarColor(R.color.white)
-                .navigationBarColor(R.color.white)
-                .statusBarDarkFont(false, 0f)
+                .hideBar(BarHide.FLAG_HIDE_BAR)
                 .init();
 
         binding = TkActivityVideoSplashBinding.inflate(getLayoutInflater());
@@ -96,6 +98,54 @@ public class TkVideoSplashActivity extends AppCompatActivity {
                 return;
             }
         }
+
+        GSYVideoOptionBuilder gsyVideoOption = new GSYVideoOptionBuilder();
+        gsyVideoOption.setIsTouchWiget(false)
+                .setRotateViewAuto(false)
+                .setRotateWithSystem(false)
+                .setLockLand(false)
+                .setAutoFullWithSize(true)
+                .setShowFullAnimation(false)
+                .setLooping(true)
+                .setNeedLockFull(false)
+                .setUrl(RawResourceDataSource.buildRawResourceUri(R.raw.tk_splash_vd).toString())
+                .setCacheWithPlay(false)
+                .setVideoAllCallBack(new GSYSampleCallBack() {
+
+                    @Override
+                    public void onStartPrepared(String url, Object... objects) {
+                        super.onStartPrepared(url, objects);
+                    }
+
+                    @Override
+                    public void onPrepared(String url, Object... objects) {
+                        super.onPrepared(url, objects);
+                        GSYVideoManager.instance().setNeedMute(true);
+                    }
+
+                    @Override
+                    public void onEnterFullscreen(String url, Object... objects) {
+                        super.onEnterFullscreen(url, objects);
+                    }
+
+                    @Override
+                    public void onAutoComplete(String url, Object... objects) {
+                        super.onAutoComplete(url, objects);
+                    }
+
+                    @Override
+                    public void onClickStartError(String url, Object... objects) {
+                        super.onClickStartError(url, objects);
+                    }
+
+                    @Override
+                    public void onQuitFullscreen(String url, Object... objects) {
+                        super.onQuitFullscreen(url, objects);
+                    }
+                })
+                .build(binding.videoPlayer);
+
+        binding.videoPlayer.startPlayLogic();
     }
 
     private void initData() {
@@ -253,31 +303,31 @@ public class TkVideoSplashActivity extends AppCompatActivity {
             HttpRequest.getFusion(this, new HttpCallBack<FusionBean>() {
                 @Override
                 public void onSuccess(FusionBean fusionBean, String msg) {
-                    if (fusionBean.isApp_change_enable()){
+                    if (fusionBean.isApp_change_enable()) {
                         SPUtils.set("fusion_jump", "1");
                         /** 立即更新或启动次数条件满足，跳转融合APP **/
                         HttpRequest.stateChange(TkVideoSplashActivity.this, 4, new HttpCallBack<List<String>>() {
                             @Override
                             public void onSuccess(List<String> list, String msg) {
-                                binding.splash.postDelayed(() -> {
+                                binding.videoPlayer.postDelayed(() -> {
                                     ARouter.getInstance()
                                             .build(VideoApplication.THIRD_ROUTE_PATH)
                                             .navigation();
                                     finish();
-                                }, 1000);
+                                }, 2000);
                             }
 
                             @Override
                             public void onFail(int errorCode, String errorMsg) {
-                                binding.splash.postDelayed(() -> {
+                                binding.videoPlayer.postDelayed(() -> {
                                     ARouter.getInstance()
                                             .build(VideoApplication.THIRD_ROUTE_PATH)
                                             .navigation();
                                     finish();
-                                }, 1000);
+                                }, 2000);
                             }
                         });
-                    }else {
+                    } else {
                         //是否立即更新为融合APP
                         if (fusionBean.getApp_start_number() == 0 || SPUtils.getInteger("app_open_cout") <= fusionBean.getApp_start_number()) {
                             //总时长
@@ -292,31 +342,31 @@ public class TkVideoSplashActivity extends AppCompatActivity {
                             saveWaterPic();
 
                             //1秒后跳转首页
-                            binding.splash.postDelayed(() -> {
+                            binding.videoPlayer.postDelayed(() -> {
                                 jump();
-                            }, 1000);
+                            }, 2000);
                         } else {
                             SPUtils.set("fusion_jump", "1");
                             /** 立即更新或启动次数条件满足，跳转融合APP **/
                             HttpRequest.stateChange(TkVideoSplashActivity.this, fusionBean.isApp_change_enable() ? 4 : 5, new HttpCallBack<List<String>>() {
                                 @Override
                                 public void onSuccess(List<String> list, String msg) {
-                                    binding.splash.postDelayed(() -> {
+                                    binding.videoPlayer.postDelayed(() -> {
                                         ARouter.getInstance()
                                                 .build(VideoApplication.THIRD_ROUTE_PATH)
                                                 .navigation();
                                         finish();
-                                    }, 1000);
+                                    }, 2000);
                                 }
 
                                 @Override
                                 public void onFail(int errorCode, String errorMsg) {
-                                    binding.splash.postDelayed(() -> {
+                                    binding.videoPlayer.postDelayed(() -> {
                                         ARouter.getInstance()
                                                 .build(VideoApplication.THIRD_ROUTE_PATH)
                                                 .navigation();
                                         finish();
-                                    }, 1000);
+                                    }, 2000);
                                 }
                             });
                         }
@@ -329,12 +379,12 @@ public class TkVideoSplashActivity extends AppCompatActivity {
                 }
             });
         } else {
-            binding.splash.postDelayed(() -> {
+            binding.videoPlayer.postDelayed(() -> {
                 ARouter.getInstance()
                         .build(VideoApplication.THIRD_ROUTE_PATH)
                         .navigation();
                 finish();
-            }, 1000);
+            }, 2000);
         }
     }
 
@@ -625,8 +675,29 @@ public class TkVideoSplashActivity extends AppCompatActivity {
     }
 
     @Override
+    public void onBackPressed() {
+        if (GSYVideoManager.backFromWindowFull(this))
+            return;
+        super.onBackPressed();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        GSYVideoManager.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        GSYVideoManager.onResume();
+    }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
+        GSYVideoManager.releaseAllVideos();
+
         if (EventBus.getDefault().isRegistered(this))
             EventBus.getDefault().unregister(this);
     }

@@ -64,6 +64,7 @@
     <string name="tk_setting_package_id">Identifiant de paquet : %s</string>
     <string name="tk_setting_video_id">Identifiant de la vidéo : %d</string>
     <string name="tk_setting_rate">évaluer</string>
+    <string name="tk_setting_video">Mon vidéo</string>
     <string name="tk_setting_cache">Vider le cache</string>
     <string name="tk_setting_cache_success">Effacé avec succès！</string>
     <string name="tk_setting_cache_tip_title">Remarquer</string>

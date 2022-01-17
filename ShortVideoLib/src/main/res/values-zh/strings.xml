@@ -64,6 +64,7 @@
     <string name="tk_setting_package_id">包ID : %s</string>
     <string name="tk_setting_video_id">视频ID : %d</string>
     <string name="tk_setting_rate">去评分</string>
+    <string name="tk_setting_video">我的视频</string>
     <string name="tk_setting_cache">清除缓存</string>
     <string name="tk_setting_cache_success">清除成功！</string>
     <string name="tk_setting_cache_tip_title">注意</string>

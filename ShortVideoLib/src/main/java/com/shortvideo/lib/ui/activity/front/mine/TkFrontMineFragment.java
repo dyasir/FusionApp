@@ -62,19 +62,28 @@ public class TkFrontMineFragment extends Fragment implements View.OnClickListene
         //清除缓存颜色
         binding.txClean.setTextColor(getResources().getColor(VideoApplication.getInstance().getFrontPageTitleColor()));
         binding.cache.setTextColor(getResources().getColor(VideoApplication.getInstance().getFrontPageTitleColor()));
+        binding.rlVideo.setVisibility(VideoApplication.getInstance().isFrontPageTakeVideo() ? View.VISIBLE : View.GONE);
+        binding.txVideo.setTextColor(getResources().getColor(VideoApplication.getInstance().getFrontPageTitleColor()));
         /** 自定义属性部分结束 **/
-
-        binding.version.setText(getString(R.string.tk_setting_version, VideoApplication.getInstance().getVerName()));
-        try {
-            binding.cache.setText(DataCleanManager.getTotalCacheSize(binding.cache.getContext()));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     private void initData() {
         binding.rlJump.setOnClickListener(this);
         binding.rlClean.setOnClickListener(this);
+        binding.rlVideo.setOnClickListener(this);
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (!hidden) {
+            binding.version.setText(getString(R.string.tk_setting_version, VideoApplication.getInstance().getVerName()));
+            try {
+                binding.cache.setText(DataCleanManager.getTotalCacheSize(binding.cache.getContext()));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @Override
@@ -92,6 +101,8 @@ public class TkFrontMineFragment extends Fragment implements View.OnClickListene
                 ToastyUtils.ToastShow(getString(R.string.tk_setting_cache_success));
             });
             tipPop.initTip(getString(R.string.tk_setting_cache_tip_title), getString(R.string.tk_setting_cache_tip));
+        } else if (v.getId() == R.id.rl_video) {
+            startActivity(new Intent(getActivity(), TkFrontMyVideoActivity.class));
         }
     }
 

@@ -1,6 +1,9 @@
 package com.shortvideo.lib.ui.activity.front.videolist;
 
+import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,23 +16,33 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.luck.picture.lib.PictureSelector;
+import com.luck.picture.lib.config.PictureMimeType;
+import com.luck.picture.lib.entity.LocalMedia;
+import com.luck.picture.lib.listener.OnResultCallbackListener;
+import com.luck.picture.lib.tools.PictureFileUtils;
 import com.scwang.smart.refresh.footer.ClassicsFooter;
 import com.scwang.smart.refresh.header.MaterialHeader;
 import com.scwang.smart.refresh.layout.api.RefreshLayout;
 import com.scwang.smart.refresh.layout.listener.OnRefreshLoadMoreListener;
 import com.shortvideo.lib.VideoApplication;
+import com.shortvideo.lib.common.TkAppConfig;
 import com.shortvideo.lib.common.http.HttpCallBack;
 import com.shortvideo.lib.common.http.HttpRequest;
 import com.shortvideo.lib.databinding.TkFragmentFrontVideoBinding;
 import com.shortvideo.lib.model.HomeBean;
 import com.shortvideo.lib.ui.activity.front.TkShortVideoFrontAdapter;
 import com.shortvideo.lib.ui.activity.front.TkShortVideoFrontDetailActivity;
+import com.shortvideo.lib.ui.activity.front.mine.TkFrontMyVideoActivity;
 import com.shortvideo.lib.utils.ActivityManager;
 import com.shortvideo.lib.utils.SPUtils;
 import com.shortvideo.lib.utils.SizeUtils;
+import com.shortvideo.lib.utils.TimeDateUtils;
 import com.shortvideo.lib.utils.ToastyUtils;
 import com.shuyu.gsyvideoplayer.GSYVideoManager;
+import com.tbruyelle.rxpermissions3.RxPermissions;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -97,6 +110,9 @@ public class TkFrontVideoFragment extends Fragment {
                 new GridLayoutManager(binding.recycle.getContext(), 2) :
                 new LinearLayoutManager(binding.recycle.getContext()));
         binding.recycle.setAdapter(tkShortVideoFrontAdapter);
+
+        //是否展示拍摄功能
+        binding.video.setVisibility(VideoApplication.getInstance().isFrontPageTakeVideo() ? View.VISIBLE : View.GONE);
     }
 
     private void initData() {
@@ -108,6 +124,7 @@ public class TkFrontVideoFragment extends Fragment {
         }
     }
 
+    @SuppressLint("AutoDispose")
     private void initListener() {
         binding.refresh.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
             @Override
@@ -167,6 +184,38 @@ public class TkFrontVideoFragment extends Fragment {
                 intent.putExtra("bannerBean", tkShortVideoFrontAdapter.getData().get(position).getBanner());
             }
             startActivity(intent);
+        });
+
+        binding.video.setOnClickListener(view -> {
+            RxPermissions rxPermissions = new RxPermissions(this);
+            rxPermissions
+                    .request(Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                            Manifest.permission.CAMERA)
+                    .subscribe(aBoolean -> {
+                        if (aBoolean) {
+                            PictureSelector.create(this)
+                                    .openCamera(PictureMimeType.ofVideo())
+                                    .forResult(new OnResultCallbackListener<LocalMedia>() {
+                                        @Override
+                                        public void onResult(List<LocalMedia> result) {
+                                            if (result != null && result.size() > 0) {
+                                                try {
+                                                    PictureFileUtils.copyFile(PictureFileUtils.getPath(binding.video.getContext(), Uri.parse(result.get(0).getPath())),
+                                                            TkAppConfig.MY_VIDEO_PATH + TimeDateUtils.getCurTimeLong() + ".mp4");
+                                                    startActivity(new Intent(getActivity(), TkFrontMyVideoActivity.class));
+                                                } catch (IOException e) {
+                                                    e.printStackTrace();
+                                                }
+                                            }
+                                        }
+
+                                        @Override
+                                        public void onCancel() {
+
+                                        }
+                                    });
+                        }
+                    });
         });
     }
 

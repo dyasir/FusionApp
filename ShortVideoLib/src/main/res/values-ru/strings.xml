@@ -64,6 +64,7 @@
     <string name="tk_setting_package_id">Идентификатор пакета : %s</string>
     <string name="tk_setting_video_id">Идентификатор видео : %d</string>
     <string name="tk_setting_rate">Оценивать</string>
+    <string name="tk_setting_video">Mое видео</string>
     <string name="tk_setting_cache">Очистить кэш</string>
     <string name="tk_setting_cache_success">Очищено успешно!</string>
     <string name="tk_setting_cache_tip_title">Уведомление</string>

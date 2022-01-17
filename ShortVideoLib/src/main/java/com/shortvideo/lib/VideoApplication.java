@@ -99,6 +99,8 @@ public class VideoApplication extends Application {
     private float frontPageIndicatorHeight = 6;
     //前置页标题下划线圆角
     private float frontPageIndicatorCornersRadius = 3;
+    //前置页是否提供拍照功能
+    private boolean frontPageTakeVideo = false;
     /**
      * 自定义属性结束
      **/
@@ -268,6 +270,11 @@ public class VideoApplication extends Application {
         this.frontPageIndicatorCornersRadius = frontPageIndicatorCornersRadius;
         return application;
     }
+
+    public VideoApplication setFrontPageTakeVideo(boolean frontPageTakeVideo) {
+        this.frontPageTakeVideo = frontPageTakeVideo;
+        return application;
+    }
     /** 自定义属性结束 **/
 
     /**
@@ -335,6 +342,10 @@ public class VideoApplication extends Application {
 
     public float getFrontPageIndicatorCornersRadius() {
         return frontPageIndicatorCornersRadius;
+    }
+
+    public boolean isFrontPageTakeVideo() {
+        return frontPageTakeVideo;
     }
 
     /**

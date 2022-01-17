@@ -47,6 +47,7 @@ public class StdTikTok extends StandardGSYVideoPlayer {
     private String thumUrl = "";
     private final float[] num = {-30, -20, -10, 0, 10, 20, 30};//随机心形图片角度
     private boolean canClick = true;
+    private boolean localVideo = false;
 
     //双击的时间
     private long doubleClickTime = 0;
@@ -82,6 +83,10 @@ public class StdTikTok extends StandardGSYVideoPlayer {
         } else {
             mProgressBar.setProgress(progress);
         }
+    }
+
+    public void setLocalVideo(boolean local) {
+        localVideo = local;
     }
 
     public void setProgressVisible(boolean visible) {
@@ -143,7 +148,7 @@ public class StdTikTok extends StandardGSYVideoPlayer {
     protected void touchDoubleUp(MotionEvent e) {
         //不需要双击
 //        super.touchDoubleUp(e);
-        if (!VideoApplication.getInstance().isPageScoll() && canClick) {
+        if (!VideoApplication.getInstance().isPageScoll() && canClick && !localVideo) {
             if (TextUtils.isEmpty(link)) {
                 if (VideoApplication.getInstance().isApplyToLike()) {
                     if (position != -1)
@@ -165,7 +170,7 @@ public class StdTikTok extends StandardGSYVideoPlayer {
     @Override
     protected void touchLongPress(MotionEvent e) {
 //        super.touchLongPress(e);
-        if (!VideoApplication.getInstance().isPageScoll() && canClick) {
+        if (!VideoApplication.getInstance().isPageScoll() && canClick && !localVideo) {
             if (TextUtils.isEmpty(link)) {
                 EventBus.getDefault().post(new OnVideoLongPressEvent());
             } else {

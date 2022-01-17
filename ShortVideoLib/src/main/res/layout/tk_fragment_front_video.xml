@@ -43,4 +43,14 @@
             android:overScrollMode="never"
             android:scrollbars="none" />
     </com.scwang.smart.refresh.layout.SmartRefreshLayout>
+
+    <ImageView
+        android:id="@+id/video"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="18dp"
+        android:src="@mipmap/tk_icon_take_video"
+        android:visibility="gone" />
 </RelativeLayout>

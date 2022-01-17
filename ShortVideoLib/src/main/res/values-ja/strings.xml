@@ -64,6 +64,7 @@
     <string name="tk_setting_package_id">パッケージID : %s</string>
     <string name="tk_setting_video_id">ビデオID : %d</string>
     <string name="tk_setting_rate">評価する</string>
+    <string name="tk_setting_video">私のビデオ</string>
     <string name="tk_setting_cache">キャッシュの消去</string>
     <string name="tk_setting_cache_success">正常にクリアされました！</string>
     <string name="tk_setting_cache_tip_title">知らせ</string>

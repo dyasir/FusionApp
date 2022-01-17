@@ -19,11 +19,12 @@ public class App extends VideoApplication {
      * setFrontPageBgColor                 设置前置页面背景色 (res id)
      * setFrontPageBottomBgColor           设置前置页底部菜单栏背景颜色 (res id)
      * setFrontPageTitleColor              设置前置页面标题、内容文字颜色 (res id)
-     * setFrontPageTitleSize               这是前置页面标题文字大小 (单位sp)
+     * setFrontPageTitleSize               设置前置页面标题文字大小 (单位sp)
      * setFrontPageIndicatorWidth          设置前置页面标题下划线宽度 (单位dp)
      * setFrontPageIndicatorHeight         设置前置页面标题下划线高度 (单位dp)
      * setFrontPageIndicatorColor          设置前置页面标题下划线颜色 (res id)
      * setFrontPageIndicatorCornersRadius  设置前置页面标题下划线圆角值 (单位float)
+     * setFrontPageTakeVideo               设置前置页面是否提供拍摄功能
      */
     @Override
     protected void initVideoPageConfig() {
@@ -32,17 +33,18 @@ public class App extends VideoApplication {
                 .setVideoLayoutType(1)                            //视频使用布局1
                 .setPureEnjoyment(true)                           //开启纯享功能
                 .setApplyDownload(false)                          //提供下载功能
-                .setApplyToLike(true)                            //提供点赞功能
+                .setApplyToLike(true)                             //提供点赞功能
                 .setOpenFrontPage(true)                           //开启前置页面
                 .setFrontListLayoutType(1)                        //前置页面列表布局，1.两排格子  2.垂直布局
                 .setApplyFrontLikeNum(false)                      //前置页面列表是否展示点赞数
                 .setFrontPageBgColor(R.color.black)               //设置前置页背景颜色
                 .setFrontPageBottomBgColor(R.color.color_181818)  //设置前置页底部菜单栏背景颜色
                 .setFrontPageTitleColor(R.color.white)            //设置前置页面标题、内容文字颜色
-                .setFrontPageTitleSize(18)                        //这是前置页面标题文字大小
+                .setFrontPageTitleSize(18)                        //设置前置页面标题文字大小
                 .setFrontPageIndicatorWidth(20)                   //设置前置页面标题下划线宽度
-                .setFrontPageIndicatorHeight(6)                   //设置前置页面标题下划线高度
+                .setFrontPageIndicatorHeight(3)                   //设置前置页面标题下划线高度
                 .setFrontPageIndicatorColor(R.color.white)        //设置前置页面标题下划线颜色
-                .setFrontPageIndicatorCornersRadius(3);           //设置前置页面标题下划线圆角值
+                .setFrontPageIndicatorCornersRadius(6)            //设置前置页面标题下划线圆角值
+                .setFrontPageTakeVideo(true);                     //设置前置页面是否提供拍摄功能
     }
 }

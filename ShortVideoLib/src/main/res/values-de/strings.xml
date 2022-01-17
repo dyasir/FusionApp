@@ -64,6 +64,7 @@
     <string name="tk_setting_package_id">Paket-ID : %s</string>
     <string name="tk_setting_video_id">Video-ID : %d</string>
     <string name="tk_setting_rate">Bewerten</string>
+    <string name="tk_setting_video">Mein Video</string>
     <string name="tk_setting_cache">Cache leeren</string>
     <string name="tk_setting_cache_success">Erfolgreich gelöscht！</string>
     <string name="tk_setting_cache_tip_title">Notiz</string>

@@ -343,6 +343,7 @@ public class TkShortVideoFrontDetailActivity extends AppCompatActivity implement
         binding.llExt.setOnClickListener(this);
         binding.llExtBig.setOnClickListener(this);
         binding.eyes.setOnClickListener(this);
+        binding.back.setOnClickListener(this);
     }
 
     @Override
@@ -405,6 +406,8 @@ public class TkShortVideoFrontDetailActivity extends AppCompatActivity implement
                     binding.eyes.setProgress(0f);
                 }
             }
+        } else if (view.getId() == R.id.back) {
+            finish();
         }
     }
 

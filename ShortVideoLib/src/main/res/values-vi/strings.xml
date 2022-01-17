@@ -64,6 +64,7 @@
     <string name="tk_setting_package_id">id gói : %s</string>
     <string name="tk_setting_video_id">ID Video : %d</string>
     <string name="tk_setting_rate">để đánh giá</string>
+    <string name="tk_setting_video">Video của tôi</string>
     <string name="tk_setting_cache">xóa bộ nhớ cache</string>
     <string name="tk_setting_cache_success">Đã xóa thành công!</string>
     <string name="tk_setting_cache_tip_title">Để ý</string>
