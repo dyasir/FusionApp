@@ -15,6 +15,7 @@ public class App extends VideoApplication {
      * setApplyToLike                      视频页面是否提供点赞功能
      * setOpenFrontPage                    开启前置页面，如果开启了，则setVideoLayoutType不生效，默认为1
      * setFrontListLayoutType              前置页面列表布局，1.两排格子  2.垂直布局
+     * setFrontListItemHeight              前置页面2排格子列表单个的高度(单位dp)
      * setApplyFrontLikeNum                前置页面列表是否展示点赞数
      * setFrontPageBgColor                 设置前置页面背景色 (res id)
      * setFrontPageBottomBgColor           设置前置页底部菜单栏背景颜色 (res id)
@@ -36,6 +37,7 @@ public class App extends VideoApplication {
                 .setApplyToLike(true)                             //提供点赞功能
                 .setOpenFrontPage(true)                           //开启前置页面
                 .setFrontListLayoutType(1)                        //前置页面列表布局，1.两排格子  2.垂直布局
+                .setFrontListItemHeight(120)                      //前置页面2排格子列表单个的高度
                 .setApplyFrontLikeNum(false)                      //前置页面列表是否展示点赞数
                 .setFrontPageBgColor(R.color.black)               //设置前置页背景颜色
                 .setFrontPageBottomBgColor(R.color.color_181818)  //设置前置页底部菜单栏背景颜色

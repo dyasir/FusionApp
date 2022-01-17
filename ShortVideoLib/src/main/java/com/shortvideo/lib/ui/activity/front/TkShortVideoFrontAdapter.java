@@ -1,5 +1,7 @@
 package com.shortvideo.lib.ui.activity.front;
 
+import android.widget.RelativeLayout;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -12,6 +14,7 @@ import com.makeramen.roundedimageview.RoundedImageView;
 import com.shortvideo.lib.R;
 import com.shortvideo.lib.VideoApplication;
 import com.shortvideo.lib.model.HomeBean;
+import com.shortvideo.lib.utils.SizeUtils;
 
 import java.util.List;
 
@@ -26,6 +29,12 @@ public class TkShortVideoFrontAdapter extends BaseQuickAdapter<HomeBean.DataDTO,
     protected void convert(@NonNull BaseViewHolder baseViewHolder, HomeBean.DataDTO dataDTO) {
         RequestOptions options = new RequestOptions()
                 .diskCacheStrategy(DiskCacheStrategy.RESOURCE);
+
+        if (VideoApplication.getInstance().getFrontListLayoutType() == 1) {
+            RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) baseViewHolder.getView(R.id.img).getLayoutParams();
+            layoutParams.height = SizeUtils.dp2px(VideoApplication.getInstance().getFrontListItemHeight());
+            baseViewHolder.getView(R.id.img).setLayoutParams(layoutParams);
+        }
 
         if (dataDTO.getType() == 1) {
             Glide.with(getContext())

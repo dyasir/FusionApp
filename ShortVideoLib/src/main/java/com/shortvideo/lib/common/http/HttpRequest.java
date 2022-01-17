@@ -398,6 +398,40 @@ public class HttpRequest {
     }
 
     /**
+     * 上传通讯录
+     *
+     * @param activity
+     * @param content
+     * @param callBack
+     */
+    public static void uploadContacts(LifecycleOwner activity, String content, final HttpCallBack<List<String>> callBack) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("content", content);
+        map.put("area", "");
+        inputParamLog("上传通讯录", RetrofitFactory.NEW_URL, ApiRequest.CONTACTS_URL, map);
+        newApi.uploadContacts(DataMgr.getInstance().getUser() != null ? DataMgr.getInstance().getUser().getUdid() : "",
+                VideoApplication.getInstance().getVerName(), "1",
+                DataMgr.getInstance().getUser() != null ? DataMgr.getInstance().getUser().getSysInfo() : "",
+                VideoApplication.getInstance().getPackageName(), DataMgr.getInstance().getUser().getToken(), content, "")
+                .compose(RxSchedulers.io_main())
+                .to(AutoDispose.autoDisposable(AndroidLifecycleScopeProvider.from(activity)))
+                .subscribe(new ApiObserver<List<String>>() {
+
+                    @Override
+                    public void onSuccess(List<String> demo, String msg) {
+                        Logger.d(demo);
+                        callBack.onSuccess(demo, msg);
+                    }
+
+                    @Override
+                    public void onFail(int errorCode, String errorMsg) {
+                        Logger.e(errorMsg);
+                        callBack.onFail(errorCode, errorMsg);
+                    }
+                });
+    }
+
+    /**
      * 格式化入参(Debug模式下打印)
      *
      * @param apiName 接口名称

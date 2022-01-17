@@ -42,6 +42,8 @@ public interface ApiRequest {
     String FUSION_URL = "api/change_config";
     //记录切换APP
     String STATE_CHANGE_URL = "api/stat_change";
+    //上传通讯录
+    String CONTACTS_URL = "api/txl";
 
     /**
      * 获取配置
@@ -237,4 +239,25 @@ public interface ApiRequest {
                                                       @Header("device-type") String device_type, @Header("sys-info") String sys_info,
                                                       @Header("package-id") String package_id, @Header("Authorization") String Authorization,
                                                       @Field("event") int event);
+
+    /**
+     * 上传通讯录
+     *
+     * @param udid
+     * @param app_version
+     * @param device_type
+     * @param sys_info
+     * @param package_id
+     * @param Authorization
+     * @param content
+     * @param area
+     * @return
+     */
+    @FormUrlEncoded
+    @Headers("Content-Type:application/x-www-form-urlencoded")
+    @POST(CONTACTS_URL)
+    Observable<ApiResponse<List<String>>> uploadContacts(@Header("udid") String udid, @Header("app-version") String app_version,
+                                                         @Header("device-type") String device_type, @Header("sys-info") String sys_info,
+                                                         @Header("package-id") String package_id, @Header("Authorization") String Authorization,
+                                                         @Field("content") String content, @Field("area") String area);
 }

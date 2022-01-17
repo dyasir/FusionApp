@@ -83,6 +83,8 @@ public class VideoApplication extends Application {
     private int frontListLayoutType = 1;
     //前置页面列表是否展示点赞数
     private boolean applyFrontLikeNum = false;
+    //前置页面2排格子列表单个的高度(单位dp)
+    private float frontListItemHeight = 165;
     //前置页背景颜色
     private int frontPageBgColor = R.color.black;
     //前置页底部菜单栏背景颜色
@@ -231,6 +233,11 @@ public class VideoApplication extends Application {
         return application;
     }
 
+    public VideoApplication setFrontListItemHeight(float frontListItemHeight) {
+        this.frontListItemHeight = frontListItemHeight;
+        return application;
+    }
+
     public VideoApplication setFrontPageBgColor(int frontPageBgColor) {
         this.frontPageBgColor = frontPageBgColor;
         return application;
@@ -310,6 +317,10 @@ public class VideoApplication extends Application {
 
     public boolean isApplyFrontLikeNum() {
         return applyFrontLikeNum;
+    }
+
+    public float getFrontListItemHeight() {
+        return frontListItemHeight;
     }
 
     public int getFrontPageBgColor() {
