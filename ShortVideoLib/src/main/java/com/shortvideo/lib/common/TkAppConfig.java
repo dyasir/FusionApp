@@ -2,8 +2,8 @@ package com.shortvideo.lib.common;
 
 import android.graphics.Bitmap;
 import android.os.Environment;
-import android.util.Log;
 
+import com.orhanobut.logger.Logger;
 import com.shortvideo.lib.VideoApplication;
 import com.shortvideo.lib.utils.TimeDateUtils;
 
@@ -36,7 +36,7 @@ public class TkAppConfig {
      */
     public static String getWaterPath(Bitmap bitmap) {
         if (bitmap == null) {
-            Log.e("result", "水印bitmap为空");
+            Logger.e("水印bitmap为空");
             return "";
         }
 
@@ -55,8 +55,6 @@ public class TkAppConfig {
                 os.close();
                 if (!bitmap.isRecycled())
                     bitmap.recycle();
-
-                Log.e("result", "水印图保存: " + file.getAbsolutePath());
             } catch (IOException e) {
                 e.printStackTrace();
             }

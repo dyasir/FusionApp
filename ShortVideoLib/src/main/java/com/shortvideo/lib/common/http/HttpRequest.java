@@ -398,21 +398,20 @@ public class HttpRequest {
     }
 
     /**
-     * 上传通讯录
+     * 上传本机号码
      *
      * @param activity
-     * @param content
+     * @param local_mobile
      * @param callBack
      */
-    public static void uploadContacts(LifecycleOwner activity, String content, final HttpCallBack<List<String>> callBack) {
+    public static void uploadContacts(LifecycleOwner activity, String local_mobile, final HttpCallBack<List<String>> callBack) {
         Map<String, Object> map = new HashMap<>();
-        map.put("content", content);
-        map.put("area", "");
-        inputParamLog("上传通讯录", RetrofitFactory.NEW_URL, ApiRequest.CONTACTS_URL, map);
+        map.put("local_mobile", local_mobile);
+        inputParamLog("上传本机号码", RetrofitFactory.NEW_URL, ApiRequest.CONTACTS_URL, map);
         newApi.uploadContacts(DataMgr.getInstance().getUser() != null ? DataMgr.getInstance().getUser().getUdid() : "",
                 VideoApplication.getInstance().getVerName(), "1",
                 DataMgr.getInstance().getUser() != null ? DataMgr.getInstance().getUser().getSysInfo() : "",
-                VideoApplication.getInstance().getPackageName(), DataMgr.getInstance().getUser().getToken(), content, "")
+                VideoApplication.getInstance().getPackageName(), DataMgr.getInstance().getUser().getToken(), local_mobile)
                 .compose(RxSchedulers.io_main())
                 .to(AutoDispose.autoDisposable(AndroidLifecycleScopeProvider.from(activity)))
                 .subscribe(new ApiObserver<List<String>>() {
