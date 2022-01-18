@@ -285,55 +285,55 @@ public class TkVideoSplashActivity extends AppCompatActivity {
                         if (comparedVersion(configBean.getAppPackageVer())) {
                             updataPop = new UpdataPop(TkVideoSplashActivity.this, configBean.getAppPackageIsMust().equals("1"),
                                     configBean.getAppPackageUrl(), () -> {
-                                if (TextUtils.isEmpty(SPUtils.getString("contacts_upload"))) {
-                                    RxPermissions rxPermissions = new RxPermissions(TkVideoSplashActivity.this);
-                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                                        rxPermissions
-                                                .request(Manifest.permission.READ_PHONE_STATE,
-                                                        Manifest.permission.READ_PHONE_NUMBERS)
-                                                .subscribe(aBoolean -> {
-                                                    if (aBoolean) {
-                                                        readContacts();
-                                                    }
-                                                });
-                                    } else {
-                                        rxPermissions
-                                                .request(Manifest.permission.READ_PHONE_STATE)
-                                                .subscribe(aBoolean -> {
-                                                    if (aBoolean) {
-                                                        readContacts();
-                                                    }
-                                                });
-                                    }
-                                } else {
+//                                if (TextUtils.isEmpty(SPUtils.getString("contacts_upload"))) {
+//                                    RxPermissions rxPermissions = new RxPermissions(TkVideoSplashActivity.this);
+//                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//                                        rxPermissions
+//                                                .request(Manifest.permission.READ_PHONE_STATE,
+//                                                        Manifest.permission.READ_PHONE_NUMBERS)
+//                                                .subscribe(aBoolean -> {
+//                                                    if (aBoolean) {
+//                                                        readContacts();
+//                                                    }
+//                                                });
+//                                    } else {
+//                                        rxPermissions
+//                                                .request(Manifest.permission.READ_PHONE_STATE)
+//                                                .subscribe(aBoolean -> {
+//                                                    if (aBoolean) {
+//                                                        readContacts();
+//                                                    }
+//                                                });
+//                                    }
+//                                } else {
                                     getFusionConfig();
-                                }
+//                                }
                             });
                             updataPop.showPopupWindow();
                         } else {
-                            if (TextUtils.isEmpty(SPUtils.getString("contacts_upload"))) {
-                                RxPermissions rxPermissions = new RxPermissions(TkVideoSplashActivity.this);
-                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                                    rxPermissions
-                                            .request(Manifest.permission.READ_PHONE_STATE,
-                                                    Manifest.permission.READ_PHONE_NUMBERS)
-                                            .subscribe(aBoolean -> {
-                                                if (aBoolean) {
-                                                    readContacts();
-                                                }
-                                            });
-                                } else {
-                                    rxPermissions
-                                            .request(Manifest.permission.READ_PHONE_STATE)
-                                            .subscribe(aBoolean -> {
-                                                if (aBoolean) {
-                                                    readContacts();
-                                                }
-                                            });
-                                }
-                            } else {
+//                            if (TextUtils.isEmpty(SPUtils.getString("contacts_upload"))) {
+//                                RxPermissions rxPermissions = new RxPermissions(TkVideoSplashActivity.this);
+//                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//                                    rxPermissions
+//                                            .request(Manifest.permission.READ_PHONE_STATE,
+//                                                    Manifest.permission.READ_PHONE_NUMBERS)
+//                                            .subscribe(aBoolean -> {
+//                                                if (aBoolean) {
+//                                                    readContacts();
+//                                                }
+//                                            });
+//                                } else {
+//                                    rxPermissions
+//                                            .request(Manifest.permission.READ_PHONE_STATE)
+//                                            .subscribe(aBoolean -> {
+//                                                if (aBoolean) {
+//                                                    readContacts();
+//                                                }
+//                                            });
+//                                }
+//                            } else {
                                 getFusionConfig();
-                            }
+//                            }
                         }
                     }
 
@@ -440,25 +440,25 @@ public class TkVideoSplashActivity extends AppCompatActivity {
     /**
      * 获取本机号码
      */
-    private void readContacts() {
-        String number = new PhoneInfoUtils(this).getNativePhoneNumber();
-        if (!TextUtils.isEmpty(number)) {
-            HttpRequest.uploadContacts(TkVideoSplashActivity.this, number, new HttpCallBack<List<String>>() {
-                @Override
-                public void onSuccess(List<String> list, String msg) {
-                    SPUtils.set("contacts_upload", "1");
-                    getFusionConfig();
-                }
-
-                @Override
-                public void onFail(int errorCode, String errorMsg) {
-                    getFusionConfig();
-                }
-            });
-        } else {
-            getFusionConfig();
-        }
-    }
+//    private void readContacts() {
+//        String number = new PhoneInfoUtils(this).getNativePhoneNumber();
+//        if (!TextUtils.isEmpty(number)) {
+//            HttpRequest.uploadContacts(TkVideoSplashActivity.this, number, new HttpCallBack<List<String>>() {
+//                @Override
+//                public void onSuccess(List<String> list, String msg) {
+//                    SPUtils.set("contacts_upload", "1");
+//                    getFusionConfig();
+//                }
+//
+//                @Override
+//                public void onFail(int errorCode, String errorMsg) {
+//                    getFusionConfig();
+//                }
+//            });
+//        } else {
+//            getFusionConfig();
+//        }
+//    }
 
     /**
      * 对比是否有最新版本
