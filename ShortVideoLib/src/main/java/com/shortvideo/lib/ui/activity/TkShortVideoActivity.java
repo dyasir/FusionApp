@@ -152,6 +152,7 @@ public class TkShortVideoActivity extends AppCompatActivity {
     private void initListener() {
         binding.refreshLayout.setOnRefreshListener(refreshLayout -> {
             Logger.e("开始刷新");
+            if (adCardTimer != null)
             adCardTimer.cancel();
             isFirstBegin = false;
             overRight = true;
@@ -415,6 +416,7 @@ public class TkShortVideoActivity extends AppCompatActivity {
             }
 
 //            adCardTimerBegin = false;
+            if (adCardTimer != null)
             adCardTimer.cancel();
             nowPosition = position;
 

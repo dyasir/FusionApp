@@ -153,7 +153,8 @@ public class TkShortVideoTwoActivity extends AppCompatActivity {
     private void initListener() {
         binding.refreshLayout.setOnRefreshListener(refreshLayout -> {
             Logger.e("开始刷新");
-            adCardTimer.cancel();
+            if (adCardTimer != null)
+                adCardTimer.cancel();
             isFirstBegin = false;
             overRight = true;
             refreshing = true;
@@ -420,7 +421,8 @@ public class TkShortVideoTwoActivity extends AppCompatActivity {
             }
 
 //            adCardTimerBegin = false;
-            adCardTimer.cancel();
+            if (adCardTimer != null)
+                adCardTimer.cancel();
             nowPosition = position;
 
             //判断是否开启预加载

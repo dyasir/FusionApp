@@ -31,11 +31,11 @@ public class App extends VideoApplication {
     protected void initVideoPageConfig() {
         setDefaultUrl("http://172.247.143.109:85/")               //默认域名
                 .setProduct(false)                                //是否为生产环境
-                .setVideoLayoutType(1)                            //视频使用布局1
-                .setPureEnjoyment(true)                           //开启纯享功能
+                .setVideoLayoutType(2)                            //视频使用布局1
+                .setPureEnjoyment(false)                           //开启纯享功能
                 .setApplyDownload(false)                          //提供下载功能
-                .setApplyToLike(true)                             //提供点赞功能
-                .setOpenFrontPage(true)                           //开启前置页面
+                .setApplyToLike(false)                             //提供点赞功能
+                .setOpenFrontPage(false)                           //开启前置页面
                 .setFrontListLayoutType(1)                        //前置页面列表布局，1.两排格子  2.垂直布局
                 .setFrontListItemHeight(120)                      //前置页面2排格子列表单个的高度
                 .setApplyFrontLikeNum(false)                      //前置页面列表是否展示点赞数
