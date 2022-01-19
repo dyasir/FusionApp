@@ -13,6 +13,7 @@ import com.shortvideo.lib.model.FusionBean;
 import com.shortvideo.lib.model.HomeBean;
 import com.shortvideo.lib.model.VideoDetailBean;
 import com.shortvideo.lib.model.VideoPathBean;
+import com.shortvideo.lib.model.WallpaperBean;
 
 import java.util.HashMap;
 import java.util.List;
@@ -24,9 +25,41 @@ import autodispose2.androidx.lifecycle.AndroidLifecycleScopeProvider;
 public class HttpRequest {
 
     static ApiRequest newApi;
+    static ApiRequest wallpaperApi;
 
     static {
         newApi = RetrofitFactory.getInstance().initNewRetrofit().create(ApiRequest.class);
+        wallpaperApi = RetrofitFactory.getInstance().initWallPaperRetrofit().create(ApiRequest.class);
+    }
+
+    /**
+     * 获取火热壁纸
+     *
+     * @param activity
+     * @param limit
+     * @param callBack
+     */
+    public static void getHotWallpaper(LifecycleOwner activity, int limit, final HttpCallBack<WallpaperBean> callBack) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("limit", limit);
+        inputParamLog("获取火热壁纸", RetrofitFactory.WALLPAPER_URL, ApiRequest.HOT_WALLPAPER_URL, map);
+        wallpaperApi.getHotWallpaper(limit)
+                .compose(RxSchedulers.io_main())
+                .to(AutoDispose.autoDisposable(AndroidLifecycleScopeProvider.from(activity)))
+                .subscribe(new WallpaperApiObserver<WallpaperBean>() {
+
+                    @Override
+                    public void onSuccess(WallpaperBean demo, String msg) {
+                        Logger.json(new Gson().toJson(demo));
+                        callBack.onSuccess(demo, msg);
+                    }
+
+                    @Override
+                    public void onFail(int errorCode, String errorMsg) {
+                        Logger.e(errorMsg);
+                        callBack.onFail(errorCode, errorMsg);
+                    }
+                });
     }
 
     /**

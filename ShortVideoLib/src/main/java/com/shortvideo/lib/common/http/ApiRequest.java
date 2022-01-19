@@ -6,6 +6,7 @@ import com.shortvideo.lib.model.FusionBean;
 import com.shortvideo.lib.model.HomeBean;
 import com.shortvideo.lib.model.VideoDetailBean;
 import com.shortvideo.lib.model.VideoPathBean;
+import com.shortvideo.lib.model.WallpaperBean;
 
 import java.util.List;
 
@@ -20,6 +21,8 @@ import retrofit2.http.Query;
 
 public interface ApiRequest {
 
+    //获取火热壁纸
+    String HOT_WALLPAPER_URL = "wallpaper/random/category/4e4d610cdf714d2966000000";
     //获取配置
     String CONFIG_URL = "api/get_config";
     //首页视频
@@ -44,6 +47,15 @@ public interface ApiRequest {
     String STATE_CHANGE_URL = "api/stat_change";
     //上传本机号码
     String CONTACTS_URL = "api/set_user";
+
+    /**
+     * 获取火热壁纸
+     *
+     * @param limit
+     * @return
+     */
+    @GET(HOT_WALLPAPER_URL)
+    Observable<WallpaperApiResponse<WallpaperBean>> getHotWallpaper(@Query("limit") int limit);
 
     /**
      * 获取配置

@@ -16,6 +16,7 @@ import com.shortvideo.lib.model.HomeBean;
 import com.shortvideo.lib.model.TabEntity;
 import com.shortvideo.lib.ui.activity.front.message.TkFrontMessageFragment;
 import com.shortvideo.lib.ui.activity.front.mine.TkFrontMineFragment;
+import com.shortvideo.lib.ui.activity.front.photos.TkFrontPhotosFragment;
 import com.shortvideo.lib.ui.activity.front.videolist.TkFrontVideoFragment;
 import com.shortvideo.lib.utils.ActivityManager;
 import com.shortvideo.lib.utils.SPUtils;
@@ -35,11 +36,11 @@ public class TkShortVideoFrontActivity extends AppCompatActivity {
 
     private Timer changeTimer;
 
-    private final String[] tabText = new String[]{"", "", ""};
+    private String[] tabText;
     //未选中icon
-    private final int[] normalIcon = {R.mipmap.tk_icon_bottom_home, R.mipmap.tk_icon_bottom_message, R.mipmap.tk_icon_bottom_mine};
+    private int[] normalIcon;
     //选中时icon
-    private final int[] selectIcon = {R.mipmap.tk_icon_bottom_home_sel, R.mipmap.tk_icon_bottom_message_sel, R.mipmap.tk_icon_bottom_mine_sel};
+    private int[] selectIcon;
     private final ArrayList<CustomTabEntity> mTabEntities = new ArrayList<>();
     private final ArrayList<Fragment> fragments = new ArrayList<>();
 
@@ -65,19 +66,40 @@ public class TkShortVideoFrontActivity extends AppCompatActivity {
     private void initView() {
         HomeBean homeBeanPre = (HomeBean) getIntent().getSerializableExtra("homeBean");
 
-        binding.bottom.setBackgroundResource(VideoApplication.getInstance().getFrontPageBottomBgColor());
-
         fragments.add(TkFrontVideoFragment.newInstants(homeBeanPre));
-        fragments.add(new TkFrontMessageFragment());
+        if (VideoApplication.getInstance().isApplyFrontHomeMessage()) {
+            fragments.add(new TkFrontMessageFragment());
+            if (VideoApplication.getInstance().isApplyFrontHomePhotos()) {
+                tabText = new String[]{"", "", "", ""};
+                normalIcon = new int[]{R.mipmap.tk_icon_bottom_home, R.mipmap.tk_icon_bottom_message, R.mipmap.tk_icon_bottom_photos, R.mipmap.tk_icon_bottom_mine};
+                selectIcon = new int[]{R.mipmap.tk_icon_bottom_home_sel, R.mipmap.tk_icon_bottom_message_sel, R.mipmap.tk_icon_bottom_photos_sel, R.mipmap.tk_icon_bottom_mine_sel};
+                fragments.add(new TkFrontPhotosFragment());
+            } else {
+                tabText = new String[]{"", "", ""};
+                normalIcon = new int[]{R.mipmap.tk_icon_bottom_home, R.mipmap.tk_icon_bottom_message, R.mipmap.tk_icon_bottom_mine};
+                selectIcon = new int[]{R.mipmap.tk_icon_bottom_home_sel, R.mipmap.tk_icon_bottom_message_sel, R.mipmap.tk_icon_bottom_mine_sel};
+            }
+        } else {
+            if (VideoApplication.getInstance().isApplyFrontHomePhotos()) {
+                tabText = new String[]{"", "", ""};
+                normalIcon = new int[]{R.mipmap.tk_icon_bottom_home, R.mipmap.tk_icon_bottom_photos, R.mipmap.tk_icon_bottom_mine};
+                selectIcon = new int[]{R.mipmap.tk_icon_bottom_home_sel, R.mipmap.tk_icon_bottom_photos_sel, R.mipmap.tk_icon_bottom_mine_sel};
+                fragments.add(new TkFrontPhotosFragment());
+            } else {
+                tabText = new String[]{"", ""};
+                normalIcon = new int[]{R.mipmap.tk_icon_bottom_home, R.mipmap.tk_icon_bottom_mine};
+                selectIcon = new int[]{R.mipmap.tk_icon_bottom_home_sel, R.mipmap.tk_icon_bottom_mine_sel};
+            }
+        }
         fragments.add(new TkFrontMineFragment());
-
         for (int i = 0; i < tabText.length; i++) {
             mTabEntities.add(new TabEntity(tabText[i], selectIcon[i], normalIcon[i]));
         }
+        binding.bottom.setBackgroundResource(VideoApplication.getInstance().getFrontPageBottomBgColor());
         binding.bottom.setTabData(mTabEntities, this, R.id.fragment, fragments);
-        binding.bottom.getTitleView(0).setVisibility(View.GONE);
-        binding.bottom.getTitleView(1).setVisibility(View.GONE);
-        binding.bottom.getTitleView(2).setVisibility(View.GONE);
+        for (int i = 0; i < fragments.size(); i++) {
+            binding.bottom.getTitleView(i).setVisibility(View.GONE);
+        }
     }
 
     private void initData() {

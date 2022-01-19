@@ -74,4 +74,5 @@
     <string name="tk_front_message_title">thông tin</string>
     <string name="tk_front_message_empty_title">Không có tin tức cho bây giờ</string>
     <string name="tk_front_message_empty">Tin nhắn của bạn sẽ xuất hiện ở đây, vì vậy đừng ngại và hãy là người đầu tiên để lại tin nhắn!</string>
+    <string name="tk_front_photos_title">Phòng trưng bày</string>
 </resources>

@@ -74,4 +74,5 @@
     <string name="tk_front_message_title">Информация</string>
     <string name="tk_front_message_empty_title">Новостей пока нет</string>
     <string name="tk_front_message_empty">Ваши сообщения будут появляться здесь, так что не стесняйтесь и оставляйте сообщения первыми!</string>
+    <string name="tk_front_photos_title">Галерея</string>
 </resources>

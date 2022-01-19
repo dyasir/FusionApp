@@ -74,4 +74,5 @@
     <string name="tk_front_message_title">Information</string>
     <string name="tk_front_message_empty_title">Pas de nouvelles pour l\'instant</string>
     <string name="tk_front_message_empty">Vos messages apparaîtront ici, alors ne soyez pas timide et soyez le premier à laisser un message!</string>
+    <string name="tk_front_photos_title">Galerie</string>
 </resources>

@@ -79,10 +79,16 @@ public class VideoApplication extends Application {
     private boolean applyToLike = false;
     //是否开启前置页面
     private boolean openFrontPage = false;
+    //前置页是否提供首页消息功能
+    private boolean applyFrontHomeMessage = false;
+    //前置页是否提供首页图库功能
+    private boolean applyFrontHomePhotos = false;
     //前置页面列表布局，1.两排格子  2.垂直布局
     private int frontListLayoutType = 1;
     //前置页面列表是否展示点赞数
     private boolean applyFrontLikeNum = false;
+    //前置页面列表点赞数位置，1.左上  2.右下
+    private int frontLikeNumLayout = 1;
     //前置页面2排格子列表单个的高度(单位dp)
     private float frontListItemHeight = 165;
     //前置页背景颜色
@@ -223,6 +229,16 @@ public class VideoApplication extends Application {
         return application;
     }
 
+    public VideoApplication setApplyFrontHomeMessage(boolean applyFrontHomeMessage) {
+        this.applyFrontHomeMessage = applyFrontHomeMessage;
+        return application;
+    }
+
+    public VideoApplication setApplyFrontHomePhotos(boolean applyFrontHomePhotos) {
+        this.applyFrontHomePhotos = applyFrontHomePhotos;
+        return application;
+    }
+
     public VideoApplication setFrontListLayoutType(int frontListLayoutType) {
         this.frontListLayoutType = frontListLayoutType;
         return application;
@@ -230,6 +246,11 @@ public class VideoApplication extends Application {
 
     public VideoApplication setApplyFrontLikeNum(boolean applyFrontLikeNum) {
         this.applyFrontLikeNum = applyFrontLikeNum;
+        return application;
+    }
+
+    public VideoApplication setFrontLikeNumLayout(int frontLikeNumLayout) {
+        this.frontLikeNumLayout = frontLikeNumLayout;
         return application;
     }
 
@@ -311,12 +332,24 @@ public class VideoApplication extends Application {
         return openFrontPage;
     }
 
+    public boolean isApplyFrontHomeMessage() {
+        return applyFrontHomeMessage;
+    }
+
+    public boolean isApplyFrontHomePhotos() {
+        return applyFrontHomePhotos;
+    }
+
     public int getFrontListLayoutType() {
         return frontListLayoutType;
     }
 
     public boolean isApplyFrontLikeNum() {
         return applyFrontLikeNum;
+    }
+
+    public int getFrontLikeNumLayout() {
+        return frontLikeNumLayout;
     }
 
     public float getFrontListItemHeight() {
@@ -410,19 +443,24 @@ public class VideoApplication extends Application {
                 .setProduct(false)                                //是否为生产环境
                 .setVideoLayoutType(1)                            //视频使用布局1
                 .setPureEnjoyment(true)                           //开启纯享功能
-                .setApplyDownload(false)                          //提供下载功能
-                .setApplyToLike(true)                            //提供点赞功能
+                .setApplyDownload(true)                           //提供下载功能
+                .setApplyToLike(true)                             //提供点赞功能
                 .setOpenFrontPage(true)                           //开启前置页面
+                .setApplyFrontHomeMessage(true)                   //前置页是否提供首页消息功能
+                .setApplyFrontHomePhotos(true)                    //前置页是否提供首页图库功能
                 .setFrontListLayoutType(1)                        //前置页面列表布局，1.两排格子  2.垂直布局
-                .setApplyFrontLikeNum(false)                      //前置页面列表是否展示点赞数
+                .setFrontListItemHeight(165)                      //前置页面2排格子列表单个的高度
+                .setApplyFrontLikeNum(true)                       //前置页面列表是否展示点赞数
+                .setFrontLikeNumLayout(1)                         //前置页面列表点赞数位置，1.左上  2.右下
                 .setFrontPageBgColor(R.color.black)               //设置前置页背景颜色
                 .setFrontPageBottomBgColor(R.color.color_181818)  //设置前置页底部菜单栏背景颜色
                 .setFrontPageTitleColor(R.color.white)            //设置前置页面标题、内容文字颜色
-                .setFrontPageTitleSize(18)                        //这是前置页面标题文字大小
+                .setFrontPageTitleSize(18)                        //设置前置页面标题文字大小
                 .setFrontPageIndicatorWidth(20)                   //设置前置页面标题下划线宽度
-                .setFrontPageIndicatorHeight(6)                   //设置前置页面标题下划线高度
+                .setFrontPageIndicatorHeight(3)                   //设置前置页面标题下划线高度
                 .setFrontPageIndicatorColor(R.color.white)        //设置前置页面标题下划线颜色
-                .setFrontPageIndicatorCornersRadius(3);           //设置前置页面标题下划线圆角值
+                .setFrontPageIndicatorCornersRadius(6)            //设置前置页面标题下划线圆角值
+                .setFrontPageTakeVideo(true);                     //设置前置页面是否提供拍摄功能
     }
 
     /**

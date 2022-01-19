@@ -10,24 +10,8 @@
     <com.makeramen.roundedimageview.RoundedImageView
         android:id="@+id/img"
         android:layout_width="165dp"
-        android:layout_height="165dp"
+        android:layout_height="357dp"
         android:layout_centerHorizontal="true"
         android:scaleType="centerCrop"
         app:riv_corner_radius="5dp" />
-
-    <TextView
-        android:id="@+id/look"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/tk_bg_8000_2dp"
-        android:drawableStart="@mipmap/tk_icon_front_see"
-        android:drawablePadding="6dp"
-        android:gravity="center_vertical"
-        android:paddingStart="8dp"
-        android:paddingTop="4dp"
-        android:paddingEnd="8dp"
-        android:paddingBottom="4dp"
-        android:text="0"
-        android:textColor="@color/white"
-        android:textSize="10sp" />
 </RelativeLayout>

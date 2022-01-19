@@ -36,6 +36,17 @@ public class TkShortVideoFrontAdapter extends BaseQuickAdapter<HomeBean.DataDTO,
             baseViewHolder.getView(R.id.img).setLayoutParams(layoutParams);
         }
 
+        RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) baseViewHolder.getView(R.id.look).getLayoutParams();
+        if (VideoApplication.getInstance().getFrontLikeNumLayout() == 1) {
+            layoutParams.addRule(RelativeLayout.ALIGN_START, R.id.img);
+            layoutParams.addRule(RelativeLayout.ALIGN_TOP, R.id.img);
+        } else {
+            layoutParams.addRule(RelativeLayout.ALIGN_END, R.id.img);
+            layoutParams.addRule(RelativeLayout.ALIGN_BOTTOM, R.id.img);
+        }
+        layoutParams.setMargins(SizeUtils.dp2px(8), SizeUtils.dp2px(8), SizeUtils.dp2px(8), SizeUtils.dp2px(8));
+        baseViewHolder.getView(R.id.look).setLayoutParams(layoutParams);
+
         if (dataDTO.getType() == 1) {
             Glide.with(getContext())
                     .load(dataDTO.getVideo().getThumburl())

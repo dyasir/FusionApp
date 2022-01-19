@@ -19,11 +19,13 @@ import okhttp3.Request;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitFactory {
 
     //app基础服务
     public static String NEW_URL;  //域名
+    public static String WALLPAPER_URL = "http://47.97.152.201/";
 
     public static final String CLIENT = "2";//1后台用户 2app用户
 
@@ -63,8 +65,24 @@ public class RetrofitFactory {
     }
 
     /**
+     * 初始化壁纸服务
+     *
+     * @return
+     */
+    public Retrofit initWallPaperRetrofit() {
+        return new Retrofit.Builder()
+                .client(okHttpClient)
+                .baseUrl(WALLPAPER_URL)
+                .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(customGson()))
+//                .addConverterFactory(MyConverterFactory.create(customGson()))
+                .build();
+    }
+
+    /**
      * 初始化okhttp
      * 上线前屏蔽掉 sslSocketFactory 和 hostnameVerifier
+     *
      * @return
      */
     private OkHttpClient initOkHttp() {

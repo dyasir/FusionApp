@@ -74,4 +74,5 @@
     <string name="tk_front_message_title">情報</string>
     <string name="tk_front_message_empty_title">今のところニュースはありません</string>
     <string name="tk_front_message_empty">あなたのメッセージはここに表示されますので、恥ずかしがらずに最初にメッセージを残してください！</string>
+    <string name="tk_front_photos_title">ギャラリー</string>
 </resources>

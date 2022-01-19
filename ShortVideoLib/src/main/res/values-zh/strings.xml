@@ -74,4 +74,5 @@
     <string name="tk_front_message_title">消息</string>
     <string name="tk_front_message_empty_title">暂时没有消息</string>
     <string name="tk_front_message_empty">你的消息将显示在这里，因此不要害羞，成为第一个留言的人！</string>
+    <string name="tk_front_photos_title">图库</string>
 </resources>
