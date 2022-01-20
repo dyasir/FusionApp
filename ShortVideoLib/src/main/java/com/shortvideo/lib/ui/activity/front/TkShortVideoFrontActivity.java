@@ -66,32 +66,84 @@ public class TkShortVideoFrontActivity extends AppCompatActivity {
     private void initView() {
         HomeBean homeBeanPre = (HomeBean) getIntent().getSerializableExtra("homeBean");
 
-        fragments.add(TkFrontVideoFragment.newInstants(homeBeanPre));
-        if (VideoApplication.getInstance().isApplyFrontHomeMessage()) {
-            fragments.add(new TkFrontMessageFragment());
-            if (VideoApplication.getInstance().isApplyFrontHomePhotos()) {
-                tabText = new String[]{"", "", "", ""};
-                normalIcon = new int[]{R.mipmap.tk_icon_bottom_home, R.mipmap.tk_icon_bottom_message, R.mipmap.tk_icon_bottom_photos, R.mipmap.tk_icon_bottom_mine};
-                selectIcon = new int[]{R.mipmap.tk_icon_bottom_home_sel, R.mipmap.tk_icon_bottom_message_sel, R.mipmap.tk_icon_bottom_photos_sel, R.mipmap.tk_icon_bottom_mine_sel};
-                fragments.add(new TkFrontPhotosFragment());
+        if (VideoApplication.getInstance().isApplyFrontHomeVideo()) {
+            fragments.add(TkFrontVideoFragment.newInstants(homeBeanPre));
+            if (VideoApplication.getInstance().isApplyFrontHomeMessage()) {
+                fragments.add(new TkFrontMessageFragment());
+                if (VideoApplication.getInstance().isApplyFrontHomePhotos()) {
+                    fragments.add(new TkFrontPhotosFragment());
+                    if (VideoApplication.getInstance().isApplyFrontHomeMine()) {
+                        fragments.add(new TkFrontMineFragment());
+                        tabText = new String[]{"", "", "", ""};
+                        normalIcon = new int[]{R.mipmap.tk_icon_bottom_home, R.mipmap.tk_icon_bottom_message, R.mipmap.tk_icon_bottom_photos, R.mipmap.tk_icon_bottom_mine};
+                        selectIcon = new int[]{R.mipmap.tk_icon_bottom_home_sel, R.mipmap.tk_icon_bottom_message_sel, R.mipmap.tk_icon_bottom_photos_sel, R.mipmap.tk_icon_bottom_mine_sel};
+                    } else {
+                        tabText = new String[]{"", "", ""};
+                        normalIcon = new int[]{R.mipmap.tk_icon_bottom_home, R.mipmap.tk_icon_bottom_message, R.mipmap.tk_icon_bottom_photos};
+                        selectIcon = new int[]{R.mipmap.tk_icon_bottom_home_sel, R.mipmap.tk_icon_bottom_message_sel, R.mipmap.tk_icon_bottom_photos_sel};
+                    }
+                } else {
+                    if (VideoApplication.getInstance().isApplyFrontHomeMine()) {
+                        fragments.add(new TkFrontMineFragment());
+                        tabText = new String[]{"", "", ""};
+                        normalIcon = new int[]{R.mipmap.tk_icon_bottom_home, R.mipmap.tk_icon_bottom_message, R.mipmap.tk_icon_bottom_mine};
+                        selectIcon = new int[]{R.mipmap.tk_icon_bottom_home_sel, R.mipmap.tk_icon_bottom_message_sel, R.mipmap.tk_icon_bottom_mine_sel};
+                    } else {
+                        tabText = new String[]{"", ""};
+                        normalIcon = new int[]{R.mipmap.tk_icon_bottom_home, R.mipmap.tk_icon_bottom_message};
+                        selectIcon = new int[]{R.mipmap.tk_icon_bottom_home_sel, R.mipmap.tk_icon_bottom_message_sel};
+                    }
+                }
             } else {
-                tabText = new String[]{"", "", ""};
-                normalIcon = new int[]{R.mipmap.tk_icon_bottom_home, R.mipmap.tk_icon_bottom_message, R.mipmap.tk_icon_bottom_mine};
-                selectIcon = new int[]{R.mipmap.tk_icon_bottom_home_sel, R.mipmap.tk_icon_bottom_message_sel, R.mipmap.tk_icon_bottom_mine_sel};
+                if (VideoApplication.getInstance().isApplyFrontHomePhotos()) {
+                    fragments.add(new TkFrontPhotosFragment());
+                    if (VideoApplication.getInstance().isApplyFrontHomeMine()) {
+                        fragments.add(new TkFrontMineFragment());
+                        tabText = new String[]{"", "", ""};
+                        normalIcon = new int[]{R.mipmap.tk_icon_bottom_home, R.mipmap.tk_icon_bottom_photos, R.mipmap.tk_icon_bottom_mine};
+                        selectIcon = new int[]{R.mipmap.tk_icon_bottom_home_sel, R.mipmap.tk_icon_bottom_photos_sel, R.mipmap.tk_icon_bottom_mine_sel};
+                    } else {
+                        tabText = new String[]{"", ""};
+                        normalIcon = new int[]{R.mipmap.tk_icon_bottom_home, R.mipmap.tk_icon_bottom_photos};
+                        selectIcon = new int[]{R.mipmap.tk_icon_bottom_home_sel, R.mipmap.tk_icon_bottom_photos_sel};
+                    }
+                } else {
+                    if (VideoApplication.getInstance().isApplyFrontHomeMine()) {
+                        fragments.add(new TkFrontMineFragment());
+                        tabText = new String[]{"", ""};
+                        normalIcon = new int[]{R.mipmap.tk_icon_bottom_home, R.mipmap.tk_icon_bottom_mine};
+                        selectIcon = new int[]{R.mipmap.tk_icon_bottom_home_sel, R.mipmap.tk_icon_bottom_mine_sel};
+                    } else {
+                        tabText = new String[]{""};
+                        normalIcon = new int[]{R.mipmap.tk_icon_bottom_home};
+                        selectIcon = new int[]{R.mipmap.tk_icon_bottom_home_sel};
+                    }
+                }
             }
         } else {
-            if (VideoApplication.getInstance().isApplyFrontHomePhotos()) {
-                tabText = new String[]{"", "", ""};
-                normalIcon = new int[]{R.mipmap.tk_icon_bottom_home, R.mipmap.tk_icon_bottom_photos, R.mipmap.tk_icon_bottom_mine};
-                selectIcon = new int[]{R.mipmap.tk_icon_bottom_home_sel, R.mipmap.tk_icon_bottom_photos_sel, R.mipmap.tk_icon_bottom_mine_sel};
-                fragments.add(new TkFrontPhotosFragment());
+            fragments.add(new TkFrontPhotosFragment());
+            if (VideoApplication.getInstance().isApplyFrontHomeMessage()) {
+                fragments.add(new TkFrontMessageFragment());
+                if (VideoApplication.getInstance().isApplyFrontHomeMine()) {
+                    fragments.add(new TkFrontMineFragment());
+                    tabText = new String[]{"", "", ""};
+                    normalIcon = new int[]{R.mipmap.tk_icon_bottom_photos, R.mipmap.tk_icon_bottom_message, R.mipmap.tk_icon_bottom_mine};
+                    selectIcon = new int[]{R.mipmap.tk_icon_bottom_photos_sel, R.mipmap.tk_icon_bottom_message_sel, R.mipmap.tk_icon_bottom_mine_sel};
+                } else {
+                    tabText = new String[]{"", ""};
+                    normalIcon = new int[]{R.mipmap.tk_icon_bottom_photos, R.mipmap.tk_icon_bottom_message};
+                    selectIcon = new int[]{R.mipmap.tk_icon_bottom_photos_sel, R.mipmap.tk_icon_bottom_message_sel};
+                }
             } else {
-                tabText = new String[]{"", ""};
-                normalIcon = new int[]{R.mipmap.tk_icon_bottom_home, R.mipmap.tk_icon_bottom_mine};
-                selectIcon = new int[]{R.mipmap.tk_icon_bottom_home_sel, R.mipmap.tk_icon_bottom_mine_sel};
+                if (VideoApplication.getInstance().isApplyFrontHomeMine()) {
+                    fragments.add(new TkFrontMineFragment());
+                    tabText = new String[]{"", ""};
+                    normalIcon = new int[]{R.mipmap.tk_icon_bottom_photos, R.mipmap.tk_icon_bottom_mine};
+                    selectIcon = new int[]{R.mipmap.tk_icon_bottom_photos_sel, R.mipmap.tk_icon_bottom_mine_sel};
+                }
             }
         }
-        fragments.add(new TkFrontMineFragment());
+
         for (int i = 0; i < tabText.length; i++) {
             mTabEntities.add(new TabEntity(tabText[i], selectIcon[i], normalIcon[i]));
         }

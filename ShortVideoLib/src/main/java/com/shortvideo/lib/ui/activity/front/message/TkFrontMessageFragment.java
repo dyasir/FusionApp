@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -30,10 +31,26 @@ public class TkFrontMessageFragment extends Fragment {
         /** 自定义属性部分开始 **/
         //背景色
         binding.getRoot().setBackgroundResource(VideoApplication.getInstance().getFrontPageBgColor());
+        //标题相对位置
+        RelativeLayout.LayoutParams headLayoutParams = (RelativeLayout.LayoutParams) binding.rlHead.getLayoutParams();
+        if (VideoApplication.getInstance().getFrontPageTitleLayoutType() == 1) {
+            headLayoutParams.addRule(RelativeLayout.ALIGN_PARENT_START);
+            headLayoutParams.setMargins(SizeUtils.dp2px(16f), SizeUtils.dp2px(16f), 0, 0);
+        } else if (VideoApplication.getInstance().getFrontPageTitleLayoutType() == 2) {
+            headLayoutParams.addRule(RelativeLayout.CENTER_HORIZONTAL);
+            headLayoutParams.setMargins(0, SizeUtils.dp2px(16f), 0, 0);
+        } else {
+            headLayoutParams.addRule(RelativeLayout.ALIGN_PARENT_END);
+            headLayoutParams.setMargins(0, SizeUtils.dp2px(16f), SizeUtils.dp2px(16f), 0);
+        }
+        binding.rlHead.setLayoutParams(headLayoutParams);
         //标题颜色以及字号
+        binding.title.setVisibility(VideoApplication.getInstance().isApplyFrontPageTitle() ? View.VISIBLE : View.GONE);
         binding.title.setTextColor(getResources().getColor(VideoApplication.getInstance().getFrontPageTitleColor()));
         binding.title.setTextSize(VideoApplication.getInstance().getFrontPageTitleSize());
         //标题下划线圆角、颜色、宽高
+        binding.line.setVisibility(VideoApplication.getInstance().isApplyFrontPageTitle() &&
+                VideoApplication.getInstance().isApplyFrontPageIndicator() ? View.VISIBLE : View.GONE);
         binding.line.getShapeBuilder().setShapeCornersRadius(VideoApplication.getInstance().getFrontPageIndicatorCornersRadius())
                 .setShapeSolidColor(getResources().getColor(VideoApplication.getInstance().getFrontPageIndicatorColor()))
                 .into(binding.line);

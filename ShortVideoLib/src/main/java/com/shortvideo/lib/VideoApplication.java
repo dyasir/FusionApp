@@ -79,26 +79,36 @@ public class VideoApplication extends Application {
     private boolean applyToLike = false;
     //是否开启前置页面
     private boolean openFrontPage = false;
+    //前置页是否提供首页视频功能
+    private boolean applyFrontHomeVideo = false;
     //前置页是否提供首页消息功能
     private boolean applyFrontHomeMessage = false;
     //前置页是否提供首页图库功能
     private boolean applyFrontHomePhotos = false;
-    //前置页面列表布局，1.两排格子  2.垂直布局
+    //前置页是否提供首页我的功能
+    private boolean applyFrontHomeMine = false;
+    //前置页列表布局，1.两排格子  2.垂直布局
     private int frontListLayoutType = 1;
-    //前置页面列表是否展示点赞数
+    //前置页列表是否展示点赞数
     private boolean applyFrontLikeNum = false;
-    //前置页面列表点赞数位置，1.左上  2.右下
+    //前置页列表点赞数位置，1.左上  2.右下
     private int frontLikeNumLayout = 1;
-    //前置页面2排格子列表单个的高度(单位dp)
+    //前置页2排格子列表单个的高度(单位dp)
     private float frontListItemHeight = 165;
     //前置页背景颜色
     private int frontPageBgColor = R.color.black;
     //前置页底部菜单栏背景颜色
     private int frontPageBottomBgColor = R.color.color_181818;
+    //前置页是否展示标题(如果不展示，则下划线也不展示)
+    private boolean applyFrontPageTitle = false;
     //前置页标题文字以及内容文字颜色(目前保持标题文字和内容文字颜色一致，防止与背景色互斥)
     private int frontPageTitleColor = R.color.white;
     //前置页标题文字大小
     private int frontPageTitleSize = 18;
+    //前置页标题相对位置，1.居左  2.居中  3.居右
+    private int frontPageTitleLayoutType = 2;
+    //前置页是否展示标题下划线
+    private boolean applyFrontPageIndicator = false;
     //前置页标题下划线颜色
     private int frontPageIndicatorColor = R.color.white;
     //前置页标题下划线长度(单位dp)
@@ -108,7 +118,13 @@ public class VideoApplication extends Application {
     //前置页标题下划线圆角
     private float frontPageIndicatorCornersRadius = 3;
     //前置页是否提供拍照功能
-    private boolean frontPageTakeVideo = false;
+    private boolean applyFrontPageTakeVideo = false;
+    //前置页图库列表的列数(2-4列)
+    private int frontPhotosSpanCount = 2;
+    //前置页图库是否展示点赞数
+    private boolean applyFrontPhotosLikeNum = false;
+    //前置页图库是否提供设置壁纸功能
+    private boolean applyFrontPhotosWallpaper = false;
     /**
      * 自定义属性结束
      **/
@@ -229,6 +245,11 @@ public class VideoApplication extends Application {
         return application;
     }
 
+    public VideoApplication setApplyFrontHomeVideo(boolean applyFrontHomeVideo) {
+        this.applyFrontHomeVideo = applyFrontHomeVideo;
+        return application;
+    }
+
     public VideoApplication setApplyFrontHomeMessage(boolean applyFrontHomeMessage) {
         this.applyFrontHomeMessage = applyFrontHomeMessage;
         return application;
@@ -236,6 +257,11 @@ public class VideoApplication extends Application {
 
     public VideoApplication setApplyFrontHomePhotos(boolean applyFrontHomePhotos) {
         this.applyFrontHomePhotos = applyFrontHomePhotos;
+        return application;
+    }
+
+    public VideoApplication setApplyFrontHomeMine(boolean applyFrontHomeMine) {
+        this.applyFrontHomeMine = applyFrontHomeMine;
         return application;
     }
 
@@ -269,6 +295,11 @@ public class VideoApplication extends Application {
         return application;
     }
 
+    public VideoApplication setApplyFrontPageTitle(boolean applyFrontPageTitle) {
+        this.applyFrontPageTitle = applyFrontPageTitle;
+        return application;
+    }
+
     public VideoApplication setFrontPageTitleColor(int frontPageTitleColor) {
         this.frontPageTitleColor = frontPageTitleColor;
         return application;
@@ -276,6 +307,16 @@ public class VideoApplication extends Application {
 
     public VideoApplication setFrontPageTitleSize(int frontPageTitleSize) {
         this.frontPageTitleSize = frontPageTitleSize;
+        return application;
+    }
+
+    public VideoApplication setFrontPageTitleLayoutType(int frontPageTitleLayoutType) {
+        this.frontPageTitleLayoutType = frontPageTitleLayoutType;
+        return application;
+    }
+
+    public VideoApplication setApplyFrontPageIndicator(boolean applyFrontPageIndicator) {
+        this.applyFrontPageIndicator = applyFrontPageIndicator;
         return application;
     }
 
@@ -299,8 +340,23 @@ public class VideoApplication extends Application {
         return application;
     }
 
-    public VideoApplication setFrontPageTakeVideo(boolean frontPageTakeVideo) {
-        this.frontPageTakeVideo = frontPageTakeVideo;
+    public VideoApplication setApplyFrontPageTakeVideo(boolean applyFrontPageTakeVideo) {
+        this.applyFrontPageTakeVideo = applyFrontPageTakeVideo;
+        return application;
+    }
+
+    public VideoApplication setFrontPhotosSpanCount(int frontPhotosSpanCount) {
+        this.frontPhotosSpanCount = frontPhotosSpanCount;
+        return application;
+    }
+
+    public VideoApplication setApplyFrontPhotosLikeNum(boolean applyFrontPhotosLikeNum) {
+        this.applyFrontPhotosLikeNum = applyFrontPhotosLikeNum;
+        return application;
+    }
+
+    public VideoApplication setApplyFrontPhotosWallpaper(boolean applyFrontPhotosWallpaper) {
+        this.applyFrontPhotosWallpaper = applyFrontPhotosWallpaper;
         return application;
     }
     /** 自定义属性结束 **/
@@ -332,12 +388,20 @@ public class VideoApplication extends Application {
         return openFrontPage;
     }
 
+    public boolean isApplyFrontHomeVideo() {
+        return applyFrontHomeVideo;
+    }
+
     public boolean isApplyFrontHomeMessage() {
         return applyFrontHomeMessage;
     }
 
     public boolean isApplyFrontHomePhotos() {
         return applyFrontHomePhotos;
+    }
+
+    public boolean isApplyFrontHomeMine() {
+        return applyFrontHomeMine;
     }
 
     public int getFrontListLayoutType() {
@@ -364,12 +428,24 @@ public class VideoApplication extends Application {
         return frontPageBottomBgColor;
     }
 
+    public boolean isApplyFrontPageTitle() {
+        return applyFrontPageTitle;
+    }
+
     public int getFrontPageTitleColor() {
         return frontPageTitleColor;
     }
 
     public int getFrontPageTitleSize() {
         return frontPageTitleSize;
+    }
+
+    public int getFrontPageTitleLayoutType() {
+        return frontPageTitleLayoutType;
+    }
+
+    public boolean isApplyFrontPageIndicator() {
+        return applyFrontPageIndicator;
     }
 
     public int getFrontPageIndicatorColor() {
@@ -388,8 +464,20 @@ public class VideoApplication extends Application {
         return frontPageIndicatorCornersRadius;
     }
 
-    public boolean isFrontPageTakeVideo() {
-        return frontPageTakeVideo;
+    public boolean isApplyFrontPageTakeVideo() {
+        return applyFrontPageTakeVideo;
+    }
+
+    public int getFrontPhotosSpanCount() {
+        return frontPhotosSpanCount;
+    }
+
+    public boolean isApplyFrontPhotosLikeNum() {
+        return applyFrontPhotosLikeNum;
+    }
+
+    public boolean isApplyFrontPhotosWallpaper() {
+        return applyFrontPhotosWallpaper;
     }
 
     /**
@@ -446,21 +534,29 @@ public class VideoApplication extends Application {
                 .setApplyDownload(true)                           //提供下载功能
                 .setApplyToLike(true)                             //提供点赞功能
                 .setOpenFrontPage(true)                           //开启前置页面
+                .setApplyFrontHomeVideo(true)                     //前置页是否提供首页视频功能
                 .setApplyFrontHomeMessage(true)                   //前置页是否提供首页消息功能
                 .setApplyFrontHomePhotos(true)                    //前置页是否提供首页图库功能
-                .setFrontListLayoutType(1)                        //前置页面列表布局，1.两排格子  2.垂直布局
-                .setFrontListItemHeight(165)                      //前置页面2排格子列表单个的高度
-                .setApplyFrontLikeNum(true)                       //前置页面列表是否展示点赞数
-                .setFrontLikeNumLayout(1)                         //前置页面列表点赞数位置，1.左上  2.右下
-                .setFrontPageBgColor(R.color.black)               //设置前置页背景颜色
-                .setFrontPageBottomBgColor(R.color.color_181818)  //设置前置页底部菜单栏背景颜色
-                .setFrontPageTitleColor(R.color.white)            //设置前置页面标题、内容文字颜色
-                .setFrontPageTitleSize(18)                        //设置前置页面标题文字大小
-                .setFrontPageIndicatorWidth(20)                   //设置前置页面标题下划线宽度
-                .setFrontPageIndicatorHeight(3)                   //设置前置页面标题下划线高度
-                .setFrontPageIndicatorColor(R.color.white)        //设置前置页面标题下划线颜色
-                .setFrontPageIndicatorCornersRadius(6)            //设置前置页面标题下划线圆角值
-                .setFrontPageTakeVideo(true);                     //设置前置页面是否提供拍摄功能
+                .setApplyFrontHomeMine(true)                      //前置页是否提供首页我的功能
+                .setFrontListLayoutType(1)                        //前置页列表布局，1.两排格子  2.垂直布局
+                .setFrontListItemHeight(165)                      //前置页2排格子列表单个的高度
+                .setApplyFrontLikeNum(true)                       //前置页列表是否展示点赞数
+                .setFrontLikeNumLayout(1)                         //前置页列表点赞数位置，1.左上  2.右下
+                .setFrontPageBgColor(R.color.black)               //前置页背景颜色
+                .setFrontPageBottomBgColor(R.color.color_181818)  //前置页底部菜单栏背景颜色
+                .setApplyFrontPageTitle(true)                     //前置页是否展示标题(如果不展示，则下划线也不展示)
+                .setFrontPageTitleColor(R.color.white)            //前置页标题、内容文字颜色
+                .setFrontPageTitleSize(18)                        //前置页标题文字大小
+                .setFrontPageTitleLayoutType(2)                   //前置页标题相对位置，1.居左  2.居中  3.居右
+                .setApplyFrontPageIndicator(true)                 //前置页是否展示标题下划线
+                .setFrontPageIndicatorWidth(20)                   //前置页标题下划线宽度
+                .setFrontPageIndicatorHeight(3)                   //前置页标题下划线高度
+                .setFrontPageIndicatorColor(R.color.white)        //前置页标题下划线颜色
+                .setFrontPageIndicatorCornersRadius(6)            //前置页标题下划线圆角值
+                .setApplyFrontPageTakeVideo(true)                 //前置页是否提供拍摄功能
+                .setFrontPhotosSpanCount(2)                       //前置页图库列表的列数
+                .setApplyFrontPhotosLikeNum(false)                //前置页图库是否展示点赞数
+                .setApplyFrontPhotosWallpaper(false);             //前置页图库是否提供设置壁纸功能
     }
 
     /**

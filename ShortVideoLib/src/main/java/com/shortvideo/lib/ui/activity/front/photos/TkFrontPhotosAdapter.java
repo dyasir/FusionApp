@@ -1,6 +1,7 @@
 package com.shortvideo.lib.ui.activity.front.photos;
 
 import android.text.TextUtils;
+import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -12,7 +13,9 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.shortvideo.lib.R;
+import com.shortvideo.lib.VideoApplication;
 import com.shortvideo.lib.model.WallpaperBean;
+import com.shortvideo.lib.utils.SizeUtils;
 
 import java.util.List;
 
@@ -24,7 +27,15 @@ public class TkFrontPhotosAdapter extends BaseQuickAdapter<WallpaperBean.ImagesD
 
     @Override
     protected void convert(@NonNull BaseViewHolder baseViewHolder, WallpaperBean.ImagesDTO imagesDTO) {
+        RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) baseViewHolder.getView(R.id.img).getLayoutParams();
+        layoutParams.width = VideoApplication.getInstance().getFrontPhotosSpanCount() == 2 ? SizeUtils.dp2px(165f) :
+                VideoApplication.getInstance().getFrontPhotosSpanCount() == 3 ? SizeUtils.dp2px(105f) : SizeUtils.dp2px(75f);
+        layoutParams.height = VideoApplication.getInstance().getFrontPhotosSpanCount() == 2 ? SizeUtils.dp2px(375.5f) :
+                VideoApplication.getInstance().getFrontPhotosSpanCount() == 3 ? SizeUtils.dp2px(227.5f) : SizeUtils.dp2px(162.5f);
+        baseViewHolder.getView(R.id.img).setLayoutParams(layoutParams);
+
         RequestOptions options = new RequestOptions()
+                .error(R.mipmap.tk_icon_front_photos_error)
                 .diskCacheStrategy(DiskCacheStrategy.RESOURCE);
 
         Glide.with(getContext())

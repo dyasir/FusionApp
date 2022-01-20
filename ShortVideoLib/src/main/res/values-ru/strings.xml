@@ -70,9 +70,13 @@
     <string name="tk_setting_cache_tip_title">Уведомление</string>
     <string name="tk_setting_cache_tip">Если вы очистите кеш, все видео необходимо будет перезагрузить, что может занять больше времени. Вы уверены, что хотите очистить кеш?</string>
 
-    <string name="tk_front_video_title">популярный</string>
+    <string name="tk_front_video_title">Популярный</string>
     <string name="tk_front_message_title">Информация</string>
     <string name="tk_front_message_empty_title">Новостей пока нет</string>
     <string name="tk_front_message_empty">Ваши сообщения будут появляться здесь, так что не стесняйтесь и оставляйте сообщения первыми!</string>
     <string name="tk_front_photos_title">Галерея</string>
+    <string name="tk_front_photos_set">Установка обоев</string>
+    <string name="tk_front_photos_setting">Параметр&#8230;&#8230;</string>
+    <string name="tk_front_photos_set_success">Yспешно установлено!</string>
+    <string name="tk_front_photos_set_faild">Не удалось выполнить настройку. Повторите попытку.!</string>
 </resources>

@@ -14,21 +14,29 @@ public class App extends VideoApplication {
      * setApplyDownload                    视频页面是否提供下载功能
      * setApplyToLike                      视频页面是否提供点赞功能
      * setOpenFrontPage                    开启前置页面，如果开启了，则setVideoLayoutType不生效，默认为1
+     * setApplyFrontHomeVideo              前置页是否提供首页视频功能
      * setApplyFrontHomeMessage            前置页是否提供首页消息功能
      * setApplyFrontHomePhotos             前置页是否提供首页图库功能
-     * setFrontListLayoutType              前置页面列表布局，1.两排格子  2.垂直布局
-     * setFrontListItemHeight              前置页面2排格子列表单个的高度(单位dp)
-     * setApplyFrontLikeNum                前置页面列表是否展示点赞数
-     * setFrontLikeNumLayout               前置页面列表点赞数位置，1.左上  2.右下
-     * setFrontPageBgColor                 设置前置页面背景色 (res id)
-     * setFrontPageBottomBgColor           设置前置页底部菜单栏背景颜色 (res id)
-     * setFrontPageTitleColor              设置前置页面标题、内容文字颜色 (res id)
-     * setFrontPageTitleSize               设置前置页面标题文字大小 (单位sp)
-     * setFrontPageIndicatorWidth          设置前置页面标题下划线宽度 (单位dp)
-     * setFrontPageIndicatorHeight         设置前置页面标题下划线高度 (单位dp)
-     * setFrontPageIndicatorColor          设置前置页面标题下划线颜色 (res id)
-     * setFrontPageIndicatorCornersRadius  设置前置页面标题下划线圆角值 (单位float)
-     * setFrontPageTakeVideo               设置前置页面是否提供拍摄功能
+     * setApplyFrontHomeMine               前置页是否提供首页我的功能
+     * setFrontListLayoutType              前置页列表布局，1.两排格子  2.垂直布局
+     * setFrontListItemHeight              前置页2排格子列表单个的高度(单位dp)
+     * setApplyFrontLikeNum                前置页列表是否展示点赞数
+     * setFrontLikeNumLayout               前置页列表点赞数位置，1.左上  2.右下
+     * setFrontPageBgColor                 前置页背景色 (res id)
+     * setFrontPageBottomBgColor           前置页底部菜单栏背景颜色 (res id)
+     * setApplyFrontPageTitle              前置页是否展示标题(如果不展示，则下划线也不展示)
+     * setFrontPageTitleColor              前置页标题、内容文字颜色 (res id)(目前保持标题文字和内容文字颜色一致，防止与背景色互斥)
+     * setFrontPageTitleSize               前置页标题文字大小 (单位sp)
+     * setFrontPageTitleLayoutType         前置页标题相对位置，1.居左  2.居中  3.居右
+     * setApplyFrontPageIndicator          前置页是否展示标题下划线
+     * setFrontPageIndicatorWidth          前置页标题下划线宽度 (单位dp)
+     * setFrontPageIndicatorHeight         前置页标题下划线高度 (单位dp)
+     * setFrontPageIndicatorColor          前置页标题下划线颜色 (res id)
+     * setFrontPageIndicatorCornersRadius  前置页标题下划线圆角值 (单位float)
+     * setApplyFrontPageTakeVideo          前置页是否提供拍摄功能
+     * setFrontPhotosSpanCount             前置页图库列表的列数(2-4列)
+     * setApplyFrontPhotosLikeNum          前置页图库是否展示点赞数
+     * setApplyFrontPhotosWallpaper        前置页图库是否提供设置壁纸功能
      */
     @Override
     protected void initVideoPageConfig() {
@@ -39,20 +47,28 @@ public class App extends VideoApplication {
                 .setApplyDownload(false)                          //提供下载功能
                 .setApplyToLike(false)                            //提供点赞功能
                 .setOpenFrontPage(true)                           //开启前置页面
+                .setApplyFrontHomeVideo(false)                    //前置页是否提供首页视频功能
                 .setApplyFrontHomeMessage(true)                   //前置页是否提供首页消息功能
                 .setApplyFrontHomePhotos(true)                    //前置页是否提供首页图库功能
-                .setFrontListLayoutType(2)                        //前置页面列表布局，1.两排格子  2.垂直布局
-                .setFrontListItemHeight(165)                      //前置页面2排格子列表单个的高度
-                .setApplyFrontLikeNum(true)                       //前置页面列表是否展示点赞数
-                .setFrontLikeNumLayout(1)                         //前置页面列表点赞数位置，1.左上  2.右下
-                .setFrontPageBgColor(R.color.black)               //设置前置页背景颜色
-                .setFrontPageBottomBgColor(R.color.color_181818)  //设置前置页底部菜单栏背景颜色
-                .setFrontPageTitleColor(R.color.white)            //设置前置页面标题、内容文字颜色
-                .setFrontPageTitleSize(20)                        //设置前置页面标题文字大小
-                .setFrontPageIndicatorWidth(56)                   //设置前置页面标题下划线宽度
-                .setFrontPageIndicatorHeight(6)                   //设置前置页面标题下划线高度
-                .setFrontPageIndicatorColor(R.color.white)        //设置前置页面标题下划线颜色
-                .setFrontPageIndicatorCornersRadius(16)           //设置前置页面标题下划线圆角值
-                .setFrontPageTakeVideo(false);                    //设置前置页面是否提供拍摄功能
+                .setApplyFrontHomeMine(false)                     //前置页是否提供首页我的功能
+                .setFrontListLayoutType(2)                        //前置页列表布局，1.两排格子  2.垂直布局
+                .setFrontListItemHeight(165)                      //前置页2排格子列表单个的高度
+                .setApplyFrontLikeNum(true)                       //前置页列表是否展示点赞数
+                .setFrontLikeNumLayout(1)                         //前置页列表点赞数位置，1.左上  2.右下
+                .setFrontPageBgColor(R.color.black)               //前置页背景颜色
+                .setFrontPageBottomBgColor(R.color.color_181818)  //前置页底部菜单栏背景颜色
+                .setApplyFrontPageTitle(true)                     //前置页是否展示标题(如果不展示，则下划线也不展示)
+                .setFrontPageTitleColor(R.color.white)            //前置页面标题、内容文字颜色
+                .setFrontPageTitleSize(18)                        //前置页面标题文字大小
+                .setFrontPageTitleLayoutType(1)                   //前置页标题相对位置，1.居左  2.居中  3.居右
+                .setApplyFrontPageIndicator(false)                //前置页是否展示标题下划线
+                .setFrontPageIndicatorWidth(20)                   //前置页标题下划线宽度
+                .setFrontPageIndicatorHeight(3)                   //前置页标题下划线高度
+                .setFrontPageIndicatorColor(R.color.white)        //前置页标题下划线颜色
+                .setFrontPageIndicatorCornersRadius(6)            //前置页标题下划线圆角值
+                .setApplyFrontPageTakeVideo(false)                //前置页是否提供拍摄功能
+                .setFrontPhotosSpanCount(3)                       //前置页图库列表的列数(2-4列)
+                .setApplyFrontPhotosLikeNum(false)                //前置页图库是否展示点赞数
+                .setApplyFrontPhotosWallpaper(true);              //前置页图库是否提供设置壁纸功能
     }
 }

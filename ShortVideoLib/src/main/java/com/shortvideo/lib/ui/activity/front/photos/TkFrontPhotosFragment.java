@@ -1,11 +1,17 @@
 package com.shortvideo.lib.ui.activity.front.photos;
 
+import static android.app.Activity.RESULT_OK;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -21,6 +27,7 @@ import com.shortvideo.lib.model.WallpaperBean;
 import com.shortvideo.lib.utils.MojitoShow;
 import com.shortvideo.lib.utils.SizeUtils;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,6 +39,7 @@ public class TkFrontPhotosFragment extends Fragment {
     private final List<String> photoList = new ArrayList<>();
     private boolean isRefresh = false;
     private boolean firstLoad = true;
+    private ActivityResultLauncher launcher;
 
     @Nullable
     @Override
@@ -51,10 +59,26 @@ public class TkFrontPhotosFragment extends Fragment {
         /** 自定义属性部分开始 **/
         //背景色
         binding.getRoot().setBackgroundResource(VideoApplication.getInstance().getFrontPageBgColor());
+        //标题相对位置
+        RelativeLayout.LayoutParams headLayoutParams = (RelativeLayout.LayoutParams) binding.rlHead.getLayoutParams();
+        if (VideoApplication.getInstance().getFrontPageTitleLayoutType() == 1) {
+            headLayoutParams.addRule(RelativeLayout.ALIGN_PARENT_START);
+            headLayoutParams.setMargins(SizeUtils.dp2px(16f), SizeUtils.dp2px(16f), 0, 0);
+        } else if (VideoApplication.getInstance().getFrontPageTitleLayoutType() == 2) {
+            headLayoutParams.addRule(RelativeLayout.CENTER_HORIZONTAL);
+            headLayoutParams.setMargins(0, SizeUtils.dp2px(16f), 0, 0);
+        } else {
+            headLayoutParams.addRule(RelativeLayout.ALIGN_PARENT_END);
+            headLayoutParams.setMargins(0, SizeUtils.dp2px(16f), SizeUtils.dp2px(16f), 0);
+        }
+        binding.rlHead.setLayoutParams(headLayoutParams);
         //标题颜色以及字号
+        binding.title.setVisibility(VideoApplication.getInstance().isApplyFrontPageTitle() ? View.VISIBLE : View.GONE);
         binding.title.setTextColor(getResources().getColor(VideoApplication.getInstance().getFrontPageTitleColor()));
         binding.title.setTextSize(VideoApplication.getInstance().getFrontPageTitleSize());
         //标题下划线圆角、颜色、宽高
+        binding.line.setVisibility(VideoApplication.getInstance().isApplyFrontPageTitle() &&
+                VideoApplication.getInstance().isApplyFrontPageIndicator() ? View.VISIBLE : View.GONE);
         binding.line.getShapeBuilder().setShapeCornersRadius(VideoApplication.getInstance().getFrontPageIndicatorCornersRadius())
                 .setShapeSolidColor(getResources().getColor(VideoApplication.getInstance().getFrontPageIndicatorColor()))
                 .into(binding.line);
@@ -65,7 +89,7 @@ public class TkFrontPhotosFragment extends Fragment {
         /** 自定义属性部分结束 **/
 
         tkFrontPhotosAdapter = new TkFrontPhotosAdapter(new ArrayList<>());
-        binding.recycle.setLayoutManager(new GridLayoutManager(binding.recycle.getContext(), 2));
+        binding.recycle.setLayoutManager(new GridLayoutManager(binding.recycle.getContext(), VideoApplication.getInstance().getFrontPhotosSpanCount()));
         binding.recycle.setAdapter(tkFrontPhotosAdapter);
 
         binding.refresh.setRefreshHeader(new MaterialHeader(binding.refresh.getContext()));
@@ -75,8 +99,20 @@ public class TkFrontPhotosFragment extends Fragment {
             initData();
         });
 
+        launcher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
+            if (result.getResultCode() == RESULT_OK && result.getData() != null)
+                binding.recycle.scrollToPosition(result.getData().getIntExtra("nowPosition", 0));
+        });
+
         tkFrontPhotosAdapter.setOnItemClickListener((adapter, view, position) -> {
-            MojitoShow.recyclerView(binding.recycle.getContext(), binding.recycle, R.id.img, photoList, position);
+            if (VideoApplication.getInstance().isApplyFrontPhotosWallpaper()) {
+                Intent intent = new Intent(getActivity(), TkFrontPhotosDetailActivity.class);
+                intent.putExtra("list", (Serializable) photoList);
+                intent.putExtra("position", position);
+                launcher.launch(intent);
+            } else {
+                MojitoShow.recyclerView(binding.recycle.getContext(), binding.recycle, R.id.img, photoList, position);
+            }
         });
     }
 

@@ -5,34 +5,38 @@
     android:layout_height="match_parent"
     android:background="@color/black">
 
-    <TextView
-        android:id="@+id/title"
+    <RelativeLayout
+        android:id="@+id/rl_head"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
-        android:text="@string/tk_front_video_title"
-        android:textColor="@color/white"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+        android:layout_height="wrap_content">
 
-    <com.allen.library.SuperTextView
-        android:id="@+id/line"
-        android:layout_width="20dp"
-        android:layout_height="6dp"
-        android:layout_below="@+id/title"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="1dp"
-        app:sShapeCornersRadius="3dp"
-        app:sShapeSolidColor="@color/white"
-        app:sUseShape="true" />
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tk_front_video_title"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <com.allen.library.SuperTextView
+            android:id="@+id/line"
+            android:layout_width="20dp"
+            android:layout_height="6dp"
+            android:layout_below="@+id/title"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="1dp"
+            app:sShapeCornersRadius="3dp"
+            app:sShapeSolidColor="@color/white"
+            app:sUseShape="true" />
+    </RelativeLayout>
 
     <com.scwang.smart.refresh.layout.SmartRefreshLayout
         android:id="@+id/refresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/title"
-        android:layout_marginTop="22dp">
+        android:layout_below="@+id/rl_head"
+        android:layout_marginTop="16dp">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycle"

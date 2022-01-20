@@ -19,12 +19,14 @@
     <!-- 强制更高版本手机的权限 -->
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-<!--    &lt;!&ndash; 获取手机状态 &ndash;&gt;-->
-<!--    <uses-permission android:name="android.permission.READ_PHONE_STATE" />-->
-<!--    <uses-permission android:name="android.permission.READ_PHONE_NUMBERS" />-->
-<!--    <uses-permission-->
-<!--        android:name="android.permission.READ_PRIVILEGED_PHONE_STATE"-->
-<!--        tools:ignore="ProtectedPermissions" />-->
+    <!-- 设置手机壁纸 -->
+    <uses-permission android:name="android.permission.SET_WALLPAPER" />
+    <!--    &lt;!&ndash; 获取手机状态 &ndash;&gt;-->
+    <!--    <uses-permission android:name="android.permission.READ_PHONE_STATE" />-->
+    <!--    <uses-permission android:name="android.permission.READ_PHONE_NUMBERS" />-->
+    <!--    <uses-permission-->
+    <!--        android:name="android.permission.READ_PRIVILEGED_PHONE_STATE"-->
+    <!--        tools:ignore="ProtectedPermissions" />-->
 
     <application
         android:hardwareAccelerated="true"
@@ -114,6 +116,9 @@
         <activity
             android:name=".ui.activity.front.mine.TkFrontMyVideoDetailActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.front.photos.TkFrontPhotosDetailActivity"
             android:screenOrientation="portrait" />
     </application>
 
