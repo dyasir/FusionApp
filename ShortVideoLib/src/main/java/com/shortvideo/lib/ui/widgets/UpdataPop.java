@@ -99,7 +99,7 @@ public class UpdataPop extends BasePopupWindow implements View.OnClickListener {
                         .subscribe(aBoolean -> {
                             if (aBoolean) {
                                 binding.rlProgress.setVisibility(View.VISIBLE);
-                                binding.btn.setVisibility(View.GONE);
+                                binding.llBtn.setVisibility(View.GONE);
 
                                 Aria.download(getContext())
                                         .load(url)

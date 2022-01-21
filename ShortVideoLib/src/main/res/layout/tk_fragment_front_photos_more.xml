@@ -24,7 +24,6 @@
             android:layout_width="20dp"
             android:layout_height="6dp"
             android:layout_below="@+id/title"
-            android:layout_centerHorizontal="true"
             android:layout_marginTop="1dp"
             app:sShapeCornersRadius="3dp"
             app:sShapeSolidColor="@color/white"

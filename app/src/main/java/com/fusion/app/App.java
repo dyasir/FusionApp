@@ -65,11 +65,11 @@ public class App extends VideoApplication {
                 .setFrontPageTitleSize(18)                        //前置页面标题文字大小
                 .setFrontPageTitleLayoutType(1)                   //前置页标题相对位置，1.居左  2.居中  3.居右
                 .setApplyFrontPageIndicator(true)                 //前置页是否展示标题下划线
-                .setFrontPageIndicatorLayoutType(2)               //前置页下划线相对标题位置，1.居左  2.居中  3.居右
-                .setFrontPageIndicatorWidth(20)                   //前置页标题下划线宽度
+                .setFrontPageIndicatorLayoutType(1)               //前置页下划线相对标题位置，1.居左  2.居中  3.居右
+                .setFrontPageIndicatorWidth(13)                   //前置页标题下划线宽度
                 .setFrontPageIndicatorHeight(3)                   //前置页标题下划线高度
                 .setFrontPageIndicatorColor(R.color.white)        //前置页标题下划线颜色
-                .setFrontPageIndicatorCornersRadius(6)            //前置页标题下划线圆角值
+                .setFrontPageIndicatorCornersRadius(3)            //前置页标题下划线圆角值
                 .setApplyFrontPageTakeVideo(false)                //前置页是否提供拍摄功能
                 .setFrontPhotosLayoutType(2)                      //前置页图库列表样式，1.列表  2.一屏多页
                 .setFrontPhotosScollType(2)                       //前置页图库列表一屏多页滑动方式，1.左右  2.上下

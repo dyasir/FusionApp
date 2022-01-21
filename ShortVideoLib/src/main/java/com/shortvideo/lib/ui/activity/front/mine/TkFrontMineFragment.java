@@ -60,6 +60,15 @@ public class TkFrontMineFragment extends Fragment implements View.OnClickListene
         binding.title.setTextColor(getResources().getColor(VideoApplication.getInstance().getFrontPageTitleColor()));
         binding.title.setTextSize(VideoApplication.getInstance().getFrontPageTitleSize());
         //标题下划线圆角、颜色、宽高
+        RelativeLayout.LayoutParams lineParams = (RelativeLayout.LayoutParams) binding.line.getLayoutParams();
+        if (VideoApplication.getInstance().getFrontPageIndicatorLayoutType() == 1){
+            lineParams.addRule(RelativeLayout.ALIGN_START, R.id.title);
+        }else if (VideoApplication.getInstance().getFrontPageIndicatorLayoutType() == 2){
+            lineParams.addRule(RelativeLayout.CENTER_HORIZONTAL);
+        }else {
+            lineParams.addRule(RelativeLayout.ALIGN_END, R.id.title);
+        }
+        binding.line.setLayoutParams(lineParams);
         binding.line.setVisibility(VideoApplication.getInstance().isApplyFrontPageTitle() &&
                 VideoApplication.getInstance().isApplyFrontPageIndicator() ? View.VISIBLE : View.GONE);
         binding.line.getShapeBuilder().setShapeCornersRadius(VideoApplication.getInstance().getFrontPageIndicatorCornersRadius())
