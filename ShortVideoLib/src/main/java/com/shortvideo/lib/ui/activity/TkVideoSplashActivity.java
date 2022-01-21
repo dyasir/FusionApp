@@ -2,17 +2,14 @@ package com.shortvideo.lib.ui.activity;
 
 import static android.view.View.DRAWING_CACHE_QUALITY_HIGH;
 
-import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 
@@ -48,13 +45,11 @@ import com.shortvideo.lib.model.VideoDetailBean;
 import com.shortvideo.lib.ui.activity.front.TkShortVideoFrontActivity;
 import com.shortvideo.lib.ui.widgets.UpdataPop;
 import com.shortvideo.lib.utils.ActivityManager;
-import com.shortvideo.lib.utils.PhoneInfoUtils;
 import com.shortvideo.lib.utils.SPUtils;
 import com.shortvideo.lib.utils.ToastyUtils;
 import com.shuyu.gsyvideoplayer.GSYVideoManager;
 import com.shuyu.gsyvideoplayer.builder.GSYVideoOptionBuilder;
 import com.shuyu.gsyvideoplayer.listener.GSYSampleCallBack;
-import com.tbruyelle.rxpermissions3.RxPermissions;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -306,7 +301,7 @@ public class TkVideoSplashActivity extends AppCompatActivity {
 //                                                });
 //                                    }
 //                                } else {
-                                    getFusionConfig();
+                                getFusionConfig();
 //                                }
                             });
                             updataPop.showPopupWindow();
@@ -332,7 +327,7 @@ public class TkVideoSplashActivity extends AppCompatActivity {
 //                                            });
 //                                }
 //                            } else {
-                                getFusionConfig();
+                            getFusionConfig();
 //                            }
                         }
                     }
@@ -750,7 +745,7 @@ public class TkVideoSplashActivity extends AppCompatActivity {
     public void onBackPressed() {
         if (GSYVideoManager.backFromWindowFull(this))
             return;
-        super.onBackPressed();
+//        super.onBackPressed();
     }
 
     @Override

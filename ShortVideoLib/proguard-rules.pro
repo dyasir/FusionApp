@@ -183,6 +183,9 @@
 -dontnote com.google.android.material.**
 -dontwarn androidx.**
 
+# installreferrer
+-keep public class com.android.installreferrer.**{ *; }
+
 # 自己项目中定义的实体类
 -keep class com.shortvideo.lib.model.** { *; }
 -keep class com.shortvideo.lib.ui.widgets.** { *; }

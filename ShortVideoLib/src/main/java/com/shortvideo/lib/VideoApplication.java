@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.os.Build;
+import android.os.Bundle;
 import android.os.RemoteException;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
@@ -109,6 +110,8 @@ public class VideoApplication extends Application {
     private int frontPageTitleLayoutType = 2;
     //前置页是否展示标题下划线
     private boolean applyFrontPageIndicator = false;
+    //前置页下划线相对标题位置，1.居左  2.居中  3.居右
+    private int frontPageIndicatorLayoutType = 2;
     //前置页标题下划线颜色
     private int frontPageIndicatorColor = R.color.white;
     //前置页标题下划线长度(单位dp)
@@ -119,6 +122,10 @@ public class VideoApplication extends Application {
     private float frontPageIndicatorCornersRadius = 3;
     //前置页是否提供拍照功能
     private boolean applyFrontPageTakeVideo = false;
+    //前置页图库列表样式，1.列表  2.一屏多页
+    private int frontPhotosLayoutType = 1;
+    //前置页图库列表一屏多页滑动方式，1.左右  2.上下
+    private int frontPhotosScollType = 1;
     //前置页图库列表的列数(2-4列)
     private int frontPhotosSpanCount = 2;
     //前置页图库是否展示点赞数
@@ -320,6 +327,11 @@ public class VideoApplication extends Application {
         return application;
     }
 
+    public VideoApplication setFrontPageIndicatorLayoutType(int frontPageIndicatorLayoutType) {
+        this.frontPageIndicatorLayoutType = frontPageIndicatorLayoutType;
+        return application;
+    }
+
     public VideoApplication setFrontPageIndicatorColor(int frontPageIndicatorColor) {
         this.frontPageIndicatorColor = frontPageIndicatorColor;
         return application;
@@ -342,6 +354,16 @@ public class VideoApplication extends Application {
 
     public VideoApplication setApplyFrontPageTakeVideo(boolean applyFrontPageTakeVideo) {
         this.applyFrontPageTakeVideo = applyFrontPageTakeVideo;
+        return application;
+    }
+
+    public VideoApplication setFrontPhotosLayoutType(int frontPhotosLayoutType) {
+        this.frontPhotosLayoutType = frontPhotosLayoutType;
+        return application;
+    }
+
+    public VideoApplication setFrontPhotosScollType(int frontPhotosScollType) {
+        this.frontPhotosScollType = frontPhotosScollType;
         return application;
     }
 
@@ -448,6 +470,10 @@ public class VideoApplication extends Application {
         return applyFrontPageIndicator;
     }
 
+    public int getFrontPageIndicatorLayoutType() {
+        return frontPageIndicatorLayoutType;
+    }
+
     public int getFrontPageIndicatorColor() {
         return frontPageIndicatorColor;
     }
@@ -466,6 +492,14 @@ public class VideoApplication extends Application {
 
     public boolean isApplyFrontPageTakeVideo() {
         return applyFrontPageTakeVideo;
+    }
+
+    public int getFrontPhotosLayoutType() {
+        return frontPhotosLayoutType;
+    }
+
+    public int getFrontPhotosScollType() {
+        return frontPhotosScollType;
     }
 
     public int getFrontPhotosSpanCount() {
@@ -549,11 +583,14 @@ public class VideoApplication extends Application {
                 .setFrontPageTitleSize(18)                        //前置页标题文字大小
                 .setFrontPageTitleLayoutType(2)                   //前置页标题相对位置，1.居左  2.居中  3.居右
                 .setApplyFrontPageIndicator(true)                 //前置页是否展示标题下划线
+                .setFrontPageIndicatorLayoutType(2)               //前置页下划线相对标题位置，1.居左  2.居中  3.居右
                 .setFrontPageIndicatorWidth(20)                   //前置页标题下划线宽度
                 .setFrontPageIndicatorHeight(3)                   //前置页标题下划线高度
                 .setFrontPageIndicatorColor(R.color.white)        //前置页标题下划线颜色
                 .setFrontPageIndicatorCornersRadius(6)            //前置页标题下划线圆角值
                 .setApplyFrontPageTakeVideo(true)                 //前置页是否提供拍摄功能
+                .setFrontPhotosLayoutType(1)                      //前置页图库列表样式，1.列表  2.一屏多页
+                .setFrontPhotosScollType(1)                       //前置页图库列表一屏多页滑动方式，1.左右  2.上下
                 .setFrontPhotosSpanCount(2)                       //前置页图库列表的列数
                 .setApplyFrontPhotosLikeNum(false)                //前置页图库是否展示点赞数
                 .setApplyFrontPhotosWallpaper(false);             //前置页图库是否提供设置壁纸功能
@@ -594,6 +631,17 @@ public class VideoApplication extends Application {
 
         //启动次数
         SPUtils.set("app_open_cout", SPUtils.getInteger("app_open_cout") + 1);
+    }
+
+    /**
+     * 谷歌自定义事件上报
+     *
+     * @param eventName
+     * @param bundle
+     */
+    public void reportToGoogle(String eventName, Bundle bundle) {
+        if (!TextUtils.isEmpty(eventName) && bundle != null)
+            mFirebaseAnalytics.logEvent(eventName, bundle);
     }
 
     /**

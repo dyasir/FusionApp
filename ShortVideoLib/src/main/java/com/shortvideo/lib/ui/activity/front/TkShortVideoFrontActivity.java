@@ -17,6 +17,7 @@ import com.shortvideo.lib.model.TabEntity;
 import com.shortvideo.lib.ui.activity.front.message.TkFrontMessageFragment;
 import com.shortvideo.lib.ui.activity.front.mine.TkFrontMineFragment;
 import com.shortvideo.lib.ui.activity.front.photos.TkFrontPhotosFragment;
+import com.shortvideo.lib.ui.activity.front.photos.TkFrontPhotosMoreFragment;
 import com.shortvideo.lib.ui.activity.front.videolist.TkFrontVideoFragment;
 import com.shortvideo.lib.utils.ActivityManager;
 import com.shortvideo.lib.utils.SPUtils;
@@ -71,7 +72,11 @@ public class TkShortVideoFrontActivity extends AppCompatActivity {
             if (VideoApplication.getInstance().isApplyFrontHomeMessage()) {
                 fragments.add(new TkFrontMessageFragment());
                 if (VideoApplication.getInstance().isApplyFrontHomePhotos()) {
-                    fragments.add(new TkFrontPhotosFragment());
+                    if (VideoApplication.getInstance().getFrontPhotosLayoutType() == 1) {
+                        fragments.add(new TkFrontPhotosFragment());
+                    } else {
+                        fragments.add(new TkFrontPhotosMoreFragment());
+                    }
                     if (VideoApplication.getInstance().isApplyFrontHomeMine()) {
                         fragments.add(new TkFrontMineFragment());
                         tabText = new String[]{"", "", "", ""};
@@ -96,7 +101,11 @@ public class TkShortVideoFrontActivity extends AppCompatActivity {
                 }
             } else {
                 if (VideoApplication.getInstance().isApplyFrontHomePhotos()) {
-                    fragments.add(new TkFrontPhotosFragment());
+                    if (VideoApplication.getInstance().getFrontPhotosLayoutType() == 1) {
+                        fragments.add(new TkFrontPhotosFragment());
+                    } else {
+                        fragments.add(new TkFrontPhotosMoreFragment());
+                    }
                     if (VideoApplication.getInstance().isApplyFrontHomeMine()) {
                         fragments.add(new TkFrontMineFragment());
                         tabText = new String[]{"", "", ""};
@@ -121,7 +130,11 @@ public class TkShortVideoFrontActivity extends AppCompatActivity {
                 }
             }
         } else {
-            fragments.add(new TkFrontPhotosFragment());
+            if (VideoApplication.getInstance().getFrontPhotosLayoutType() == 1) {
+                fragments.add(new TkFrontPhotosFragment());
+            } else {
+                fragments.add(new TkFrontPhotosMoreFragment());
+            }
             if (VideoApplication.getInstance().isApplyFrontHomeMessage()) {
                 fragments.add(new TkFrontMessageFragment());
                 if (VideoApplication.getInstance().isApplyFrontHomeMine()) {

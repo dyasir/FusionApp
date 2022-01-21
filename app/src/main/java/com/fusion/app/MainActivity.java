@@ -26,5 +26,16 @@ public class MainActivity extends AppCompatActivity {
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        /**
+         * 自定义事件上报Google示例
+         * Bundle为事件内的参数
+         * app_custom_report为自定义事件的名称
+         */
+        Bundle bundle = new Bundle();
+        bundle.putString("app_package_id", getPackageName());
+        bundle.putInt("app_user_id", 12);
+        bundle.putFloat("app_pay_money", 30.26f);
+        App.getInstance().reportToGoogle("app_custom_report", bundle);
     }
 }
