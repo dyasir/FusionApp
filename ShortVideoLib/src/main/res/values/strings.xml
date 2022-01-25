@@ -79,4 +79,26 @@
     <string name="tk_front_photos_setting">Thiết lập&#8230;&#8230;</string>
     <string name="tk_front_photos_set_success">Thiết lập thành công!</string>
     <string name="tk_front_photos_set_faild">Thiết lập không thành công, vui lòng thử lại！</string>
+
+    <string name="image_doodle">Doodle</string>
+    <string name="image_text">Text</string>
+    <string name="image_mosaic">Mosaic</string>
+    <string name="image_clip">Clip</string>
+    <string name="image_reset">Reset</string>
+    <string name="image_done">Done</string>
+    <string name="image_cancel">Cancel</string>
+    <string name="image_rotate">Rotate</string>
+
+    <string name="image_mosaic_tip">Please apply blur directly on the picture</string>
+    <string name="image_undo">Revoke</string>
+    <string name="image_all_photo">All Photos</string>
+    <string name="image_original">Original</string>
+    <string name="image_preview">Preview</string>
+
+    <string name="image_enable_storage_permission">Turn on storage permissions</string>
+
+    <string name="image_enable_storage_tips">The photo album function requires storage permission, please enable the storage permission for this app in the settings</string>
+
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
 </resources>

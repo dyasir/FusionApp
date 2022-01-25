@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <declare-styleable name="TitleView">
         <attr name="mTitle" format="string" />
         <attr name="mTitleSize" format="dimension" />
@@ -13,5 +13,15 @@
         <attr name="mRightText" format="string" />
         <attr name="mRightTextColor" format="color" />
         <attr name="mRightImage" format="reference" />
+    </declare-styleable>
+
+    <attr name="image_gallery_span_count" format="integer" />
+    <attr name="image_gallery_select_shade" format="color" />
+
+    <declare-styleable name="IMGColorRadio" tools:ignore="ResourceName">
+
+        <attr name="image_color" format="color" />
+        <attr name="image_stroke_color" format="color" />
+
     </declare-styleable>
 </resources>
