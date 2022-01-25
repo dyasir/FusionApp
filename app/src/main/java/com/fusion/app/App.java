@@ -9,7 +9,6 @@ public class App extends VideoApplication {
      * RetrofitFactory.NEW_URL             为默认Api域名，防止Firebase因超时或获取失败导致没有Api域名
      * setProduct                          设置是否是生产环境，以此来判断读取Firebase哪个表的Api域名
      * 自定义属性
-     * setSplashLayoutType                 启动页样式，1.视频  2.SVG
      * setVideoLayoutType                  选择视频页面布局，目前只有1,2， 1为右侧功能区，2为左侧功能区
      * setPureEnjoyment                    视频页面是否开启纯享功能，true则开启纯享模式，视频页面增加纯享功能按钮
      * setApplyDownload                    视频页面是否提供下载功能
@@ -46,7 +45,6 @@ public class App extends VideoApplication {
     protected void initVideoPageConfig() {
         setDefaultUrl("http://172.247.143.109:85/")               //默认域名
                 .setProduct(false)                                //是否为生产环境
-                .setSplashLayoutType(2)                           //启动页样式，1.视频  2.SVG
                 .setVideoLayoutType(1)                            //视频使用布局1
                 .setPureEnjoyment(false)                          //开启纯享功能
                 .setApplyDownload(false)                          //提供下载功能

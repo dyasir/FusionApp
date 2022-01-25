@@ -71,8 +71,6 @@ public class VideoApplication extends Application {
      **/
     //是否是生产环境
     private boolean isProduct = false;
-    //启动页样式，1.视频  2.SVG
-    private int splashLayoutType = 1;
     //选择加载视频布局1(右侧按钮栏)，或布局2(左侧按钮栏)
     private int videoLayoutType = 1;
     //是否提供纯享功能
@@ -227,11 +225,6 @@ public class VideoApplication extends Application {
 
     public VideoApplication setProduct(boolean product) {
         isProduct = product;
-        return application;
-    }
-
-    public VideoApplication setSplashLayoutType(int splashLayoutType) {
-        this.splashLayoutType = splashLayoutType;
         return application;
     }
 
@@ -396,10 +389,6 @@ public class VideoApplication extends Application {
      **/
     public boolean isProduct() {
         return isProduct;
-    }
-
-    public int getSplashLayoutType() {
-        return splashLayoutType;
     }
 
     public int getVideoLayoutType() {
@@ -578,7 +567,6 @@ public class VideoApplication extends Application {
     protected void initVideoPageConfig() {
         setDefaultUrl("http://172.247.143.109:85/")               //默认域名
                 .setProduct(false)                                //是否为生产环境
-                .setSplashLayoutType(1)                           //启动页样式，1.视频  2.SVG
                 .setVideoLayoutType(1)                            //选择加载视频布局1(右侧按钮栏)，或布局2(左侧按钮栏)
                 .setPureEnjoyment(true)                           //开启纯享功能
                 .setApplyDownload(true)                           //提供下载功能

@@ -8,7 +8,7 @@ android {
         minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
-        versionName "1.2.4"
+        versionName "1.2.5"
 
         consumerProguardFiles "consumer-rules.pro"
 
@@ -151,9 +151,6 @@ dependencies {
 
     //share TextView
     implementation 'com.github.lygttpod:SuperTextView:2.4.6'
-
-    //Animated SVG
-    implementation 'com.jaredrummler:animated-svg-view:1.0.6'
 
     implementation 'com.facebook.fresco:fresco:2.6.0'
     implementation 'com.github.ozodrukh:CircularReveal:2.1.0'
