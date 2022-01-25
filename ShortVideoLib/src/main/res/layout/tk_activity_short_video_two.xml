@@ -67,4 +67,13 @@
             app:lottie_repeatCount="2"
             app:lottie_speed="0.5" />
     </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/back"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="30dp"
+        android:padding="16dp"
+        android:src="@mipmap/tk_icon_front_photos_back"
+        android:visibility="gone" />
 </RelativeLayout>

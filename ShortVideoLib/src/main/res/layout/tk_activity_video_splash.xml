@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#3000">
+    android:background="@color/white">
 
     <RelativeLayout
         android:id="@+id/rl_water"
@@ -38,6 +39,28 @@
     <com.shortvideo.lib.ui.widgets.TkEmptyControlVideo
         android:id="@+id/video_player"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:visibility="gone" />
 
+    <RelativeLayout
+        android:id="@+id/rl_svg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:visibility="gone">
+
+        <com.jaredrummler.android.widget.AnimatedSvgView
+            android:id="@+id/svg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            app:animatedSvgFillColors="@array/tk_svg_plyph_colors"
+            app:animatedSvgFillStart="1200"
+            app:animatedSvgFillTime="1000"
+            app:animatedSvgGlyphStrings="@array/tk_svg_glyph_strings"
+            app:animatedSvgImageSizeX="1080"
+            app:animatedSvgImageSizeY="1920"
+            app:animatedSvgTraceTime="2000"
+            app:animatedSvgTraceTimePerGlyph="1000" />
+    </RelativeLayout>
 </RelativeLayout>

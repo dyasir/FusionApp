@@ -25,4 +25,37 @@
     <color name="color_eeeeee">#eeeeee</color>
     <color name="color_1000">#1000</color>
     <color name="color_181818">#181818</color>
+    <color name="color_dfba8c">#dfba8c</color>
+    <color name="color_57e107">#571e07</color>
+
+    <color name="color_introduce_video_one">#CAFFEC</color>
+    <color name="color_introduce_video_one_tx">#F18456</color>
+    <color name="color_introduce_video_two">#F38356</color>
+    <color name="color_introduce_video_two_tx">#ffffff</color>
+    <color name="color_introduce_video_start">#50C09A</color>
+    <color name="color_introduce_video_start_tx">#ffffff</color>
+    <color name="color_introduce_wallpaper_one">#FFECCC</color>
+    <color name="color_introduce_wallpaper_one_tx">#FE7A80</color>
+    <color name="color_introduce_wallpaper_two">#50C09A </color>
+    <color name="color_introduce_wallpaper_two_tx">#ffffff</color>
+    <color name="color_introduce_wallpaper_start">#F38356</color>
+    <color name="color_introduce_wallpaper_start_tx">#ffffff</color>
+    <color name="color_introduce_photos_one">#CCF0FF</color>
+    <color name="color_introduce_photos_one_tx">#913FFC</color>
+    <color name="color_introduce_photos_two">#913FFC</color>
+    <color name="color_introduce_photos_two_tx">#ffffff</color>
+    <color name="color_introduce_photos_start">#35A2FC</color>
+    <color name="color_introduce_photos_start_tx">#ffffff</color>
+    <color name="color_introduce_message_one">#FFEECD</color>
+    <color name="color_introduce_message_one_tx">#35A2FC</color>
+    <color name="color_introduce_message_two">#35A2FC</color>
+    <color name="color_introduce_messageo_two_tx">#ffffff</color>
+    <color name="color_introduce_message_start">#C34D88</color>
+    <color name="color_introduce_message_start_tx">#ffffff</color>
+    <color name="color_introduce_mine_one">#F2D9DF</color>
+    <color name="color_introduce_mine_one_tx">#E84F6F</color>
+    <color name="color_introduce_mine_two">#FE7A80</color>
+    <color name="color_introduce_mine_two_tx">#ffffff</color>
+    <color name="color_introduce_mine_start">#913FFC</color>
+    <color name="color_introduce_mine_start_tx">#ffffff</color>
 </resources>

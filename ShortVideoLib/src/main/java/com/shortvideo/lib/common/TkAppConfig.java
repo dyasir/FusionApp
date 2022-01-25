@@ -21,6 +21,8 @@ public class TkAppConfig {
     public static final String VIDEO_PATH = VideoApplication.getInstance().getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS) + File.separator;
     //自拍视频存放地址
     public static final String MY_VIDEO_PATH = VideoApplication.getInstance().getExternalFilesDir(Environment.DIRECTORY_MOVIES) + File.separator;
+    //图片编辑后存放地址
+    public static final String MY_PHOTO_PATH = VideoApplication.getInstance().getExternalFilesDir(Environment.DIRECTORY_DCIM) + File.separator;
     //添加水印后的视频地址
     public static final String OUT_VIDEO_PATH = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM) + File.separator + "Camera" + File.separator;
     //下载APK地址

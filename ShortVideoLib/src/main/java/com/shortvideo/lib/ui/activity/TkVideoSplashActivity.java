@@ -12,6 +12,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
+import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -42,10 +43,13 @@ import com.shortvideo.lib.model.DataMgr;
 import com.shortvideo.lib.model.FusionBean;
 import com.shortvideo.lib.model.HomeBean;
 import com.shortvideo.lib.model.VideoDetailBean;
+import com.shortvideo.lib.ui.activity.concise.ncindex.NcIndexActivity;
 import com.shortvideo.lib.ui.activity.front.TkShortVideoFrontActivity;
 import com.shortvideo.lib.ui.widgets.UpdataPop;
 import com.shortvideo.lib.utils.ActivityManager;
+import com.shortvideo.lib.utils.BarUtils;
 import com.shortvideo.lib.utils.SPUtils;
+import com.shortvideo.lib.utils.SizeUtils;
 import com.shortvideo.lib.utils.ToastyUtils;
 import com.shuyu.gsyvideoplayer.GSYVideoManager;
 import com.shuyu.gsyvideoplayer.builder.GSYVideoOptionBuilder;
@@ -72,9 +76,18 @@ public class TkVideoSplashActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        ImmersionBar.with(this)
-                .hideBar(BarHide.FLAG_HIDE_BAR)
-                .init();
+        if (VideoApplication.getInstance().getSplashLayoutType() == 1) {
+            ImmersionBar.with(this)
+                    .hideBar(BarHide.FLAG_HIDE_BAR)
+                    .init();
+        } else {
+            ImmersionBar.with(this)
+                    .fitsSystemWindows(true)  //使用该属性,必须指定状态栏颜色
+                    .statusBarColor(R.color.white)
+                    .navigationBarColor(R.color.white)
+                    .statusBarDarkFont(true, 0f)
+                    .init();
+        }
 
         binding = TkActivityVideoSplashBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -99,53 +112,61 @@ public class TkVideoSplashActivity extends AppCompatActivity {
             }
         }
 
-        GSYVideoOptionBuilder gsyVideoOption = new GSYVideoOptionBuilder();
-        gsyVideoOption.setIsTouchWiget(false)
-                .setRotateViewAuto(false)
-                .setRotateWithSystem(false)
-                .setLockLand(false)
-                .setAutoFullWithSize(true)
-                .setShowFullAnimation(false)
-                .setLooping(true)
-                .setNeedLockFull(false)
-                .setUrl(RawResourceDataSource.buildRawResourceUri(R.raw.tk_splash_vd).toString())
-                .setCacheWithPlay(false)
-                .setVideoAllCallBack(new GSYSampleCallBack() {
+        if (VideoApplication.getInstance().getSplashLayoutType() == 1) {
+            binding.videoPlayer.setVisibility(View.VISIBLE);
+            binding.rlSvg.setVisibility(View.GONE);
+            GSYVideoOptionBuilder gsyVideoOption = new GSYVideoOptionBuilder();
+            gsyVideoOption.setIsTouchWiget(false)
+                    .setRotateViewAuto(false)
+                    .setRotateWithSystem(false)
+                    .setLockLand(false)
+                    .setAutoFullWithSize(true)
+                    .setShowFullAnimation(false)
+                    .setLooping(true)
+                    .setNeedLockFull(false)
+                    .setUrl(RawResourceDataSource.buildRawResourceUri(R.raw.tk_splash_vd).toString())
+                    .setCacheWithPlay(false)
+                    .setVideoAllCallBack(new GSYSampleCallBack() {
 
-                    @Override
-                    public void onStartPrepared(String url, Object... objects) {
-                        super.onStartPrepared(url, objects);
-                    }
+                        @Override
+                        public void onStartPrepared(String url, Object... objects) {
+                            super.onStartPrepared(url, objects);
+                        }
 
-                    @Override
-                    public void onPrepared(String url, Object... objects) {
-                        super.onPrepared(url, objects);
-                        GSYVideoManager.instance().setNeedMute(true);
-                    }
+                        @Override
+                        public void onPrepared(String url, Object... objects) {
+                            super.onPrepared(url, objects);
+                            GSYVideoManager.instance().setNeedMute(true);
+                        }
 
-                    @Override
-                    public void onEnterFullscreen(String url, Object... objects) {
-                        super.onEnterFullscreen(url, objects);
-                    }
+                        @Override
+                        public void onEnterFullscreen(String url, Object... objects) {
+                            super.onEnterFullscreen(url, objects);
+                        }
 
-                    @Override
-                    public void onAutoComplete(String url, Object... objects) {
-                        super.onAutoComplete(url, objects);
-                    }
+                        @Override
+                        public void onAutoComplete(String url, Object... objects) {
+                            super.onAutoComplete(url, objects);
+                        }
 
-                    @Override
-                    public void onClickStartError(String url, Object... objects) {
-                        super.onClickStartError(url, objects);
-                    }
+                        @Override
+                        public void onClickStartError(String url, Object... objects) {
+                            super.onClickStartError(url, objects);
+                        }
 
-                    @Override
-                    public void onQuitFullscreen(String url, Object... objects) {
-                        super.onQuitFullscreen(url, objects);
-                    }
-                })
-                .build(binding.videoPlayer);
+                        @Override
+                        public void onQuitFullscreen(String url, Object... objects) {
+                            super.onQuitFullscreen(url, objects);
+                        }
+                    })
+                    .build(binding.videoPlayer);
 
-        binding.videoPlayer.startPlayLogic();
+            binding.videoPlayer.startPlayLogic();
+        } else {
+            binding.videoPlayer.setVisibility(View.GONE);
+            binding.rlSvg.setVisibility(View.VISIBLE);
+            binding.svg.start();
+        }
     }
 
     private void initData() {
@@ -251,7 +272,8 @@ public class TkVideoSplashActivity extends AppCompatActivity {
                 intent.putExtra("homeBean", homeBean);
             }
         } else {
-            intent = new Intent(this, VideoApplication.getInstance().isOpenFrontPage() ? TkShortVideoFrontActivity.class :
+            intent = new Intent(this, VideoApplication.getInstance().getOpenPageWhere() == 1 ?
+                    NcIndexActivity.class : VideoApplication.getInstance().getOpenPageWhere() == 2 ? TkShortVideoFrontActivity.class :
                     VideoApplication.getInstance().getVideoLayoutType() == 1 ? TkShortVideoActivity.class : TkShortVideoTwoActivity.class);
             if (totalPage != 1001) {
                 intent.putExtra("totalPage", totalPage);

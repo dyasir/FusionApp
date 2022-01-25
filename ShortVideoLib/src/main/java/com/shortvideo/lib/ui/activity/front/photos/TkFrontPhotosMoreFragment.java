@@ -179,9 +179,9 @@ public class TkFrontPhotosMoreFragment extends Fragment {
                     View view = binding.pager.getChildAt(0);
                     if (view instanceof RecyclerView) {
                         if (VideoApplication.getInstance().getFrontPhotosScollType() == 1) {
-                            view.setPadding(200, 0, 200, 0);
+                            view.setPadding(100, 0, 100, 0);
                         } else {
-                            view.setPadding(0, 200, 0, 200);
+                            view.setPadding(0, 100, 0, 100);
                         }
                         ((RecyclerView) view).setClipToPadding(false);
                     }

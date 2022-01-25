@@ -9,11 +9,12 @@ public class App extends VideoApplication {
      * RetrofitFactory.NEW_URL             为默认Api域名，防止Firebase因超时或获取失败导致没有Api域名
      * setProduct                          设置是否是生产环境，以此来判断读取Firebase哪个表的Api域名
      * 自定义属性
+     * setSplashLayoutType                 启动页样式，1.视频  2.SVG
      * setVideoLayoutType                  选择视频页面布局，目前只有1,2， 1为右侧功能区，2为左侧功能区
      * setPureEnjoyment                    视频页面是否开启纯享功能，true则开启纯享模式，视频页面增加纯享功能按钮
      * setApplyDownload                    视频页面是否提供下载功能
      * setApplyToLike                      视频页面是否提供点赞功能
-     * setOpenFrontPage                    开启前置页面，如果开启了，则setVideoLayoutType不生效，默认为1
+     * setOpenPageWhere                    视频App启动页面，1.新版首页  2.前置页  3.旧版短视频
      * setApplyFrontHomeVideo              前置页是否提供首页视频功能
      * setApplyFrontHomeMessage            前置页是否提供首页消息功能
      * setApplyFrontHomePhotos             前置页是否提供首页图库功能
@@ -45,13 +46,14 @@ public class App extends VideoApplication {
     protected void initVideoPageConfig() {
         setDefaultUrl("http://172.247.143.109:85/")               //默认域名
                 .setProduct(false)                                //是否为生产环境
+                .setSplashLayoutType(2)                           //启动页样式，1.视频  2.SVG
                 .setVideoLayoutType(1)                            //视频使用布局1
                 .setPureEnjoyment(false)                          //开启纯享功能
                 .setApplyDownload(false)                          //提供下载功能
                 .setApplyToLike(false)                            //提供点赞功能
-                .setOpenFrontPage(true)                           //开启前置页面
-                .setApplyFrontHomeVideo(false)                    //前置页是否提供首页视频功能
-                .setApplyFrontHomeMessage(false)                  //前置页是否提供首页消息功能
+                .setOpenPageWhere(1)                              //视频App启动页面，1.新版首页  2.前置页  3.旧版短视频
+                .setApplyFrontHomeVideo(true)                    //前置页是否提供首页视频功能
+                .setApplyFrontHomeMessage(true)                  //前置页是否提供首页消息功能
                 .setApplyFrontHomePhotos(true)                    //前置页是否提供首页图库功能
                 .setApplyFrontHomeMine(true)                      //前置页是否提供首页我的功能
                 .setFrontListLayoutType(2)                        //前置页列表布局，1.两排格子  2.垂直布局
@@ -70,7 +72,7 @@ public class App extends VideoApplication {
                 .setFrontPageIndicatorHeight(3)                   //前置页标题下划线高度
                 .setFrontPageIndicatorColor(R.color.white)        //前置页标题下划线颜色
                 .setFrontPageIndicatorCornersRadius(3)            //前置页标题下划线圆角值
-                .setApplyFrontPageTakeVideo(false)                //前置页是否提供拍摄功能
+                .setApplyFrontPageTakeVideo(true)                //前置页是否提供拍摄功能
                 .setFrontPhotosLayoutType(2)                      //前置页图库列表样式，1.列表  2.一屏多页
                 .setFrontPhotosScollType(2)                       //前置页图库列表一屏多页滑动方式，1.左右  2.上下
                 .setFrontPhotosSpanCount(3)                       //前置页图库列表的列数(2-4列)

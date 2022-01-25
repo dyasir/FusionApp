@@ -51,7 +51,16 @@
 
     <net.mikaelzero.mojito.view.sketch.core.SketchImageView
         android:id="@+id/img_mv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:layout_centerInParent="true" />
+
+    <ImageView
+        android:id="@+id/back"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="30dp"
+        android:padding="16dp"
+        android:src="@mipmap/tk_icon_front_photos_back"
+        android:visibility="gone" />
 </RelativeLayout>

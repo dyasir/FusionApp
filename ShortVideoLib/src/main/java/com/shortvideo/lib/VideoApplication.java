@@ -16,6 +16,7 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.android.installreferrer.api.InstallReferrerClient;
 import com.android.installreferrer.api.InstallReferrerStateListener;
 import com.android.installreferrer.api.ReferrerDetails;
+import com.facebook.drawee.backends.pipeline.Fresco;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
@@ -70,6 +71,8 @@ public class VideoApplication extends Application {
      **/
     //是否是生产环境
     private boolean isProduct = false;
+    //启动页样式，1.视频  2.SVG
+    private int splashLayoutType = 1;
     //选择加载视频布局1(右侧按钮栏)，或布局2(左侧按钮栏)
     private int videoLayoutType = 1;
     //是否提供纯享功能
@@ -78,8 +81,8 @@ public class VideoApplication extends Application {
     private boolean applyDownload = false;
     //是否提供点赞功能
     private boolean applyToLike = false;
-    //是否开启前置页面
-    private boolean openFrontPage = false;
+    //视频App启动页面，1.新版首页  2.前置页  3.旧版短视频
+    private int openPageWhere = 1;
     //前置页是否提供首页视频功能
     private boolean applyFrontHomeVideo = false;
     //前置页是否提供首页消息功能
@@ -227,6 +230,11 @@ public class VideoApplication extends Application {
         return application;
     }
 
+    public VideoApplication setSplashLayoutType(int splashLayoutType) {
+        this.splashLayoutType = splashLayoutType;
+        return application;
+    }
+
     public VideoApplication setVideoLayoutType(int videoLayoutType) {
         this.videoLayoutType = videoLayoutType > 2 ? 2 : Math.max(videoLayoutType, 1);
         return application;
@@ -247,8 +255,8 @@ public class VideoApplication extends Application {
         return application;
     }
 
-    public VideoApplication setOpenFrontPage(boolean openFrontPage) {
-        this.openFrontPage = openFrontPage;
+    public VideoApplication setOpenPageWhere(int openPageWhere) {
+        this.openPageWhere = openPageWhere;
         return application;
     }
 
@@ -390,6 +398,10 @@ public class VideoApplication extends Application {
         return isProduct;
     }
 
+    public int getSplashLayoutType() {
+        return splashLayoutType;
+    }
+
     public int getVideoLayoutType() {
         return videoLayoutType;
     }
@@ -406,8 +418,8 @@ public class VideoApplication extends Application {
         return applyToLike;
     }
 
-    public boolean isOpenFrontPage() {
-        return openFrontPage;
+    public int getOpenPageWhere() {
+        return openPageWhere;
     }
 
     public boolean isApplyFrontHomeVideo() {
@@ -555,6 +567,9 @@ public class VideoApplication extends Application {
 
         //初始化自定义页面配置
         initVideoPageConfig();
+
+        //初始化Fresco
+        Fresco.initialize(this);
     }
 
     /**
@@ -563,11 +578,12 @@ public class VideoApplication extends Application {
     protected void initVideoPageConfig() {
         setDefaultUrl("http://172.247.143.109:85/")               //默认域名
                 .setProduct(false)                                //是否为生产环境
-                .setVideoLayoutType(1)                            //视频使用布局1
+                .setSplashLayoutType(1)                           //启动页样式，1.视频  2.SVG
+                .setVideoLayoutType(1)                            //选择加载视频布局1(右侧按钮栏)，或布局2(左侧按钮栏)
                 .setPureEnjoyment(true)                           //开启纯享功能
                 .setApplyDownload(true)                           //提供下载功能
                 .setApplyToLike(true)                             //提供点赞功能
-                .setOpenFrontPage(true)                           //开启前置页面
+                .setOpenPageWhere(1)                              //视频App启动页面，1.新版首页  2.前置页  3.旧版短视频
                 .setApplyFrontHomeVideo(true)                     //前置页是否提供首页视频功能
                 .setApplyFrontHomeMessage(true)                   //前置页是否提供首页消息功能
                 .setApplyFrontHomePhotos(true)                    //前置页是否提供首页图库功能

@@ -120,6 +120,30 @@
         <activity
             android:name=".ui.activity.front.photos.TkFrontPhotosDetailActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.concise.photoedit.IMGGalleryActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/ImageGalleryTheme" />
+        <activity
+            android:name=".ui.activity.concise.photoedit.IMGEditActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/ImageEditTheme"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".ui.activity.concise.ncindex.NcIndexActivity"
+            android:configChanges="orientation|screenSize"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.concise.ncindex.NcWallpaperActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.concise.ncindex.NcMessageActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.concise.ncindex.NcMineActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".ui.activity.concise.ncindex.NcPhotosActivity" />
     </application>
 
 </manifest>

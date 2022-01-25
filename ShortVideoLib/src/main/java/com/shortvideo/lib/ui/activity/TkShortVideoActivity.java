@@ -147,9 +147,17 @@ public class TkShortVideoActivity extends AppCompatActivity {
         binding.page2.setOffscreenPageLimit(10);
 
         adCardTimer = new Timer();
+
+        if (VideoApplication.getInstance().getOpenPageWhere() == 1){
+            binding.back.setVisibility(View.VISIBLE);
+        }else {
+            binding.back.setVisibility(View.GONE);
+        }
     }
 
     private void initListener() {
+        binding.back.setOnClickListener(view -> finish());
+
         binding.refreshLayout.setOnRefreshListener(refreshLayout -> {
             Logger.e("开始刷新");
             if (adCardTimer != null)
