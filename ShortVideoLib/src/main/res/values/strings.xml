@@ -74,11 +74,12 @@
     <string name="tk_front_message_title">thông tin</string>
     <string name="tk_front_message_empty_title">Không có tin tức cho bây giờ</string>
     <string name="tk_front_message_empty">Tin nhắn của bạn sẽ xuất hiện ở đây, vì vậy đừng ngại và hãy là người đầu tiên để lại tin nhắn!</string>
-    <string name="tk_front_photos_title">Phòng trưng bày</string>
+    <string name="tk_front_photos_title">Hình nền</string>
     <string name="tk_front_photos_set">Cài đặt hình nền</string>
     <string name="tk_front_photos_setting">Thiết lập&#8230;&#8230;</string>
     <string name="tk_front_photos_set_success">Thiết lập thành công!</string>
     <string name="tk_front_photos_set_faild">Thiết lập không thành công, vui lòng thử lại！</string>
+    <string name="tk_front_edit_title">Chỉnh sửa hình ảnh</string>
 
     <string name="image_doodle">Doodle</string>
     <string name="image_text">Text</string>

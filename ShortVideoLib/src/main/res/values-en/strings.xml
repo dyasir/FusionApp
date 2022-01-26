@@ -74,9 +74,10 @@
     <string name="tk_front_message_title">Information</string>
     <string name="tk_front_message_empty_title">No news for now</string>
     <string name="tk_front_message_empty">Your messages will appear here, so don\'t be shy and be the first to leave a message!</string>
-    <string name="tk_front_photos_title">Gallery</string>
+    <string name="tk_front_photos_title">Wallpaper</string>
     <string name="tk_front_photos_set">Set Wallpaper</string>
     <string name="tk_front_photos_setting">Setting&#8230;&#8230;</string>
     <string name="tk_front_photos_set_success">Set successfully!</string>
     <string name="tk_front_photos_set_faild">Setup failed, please try again!</string>
+    <string name="tk_front_edit_title">Photo Edit</string>
 </resources>

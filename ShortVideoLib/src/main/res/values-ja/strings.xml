@@ -74,9 +74,10 @@
     <string name="tk_front_message_title">情報</string>
     <string name="tk_front_message_empty_title">今のところニュースはありません</string>
     <string name="tk_front_message_empty">あなたのメッセージはここに表示されますので、恥ずかしがらずに最初にメッセージを残してください！</string>
-    <string name="tk_front_photos_title">ギャラリー</string>
+    <string name="tk_front_photos_title">壁紙</string>
     <string name="tk_front_photos_set">壁紙を設定します</string>
     <string name="tk_front_photos_setting">設定&#8230;&#8230;</string>
     <string name="tk_front_photos_set_success">正常に設定！</string>
     <string name="tk_front_photos_set_faild">セットアップに失敗しました。もう一度やり直してください！</string>
+    <string name="tk_front_edit_title">画像編集</string>
 </resources>

@@ -1,5 +1,7 @@
 package com.shortvideo.lib.ui.activity.concise.ncindex;
 
+import android.text.TextUtils;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -20,8 +22,12 @@ public class NcPhotosAdapter extends BaseQuickAdapter<String, BaseViewHolder> {
 
     @Override
     protected void convert(@NonNull BaseViewHolder baseViewHolder, String s) {
-        Glide.with(getContext())
-                .load(new File(s))
-                .into((RoundedImageView) baseViewHolder.getView(R.id.img));
+        if (TextUtils.isEmpty(s)) {
+            ((RoundedImageView) baseViewHolder.getView(R.id.img)).setImageResource(R.mipmap.tk_icon_front_edit_add);
+        } else {
+            Glide.with(getContext())
+                    .load(new File(s))
+                    .into((RoundedImageView) baseViewHolder.getView(R.id.img));
+        }
     }
 }

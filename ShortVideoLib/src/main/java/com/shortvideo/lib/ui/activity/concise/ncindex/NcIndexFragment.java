@@ -82,6 +82,8 @@ public class NcIndexFragment extends Fragment implements ScreenShotable {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = TkFragmentNcindexBinding.inflate(inflater, container, false);
+        binding.getRoot().setBackgroundResource(VideoApplication.getInstance().getNcIndexBgColor());
+        binding.title.setTextColor(getResources().getColor(VideoApplication.getInstance().getNcIndexTitleColor()));
         binding.title.setText(name.equals(VIDEO) ? "VIDEO" : name.equals(WALLPAPER) ? "WALLPAPER" : name.equals(PHOTOS) ? "PHOTOS" :
                 name.equals(MESSAGE) ? "MESSAGE" : "MINE");
         binding.oneTx.setText(name.equals(VIDEO) ? "LIKE" : name.equals(WALLPAPER) ? "ULTRA-CLERA" : name.equals(PHOTOS) ? "GRAFFITI" :

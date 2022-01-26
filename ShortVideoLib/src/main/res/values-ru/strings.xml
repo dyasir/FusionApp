@@ -74,9 +74,10 @@
     <string name="tk_front_message_title">Информация</string>
     <string name="tk_front_message_empty_title">Новостей пока нет</string>
     <string name="tk_front_message_empty">Ваши сообщения будут появляться здесь, так что не стесняйтесь и оставляйте сообщения первыми!</string>
-    <string name="tk_front_photos_title">Галерея</string>
+    <string name="tk_front_photos_title">Oбои на стену</string>
     <string name="tk_front_photos_set">Установка обоев</string>
     <string name="tk_front_photos_setting">Параметр&#8230;&#8230;</string>
     <string name="tk_front_photos_set_success">Yспешно установлено!</string>
     <string name="tk_front_photos_set_faild">Не удалось выполнить настройку. Повторите попытку.!</string>
+    <string name="tk_front_edit_title">Редактирование изображений</string>
 </resources>

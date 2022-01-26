@@ -87,6 +87,8 @@ public class VideoApplication extends Application {
     private boolean applyFrontHomeMessage = false;
     //前置页是否提供首页图库功能
     private boolean applyFrontHomePhotos = false;
+    //前置页是否提供首页图片编辑功能
+    private boolean applyFrontHomeEdit = false;
     //前置页是否提供首页我的功能
     private boolean applyFrontHomeMine = false;
     //前置页列表布局，1.两排格子  2.垂直布局
@@ -99,6 +101,10 @@ public class VideoApplication extends Application {
     private float frontListItemHeight = 165;
     //前置页背景颜色
     private int frontPageBgColor = R.color.black;
+    //新版首页背景颜色
+    private int ncIndexBgColor = R.color.white;
+    //新版首页标题文字颜色
+    private int ncIndexTitleColor = R.color.black;
     //前置页底部菜单栏背景颜色
     private int frontPageBottomBgColor = R.color.color_181818;
     //前置页是否展示标题(如果不展示，则下划线也不展示)
@@ -268,6 +274,11 @@ public class VideoApplication extends Application {
         return application;
     }
 
+    public VideoApplication setApplyFrontHomeEdit(boolean applyFrontHomeEdit) {
+        this.applyFrontHomeEdit = applyFrontHomeEdit;
+        return application;
+    }
+
     public VideoApplication setApplyFrontHomeMine(boolean applyFrontHomeMine) {
         this.applyFrontHomeMine = applyFrontHomeMine;
         return application;
@@ -295,6 +306,16 @@ public class VideoApplication extends Application {
 
     public VideoApplication setFrontPageBgColor(int frontPageBgColor) {
         this.frontPageBgColor = frontPageBgColor;
+        return application;
+    }
+
+    public VideoApplication setNcIndexBgColor(int ncIndexBgColor) {
+        this.ncIndexBgColor = ncIndexBgColor;
+        return application;
+    }
+
+    public VideoApplication setNcIndexTitleColor(int ncIndexTitleColor) {
+        this.ncIndexTitleColor = ncIndexTitleColor;
         return application;
     }
 
@@ -423,6 +444,10 @@ public class VideoApplication extends Application {
         return applyFrontHomePhotos;
     }
 
+    public boolean isApplyFrontHomeEdit() {
+        return applyFrontHomeEdit;
+    }
+
     public boolean isApplyFrontHomeMine() {
         return applyFrontHomeMine;
     }
@@ -445,6 +470,14 @@ public class VideoApplication extends Application {
 
     public int getFrontPageBgColor() {
         return frontPageBgColor;
+    }
+
+    public int getNcIndexBgColor() {
+        return ncIndexBgColor;
+    }
+
+    public int getNcIndexTitleColor() {
+        return ncIndexTitleColor;
     }
 
     public int getFrontPageBottomBgColor() {
@@ -575,12 +608,15 @@ public class VideoApplication extends Application {
                 .setApplyFrontHomeVideo(true)                     //前置页是否提供首页视频功能
                 .setApplyFrontHomeMessage(true)                   //前置页是否提供首页消息功能
                 .setApplyFrontHomePhotos(true)                    //前置页是否提供首页图库功能
+                .setApplyFrontHomeEdit(true)                      //前置页是否提供首页图片编辑功能
                 .setApplyFrontHomeMine(true)                      //前置页是否提供首页我的功能
                 .setFrontListLayoutType(1)                        //前置页列表布局，1.两排格子  2.垂直布局
                 .setFrontListItemHeight(165)                      //前置页2排格子列表单个的高度
                 .setApplyFrontLikeNum(true)                       //前置页列表是否展示点赞数
                 .setFrontLikeNumLayout(1)                         //前置页列表点赞数位置，1.左上  2.右下
                 .setFrontPageBgColor(R.color.black)               //前置页背景颜色
+                .setNcIndexBgColor(R.color.white)                 //新版首页背景颜色
+                .setNcIndexTitleColor(R.color.black)              //新版首页标题文字颜色
                 .setFrontPageBottomBgColor(R.color.color_181818)  //前置页底部菜单栏背景颜色
                 .setApplyFrontPageTitle(true)                     //前置页是否展示标题(如果不展示，则下划线也不展示)
                 .setFrontPageTitleColor(R.color.white)            //前置页标题、内容文字颜色

@@ -74,9 +74,10 @@
     <string name="tk_front_message_title">消息</string>
     <string name="tk_front_message_empty_title">暂时没有消息</string>
     <string name="tk_front_message_empty">你的消息将显示在这里，因此不要害羞，成为第一个留言的人！</string>
-    <string name="tk_front_photos_title">图库</string>
+    <string name="tk_front_photos_title">壁纸</string>
     <string name="tk_front_photos_set">设置壁纸</string>
     <string name="tk_front_photos_setting">设置中&#8230;&#8230;</string>
     <string name="tk_front_photos_set_success">设置成功！</string>
     <string name="tk_front_photos_set_faild">设置失败，请重新设置！</string>
+    <string name="tk_front_edit_title">图片编辑</string>
 </resources>
