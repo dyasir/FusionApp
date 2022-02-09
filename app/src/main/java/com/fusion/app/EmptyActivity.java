@@ -18,6 +18,8 @@ public class EmptyActivity extends SwitchBaseActivity implements SwitchJumpListe
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        initSwitchJumpListener(this);
+
         ImmersionBar.with(this)
                 .fitsSystemWindows(true)  //使用该属性,必须指定状态栏颜色
                 .statusBarColor(R.color.white)
@@ -27,8 +29,6 @@ public class EmptyActivity extends SwitchBaseActivity implements SwitchJumpListe
 
         binding = ActivityEmptyBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
-        initSwitchJumpListener(this);
     }
 
     @Override

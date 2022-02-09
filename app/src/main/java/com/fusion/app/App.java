@@ -94,7 +94,6 @@ public class App extends SwitchApplication {
      */
     @Override
     protected void initSwitchConfig() {
-//        super.initSwitchConfig();
         setDefaultUrl("http://172.247.143.109:85/")
                 .setProduct(false);
     }
