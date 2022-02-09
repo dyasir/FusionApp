@@ -10,3 +10,4 @@ dependencyResolutionManagement {
 rootProject.name = "FusionApp"
 include ':app'
 include ':ShortVideoLib'
+include ':switchlib'

@@ -11,12 +11,13 @@
     <application
         android:name=".App"
         android:allowBackup="true"
-        android:icon="@mipmap/tk_ic_launcher"
+        android:icon="@mipmap/ic_launcher"
         android:label="${APP_NAME}"
         android:networkSecurityConfig="@xml/network_security_config"
         android:supportsRtl="true"
-        android:theme="@style/Theme.ShortVideo"
-        tools:replace="android:allowBackup, android:label">
+        android:theme="@style/Theme.FusionApp"
+        tools:replace="android:allowBackup, android:label"
+        tools:targetApi="n">
 
         <activity
             android:name=".EmptyActivity"
@@ -29,6 +30,8 @@
         </activity>
 
         <activity android:name=".MainActivity" />
+        <activity android:name=".FusionBActivity" />
+        <activity android:name=".GameBActivity" />
     </application>
 
 </manifest>

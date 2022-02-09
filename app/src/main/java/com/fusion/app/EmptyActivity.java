@@ -4,13 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 
-import com.alibaba.android.arouter.launcher.ARouter;
 import com.fusion.app.databinding.ActivityEmptyBinding;
+import com.fusion.switchlib.SwitchBaseActivity;
+import com.fusion.switchlib.SwitchJumpListener;
 import com.gyf.immersionbar.ImmersionBar;
 
-public class EmptyActivity extends AppCompatActivity {
+public class EmptyActivity extends SwitchBaseActivity implements SwitchJumpListener {
 
     ActivityEmptyBinding binding;
 
@@ -28,21 +28,19 @@ public class EmptyActivity extends AppCompatActivity {
         binding = ActivityEmptyBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        jumpWhere(2);
+        initSwitchJumpListener(this);
     }
 
-    /**
-     * 自己控制跳转哪里
-     * 1.跳转自己的启动页   2.跳转视频的启动页
-     */
-    private void jumpWhere(int type) {
-        if (type == 2) {
-            ARouter.getInstance()
-                    .build(App.SHORT_VIDEO_PATH)
-                    .navigation();
-        } else {
-            startActivity(new Intent(this, MainActivity.class));
-        }
+    @Override
+    public void jumpPackageA() {
+        startActivity(new Intent(this, MainActivity.class));
+        overridePendingTransition(0, 0);
+        finish();
+    }
+
+    @Override
+    public void jumpPackageB() {
+        startActivity(new Intent(this, FusionBActivity.class));
         overridePendingTransition(0, 0);
         finish();
     }

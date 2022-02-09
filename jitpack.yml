@@ -2,5 +2,5 @@ jdk:
  - openjdk8
 
 install:
- - ./gradlew :ShortVideoLib:build :ShortVideoLib:publishToMavenLocal
+ - ./gradlew :switchlib:build :switchlib:publishToMavenLocal
  - find . -name "*.aar"
