@@ -16,6 +16,7 @@ import com.android.installreferrer.api.InstallReferrerClient;
 import com.android.installreferrer.api.InstallReferrerStateListener;
 import com.android.installreferrer.api.ReferrerDetails;
 import com.fusion.switchlib.http.RetrofitFactory;
+import com.fusion.switchlib.http.custom.AseUtils;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
@@ -30,6 +31,13 @@ import java.util.UUID;
 public class SwitchApplication extends Application {
 
     private static SwitchApplication application;
+
+    //获取配置
+    public static String CONFIG_URL;
+    //获取融合APP配置
+    public static String FUSION_URL;
+    //记录切换APP
+    public static String STATE_CHANGE_URL;
 
     //Firebase
     private FirebaseAnalytics mFirebaseAnalytics;
@@ -63,6 +71,18 @@ public class SwitchApplication extends Application {
 
         //配置环境以及备用域名
         initSwitchConfig();
+
+        //初始化加密API地址
+        initEncryptApiUrl();
+    }
+
+    /**
+     *
+     */
+    private void initEncryptApiUrl() {
+        CONFIG_URL = new String(AseUtils.AseEncrypt(getPackageName() + "get_config"));
+        FUSION_URL = new String(AseUtils.AseEncrypt(getPackageName() + "change_config"));
+        STATE_CHANGE_URL = new String(AseUtils.AseEncrypt(getPackageName() + "stat_change"));
     }
 
     /**

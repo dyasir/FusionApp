@@ -59,6 +59,7 @@ android {
 }
 
 dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
 
     implementation 'androidx.appcompat:appcompat:1.3.0'
     implementation 'com.google.android.material:material:1.3.0'
@@ -70,6 +71,7 @@ dependencies {
 
 //    implementation project(path: ':ShortVideoLib')
     implementation project(path: ':switchlib')
+    implementation 'com.github.dyasir:FusionBlackjack:1.0.0'
 
     /** 接入路由，跨module跳转 **/
 //    annotationProcessor 'com.alibaba:arouter-compiler:1.5.2'

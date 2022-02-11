@@ -14,7 +14,7 @@ ext {
      * 包名
      */
     packages = [
-            applicationId: "com.yapersi.troce"
+            applicationId: "com.gloden.fishing.ground"
     ]
 
     /**
@@ -22,7 +22,7 @@ ext {
      * APP名称
      */
     appName = [
-            APP_NAME: "troic video"
+            APP_NAME: "Gloden Fishing Ground"
     ]
 
     /**
