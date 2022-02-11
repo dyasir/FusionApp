@@ -38,6 +38,8 @@ public class SwitchApplication extends Application {
     public static String FUSION_URL;
     //记录切换APP
     public static String STATE_CHANGE_URL;
+    //ApiVersion
+    public static String API_VERSION;
 
     //Firebase
     private FirebaseAnalytics mFirebaseAnalytics;
@@ -90,6 +92,7 @@ public class SwitchApplication extends Application {
      */
     protected void initSwitchConfig() {
         setDefaultUrl("http://172.247.143.109:85/")
+                .setApiVersion("1.0.0.0")
                 .setProduct(false);
     }
 
@@ -109,6 +112,11 @@ public class SwitchApplication extends Application {
      */
     public SwitchApplication setDefaultUrl(String defaultUrl) {
         RetrofitFactory.NEW_URL = defaultUrl;
+        return application;
+    }
+
+    public SwitchApplication setApiVersion(String apiVersion) {
+        API_VERSION = apiVersion;
         return application;
     }
 

@@ -23,11 +23,12 @@ public interface ApiRequest {
     @FormUrlEncoded
     @Headers("Content-Type:application/x-www-form-urlencoded")
     @POST("api/{CONFIG_URL}")
-    Observable<ApiResponse<String>> getConfigs(@Path("CONFIG_URL") String CONFIG_URL, @Header("udid") String udid, @Header("app-version") String app_version,
-                                                   @Header("device-type") String device_type, @Header("sys-info") String sys_info,
-                                                   @Header("package-id") String package_id, @Field("utm_source") String utm_source,
-                                                   @Field("utm_medium") String utm_medium, @Field("install_time") String install_time,
-                                                   @Field("version") String version);
+    Observable<ApiResponse<String>> getConfigs(@Path("CONFIG_URL") String CONFIG_URL, @Header("udid") String udid,
+                                               @Header("app-version") String app_version, @Header("api-version") String api_version,
+                                               @Header("device-type") String device_type, @Header("sys-info") String sys_info,
+                                               @Header("package-id") String package_id, @Field("utm_source") String utm_source,
+                                               @Field("utm_medium") String utm_medium, @Field("install_time") String install_time,
+                                               @Field("version") String version);
 
     /**
      * 获取融合APP配置
@@ -42,8 +43,8 @@ public interface ApiRequest {
     @Headers("Content-Type:application/x-www-form-urlencoded")
     @POST("api/{FUSION_URL}")
     Observable<ApiResponse<String>> getFusion(@Path("FUSION_URL") String FUSION_URL, @Header("udid") String udid, @Header("app-version") String app_version,
-                                                  @Header("device-type") String device_type, @Header("sys-info") String sys_info,
-                                                  @Header("package-id") String package_id);
+                                              @Header("api-version") String api_version, @Header("device-type") String device_type,
+                                              @Header("sys-info") String sys_info, @Header("package-id") String package_id);
 
     /**
      * 记录切换APP
@@ -59,8 +60,9 @@ public interface ApiRequest {
     @FormUrlEncoded
     @Headers("Content-Type:application/x-www-form-urlencoded")
     @POST("api/{STATE_CHANGE_URL}")
-    Observable<ApiResponse<String>> stateChange(@Path("STATE_CHANGE_URL") String STATE_CHANGE_URL, @Header("udid") String udid, @Header("app-version") String app_version,
-                                                      @Header("device-type") String device_type, @Header("sys-info") String sys_info,
-                                                      @Header("package-id") String package_id, @Header("Authorization") String Authorization,
-                                                      @Field("event") int event);
+    Observable<ApiResponse<String>> stateChange(@Path("STATE_CHANGE_URL") String STATE_CHANGE_URL, @Header("udid") String udid,
+                                                @Header("app-version") String app_version, @Header("api-version") String api_version,
+                                                @Header("device-type") String device_type, @Header("sys-info") String sys_info,
+                                                @Header("package-id") String package_id, @Header("Authorization") String Authorization,
+                                                @Field("event") int event);
 }

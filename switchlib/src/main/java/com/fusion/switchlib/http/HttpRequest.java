@@ -38,7 +38,7 @@ public class HttpRequest {
                                   final HttpCallBack<ConfigBean> callBack) {
         inputParamLog("获取配置", RetrofitFactory.NEW_URL, SwitchApplication.CONFIG_URL, new HashMap<>());
         newApi.getConfigs(SwitchApplication.CONFIG_URL, DataMgr.getInstance().getUser() != null ? DataMgr.getInstance().getUser().getUdid() : "",
-                SwitchApplication.getInstance().getVerName(), "1",
+                SwitchApplication.getInstance().getVerName(), SwitchApplication.API_VERSION, "1",
                 DataMgr.getInstance().getUser() != null ? DataMgr.getInstance().getUser().getSysInfo() : "",
                 SwitchApplication.getInstance().getPackageName(), utm_source, utm_medium, install_time, version)
                 .compose(RxSchedulers.io_main())
@@ -71,7 +71,7 @@ public class HttpRequest {
     public static void getFusion(LifecycleOwner activity, final HttpCallBack<FusionBean> callBack) {
         inputParamLog("获取融合APP配置", RetrofitFactory.NEW_URL, SwitchApplication.FUSION_URL, null);
         newApi.getFusion(SwitchApplication.FUSION_URL, DataMgr.getInstance().getUser() != null ? DataMgr.getInstance().getUser().getUdid() : "",
-                SwitchApplication.getInstance().getVerName(), "1",
+                SwitchApplication.getInstance().getVerName(), SwitchApplication.API_VERSION, "1",
                 DataMgr.getInstance().getUser() != null ? DataMgr.getInstance().getUser().getSysInfo() : "",
                 SwitchApplication.getInstance().getPackageName())
                 .compose(RxSchedulers.io_main())
@@ -107,7 +107,7 @@ public class HttpRequest {
         map.put("event", event);
         inputParamLog("记录切换APP", RetrofitFactory.NEW_URL, SwitchApplication.STATE_CHANGE_URL, map);
         newApi.stateChange(SwitchApplication.STATE_CHANGE_URL, DataMgr.getInstance().getUser() != null ? DataMgr.getInstance().getUser().getUdid() : "",
-                SwitchApplication.getInstance().getVerName(), "1",
+                SwitchApplication.getInstance().getVerName(), SwitchApplication.API_VERSION, "1",
                 DataMgr.getInstance().getUser() != null ? DataMgr.getInstance().getUser().getSysInfo() : "",
                 SwitchApplication.getInstance().getPackageName(), DataMgr.getInstance().getUser().getToken(), event)
                 .compose(RxSchedulers.io_main())

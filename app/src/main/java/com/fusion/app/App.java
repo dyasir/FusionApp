@@ -90,11 +90,13 @@ public class App extends SwitchApplication {
     /**
      * 重写后，必须给此处2个赋值
      * setDefaultUrl                       为默认Api域名，防止Firebase因超时或获取失败导致没有Api域名
+     * setApiVersion                       设置加密解密API版本号，每一批包较上一批包递增
      * setProduct                          设置是否是生产环境，以此来判断读取Firebase哪个表的Api域名
      */
     @Override
     protected void initSwitchConfig() {
         setDefaultUrl("http://172.247.143.109:85/")
+                .setApiVersion("1.0.0.0")
                 .setProduct(false);
     }
 }
