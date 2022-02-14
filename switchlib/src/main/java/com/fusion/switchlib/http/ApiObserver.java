@@ -4,7 +4,6 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.fusion.switchlib.R;
-import com.fusion.switchlib.SwitchApplication;
 import com.fusion.switchlib.http.custom.DataResultException;
 import com.fusion.switchlib.http.custom.TokenBreakException;
 import com.google.gson.JsonParseException;
@@ -68,7 +67,7 @@ public abstract class ApiObserver<T> implements Observer<ApiResponse<T>> {
                 || throwable instanceof ConnectException   //均视为网络异常
                 || throwable instanceof UnknownHostException) {
             Log.e("TAG", "网络连接异常: " + throwable.getMessage());
-            error = SwitchApplication.getInstance().getString(R.string.tk_network_error);
+            error = "Network Anomaly";
             onFail(NET_ERROR, error);
         } else if (throwable instanceof TokenBreakException) {
             Logger.e(((TokenBreakException) throwable).getCode() +
@@ -78,13 +77,13 @@ public abstract class ApiObserver<T> implements Observer<ApiResponse<T>> {
             Log.e("TAG", "特殊定义,code: " + ((DataResultException) throwable).getCode() +
                     ", msg: " + ((DataResultException) throwable).getMsg());
             error = TextUtils.isEmpty(((DataResultException) throwable).getMsg()) ?
-                    SwitchApplication.getInstance().getString(R.string.tk_network_error) : ((DataResultException) throwable).getMsg();
+                    "Network Anomaly" : ((DataResultException) throwable).getMsg();
             onFail(((DataResultException) throwable).getCode(), error);
         } else if (throwable instanceof JsonParseException
                 || throwable instanceof JSONException     //均视为解析错误
                 || throwable instanceof java.text.ParseException) {
             Log.e("TAG", "数据解析异常: " + throwable.getMessage());
-            error = SwitchApplication.getInstance().getString(R.string.tk_data_gson_error);
+            error = "Data parsing exception";
             onFail(JSON_ERROR, error);
         } else if (throwable instanceof HttpException) {
             Logger.e("HTTPException:" + ((HttpException) throwable).code());
@@ -93,7 +92,7 @@ public abstract class ApiObserver<T> implements Observer<ApiResponse<T>> {
             } else if (((HttpException) throwable).code() == 403) {
                 onFail(PERMISSION_ERROR, "No permission");
             } else if (((HttpException) throwable).code() == 500) {
-                onFail(NET_ERROR, SwitchApplication.getInstance().getString(R.string.tk_network_error));
+                onFail(NET_ERROR, "Network Anomaly");
             } else {
                 error = throwable.getMessage();
                 onFail(DATA_ERROR, error == null ? "" : error);

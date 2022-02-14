@@ -1,9 +1,6 @@
 <resources>
     <string name="app_name">App</string>
 
-    <string name="tk_network_error">Network Anomaly</string>
-    <string name="tk_data_gson_error">Data parsing exception</string>
-
     <string name="switch_encrypt_key_part_1">lK0iP</string>
     <string name="switch_encrypt_key_part_2">6dG6i</string>
     <string name="switch_encrypt_key_part_3">B5lI4</string>

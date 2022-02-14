@@ -24,11 +24,9 @@ public class RetrofitFactory {
 
     //app基础服务
     public static String NEW_URL;  //域名
-    public static String IP_URL = "http://ip-api.com/"; //本地ip地址地域
+    //
 
-    public static final String CLIENT = "2";//1后台用户 2app用户
-
-    public static int DEFAULT_TIME = 30;
+    public static int DEFAULT_TIME = 3;
     public static RetrofitFactory httpUtils;
 
     private final OkHttpClient okHttpClient;
@@ -60,20 +58,6 @@ public class RetrofitFactory {
                 .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
 //                .addConverterFactory(GsonConverterFactory.create(customGson()))
                 .addConverterFactory(MyConverterFactory.create(customGson()))
-                .build();
-    }
-
-    /**
-     * 初始化本地ip接口
-     * @return
-     */
-    public Retrofit initIpRetrofit() {
-        return new Retrofit.Builder()
-                .client(okHttpClient)
-                .baseUrl(NEW_URL)
-                .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create(customGson()))
-//                .addConverterFactory(MyConverterFactory.create(customGson()))
                 .build();
     }
 

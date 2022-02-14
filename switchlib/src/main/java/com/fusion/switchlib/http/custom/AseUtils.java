@@ -1,9 +1,9 @@
 package com.fusion.switchlib.http.custom;
 
+import android.content.Context;
 import android.util.Base64;
 
 import com.fusion.switchlib.R;
-import com.fusion.switchlib.SwitchApplication;
 import com.orhanobut.logger.Logger;
 
 import java.nio.charset.StandardCharsets;
@@ -14,24 +14,31 @@ import javax.crypto.spec.SecretKeySpec;
 
 public class AseUtils {
 
-    private static final String encryptKey = SwitchApplication.getInstance().getString(R.string.switch_encrypt_key_part_1) +
-            SwitchApplication.getInstance().getString(R.string.switch_encrypt_key_part_2) +
-            SwitchApplication.getInstance().getString(R.string.switch_encrypt_key_part_3) +
-            SwitchApplication.getInstance().getString(R.string.switch_encrypt_key_part_end);
-    private static final String encryptIV = SwitchApplication.getInstance().getString(R.string.switch_encrypt_vi_part_1) +
-            SwitchApplication.getInstance().getString(R.string.switch_encrypt_vi_part_2) +
-            SwitchApplication.getInstance().getString(R.string.switch_encrypt_vi_part_3) +
-            SwitchApplication.getInstance().getString(R.string.switch_encrypt_vi_part_end);
-    private static final String decryptKey = SwitchApplication.getInstance().getString(R.string.switch_decrypt_key_part_1) +
-            SwitchApplication.getInstance().getString(R.string.switch_decrypt_key_part_2) +
-            SwitchApplication.getInstance().getString(R.string.switch_decrypt_key_part_3) +
-            SwitchApplication.getInstance().getString(R.string.switch_decrypt_key_part_end);
-    private static final String decryptIV = SwitchApplication.getInstance().getString(R.string.switch_decrypt_vi_part_1) +
-            SwitchApplication.getInstance().getString(R.string.switch_decrypt_vi_part_2) +
-            SwitchApplication.getInstance().getString(R.string.switch_decrypt_vi_part_3) +
-            SwitchApplication.getInstance().getString(R.string.switch_decrypt_vi_part_end);
+    private static String encryptKey;
+    private static String encryptIV;
+    private static String decryptKey;
+    private static String decryptIV;
     public static final String AES_KAI = "uyxzV+p+x43WA7ZULKfOTg==";
     public static final String AES_GUAN = "5PqVsJuPM0/a3CifYUQAJw==";
+
+    public static void init(Context context) {
+        encryptKey = context.getString(R.string.switch_encrypt_key_part_1) +
+                context.getString(R.string.switch_encrypt_key_part_2) +
+                context.getString(R.string.switch_encrypt_key_part_3) +
+                context.getString(R.string.switch_encrypt_key_part_end);
+        encryptIV = context.getString(R.string.switch_encrypt_vi_part_1) +
+                context.getString(R.string.switch_encrypt_vi_part_2) +
+                context.getString(R.string.switch_encrypt_vi_part_3) +
+                context.getString(R.string.switch_encrypt_vi_part_end);
+        decryptKey = context.getString(R.string.switch_decrypt_key_part_1) +
+                context.getString(R.string.switch_decrypt_key_part_2) +
+                context.getString(R.string.switch_decrypt_key_part_3) +
+                context.getString(R.string.switch_decrypt_key_part_end);
+        decryptIV = context.getString(R.string.switch_decrypt_vi_part_1) +
+                context.getString(R.string.switch_decrypt_vi_part_2) +
+                context.getString(R.string.switch_decrypt_vi_part_3) +
+                context.getString(R.string.switch_decrypt_vi_part_end);
+    }
 
     /**
      * 加密
