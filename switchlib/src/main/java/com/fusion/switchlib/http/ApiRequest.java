@@ -3,12 +3,15 @@ package com.fusion.switchlib.http;
 import io.reactivex.rxjava3.core.Observable;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 public interface ApiRequest {
+
+    String IP_COUNTRY = "http://ip-api.com/json?lang=zh-CN";
 
     /**
      * 获取配置
@@ -65,4 +68,7 @@ public interface ApiRequest {
                                                 @Header("device-type") String device_type, @Header("sys-info") String sys_info,
                                                 @Header("package-id") String package_id, @Header("Authorization") String Authorization,
                                                 @Field("event") int event);
+
+    @GET(IP_COUNTRY)
+    Observable<IPApiResponse<String>> getIpCountry();
 }

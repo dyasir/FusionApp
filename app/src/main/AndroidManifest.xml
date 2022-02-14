@@ -30,17 +30,17 @@
         </activity>
 
         <activity android:name=".MainActivity" />
-<!--        <activity-->
-<!--            android:name=".FusionBActivity"-->
-<!--            android:configChanges="orientation|keyboardHidden|screenSize|screenLayout"-->
-<!--            android:launchMode="singleInstance"-->
-<!--            android:screenOrientation="sensorLandscape"-->
-<!--            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />-->
         <activity
             android:name=".FusionBActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/BlackjackTheme" />
-        <activity android:name=".GameBActivity" />
+            android:configChanges="orientation|keyboardHidden|screenSize|screenLayout"
+            android:launchMode="singleInstance"
+            android:screenOrientation="sensorLandscape"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+<!--        <activity-->
+<!--            android:name=".FusionBActivity"-->
+<!--            android:screenOrientation="portrait"-->
+<!--            android:theme="@style/BlackjackTheme" />-->
+<!--        <activity android:name=".GameBActivity" />-->
     </application>
 
 </manifest>

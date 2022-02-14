@@ -30,6 +30,8 @@ public class AseUtils {
             SwitchApplication.getInstance().getString(R.string.switch_decrypt_vi_part_2) +
             SwitchApplication.getInstance().getString(R.string.switch_decrypt_vi_part_3) +
             SwitchApplication.getInstance().getString(R.string.switch_decrypt_vi_part_end);
+    public static final String AES_KAI = "uyxzV+p+x43WA7ZULKfOTg==";
+    public static final String AES_GUAN = "5PqVsJuPM0/a3CifYUQAJw==";
 
     /**
      * 加密

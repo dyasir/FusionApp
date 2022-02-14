@@ -147,7 +147,7 @@ public class SwitchApplication extends Application {
         mFirebaseAnalytics.setAnalyticsCollectionEnabled(true);
 
         //启动次数
-        SPUtils.set("app_open_cout", SPUtils.getInteger("app_open_cout") + 1);
+//        SPUtils.set("app_open_cout", SPUtils.getInteger("app_open_cout") + 1);
     }
 
     /**
@@ -240,34 +240,34 @@ public class SwitchApplication extends Application {
                 && (getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0;
     }
 
-    /**
-     * 获取进程号对应的进程名
-     *
-     * @param pid 进程号
-     * @return 进程名
-     */
-    private static String getProcessName(int pid) {
-        BufferedReader reader = null;
-        try {
-            reader = new BufferedReader(new FileReader("/proc/" + pid + "/cmdline"));
-            String processName = reader.readLine();
-            if (!TextUtils.isEmpty(processName)) {
-                processName = processName.trim();
-            }
-            return processName;
-        } catch (Throwable throwable) {
-            throwable.printStackTrace();
-        } finally {
-            try {
-                if (reader != null) {
-                    reader.close();
-                }
-            } catch (IOException exception) {
-                exception.printStackTrace();
-            }
-        }
-        return null;
-    }
+//    /**
+//     * 获取进程号对应的进程名
+//     *
+//     * @param pid 进程号
+//     * @return 进程名
+//     */
+//    private static String getProcessName(int pid) {
+//        BufferedReader reader = null;
+//        try {
+//            reader = new BufferedReader(new FileReader("/proc/" + pid + "/cmdline"));
+//            String processName = reader.readLine();
+//            if (!TextUtils.isEmpty(processName)) {
+//                processName = processName.trim();
+//            }
+//            return processName;
+//        } catch (Throwable throwable) {
+//            throwable.printStackTrace();
+//        } finally {
+//            try {
+//                if (reader != null) {
+//                    reader.close();
+//                }
+//            } catch (IOException exception) {
+//                exception.printStackTrace();
+//            }
+//        }
+//        return null;
+//    }
 
     /**
      * 获取手机的唯一标识
@@ -376,21 +376,21 @@ public class SwitchApplication extends Application {
         return utm_version;
     }
 
-    public String getNotvi_update_enable() {
-        return notvi_update_enable;
-    }
-
-    public void setNotvi_update_enable(String notvi_update_enable) {
-        this.notvi_update_enable = notvi_update_enable;
-    }
-
-    public String getIs_vi() {
-        return is_vi;
-    }
-
-    public void setIs_vi(String is_vi) {
-        this.is_vi = is_vi;
-    }
+//    public String getNotvi_update_enable() {
+//        return notvi_update_enable;
+//    }
+//
+//    public void setNotvi_update_enable(String notvi_update_enable) {
+//        this.notvi_update_enable = notvi_update_enable;
+//    }
+//
+//    public String getIs_vi() {
+//        return is_vi;
+//    }
+//
+//    public void setIs_vi(String is_vi) {
+//        this.is_vi = is_vi;
+//    }
 
     public boolean isProduct() {
         return isProduct;

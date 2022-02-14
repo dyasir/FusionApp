@@ -78,4 +78,6 @@ dependencies {
 
     /** 状态栏、导航栏 **/
     implementation "com.gyf.immersionbar:immersionbar:3.0.0"
+
+    implementation 'com.google.code.gson:gson:2.8.9'
 }

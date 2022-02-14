@@ -23,9 +23,11 @@ import autodispose2.androidx.lifecycle.AndroidLifecycleScopeProvider;
 public class HttpRequest {
 
     static ApiRequest newApi;
+    static ApiRequest ipApi;
 
     static {
         newApi = RetrofitFactory.getInstance().initNewRetrofit().create(ApiRequest.class);
+        ipApi = RetrofitFactory.getInstance().initIpRetrofit().create(ApiRequest.class);
     }
 
     /**
@@ -119,6 +121,33 @@ public class HttpRequest {
                         Logger.d(demo);
                         List<String> list = new ArrayList<>();
                         callBack.onSuccess(list, msg);
+                    }
+
+                    @Override
+                    public void onFail(int errorCode, String errorMsg) {
+                        Logger.e(errorMsg);
+                        callBack.onFail(errorCode, errorMsg);
+                    }
+                });
+    }
+
+    /**
+     * 根据本地ip获取地域
+     *
+     * @param activity
+     * @param callBack
+     */
+    public static void getIpCountry(LifecycleOwner activity, final HttpCallBack<String> callBack) {
+        ipApi.getIpCountry()
+                .compose(RxSchedulers.io_main())
+                .to(AutoDispose.autoDisposable(AndroidLifecycleScopeProvider.from(activity)))
+                .subscribe(new IPApiObserver<String>() {
+
+                    @Override
+                    public void onSuccess(String country, String countryCode, String query) {
+                        Logger.d("country: " + country + "\ncountryCode: " + countryCode + "\nquery: " + query);
+                        List<String> list = new ArrayList<>();
+                        callBack.onSuccess(country, countryCode, query);
                     }
 
                     @Override
