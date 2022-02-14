@@ -49,15 +49,6 @@ dependencies {
 
     //log日志打印
     implementation 'com.orhanobut:logger:2.2.0'
-
-    /** 接入Firebase，进行统计、数据同步 **/
-    implementation platform('com.google.firebase:firebase-bom:29.0.3')
-    implementation 'com.google.firebase:firebase-analytics'
-    implementation 'com.google.firebase:firebase-firestore'
-    implementation 'com.google.firebase:firebase-auth'
-
-    /** 接入Google play下载来源获取 **/
-    implementation 'com.android.installreferrer:installreferrer:2.2'
 }
 
 task androidSourcesJar(type: Jar) {
