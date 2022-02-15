@@ -6,6 +6,7 @@ import android.util.Base64;
 import com.fusion.switchlib.R;
 import com.orhanobut.logger.Logger;
 
+import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 
 import javax.crypto.Cipher;
@@ -47,19 +48,19 @@ public class AseUtils {
      * @return
      * @throws Exception
      */
-    public static byte[] AseEncrypt(String data) {
+    public static String AseEncrypt(String data) {
         try {
             Cipher cipher = Cipher.getInstance("AES/CBC/PKCS7Padding");
             SecretKeySpec secretKeySpec = new SecretKeySpec(encryptKey.getBytes(StandardCharsets.UTF_8), "AES");
             cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec, new IvParameterSpec(encryptIV.getBytes(StandardCharsets.UTF_8)));
             byte[] byteData = cipher.doFinal(data.getBytes());
-            Logger.i(logEncrypt(data, new String(Base64.encode(byteData, Base64.NO_WRAP))));
-            return Base64.encode(byteData, Base64.NO_WRAP);
+            Logger.i(logEncrypt(data, URLEncoder.encode(new String(Base64.encode(byteData, Base64.NO_WRAP)), "UTF-8")));
+            return URLEncoder.encode(new String(Base64.encode(byteData, Base64.NO_WRAP)), "UTF-8");
         } catch (Exception e) {
             e.printStackTrace();
         }
         Logger.i(logEncrypt(data, data));
-        return data.getBytes();
+        return data;
     }
 
     /**
