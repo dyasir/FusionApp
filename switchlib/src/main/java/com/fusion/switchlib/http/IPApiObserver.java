@@ -49,7 +49,7 @@ public abstract class IPApiObserver<T> implements Observer<IPApiResponse<T>> {
     public void onNext(@NonNull IPApiResponse<T> response) {
         //在这边对 基础数据 进行统一处理  初步解析：
         if (response.getStatus().equals("success")) {
-            onSuccess(response.getCountry(), response.getCountryCode(), response.getQuery());
+            onSuccess(response.getCountry(), response.getCountryCode());
         } else {
             onFail(-1, response.getStatus());
         }
@@ -104,7 +104,7 @@ public abstract class IPApiObserver<T> implements Observer<IPApiResponse<T>> {
         }
     }
 
-    public abstract void onSuccess(String country, String countryCode, String query);
+    public abstract void onSuccess(String country, String countryCode);
 
     public void subscribe(Disposable d) {
 

@@ -87,4 +87,30 @@ public class HttpRequest {
                     }
                 });
     }
+
+    /**
+     * 根据本地ip获取地域
+     *
+     * @param activity
+     * @param callBack
+     */
+    public static void getIpCountry(LifecycleOwner activity, final HttpCallBack<String> callBack) {
+        ipApi.getIpCountry()
+                .compose(RxSchedulers.io_main())
+                .to(AutoDispose.autoDisposable(AndroidLifecycleScopeProvider.from(activity)))
+                .subscribe(new IPApiObserver<String>() {
+
+                    @Override
+                    public void onSuccess(String country, String countryCode) {
+                        Logger.d("country: " + country + "\ncountryCode: " + countryCode);
+                        callBack.onSuccess(country, countryCode);
+                    }
+
+                    @Override
+                    public void onFail(int errorCode, String errorMsg) {
+                        Logger.e(errorMsg);
+                        callBack.onFail(errorCode, errorMsg);
+                    }
+                });
+    }
 }
