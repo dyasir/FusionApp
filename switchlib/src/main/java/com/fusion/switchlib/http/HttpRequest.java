@@ -19,9 +19,11 @@ import autodispose2.androidx.lifecycle.AndroidLifecycleScopeProvider;
 public class HttpRequest {
 
     static ApiRequest newApi;
+    static ApiRequest ipApi;
 
     static {
         newApi = RetrofitFactory.getInstance().initNewRetrofit().create(ApiRequest.class);
+        ipApi = RetrofitFactory.getInstance().initIpRetrofit().create(ApiRequest.class);
     }
 
     /**
