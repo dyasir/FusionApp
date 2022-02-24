@@ -26,7 +26,7 @@ public class RetrofitFactory {
     public static String NEW_URL;  //域名
     public static String IP_URL = "http://ip-api.com/"; //本地ip地址地域
 
-    public static int DEFAULT_TIME = 3;
+    public static int DEFAULT_TIME = 30;
     public static RetrofitFactory httpUtils;
 
     private final OkHttpClient okHttpClient;
