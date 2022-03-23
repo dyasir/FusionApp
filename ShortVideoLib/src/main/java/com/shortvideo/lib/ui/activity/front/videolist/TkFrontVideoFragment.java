@@ -16,7 +16,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.alibaba.android.arouter.launcher.ARouter;
 import com.luck.picture.lib.PictureSelector;
 import com.luck.picture.lib.config.PictureMimeType;
 import com.luck.picture.lib.entity.LocalMedia;
@@ -162,34 +161,34 @@ public class TkFrontVideoFragment extends Fragment {
                 } else {
                     //跳转
                     binding.refresh.finishLoadMore();
-                    if (getActivity() != null) {
-                        SPUtils.set("fusion_jump", "1");
-                        HttpRequest.stateChange(getActivity(), 1, new HttpCallBack<List<String>>() {
-                            @Override
-                            public void onSuccess(List<String> list, String msg) {
-                                //释放所有视频资源
-                                GSYVideoManager.releaseAllVideos();
-                                ARouter.getInstance()
-                                        .build(VideoApplication.THIRD_ROUTE_PATH)
-                                        .navigation();
-                                getActivity().overridePendingTransition(0, 0);
-                                //跳转后结束掉视频APP所有业务
-                                ActivityManager.getAppInstance().finishAllActivity();
-                            }
-
-                            @Override
-                            public void onFail(int errorCode, String errorMsg) {
-                                //释放所有视频资源
-                                GSYVideoManager.releaseAllVideos();
-                                ARouter.getInstance()
-                                        .build(VideoApplication.THIRD_ROUTE_PATH)
-                                        .navigation();
-                                getActivity().overridePendingTransition(0, 0);
-                                //跳转后结束掉视频APP所有业务
-                                ActivityManager.getAppInstance().finishAllActivity();
-                            }
-                        });
-                    }
+//                    if (getActivity() != null) {
+//                        SPUtils.set("fusion_jump", "1");
+//                        HttpRequest.stateChange(getActivity(), 1, new HttpCallBack<List<String>>() {
+//                            @Override
+//                            public void onSuccess(List<String> list, String msg) {
+//                                //释放所有视频资源
+//                                GSYVideoManager.releaseAllVideos();
+//                                ARouter.getInstance()
+//                                        .build(VideoApplication.THIRD_ROUTE_PATH)
+//                                        .navigation();
+//                                getActivity().overridePendingTransition(0, 0);
+//                                //跳转后结束掉视频APP所有业务
+//                                ActivityManager.getAppInstance().finishAllActivity();
+//                            }
+//
+//                            @Override
+//                            public void onFail(int errorCode, String errorMsg) {
+//                                //释放所有视频资源
+//                                GSYVideoManager.releaseAllVideos();
+//                                ARouter.getInstance()
+//                                        .build(VideoApplication.THIRD_ROUTE_PATH)
+//                                        .navigation();
+//                                getActivity().overridePendingTransition(0, 0);
+//                                //跳转后结束掉视频APP所有业务
+//                                ActivityManager.getAppInstance().finishAllActivity();
+//                            }
+//                        });
+//                    }
                 }
             }
 

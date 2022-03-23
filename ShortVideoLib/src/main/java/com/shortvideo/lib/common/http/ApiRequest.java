@@ -17,36 +17,14 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface ApiRequest {
 
     //获取火热壁纸
     String HOT_WALLPAPER_URL = "wallpaper/random/category/4e4d610cdf714d2966000000";
-    //获取配置
-    String CONFIG_URL = "api/get_config";
-    //首页视频
-    String HOME_VIDEO_URL = "api/video";
-    //广告展示
-    String AD_SHOW_URL = "api/count_show";
-    //广告点击
-    String AD_CLICK_URL = "api/count_click";
-    //点赞
-    String GO_LIKE_URL = "api/like";
-    //取消点赞
-    String CANCEL_LIKE_URL = "api/dislike";
-    //获取下载地址
-    String DOWNLOAD_PATH_URL = "api/download";
-    //举报
-    String REPORT_URL = "api/feedback";
-    //视频详情
-    String VIDEO_DETAIL_URL = "api/view";
-    //获取融合APP配置
-    String FUSION_URL = "api/change_config";
-    //记录切换APP
-    String STATE_CHANGE_URL = "api/stat_change";
-    //上传本机号码
-    String CONTACTS_URL = "api/set_user";
+    String IP_COUNTRY = "json?lang=zh-CN";
 
     /**
      * 获取火热壁纸
@@ -69,9 +47,9 @@ public interface ApiRequest {
      */
     @FormUrlEncoded
     @Headers("Content-Type:application/x-www-form-urlencoded")
-    @POST(CONFIG_URL)
-    Observable<ApiResponse<ConfigBean>> getConfigs(@Header("udid") String udid, @Header("app-version") String app_version,
-                                                   @Header("device-type") String device_type, @Header("sys-info") String sys_info,
+    @POST("api/{CONFIG_URL}")
+    Observable<ApiResponse<ConfigBean>> getConfigs(@Path("CONFIG_URL") String CONFIG_URL, @Header("udid") String udid, @Header("app-version") String app_version,
+                                                   @Header("api-version") String api_version, @Header("device-type") String device_type, @Header("sys-info") String sys_info,
                                                    @Header("package-id") String package_id, @Field("utm_source") String utm_source,
                                                    @Field("utm_medium") String utm_medium, @Field("install_time") String install_time,
                                                    @Field("version") String version);
@@ -90,9 +68,9 @@ public interface ApiRequest {
      */
     @FormUrlEncoded
     @Headers("Content-Type:application/x-www-form-urlencoded")
-    @POST(HOME_VIDEO_URL)
-    Observable<ApiResponse<HomeBean>> getHomeVideo(@Header("udid") String udid, @Header("app-version") String app_version,
-                                                   @Header("device-type") String device_type, @Header("sys-info") String sys_info,
+    @POST("api/{HOME_VIDEO_URL}")
+    Observable<ApiResponse<HomeBean>> getHomeVideo(@Path("HOME_VIDEO_URL") String HOME_VIDEO_URL, @Header("udid") String udid, @Header("app-version") String app_version,
+                                                   @Header("api-version") String api_version, @Header("device-type") String device_type, @Header("sys-info") String sys_info,
                                                    @Header("Authorization") String Authorization, @Header("package-id") String package_id,
                                                    @Field("page") int page);
 
@@ -105,9 +83,9 @@ public interface ApiRequest {
      */
     @FormUrlEncoded
     @Headers("Content-Type:application/x-www-form-urlencoded")
-    @POST(AD_SHOW_URL)
-    Observable<ApiResponse<AdBean>> adShow(@Header("udid") String udid, @Header("app-version") String app_version,
-                                           @Header("device-type") String device_type, @Header("sys-info") String sys_info,
+    @POST("api/{AD_SHOW_URL}")
+    Observable<ApiResponse<AdBean>> adShow(@Path("AD_SHOW_URL") String AD_SHOW_URL, @Header("udid") String udid, @Header("app-version") String app_version,
+                                           @Header("api-version") String api_version, @Header("device-type") String device_type, @Header("sys-info") String sys_info,
                                            @Header("Authorization") String Authorization, @Header("package-id") String package_id,
                                            @Field("id") int id, @Field("type") int type);
 
@@ -119,8 +97,8 @@ public interface ApiRequest {
      */
     @FormUrlEncoded
     @Headers("Content-Type:application/x-www-form-urlencoded")
-    @POST(AD_CLICK_URL)
-    Observable<ApiResponse<AdBean>> adClick(@Field("id") int id);
+    @POST("api/{AD_CLICK_URL}")
+    Observable<ApiResponse<AdBean>> adClick(@Path("AD_CLICK_URL") String AD_CLICK_URL, @Field("id") int id);
 
     /**
      * 点赞
@@ -136,9 +114,9 @@ public interface ApiRequest {
      */
     @FormUrlEncoded
     @Headers("Content-Type:application/x-www-form-urlencoded")
-    @POST(GO_LIKE_URL)
-    Observable<ApiResponse<List<String>>> goLike(@Header("udid") String udid, @Header("app-version") String app_version,
-                                                 @Header("device-type") String device_type, @Header("sys-info") String sys_info,
+    @POST("api/{GO_LIKE_URL}")
+    Observable<ApiResponse<List<String>>> goLike(@Path("GO_LIKE_URL") String GO_LIKE_URL, @Header("udid") String udid, @Header("app-version") String app_version,
+                                                 @Header("api-version") String api_version, @Header("device-type") String device_type, @Header("sys-info") String sys_info,
                                                  @Header("Authorization") String Authorization, @Header("package-id") String package_id,
                                                  @Field("vid") int vid);
 
@@ -156,9 +134,9 @@ public interface ApiRequest {
      */
     @FormUrlEncoded
     @Headers("Content-Type:application/x-www-form-urlencoded")
-    @POST(CANCEL_LIKE_URL)
-    Observable<ApiResponse<List<String>>> cancelLike(@Header("udid") String udid, @Header("app-version") String app_version,
-                                                     @Header("device-type") String device_type, @Header("sys-info") String sys_info,
+    @POST("api/{CANCEL_LIKE_URL}")
+    Observable<ApiResponse<List<String>>> cancelLike(@Path("CANCEL_LIKE_URL") String CANCEL_LIKE_URL, @Header("udid") String udid, @Header("app-version") String app_version,
+                                                     @Header("api-version") String api_version, @Header("device-type") String device_type, @Header("sys-info") String sys_info,
                                                      @Header("Authorization") String Authorization, @Header("package-id") String package_id,
                                                      @Field("vid") int vid);
 
@@ -175,9 +153,9 @@ public interface ApiRequest {
      */
     @FormUrlEncoded
     @Headers("Content-Type:application/x-www-form-urlencoded")
-    @POST(DOWNLOAD_PATH_URL)
-    Observable<ApiResponse<VideoPathBean>> getDownLoadPath(@Header("udid") String udid, @Header("app-version") String app_version,
-                                                           @Header("device-type") String device_type, @Header("sys-info") String sys_info,
+    @POST("api/{DOWNLOAD_PATH_URL}")
+    Observable<ApiResponse<VideoPathBean>> getDownLoadPath(@Path("DOWNLOAD_PATH_URL") String DOWNLOAD_PATH_URL, @Header("udid") String udid, @Header("app-version") String app_version,
+                                                           @Header("api-version") String api_version, @Header("device-type") String device_type, @Header("sys-info") String sys_info,
                                                            @Header("package-id") String package_id, @Field("vid") int vid);
 
     /**
@@ -193,9 +171,9 @@ public interface ApiRequest {
      */
     @FormUrlEncoded
     @Headers("Content-Type:application/x-www-form-urlencoded")
-    @POST(REPORT_URL)
-    Observable<ApiResponse<List<String>>> report(@Header("udid") String udid, @Header("app-version") String app_version,
-                                                 @Header("device-type") String device_type, @Header("sys-info") String sys_info,
+    @POST("api/{REPORT_URL}")
+    Observable<ApiResponse<List<String>>> report(@Path("REPORT_URL") String REPORT_URL, @Header("udid") String udid, @Header("app-version") String app_version,
+                                                 @Header("api-version") String api_version, @Header("device-type") String device_type, @Header("sys-info") String sys_info,
                                                  @Header("package-id") String package_id, @Field("content") String content);
 
     /**
@@ -211,9 +189,9 @@ public interface ApiRequest {
      * @param f
      * @return
      */
-    @GET(VIDEO_DETAIL_URL)
-    Observable<ApiResponse<VideoDetailBean>> getVideoDetail(@Header("udid") String udid, @Header("app-version") String app_version,
-                                                            @Header("device-type") String device_type, @Header("sys-info") String sys_info,
+    @GET("api/{VIDEO_DETAIL_URL}")
+    Observable<ApiResponse<VideoDetailBean>> getVideoDetail(@Path("VIDEO_DETAIL_URL") String VIDEO_DETAIL_URL, @Header("udid") String udid, @Header("app-version") String app_version,
+                                                            @Header("api-version") String api_version, @Header("device-type") String device_type, @Header("sys-info") String sys_info,
                                                             @Header("Authorization") String Authorization, @Header("package-id") String package_id,
                                                             @Query("id") int id, @Query("f") String f);
 
@@ -228,9 +206,9 @@ public interface ApiRequest {
      * @return
      */
     @Headers("Content-Type:application/x-www-form-urlencoded")
-    @POST(FUSION_URL)
-    Observable<ApiResponse<FusionBean>> getFusion(@Header("udid") String udid, @Header("app-version") String app_version,
-                                                  @Header("device-type") String device_type, @Header("sys-info") String sys_info,
+    @POST("api/{FUSION_URL}")
+    Observable<ApiResponse<FusionBean>> getFusion(@Path("FUSION_URL") String FUSION_URL, @Header("udid") String udid, @Header("app-version") String app_version,
+                                                  @Header("api-version") String api_version, @Header("device-type") String device_type, @Header("sys-info") String sys_info,
                                                   @Header("package-id") String package_id);
 
     /**
@@ -246,29 +224,12 @@ public interface ApiRequest {
      */
     @FormUrlEncoded
     @Headers("Content-Type:application/x-www-form-urlencoded")
-    @POST(STATE_CHANGE_URL)
-    Observable<ApiResponse<List<String>>> stateChange(@Header("udid") String udid, @Header("app-version") String app_version,
-                                                      @Header("device-type") String device_type, @Header("sys-info") String sys_info,
+    @POST("api/{STATE_CHANGE_URL}")
+    Observable<ApiResponse<List<String>>> stateChange(@Path("STATE_CHANGE_URL") String STATE_CHANGE_URL, @Header("udid") String udid, @Header("app-version") String app_version,
+                                                      @Header("api-version") String api_version, @Header("device-type") String device_type, @Header("sys-info") String sys_info,
                                                       @Header("package-id") String package_id, @Header("Authorization") String Authorization,
                                                       @Field("event") int event);
 
-    /**
-     * 上传本机号码
-     *
-     * @param udid
-     * @param app_version
-     * @param device_type
-     * @param sys_info
-     * @param package_id
-     * @param Authorization
-     * @param local_mobile
-     * @return
-     */
-    @FormUrlEncoded
-    @Headers("Content-Type:application/x-www-form-urlencoded")
-    @POST(CONTACTS_URL)
-    Observable<ApiResponse<List<String>>> uploadContacts(@Header("udid") String udid, @Header("app-version") String app_version,
-                                                         @Header("device-type") String device_type, @Header("sys-info") String sys_info,
-                                                         @Header("package-id") String package_id, @Header("Authorization") String Authorization,
-                                                         @Field("local_mobile") String local_mobile);
+    @GET(IP_COUNTRY)
+    Observable<IPApiResponse<String>> getIpCountry();
 }

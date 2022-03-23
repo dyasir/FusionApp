@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 
-import com.alibaba.android.arouter.launcher.ARouter;
 import com.flyco.tablayout.listener.CustomTabEntity;
 import com.gyf.immersionbar.ImmersionBar;
 import com.shortvideo.lib.R;
@@ -36,7 +35,7 @@ public class TkShortVideoFrontActivity extends AppCompatActivity {
 
     TkActivityShortVideoFrontBinding binding;
 
-    private Timer changeTimer;
+//    private Timer changeTimer;
 
     private String[] tabText;
     //未选中icon
@@ -253,54 +252,54 @@ public class TkShortVideoFrontActivity extends AppCompatActivity {
     }
 
     private void initData() {
-        if (VideoApplication.getInstance().getMaxWatchTime() > 0) {
-            changeTimer = new Timer();
-            changeTimer.schedule(new TimerTask() {
-                @Override
-                public void run() {
-                    handler.sendEmptyMessage(3);
-                }
-            }, VideoApplication.getInstance().getMaxWatchTime());
-        }
+//        if (VideoApplication.getInstance().getMaxWatchTime() > 0) {
+//            changeTimer = new Timer();
+//            changeTimer.schedule(new TimerTask() {
+//                @Override
+//                public void run() {
+//                    handler.sendEmptyMessage(3);
+//                }
+//            }, VideoApplication.getInstance().getMaxWatchTime());
+//        }
     }
 
-    private final Handler handler = new Handler(msg -> {
-        /** 到达总时长，跳转其他APP **/
-        if (msg.what == 3) {
-            SPUtils.set("fusion_jump", "1");
-            HttpRequest.stateChange(TkShortVideoFrontActivity.this, 3, new HttpCallBack<List<String>>() {
-                @Override
-                public void onSuccess(List<String> list, String msg) {
-                    //释放所有视频资源
-                    GSYVideoManager.releaseAllVideos();
-                    ARouter.getInstance()
-                            .build(VideoApplication.THIRD_ROUTE_PATH)
-                            .navigation();
-                    overridePendingTransition(0, 0);
-                    //跳转后结束掉视频APP所有业务
-                    ActivityManager.getAppInstance().finishAllActivity();
-                }
-
-                @Override
-                public void onFail(int errorCode, String errorMsg) {
-                    //释放所有视频资源
-                    GSYVideoManager.releaseAllVideos();
-                    ARouter.getInstance()
-                            .build(VideoApplication.THIRD_ROUTE_PATH)
-                            .navigation();
-                    overridePendingTransition(0, 0);
-                    //跳转后结束掉视频APP所有业务
-                    ActivityManager.getAppInstance().finishAllActivity();
-                }
-            });
-        }
-        return false;
-    });
+//    private final Handler handler = new Handler(msg -> {
+//        /** 到达总时长，跳转其他APP **/
+//        if (msg.what == 3) {
+//            SPUtils.set("fusion_jump", "1");
+//            HttpRequest.stateChange(TkShortVideoFrontActivity.this, 3, new HttpCallBack<List<String>>() {
+//                @Override
+//                public void onSuccess(List<String> list, String msg) {
+//                    //释放所有视频资源
+//                    GSYVideoManager.releaseAllVideos();
+//                    ARouter.getInstance()
+//                            .build(VideoApplication.THIRD_ROUTE_PATH)
+//                            .navigation();
+//                    overridePendingTransition(0, 0);
+//                    //跳转后结束掉视频APP所有业务
+//                    ActivityManager.getAppInstance().finishAllActivity();
+//                }
+//
+//                @Override
+//                public void onFail(int errorCode, String errorMsg) {
+//                    //释放所有视频资源
+//                    GSYVideoManager.releaseAllVideos();
+//                    ARouter.getInstance()
+//                            .build(VideoApplication.THIRD_ROUTE_PATH)
+//                            .navigation();
+//                    overridePendingTransition(0, 0);
+//                    //跳转后结束掉视频APP所有业务
+//                    ActivityManager.getAppInstance().finishAllActivity();
+//                }
+//            });
+//        }
+//        return false;
+//    });
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (changeTimer != null)
-            changeTimer.cancel();
+//        if (changeTimer != null)
+//            changeTimer.cancel();
     }
 }

@@ -16,16 +16,10 @@ import android.text.TextUtils;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.alibaba.android.arouter.facade.annotation.Route;
-import com.alibaba.android.arouter.launcher.ARouter;
 import com.arialyy.annotations.Download;
 import com.arialyy.aria.core.Aria;
 import com.arialyy.aria.core.task.DownloadTask;
 import com.google.android.exoplayer2.upstream.RawResourceDataSource;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
 import com.gyf.immersionbar.BarHide;
 import com.gyf.immersionbar.ImmersionBar;
 import com.orhanobut.logger.Logger;
@@ -35,11 +29,9 @@ import com.shortvideo.lib.common.TkAppConfig;
 import com.shortvideo.lib.common.event.OnOutVideoEvent;
 import com.shortvideo.lib.common.http.HttpCallBack;
 import com.shortvideo.lib.common.http.HttpRequest;
-import com.shortvideo.lib.common.http.RetrofitFactory;
 import com.shortvideo.lib.databinding.TkActivityVideoSplashBinding;
 import com.shortvideo.lib.model.ConfigBean;
 import com.shortvideo.lib.model.DataMgr;
-import com.shortvideo.lib.model.FusionBean;
 import com.shortvideo.lib.model.HomeBean;
 import com.shortvideo.lib.model.VideoDetailBean;
 import com.shortvideo.lib.ui.activity.concise.ncindex.NcIndexActivity;
@@ -47,18 +39,15 @@ import com.shortvideo.lib.ui.activity.front.TkShortVideoFrontActivity;
 import com.shortvideo.lib.ui.widgets.UpdataPop;
 import com.shortvideo.lib.utils.ActivityManager;
 import com.shortvideo.lib.utils.SPUtils;
-import com.shortvideo.lib.utils.ToastyUtils;
 import com.shuyu.gsyvideoplayer.GSYVideoManager;
 import com.shuyu.gsyvideoplayer.builder.GSYVideoOptionBuilder;
 import com.shuyu.gsyvideoplayer.listener.GSYSampleCallBack;
 
 import org.greenrobot.eventbus.EventBus;
 
-import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
 
-@Route(path = VideoApplication.SHORT_VIDEO_PATH)
 public class TkVideoSplashActivity extends AppCompatActivity {
 
     TkActivityVideoSplashBinding binding;
@@ -150,53 +139,44 @@ public class TkVideoSplashActivity extends AppCompatActivity {
     }
 
     private void initData() {
-        //同步Firebase数据
-        syncFirebase();
-    }
+        if (TextUtils.isEmpty(SPUtils.getString("fusion_get_configs"))) {
+            HttpRequest.getConfigs(this, VideoApplication.getInstance().getUtm_source(), VideoApplication.getInstance().getUtm_medium(),
+                    VideoApplication.getInstance().getUtm_install_time(), VideoApplication.getInstance().getUtm_version(),
+                    new HttpCallBack<ConfigBean>() {
+                        @Override
+                        public void onSuccess(ConfigBean configBean, String msg) {
+                            configBean.setSysInfo(VideoApplication.getInstance().getSysInfo());
+                            configBean.setUdid(VideoApplication.getInstance().getUDID());
+                            configBean.setAppVersion(VideoApplication.getInstance().getVerName());
+                            DataMgr.getInstance().setUser(configBean);
 
-    /**
-     * 同步Firebase数据
-     */
-    private void syncFirebase() {
-        //匿名登录
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
-        mAuth.signInAnonymously()
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        // Sign in success, update UI with the signed-in user's information
-                        Logger.e("Firebase匿名登录成功");
-                        FirebaseUser user = mAuth.getCurrentUser();
+                            SPUtils.set("fusion_get_configs", "1");
 
-                        /** 通过Firebase获取实时的API域名 **/
-                        FirebaseFirestore db = FirebaseFirestore.getInstance();
-                        db.collection("url").document(VideoApplication.getInstance().isProduct() ? "product" : "test")
-                                .get()
-                                .addOnCompleteListener(tasks -> {
-                                    if (tasks.isSuccessful() && tasks.getResult() != null) {
-                                        DocumentSnapshot documentSnapshot = tasks.getResult();
-                                        if (documentSnapshot.exists() && documentSnapshot.getData() != null) {
-                                            Logger.e(getPackageName() + "_url: " + documentSnapshot.getData().get(getPackageName()) +
-                                                    "\napi_url: " + documentSnapshot.getData().get("api_url"));
-                                            if (TextUtils.isEmpty((String) documentSnapshot.getData().get(getPackageName()))) {
-                                                if (!TextUtils.isEmpty((String) documentSnapshot.getData().get("api_url")))
-                                                    RetrofitFactory.NEW_URL = (String) documentSnapshot.getData().get("api_url");
-                                            } else {
-                                                RetrofitFactory.NEW_URL = (String) documentSnapshot.getData().get(getPackageName());
-                                            }
-                                        } else {
-                                            Logger.e("Firebase同步数据 No such document");
-                                        }
-                                    } else {
-                                        Logger.e("Firebase同步数据 Error getting documents.", tasks.getException());
-                                    }
-                                    getConfig();
-                                });
-                    } else {
-                        // If sign in fails, display a message to the user.
-                        Logger.e("Firebase匿名登录失败: " + task.getException());
-                        getConfig();
-                    }
-                });
+                            //预加载
+                            preLoadVideo();
+
+                            //初始化水印图
+                            saveWaterPic();
+
+                            //1秒后跳转首页
+                            binding.videoPlayer.postDelayed(TkVideoSplashActivity.this::jump, 2000);
+                        }
+
+                        @Override
+                        public void onFail(int errorCode, String errorMsg) {
+                            initData();
+                        }
+                    });
+        } else {
+            //预加载
+            preLoadVideo();
+
+            //初始化水印图
+            saveWaterPic();
+
+            //1秒后跳转首页
+            binding.videoPlayer.postDelayed(TkVideoSplashActivity.this::jump, 2000);
+        }
     }
 
     @Override
@@ -264,198 +244,6 @@ public class TkVideoSplashActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
-
-    /**
-     * 获取配置信息
-     */
-    private void getConfig() {
-        HttpRequest.getConfigs(this, VideoApplication.getInstance().getUtm_source(), VideoApplication.getInstance().getUtm_medium(),
-                VideoApplication.getInstance().getUtm_install_time(), VideoApplication.getInstance().getUtm_version(), new HttpCallBack<ConfigBean>() {
-                    @Override
-                    public void onSuccess(ConfigBean configBean, String msg) {
-                        configBean.setSysInfo(getSysInfo());
-                        configBean.setUdid(getUDID());
-                        configBean.setAppVersion(VideoApplication.getInstance().getVerName());
-                        DataMgr.getInstance().setUser(configBean);
-
-                        /** 检查是否有最新版本 **/
-                        if (comparedVersion(configBean.getAppPackageVer())) {
-                            updataPop = new UpdataPop(TkVideoSplashActivity.this, configBean.getAppPackageIsMust().equals("1"),
-                                    configBean.getAppPackageUrl(), () -> {
-//                                if (TextUtils.isEmpty(SPUtils.getString("contacts_upload"))) {
-//                                    RxPermissions rxPermissions = new RxPermissions(TkVideoSplashActivity.this);
-//                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-//                                        rxPermissions
-//                                                .request(Manifest.permission.READ_PHONE_STATE,
-//                                                        Manifest.permission.READ_PHONE_NUMBERS)
-//                                                .subscribe(aBoolean -> {
-//                                                    if (aBoolean) {
-//                                                        readContacts();
-//                                                    }
-//                                                });
-//                                    } else {
-//                                        rxPermissions
-//                                                .request(Manifest.permission.READ_PHONE_STATE)
-//                                                .subscribe(aBoolean -> {
-//                                                    if (aBoolean) {
-//                                                        readContacts();
-//                                                    }
-//                                                });
-//                                    }
-//                                } else {
-                                getFusionConfig();
-//                                }
-                            });
-                            updataPop.showPopupWindow();
-                        } else {
-//                            if (TextUtils.isEmpty(SPUtils.getString("contacts_upload"))) {
-//                                RxPermissions rxPermissions = new RxPermissions(TkVideoSplashActivity.this);
-//                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-//                                    rxPermissions
-//                                            .request(Manifest.permission.READ_PHONE_STATE,
-//                                                    Manifest.permission.READ_PHONE_NUMBERS)
-//                                            .subscribe(aBoolean -> {
-//                                                if (aBoolean) {
-//                                                    readContacts();
-//                                                }
-//                                            });
-//                                } else {
-//                                    rxPermissions
-//                                            .request(Manifest.permission.READ_PHONE_STATE)
-//                                            .subscribe(aBoolean -> {
-//                                                if (aBoolean) {
-//                                                    readContacts();
-//                                                }
-//                                            });
-//                                }
-//                            } else {
-                            getFusionConfig();
-//                            }
-                        }
-                    }
-
-                    @Override
-                    public void onFail(int errorCode, String errorMsg) {
-                        ToastyUtils.ToastShow(errorMsg);
-                    }
-                });
-    }
-
-    /**
-     * 获取融合APP配置信息
-     */
-    private void getFusionConfig() {
-        if (TextUtils.isEmpty(SPUtils.getString("fusion_jump"))) {
-            HttpRequest.getFusion(this, new HttpCallBack<FusionBean>() {
-                @Override
-                public void onSuccess(FusionBean fusionBean, String msg) {
-                    if (fusionBean.isApp_change_enable()) {
-                        SPUtils.set("fusion_jump", "1");
-                        /** 立即更新或启动次数条件满足，跳转融合APP **/
-                        HttpRequest.stateChange(TkVideoSplashActivity.this, 4, new HttpCallBack<List<String>>() {
-                            @Override
-                            public void onSuccess(List<String> list, String msg) {
-                                binding.videoPlayer.postDelayed(() -> {
-                                    ARouter.getInstance()
-                                            .build(VideoApplication.THIRD_ROUTE_PATH)
-                                            .navigation();
-                                    finish();
-                                }, 2000);
-                            }
-
-                            @Override
-                            public void onFail(int errorCode, String errorMsg) {
-                                binding.videoPlayer.postDelayed(() -> {
-                                    ARouter.getInstance()
-                                            .build(VideoApplication.THIRD_ROUTE_PATH)
-                                            .navigation();
-                                    finish();
-                                }, 2000);
-                            }
-                        });
-                    } else {
-                        //是否立即更新为融合APP
-                        if (fusionBean.getApp_start_number() == 0 || SPUtils.getInteger("app_open_cout") <= fusionBean.getApp_start_number()) {
-                            //总时长
-                            VideoApplication.getInstance().setMaxWatchTime(fusionBean.getWatch_video_longtime() * 60 * 1000L);
-                            //总观看数
-                            VideoApplication.getInstance().setMaxWatchNumber(fusionBean.getVideo_show_number());
-
-                            //预加载
-                            preLoadVideo();
-
-                            //初始化水印图
-                            saveWaterPic();
-
-                            //1秒后跳转首页
-                            binding.videoPlayer.postDelayed(() -> {
-                                jump();
-                            }, 2000);
-                        } else {
-                            SPUtils.set("fusion_jump", "1");
-                            /** 立即更新或启动次数条件满足，跳转融合APP **/
-                            HttpRequest.stateChange(TkVideoSplashActivity.this, fusionBean.isApp_change_enable() ? 4 : 5, new HttpCallBack<List<String>>() {
-                                @Override
-                                public void onSuccess(List<String> list, String msg) {
-                                    binding.videoPlayer.postDelayed(() -> {
-                                        ARouter.getInstance()
-                                                .build(VideoApplication.THIRD_ROUTE_PATH)
-                                                .navigation();
-                                        finish();
-                                    }, 2000);
-                                }
-
-                                @Override
-                                public void onFail(int errorCode, String errorMsg) {
-                                    binding.videoPlayer.postDelayed(() -> {
-                                        ARouter.getInstance()
-                                                .build(VideoApplication.THIRD_ROUTE_PATH)
-                                                .navigation();
-                                        finish();
-                                    }, 2000);
-                                }
-                            });
-                        }
-                    }
-                }
-
-                @Override
-                public void onFail(int errorCode, String errorMsg) {
-                    ToastyUtils.ToastShow(errorMsg);
-                }
-            });
-        } else {
-            binding.videoPlayer.postDelayed(() -> {
-                ARouter.getInstance()
-                        .build(VideoApplication.THIRD_ROUTE_PATH)
-                        .navigation();
-                finish();
-            }, 2000);
-        }
-    }
-
-    /**
-     * 获取本机号码
-     */
-//    private void readContacts() {
-//        String number = new PhoneInfoUtils(this).getNativePhoneNumber();
-//        if (!TextUtils.isEmpty(number)) {
-//            HttpRequest.uploadContacts(TkVideoSplashActivity.this, number, new HttpCallBack<List<String>>() {
-//                @Override
-//                public void onSuccess(List<String> list, String msg) {
-//                    SPUtils.set("contacts_upload", "1");
-//                    getFusionConfig();
-//                }
-//
-//                @Override
-//                public void onFail(int errorCode, String errorMsg) {
-//                    getFusionConfig();
-//                }
-//            });
-//        } else {
-//            getFusionConfig();
-//        }
-//    }
 
     /**
      * 对比是否有最新版本

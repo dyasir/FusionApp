@@ -1,5 +1,5 @@
 apply plugin: 'com.android.library'
-//apply plugin: 'maven-publish'
+apply plugin: 'maven-publish'
 
 android {
     compileSdkVersion 29
@@ -8,7 +8,7 @@ android {
         minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
-        versionName "1.2.7"
+        versionName "1.4.0"
 
         consumerProguardFiles "consumer-rules.pro"
 
@@ -136,9 +136,6 @@ dependencies {
     //视频处理
     implementation 'com.github.microshow:RxFFmpeg:4.9.0-lite'
 
-    //Bugly
-    implementation 'com.tencent.bugly:crashreport:4.0.0'
-
     //图片选择器
     implementation 'io.github.lucksiege:pictureselector:v2.7.3-rc03'
 
@@ -169,10 +166,6 @@ dependencies {
     //圆角layout
     implementation 'com.github.JavaNoober.BackgroundLibrary:libraryx:1.7.3'
 
-    //路由
-    api 'com.alibaba:arouter-api:1.5.2'
-    annotationProcessor 'com.alibaba:arouter-compiler:1.5.2'
-
     /** 接入Firebase，进行统计、数据同步 **/
     implementation platform('com.google.firebase:firebase-bom:29.0.3')
     implementation 'com.google.firebase:firebase-analytics'
@@ -183,17 +176,17 @@ dependencies {
     implementation 'com.android.installreferrer:installreferrer:2.2'
 }
 
-//task androidSourcesJar(type: Jar) {
-//    classifier 'sources'
-//    from android.sourceSets.main.java.srcDirs
-//}
-//
-//project.afterEvaluate {
-//    publishing {
-//        publications {
-//            release(MavenPublication) {
-//                from components.release
-//            }
-//        }
-//    }
-//}
+task androidSourcesJar(type: Jar) {
+    classifier 'sources'
+    from android.sourceSets.main.java.srcDirs
+}
+
+project.afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+            }
+        }
+    }
+}

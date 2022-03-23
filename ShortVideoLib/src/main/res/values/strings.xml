@@ -102,4 +102,21 @@
 
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
+
+    <string name="switch_encrypt_key_part_1">lK0iP</string>
+    <string name="switch_encrypt_key_part_2">6dG6i</string>
+    <string name="switch_encrypt_key_part_3">B5lI4</string>
+    <string name="switch_encrypt_key_part_end">d</string>
+    <string name="switch_encrypt_vi_part_1">21103</string>
+    <string name="switch_encrypt_vi_part_2">62020</string>
+    <string name="switch_encrypt_vi_part_3">21001</string>
+    <string name="switch_encrypt_vi_part_end">0</string>
+    <string name="switch_decrypt_key_part_1">WJ6uG</string>
+    <string name="switch_decrypt_key_part_2">tqIgn</string>
+    <string name="switch_decrypt_key_part_3">DmDGD</string>
+    <string name="switch_decrypt_key_part_end">9</string>
+    <string name="switch_decrypt_vi_part_1">83291</string>
+    <string name="switch_decrypt_vi_part_2">82456</string>
+    <string name="switch_decrypt_vi_part_3">73714</string>
+    <string name="switch_decrypt_vi_part_end">9</string>
 </resources>

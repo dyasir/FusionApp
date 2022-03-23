@@ -12,7 +12,6 @@ import android.os.RemoteException;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 
-import com.alibaba.android.arouter.launcher.ARouter;
 import com.android.installreferrer.api.InstallReferrerClient;
 import com.android.installreferrer.api.InstallReferrerStateListener;
 import com.android.installreferrer.api.ReferrerDetails;
@@ -21,7 +20,7 @@ import com.google.firebase.analytics.FirebaseAnalytics;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
 import com.orhanobut.logger.PrettyFormatStrategy;
-import com.shortvideo.lib.common.TkAppConfig;
+import com.shortvideo.lib.common.http.AseUtils;
 import com.shortvideo.lib.common.http.RetrofitFactory;
 import com.shortvideo.lib.utils.LogCatStrategy;
 import com.shortvideo.lib.utils.SPUtils;
@@ -29,7 +28,6 @@ import com.shortvideo.lib.utils.ToastyUtils;
 import com.shuyu.gsyvideoplayer.cache.CacheFactory;
 import com.shuyu.gsyvideoplayer.player.PlayerFactory;
 import com.shuyu.gsyvideoplayer.utils.GSYVideoType;
-import com.tencent.bugly.crashreport.CrashReport;
 
 import net.mikaelzero.mojito.Mojito;
 import net.mikaelzero.mojito.loader.glide.GlideImageLoader;
@@ -38,6 +36,7 @@ import net.mikaelzero.mojito.view.sketch.SketchImageLoadFactory;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Locale;
 import java.util.UUID;
 
 import io.microshow.rxffmpeg.RxFFmpegInvoke;
@@ -47,6 +46,49 @@ import tv.danmaku.ijk.media.exo2.ExoPlayerCacheManager;
 public class VideoApplication extends Application {
 
     private static VideoApplication application;
+
+    //获取配置
+    public static String CONFIG_URL;
+    //首页视频
+    public static String HOME_VIDEO_URL;
+    //广告展示
+    public static String AD_SHOW_URL;
+    //广告点击
+    public static String AD_CLICK_URL;
+    //点赞
+    public static String GO_LIKE_URL;
+    //取消点赞
+    public static String CANCEL_LIKE_URL;
+    //获取下载地址
+    public static String DOWNLOAD_PATH_URL;
+    //举报
+    public static String REPORT_URL;
+    //视频详情
+    public static String VIDEO_DETAIL_URL;
+    //获取融合APP配置
+    public static String FUSION_URL;
+    //记录切换APP
+    public static String STATE_CHANGE_URL;
+
+    /**
+     *
+     */
+    private void initEncryptApiUrl() {
+        CONFIG_URL = AseUtils.AseEncrypt(getPackageName() + "get_config");
+        HOME_VIDEO_URL = AseUtils.AseEncrypt(getPackageName() + "video");
+        AD_SHOW_URL = AseUtils.AseEncrypt(getPackageName() + "count_show");
+        AD_CLICK_URL = AseUtils.AseEncrypt(getPackageName() + "count_click");
+        GO_LIKE_URL = AseUtils.AseEncrypt(getPackageName() + "like");
+        CANCEL_LIKE_URL = AseUtils.AseEncrypt(getPackageName() + "dislike");
+        DOWNLOAD_PATH_URL = AseUtils.AseEncrypt(getPackageName() + "download");
+        REPORT_URL = AseUtils.AseEncrypt(getPackageName() + "feedback");
+        VIDEO_DETAIL_URL = AseUtils.AseEncrypt(getPackageName() + "view");
+        FUSION_URL = AseUtils.AseEncrypt(getPackageName() + "change_config");
+        STATE_CHANGE_URL = AseUtils.AseEncrypt(getPackageName() + "stat_change");
+    }
+
+    //ApiVersion
+    public static String API_VERSION;
 
     //Firebase
     private FirebaseAnalytics mFirebaseAnalytics;
@@ -143,11 +185,6 @@ public class VideoApplication extends Application {
      * 自定义属性结束
      **/
 
-    //跳转视频APP的路由path
-    public static final String SHORT_VIDEO_PATH = "/videolib/videosplash";
-    //跳转第三方APP的路由path
-    public static final String THIRD_ROUTE_PATH = "/third/mainactivity";
-
     public static VideoApplication getInstance() {
         return application;
     }
@@ -226,6 +263,11 @@ public class VideoApplication extends Application {
      **/
     public VideoApplication setDefaultUrl(String url) {
         RetrofitFactory.NEW_URL = url;
+        return application;
+    }
+
+    public VideoApplication setApiVersion(String apiVersion) {
+        API_VERSION = apiVersion;
         return application;
     }
 
@@ -557,9 +599,6 @@ public class VideoApplication extends Application {
         super.onCreate();
         application = this;
 
-        //初始化路由
-        ARouter.init(this);
-
         //初始化sp
         SPUtils.init(this);
 
@@ -581,9 +620,6 @@ public class VideoApplication extends Application {
         //开启视频处理LOG
         RxFFmpegInvoke.getInstance().setDebug(false);
 
-        //初始化Bugly
-        initBugly();
-
         //初始化图片查看器
         initMojito();
 
@@ -592,6 +628,10 @@ public class VideoApplication extends Application {
 
         //初始化Fresco
         Fresco.initialize(this);
+
+        AseUtils.init(this);
+        //初始化加密API地址
+        initEncryptApiUrl();
     }
 
     /**
@@ -600,40 +640,41 @@ public class VideoApplication extends Application {
     protected void initVideoPageConfig() {
         setDefaultUrl("http://172.247.143.109:85/")               //默认域名
                 .setProduct(false)                                //是否为生产环境
+                .setApiVersion("1.0.0.1")                         //是否加密解密
                 .setVideoLayoutType(1)                            //选择加载视频布局1(右侧按钮栏)，或布局2(左侧按钮栏)
                 .setPureEnjoyment(true)                           //开启纯享功能
                 .setApplyDownload(true)                           //提供下载功能
                 .setApplyToLike(true)                             //提供点赞功能
-                .setOpenPageWhere(1)                              //视频App启动页面，1.新版首页  2.前置页  3.旧版短视频
-                .setApplyFrontHomeVideo(true)                     //前置页是否提供首页视频功能
-                .setApplyFrontHomeMessage(true)                   //前置页是否提供首页消息功能
-                .setApplyFrontHomePhotos(true)                    //前置页是否提供首页图库功能
-                .setApplyFrontHomeEdit(true)                      //前置页是否提供首页图片编辑功能
-                .setApplyFrontHomeMine(true)                      //前置页是否提供首页我的功能
-                .setFrontListLayoutType(1)                        //前置页列表布局，1.两排格子  2.垂直布局
-                .setFrontListItemHeight(165)                      //前置页2排格子列表单个的高度
-                .setApplyFrontLikeNum(true)                       //前置页列表是否展示点赞数
-                .setFrontLikeNumLayout(1)                         //前置页列表点赞数位置，1.左上  2.右下
-                .setFrontPageBgColor(R.color.black)               //前置页背景颜色
-                .setNcIndexBgColor(R.color.white)                 //新版首页背景颜色
-                .setNcIndexTitleColor(R.color.black)              //新版首页标题文字颜色
-                .setFrontPageBottomBgColor(R.color.color_181818)  //前置页底部菜单栏背景颜色
-                .setApplyFrontPageTitle(true)                     //前置页是否展示标题(如果不展示，则下划线也不展示)
-                .setFrontPageTitleColor(R.color.white)            //前置页标题、内容文字颜色
-                .setFrontPageTitleSize(18)                        //前置页标题文字大小
-                .setFrontPageTitleLayoutType(2)                   //前置页标题相对位置，1.居左  2.居中  3.居右
-                .setApplyFrontPageIndicator(true)                 //前置页是否展示标题下划线
-                .setFrontPageIndicatorLayoutType(2)               //前置页下划线相对标题位置，1.居左  2.居中  3.居右
-                .setFrontPageIndicatorWidth(20)                   //前置页标题下划线宽度
-                .setFrontPageIndicatorHeight(3)                   //前置页标题下划线高度
-                .setFrontPageIndicatorColor(R.color.white)        //前置页标题下划线颜色
-                .setFrontPageIndicatorCornersRadius(6)            //前置页标题下划线圆角值
-                .setApplyFrontPageTakeVideo(true)                 //前置页是否提供拍摄功能
-                .setFrontPhotosLayoutType(1)                      //前置页图库列表样式，1.列表  2.一屏多页
-                .setFrontPhotosScollType(1)                       //前置页图库列表一屏多页滑动方式，1.左右  2.上下
-                .setFrontPhotosSpanCount(2)                       //前置页图库列表的列数
-                .setApplyFrontPhotosLikeNum(false)                //前置页图库是否展示点赞数
-                .setApplyFrontPhotosWallpaper(false);             //前置页图库是否提供设置壁纸功能
+                .setOpenPageWhere(3);                              //视频App启动页面，1.新版首页  2.前置页  3.旧版短视频
+//                .setApplyFrontHomeVideo(false)                     //前置页是否提供首页视频功能
+//                .setApplyFrontHomeMessage(false)                   //前置页是否提供首页消息功能
+//                .setApplyFrontHomePhotos(false)                    //前置页是否提供首页图库功能
+//                .setApplyFrontHomeEdit(false)                      //前置页是否提供首页图片编辑功能
+//                .setApplyFrontHomeMine(false)                      //前置页是否提供首页我的功能
+//                .setFrontListLayoutType(1)                        //前置页列表布局，1.两排格子  2.垂直布局
+//                .setFrontListItemHeight(165)                      //前置页2排格子列表单个的高度
+//                .setApplyFrontLikeNum(false)                       //前置页列表是否展示点赞数
+//                .setFrontLikeNumLayout(1)                         //前置页列表点赞数位置，1.左上  2.右下
+//                .setFrontPageBgColor(R.color.black)               //前置页背景颜色
+//                .setNcIndexBgColor(R.color.white)                 //新版首页背景颜色
+//                .setNcIndexTitleColor(R.color.black)              //新版首页标题文字颜色
+//                .setFrontPageBottomBgColor(R.color.color_181818)  //前置页底部菜单栏背景颜色
+//                .setApplyFrontPageTitle(true)                     //前置页是否展示标题(如果不展示，则下划线也不展示)
+//                .setFrontPageTitleColor(R.color.white)            //前置页标题、内容文字颜色
+//                .setFrontPageTitleSize(18)                        //前置页标题文字大小
+//                .setFrontPageTitleLayoutType(2)                   //前置页标题相对位置，1.居左  2.居中  3.居右
+//                .setApplyFrontPageIndicator(true)                 //前置页是否展示标题下划线
+//                .setFrontPageIndicatorLayoutType(2)               //前置页下划线相对标题位置，1.居左  2.居中  3.居右
+//                .setFrontPageIndicatorWidth(20)                   //前置页标题下划线宽度
+//                .setFrontPageIndicatorHeight(3)                   //前置页标题下划线高度
+//                .setFrontPageIndicatorColor(R.color.white)        //前置页标题下划线颜色
+//                .setFrontPageIndicatorCornersRadius(6)            //前置页标题下划线圆角值
+//                .setApplyFrontPageTakeVideo(true)                 //前置页是否提供拍摄功能
+//                .setFrontPhotosLayoutType(1)                      //前置页图库列表样式，1.列表  2.一屏多页
+//                .setFrontPhotosScollType(1)                       //前置页图库列表一屏多页滑动方式，1.左右  2.上下
+//                .setFrontPhotosSpanCount(2)                       //前置页图库列表的列数
+//                .setApplyFrontPhotosLikeNum(false)                //前置页图库是否展示点赞数
+//                .setApplyFrontPhotosWallpaper(false);             //前置页图库是否提供设置壁纸功能
     }
 
     /**
@@ -750,24 +791,6 @@ public class VideoApplication extends Application {
     }
 
     /**
-     * 初始化bugly
-     */
-    private void initBugly() {
-        //获取当前包名
-        String packageName = getPackageName();
-        //获取当前进程名
-        String processName = getProcessName(android.os.Process.myPid());
-        CrashReport.UserStrategy strategy = new CrashReport.UserStrategy(this);
-        //设置是否为上报进程
-        strategy.setUploadProcess(processName == null || processName.equals(packageName));
-        //设置设备唯一码
-        strategy.setDeviceID(getUDID());
-        //设置设备型号
-        strategy.setDeviceModel(Build.BRAND + " " + Build.MODEL);
-        CrashReport.initCrashReport(this, TkAppConfig.BUGLY_ID, true, strategy);
-    }
-
-    /**
      * 初始化图片查看器
      */
     private void initMojito() {
@@ -837,7 +860,7 @@ public class VideoApplication extends Application {
      *
      * @return
      */
-    private String getUDID() {
+    public String getUDID() {
         StringBuilder deviceId = new StringBuilder();
         // 渠道标志
         deviceId.append("a");
@@ -887,5 +910,31 @@ public class VideoApplication extends Application {
             mShare.edit().putString("uuid", uuid).commit();
         }
         return uuid;
+    }
+
+    public String getSysInfo() {
+        // 1. 手机品牌 2. 分辨率 3. 手机型号 4. SDK
+        String brand = Build.BRAND;
+        String pixel = this.getDeviceWidth(this) + "*" + this.getDeviceHeight(this);
+        String model = Build.MODEL;
+        int sdk = Build.VERSION.SDK_INT;
+        String android_version = Build.VERSION.RELEASE;
+        String language = Locale.getDefault().getLanguage();
+
+        return brand + "|" + pixel + "|" + model + "|" + sdk + "|" + android_version + "|" + language;
+    }
+
+    /**
+     * 获取设备宽度（px）
+     */
+    private int getDeviceWidth(Context context) {
+        return context.getResources().getDisplayMetrics().widthPixels;
+    }
+
+    /**
+     * 获取设备高度（px）
+     */
+    private int getDeviceHeight(Context context) {
+        return context.getResources().getDisplayMetrics().heightPixels;
     }
 }
