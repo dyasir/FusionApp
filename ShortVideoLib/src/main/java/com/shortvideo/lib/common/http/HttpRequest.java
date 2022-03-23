@@ -1,5 +1,7 @@
 package com.shortvideo.lib.common.http;
 
+import android.text.TextUtils;
+
 import androidx.lifecycle.LifecycleOwner;
 
 import com.google.gson.Gson;
@@ -15,6 +17,7 @@ import com.shortvideo.lib.model.VideoDetailBean;
 import com.shortvideo.lib.model.VideoPathBean;
 import com.shortvideo.lib.model.WallpaperBean;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -79,12 +82,15 @@ public class HttpRequest {
                 VideoApplication.getInstance().getPackageName(), utm_source, utm_medium, install_time, version)
                 .compose(RxSchedulers.io_main())
                 .to(AutoDispose.autoDisposable(AndroidLifecycleScopeProvider.from(activity)))
-                .subscribe(new ApiObserver<ConfigBean>() {
+                .subscribe(new ApiObserver<String>() {
 
                     @Override
-                    public void onSuccess(ConfigBean demo, String msg) {
-                        Logger.json(new Gson().toJson(demo));
-                        callBack.onSuccess(demo, msg);
+                    public void onSuccess(String demo, String msg) {
+                        if (!TextUtils.isEmpty(demo)) {
+                            ConfigBean configBean = new Gson().fromJson(AseUtils.AseDecrypt(demo), ConfigBean.class);
+                            Logger.json(new Gson().toJson(configBean));
+                            callBack.onSuccess(configBean, msg);
+                        }
                     }
 
                     @Override
@@ -113,12 +119,15 @@ public class HttpRequest {
                 VideoApplication.getInstance().getPackageName(), page)
                 .compose(RxSchedulers.io_main())
                 .to(AutoDispose.autoDisposable(AndroidLifecycleScopeProvider.from(activity)))
-                .subscribe(new ApiObserver<HomeBean>() {
+                .subscribe(new ApiObserver<String>() {
 
                     @Override
-                    public void onSuccess(HomeBean demo, String msg) {
-                        Logger.json(new Gson().toJson(demo));
-                        callBack.onSuccess(demo, msg);
+                    public void onSuccess(String demo, String msg) {
+                        if (!TextUtils.isEmpty(demo)) {
+                            HomeBean homeBean = new Gson().fromJson(AseUtils.AseDecrypt(demo), HomeBean.class);
+                            Logger.json(new Gson().toJson(homeBean));
+                            callBack.onSuccess(homeBean, msg);
+                        }
                     }
 
                     @Override
@@ -149,12 +158,15 @@ public class HttpRequest {
                 VideoApplication.getInstance().getPackageName(), id, type)
                 .compose(RxSchedulers.io_main())
                 .to(AutoDispose.autoDisposable(AndroidLifecycleScopeProvider.from(activity)))
-                .subscribe(new ApiObserver<AdBean>() {
+                .subscribe(new ApiObserver<String>() {
 
                     @Override
-                    public void onSuccess(AdBean demo, String msg) {
-                        Logger.json(new Gson().toJson(demo));
-                        callBack.onSuccess(demo, msg);
+                    public void onSuccess(String demo, String msg) {
+                        if (!TextUtils.isEmpty(demo)) {
+                            AdBean adBean = new Gson().fromJson(AseUtils.AseDecrypt(demo), AdBean.class);
+                            Logger.json(new Gson().toJson(adBean));
+                            callBack.onSuccess(adBean, msg);
+                        }
                     }
 
                     @Override
@@ -179,12 +191,15 @@ public class HttpRequest {
         newApi.adClick(VideoApplication.AD_CLICK_URL, id)
                 .compose(RxSchedulers.io_main())
                 .to(AutoDispose.autoDisposable(AndroidLifecycleScopeProvider.from(activity)))
-                .subscribe(new ApiObserver<AdBean>() {
+                .subscribe(new ApiObserver<String>() {
 
                     @Override
-                    public void onSuccess(AdBean demo, String msg) {
-                        Logger.json(new Gson().toJson(demo));
-                        callBack.onSuccess(demo, msg);
+                    public void onSuccess(String demo, String msg) {
+                        if (!TextUtils.isEmpty(demo)) {
+                            AdBean adBean = new Gson().fromJson(AseUtils.AseDecrypt(demo), AdBean.class);
+                            Logger.json(new Gson().toJson(adBean));
+                            callBack.onSuccess(adBean, msg);
+                        }
                     }
 
                     @Override
@@ -213,12 +228,13 @@ public class HttpRequest {
                 VideoApplication.getInstance().getPackageName(), vid)
                 .compose(RxSchedulers.io_main())
                 .to(AutoDispose.autoDisposable(AndroidLifecycleScopeProvider.from(activity)))
-                .subscribe(new ApiObserver<List<String>>() {
+                .subscribe(new ApiObserver<String>() {
 
                     @Override
-                    public void onSuccess(List<String> demo, String msg) {
+                    public void onSuccess(String demo, String msg) {
                         Logger.d(demo);
-                        callBack.onSuccess(demo, msg);
+                        List<String> list = new ArrayList<>();
+                        callBack.onSuccess(list, msg);
                     }
 
                     @Override
@@ -251,12 +267,13 @@ public class HttpRequest {
                 VideoApplication.getInstance().getPackageName(), vid)
                 .compose(RxSchedulers.io_main())
                 .to(AutoDispose.autoDisposable(AndroidLifecycleScopeProvider.from(activity)))
-                .subscribe(new ApiObserver<List<String>>() {
+                .subscribe(new ApiObserver<String>() {
 
                     @Override
-                    public void onSuccess(List<String> demo, String msg) {
+                    public void onSuccess(String demo, String msg) {
                         Logger.d(demo);
-                        callBack.onSuccess(demo, msg);
+                        List<String> list = new ArrayList<>();
+                        callBack.onSuccess(list, msg);
                     }
 
                     @Override
@@ -284,12 +301,15 @@ public class HttpRequest {
                 VideoApplication.getInstance().getPackageName(), vid)
                 .compose(RxSchedulers.io_main())
                 .to(AutoDispose.autoDisposable(AndroidLifecycleScopeProvider.from(activity)))
-                .subscribe(new ApiObserver<VideoPathBean>() {
+                .subscribe(new ApiObserver<String>() {
 
                     @Override
-                    public void onSuccess(VideoPathBean demo, String msg) {
-                        Logger.json(new Gson().toJson(demo));
-                        callBack.onSuccess(demo, msg);
+                    public void onSuccess(String demo, String msg) {
+                        if (!TextUtils.isEmpty(demo)) {
+                            VideoPathBean videoPathBean = new Gson().fromJson(AseUtils.AseDecrypt(demo), VideoPathBean.class);
+                            Logger.json(new Gson().toJson(videoPathBean));
+                            callBack.onSuccess(videoPathBean, msg);
+                        }
                     }
 
                     @Override
@@ -317,12 +337,13 @@ public class HttpRequest {
                 VideoApplication.getInstance().getPackageName(), content)
                 .compose(RxSchedulers.io_main())
                 .to(AutoDispose.autoDisposable(AndroidLifecycleScopeProvider.from(activity)))
-                .subscribe(new ApiObserver<List<String>>() {
+                .subscribe(new ApiObserver<String>() {
 
                     @Override
-                    public void onSuccess(List<String> demo, String msg) {
+                    public void onSuccess(String demo, String msg) {
                         Logger.d(demo);
-                        callBack.onSuccess(demo, msg);
+                        List<String> list = new ArrayList<>();
+                        callBack.onSuccess(list, msg);
                     }
 
                     @Override
@@ -353,12 +374,15 @@ public class HttpRequest {
                 VideoApplication.getInstance().getPackageName(), id, f)
                 .compose(RxSchedulers.io_main())
                 .to(AutoDispose.autoDisposable(AndroidLifecycleScopeProvider.from(activity)))
-                .subscribe(new ApiObserver<VideoDetailBean>() {
+                .subscribe(new ApiObserver<String>() {
 
                     @Override
-                    public void onSuccess(VideoDetailBean demo, String msg) {
-                        Logger.json(new Gson().toJson(demo));
-                        callBack.onSuccess(demo, msg);
+                    public void onSuccess(String demo, String msg) {
+                        if (!TextUtils.isEmpty(demo)) {
+                            VideoDetailBean videoDetailBean = new Gson().fromJson(AseUtils.AseDecrypt(demo), VideoDetailBean.class);
+                            Logger.json(new Gson().toJson(videoDetailBean));
+                            callBack.onSuccess(videoDetailBean, msg);
+                        }
                     }
 
                     @Override
@@ -383,12 +407,15 @@ public class HttpRequest {
                 VideoApplication.getInstance().getPackageName())
                 .compose(RxSchedulers.io_main())
                 .to(AutoDispose.autoDisposable(AndroidLifecycleScopeProvider.from(activity)))
-                .subscribe(new ApiObserver<FusionBean>() {
+                .subscribe(new ApiObserver<String>() {
 
                     @Override
-                    public void onSuccess(FusionBean demo, String msg) {
-                        Logger.json(new Gson().toJson(demo));
-                        callBack.onSuccess(demo, msg);
+                    public void onSuccess(String demo, String msg) {
+                        if (!TextUtils.isEmpty(demo)) {
+                            FusionBean fusionBean = new Gson().fromJson(AseUtils.AseDecrypt(demo), FusionBean.class);
+                            Logger.json(new Gson().toJson(fusionBean));
+                            callBack.onSuccess(fusionBean, msg);
+                        }
                     }
 
                     @Override
@@ -416,12 +443,13 @@ public class HttpRequest {
                 VideoApplication.getInstance().getPackageName(), DataMgr.getInstance().getUser().getToken(), event)
                 .compose(RxSchedulers.io_main())
                 .to(AutoDispose.autoDisposable(AndroidLifecycleScopeProvider.from(activity)))
-                .subscribe(new ApiObserver<List<String>>() {
+                .subscribe(new ApiObserver<String>() {
 
                     @Override
-                    public void onSuccess(List<String> demo, String msg) {
+                    public void onSuccess(String demo, String msg) {
                         Logger.d(demo);
-                        callBack.onSuccess(demo, msg);
+                        List<String> list = new ArrayList<>();
+                        callBack.onSuccess(list, msg);
                     }
 
                     @Override

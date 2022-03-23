@@ -19,12 +19,6 @@ android {
 
         //多语言
         resConfigs "vi", "en", "zh", "fr", "de", "ru", "ja"
-
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments = [AROUTER_MODULE_NAME: project.getName()]
-            }
-        }
     }
 
     lintOptions {
