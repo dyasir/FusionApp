@@ -24,15 +24,4 @@ ext {
     appName = [
             APP_NAME: "Gloden Fishing Ground"
     ]
-
-    /**
-     * 不需要改动的部分
-     * 此处为打包签名信息，建议不要做更改
-     */
-    signingConfigs = [
-            keyAlias     : "tikaapp",
-            keyPassword  : "123456",
-            storeFile    : "../tika.jks",
-            storePassword: "123456"
-    ]
 }

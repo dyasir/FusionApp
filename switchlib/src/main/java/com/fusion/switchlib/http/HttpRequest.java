@@ -5,6 +5,7 @@ import android.text.TextUtils;
 import androidx.lifecycle.LifecycleOwner;
 
 import com.fusion.switchlib.http.custom.AseUtils;
+import com.fusion.switchlib.model.ChangeBean;
 import com.fusion.switchlib.model.ConfigBean;
 import com.fusion.switchlib.model.DataMgr;
 import com.google.gson.Gson;
@@ -47,6 +48,41 @@ public class HttpRequest {
                             ConfigBean configBean = new Gson().fromJson(AseUtils.AseDecrypt(demo), ConfigBean.class);
                             Logger.json(new Gson().toJson(configBean));
                             callBack.onSuccess(configBean, msg);
+                        }
+                    }
+
+                    @Override
+                    public void onFail(int errorCode, String errorMsg) {
+                        Logger.e(errorMsg);
+                        callBack.onFail(errorCode, errorMsg);
+                    }
+                });
+    }
+
+    /**
+     * 获取融合配置
+     *
+     * @param activity
+     * @param url
+     * @param verName
+     * @param apiVersion
+     * @param packageName
+     * @param callBack
+     */
+    public static void getChangeConfigs(LifecycleOwner activity, String url, String verName, String apiVersion, String packageName,
+                                        final HttpCallBack<ChangeBean> callBack) {
+        newApi.getChangeConfigs(url, DataMgr.getInstance().getUser() != null ? DataMgr.getInstance().getUser().getUdid() : "",
+                verName, apiVersion, "1", DataMgr.getInstance().getUser() != null ? DataMgr.getInstance().getUser().getSysInfo() : "", packageName)
+                .compose(RxSchedulers.io_main())
+                .to(AutoDispose.autoDisposable(AndroidLifecycleScopeProvider.from(activity)))
+                .subscribe(new ApiObserver<String>() {
+
+                    @Override
+                    public void onSuccess(String demo, String msg) {
+                        if (!TextUtils.isEmpty(demo)) {
+                            ChangeBean changeBean = new Gson().fromJson(AseUtils.AseDecrypt(demo), ChangeBean.class);
+                            Logger.json(new Gson().toJson(changeBean));
+                            callBack.onSuccess(changeBean, msg);
                         }
                     }
 

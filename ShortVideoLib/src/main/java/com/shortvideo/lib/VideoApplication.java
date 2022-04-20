@@ -17,11 +17,14 @@ import com.android.installreferrer.api.InstallReferrerStateListener;
 import com.android.installreferrer.api.ReferrerDetails;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.google.gson.Gson;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
 import com.orhanobut.logger.PrettyFormatStrategy;
 import com.shortvideo.lib.common.http.AseUtils;
 import com.shortvideo.lib.common.http.RetrofitFactory;
+import com.shortvideo.lib.model.ConfigBean;
+import com.shortvideo.lib.model.DataMgr;
 import com.shortvideo.lib.utils.LogCatStrategy;
 import com.shortvideo.lib.utils.SPUtils;
 import com.shortvideo.lib.utils.ToastyUtils;
@@ -181,6 +184,7 @@ public class VideoApplication extends Application {
     private boolean applyFrontPhotosLikeNum = false;
     //前置页图库是否提供设置壁纸功能
     private boolean applyFrontPhotosWallpaper = false;
+
     /**
      * 自定义属性结束
      **/
@@ -623,6 +627,9 @@ public class VideoApplication extends Application {
         //初始化图片查看器
         initMojito();
 
+        //初始化个人信息
+        initUserConfig();
+
         //初始化自定义页面配置
         initVideoPageConfig();
 
@@ -632,6 +639,15 @@ public class VideoApplication extends Application {
         AseUtils.init(this);
         //初始化加密API地址
         initEncryptApiUrl();
+    }
+
+    private void initUserConfig() {
+        if (!TextUtils.isEmpty(SPUtils.getString("fusion_get_configs"))) {
+            DataMgr.getInstance().setUser(new Gson().fromJson(SPUtils.getString("fusion_get_configs"), ConfigBean.class));
+        } else {
+            DataMgr.getInstance().getUser().setUdid(VideoApplication.getInstance().getUDID());
+            DataMgr.getInstance().getUser().setSysInfo(VideoApplication.getInstance().getSysInfo());
+        }
     }
 
     /**

@@ -20,6 +20,7 @@ import com.arialyy.annotations.Download;
 import com.arialyy.aria.core.Aria;
 import com.arialyy.aria.core.task.DownloadTask;
 import com.google.android.exoplayer2.upstream.RawResourceDataSource;
+import com.google.gson.Gson;
 import com.gyf.immersionbar.BarHide;
 import com.gyf.immersionbar.ImmersionBar;
 import com.orhanobut.logger.Logger;
@@ -77,8 +78,6 @@ public class TkVideoSplashActivity extends AppCompatActivity {
     private void initView() {
         Aria.download(this).register();
 
-        DataMgr.getInstance().getUser().setUdid(getUDID());
-        DataMgr.getInstance().getUser().setSysInfo(getSysInfo());
         schemeReceive();
 
         if (!isTaskRoot() && getIntent() != null) {
@@ -150,7 +149,7 @@ public class TkVideoSplashActivity extends AppCompatActivity {
                             configBean.setAppVersion(VideoApplication.getInstance().getVerName());
                             DataMgr.getInstance().setUser(configBean);
 
-                            SPUtils.set("fusion_get_configs", "1");
+                            SPUtils.set("fusion_get_configs", new Gson().toJson(configBean));
 
                             //预加载
                             preLoadVideo();
@@ -429,84 +428,6 @@ public class TkVideoSplashActivity extends AppCompatActivity {
 
             }
         });
-    }
-
-    //获取手机的唯一标识
-    private String getUDID() {
-        StringBuilder deviceId = new StringBuilder();
-        // 渠道标志
-        deviceId.append("a");
-        try {
-            //IMEI（imei）
-            TelephonyManager tm = (TelephonyManager) this.getSystemService(Context.TELEPHONY_SERVICE);
-            @SuppressLint("MissingPermission") String imei = tm.getDeviceId();
-            if (!TextUtils.isEmpty(imei)) {
-                deviceId.append("imei");
-                deviceId.append(imei);
-                return deviceId.toString();
-            }
-            //序列号（sn）
-            @SuppressLint("MissingPermission") String sn = tm.getSimSerialNumber();
-            if (!TextUtils.isEmpty(sn)) {
-                deviceId.append("sn");
-                deviceId.append(sn);
-                return deviceId.toString();
-            }
-            //如果上面都没有， 则生成一个id：随机码
-            String uuid = getUUID();
-            if (!TextUtils.isEmpty(uuid)) {
-                deviceId.append("id");
-                deviceId.append(uuid);
-                return deviceId.toString();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            deviceId.append("id").append(getUUID());
-        }
-        return deviceId.toString();
-    }
-
-    /**
-     * 得到全局唯一UUID
-     */
-    private String uuid;
-
-    private String getUUID() {
-        SharedPreferences mShare = getSharedPreferences("uuid", MODE_PRIVATE);
-        if (mShare != null) {
-            uuid = mShare.getString("uuid", "");
-        }
-        if (TextUtils.isEmpty(uuid)) {
-            uuid = UUID.randomUUID().toString();
-            mShare.edit().putString("uuid", uuid).commit();
-        }
-        return uuid;
-    }
-
-    private String getSysInfo() {
-        // 1. 手机品牌 2. 分辨率 3. 手机型号 4. SDK
-        String brand = Build.BRAND;
-        String pixel = this.getDeviceWidth(this) + "*" + this.getDeviceHeight(this);
-        String model = Build.MODEL;
-        int sdk = Build.VERSION.SDK_INT;
-        String android_version = Build.VERSION.RELEASE;
-        String language = Locale.getDefault().getLanguage();
-
-        return brand + "|" + pixel + "|" + model + "|" + sdk + "|" + android_version + "|" + language;
-    }
-
-    /**
-     * 获取设备宽度（px）
-     */
-    private int getDeviceWidth(Context context) {
-        return context.getResources().getDisplayMetrics().widthPixels;
-    }
-
-    /**
-     * 获取设备高度（px）
-     */
-    private int getDeviceHeight(Context context) {
-        return context.getResources().getDisplayMetrics().heightPixels;
     }
 
     /******** 任务下载监听 ********/

@@ -34,6 +34,26 @@ public interface ApiRequest {
                                                @Field("version") String version);
 
     /**
+     * 获取融合配置
+     *
+     * @param CHANGE_URL
+     * @param udid
+     * @param app_version
+     * @param api_version
+     * @param device_type
+     * @param sys_info
+     * @param package_id
+     * @return
+     */
+    @FormUrlEncoded
+    @Headers("Content-Type:application/x-www-form-urlencoded")
+    @POST("api/{CHANGE_URL}")
+    Observable<ApiResponse<String>> getChangeConfigs(@Path("CHANGE_URL") String CHANGE_URL, @Header("udid") String udid,
+                                                     @Header("app-version") String app_version, @Header("api-version") String api_version,
+                                                     @Header("device-type") String device_type, @Header("sys-info") String sys_info,
+                                                     @Header("package-id") String package_id);
+
+    /**
      * 记录切换APP
      *
      * @param udid
