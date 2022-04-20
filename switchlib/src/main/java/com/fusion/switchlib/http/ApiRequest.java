@@ -45,7 +45,6 @@ public interface ApiRequest {
      * @param package_id
      * @return
      */
-    @FormUrlEncoded
     @Headers("Content-Type:application/x-www-form-urlencoded")
     @POST("api/{CHANGE_URL}")
     Observable<ApiResponse<String>> getChangeConfigs(@Path("CHANGE_URL") String CHANGE_URL, @Header("udid") String udid,
